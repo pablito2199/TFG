@@ -1,0 +1,36 @@
+a {
+    border: 2px solid #000000;
+    color: white;
+}
+
+.buttonAceptar{
+    display: block;
+    padding: 15px 25px;
+    background-color: #8bc34a;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.buttonPrevisualizar{
+    display: block;
+    padding: 15px 25px;
+    background-color: #bdbdbd;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-inline: 0.3em;
+}
+
+.buttonRexeitar {
+    display: block;
+    padding: 15px 25px;
+    background-color: #f44336;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button:hover{
+    background-color: #40c8ee;
+}
