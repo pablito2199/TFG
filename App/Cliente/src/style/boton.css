@@ -1,0 +1,35 @@
+a {
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #000000;
+}
+
+.verde{
+    background-color: #8bc34a;
+    font-weight: bold;
+    color: white;
+}
+.verde:hover {
+    background-color: #70be16;
+}
+
+.gris{
+    margin-inline: 0.3em;
+    background-color: #bdbdbd;
+    font-weight: bold;
+    color: white;
+}
+.gris:hover {
+    background-color: #949494;
+}
+
+.rojo {
+    background-color: #f44336;
+    font-weight: bold;
+    color: white;
+}
+.rojo:hover {
+    background-color: #f01303;
+}

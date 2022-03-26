@@ -1,7 +1,5 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #63c8f6;
 }
 header {
     margin-top: 1em;
@@ -10,28 +8,54 @@ header {
     align-items: center;
     text-align: left;
     justify-content: center;
+    background-color: #e0e0e0;
+    border: 2px solid #000000;
 }
 .metadatos {
     width: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 2px solid #000000;
-    padding: 1em;
-    background-color: #e0e0e0;
 }
-.metadatos > div {
-    width: 50%;
+.metadatos .colIzq {
+    width: 60%;
 }
-.botones {
+.metadatos .colDer {
+    width: 40%;
+}
+
+main {
+    margin-top: 2em;
+    display: flex;
+    background-color: white;
+    color: #000000;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+}
+nav a {
+    width: 5em;
+    font-size: 0.9em;
+}
+main .izquierda {
+    width: 65%;
+}
+main .derecha {
+    margin-left: 5%;
+    width: 30%;
+}
+
+.botones_principales {
     display: flex;
     margin-top: 1em;
 }
-input {
-    margin-block: 0.3em;
-    border: 2px solid #000000;
-    width: 80%;
-}
-label {
-    margin-right: 0.5em;
+
+@media (max-width: 850px) {
+    .metadatos > .colIzq {
+        width: 100%;
+    }
+    .metadatos > .colDer {
+        width: 100%;
+    }
 }
