@@ -1,6 +1,7 @@
 body {
     background-color: #63c8f6;
 }
+
 header {
     margin-top: 1em;
     display: flex;
@@ -11,15 +12,18 @@ header {
     background-color: #e0e0e0;
     border: 2px solid #000000;
 }
+
 .metadatos {
     width: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .metadatos .colIzq {
     width: 60%;
 }
+
 .metadatos .colDer {
     width: 40%;
 }
@@ -27,35 +31,124 @@ header {
 main {
     margin-top: 2em;
     display: flex;
-    background-color: white;
     color: #000000;
 }
+
 nav {
     display: flex;
-    flex-direction: row;
 }
+
 nav a {
     width: 5em;
+    background-color: white;
     font-size: 0.9em;
+    border-radius: 5px 5px 0px 0px;
 }
+
 main .izquierda {
     width: 65%;
 }
+
 main .derecha {
     margin-left: 5%;
     width: 30%;
 }
 
+.diferenzas {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    border: 2px solid #000000;
+}
+
+.diferenzas select {
+    width: 100%;
+    padding: 1em;
+    text-align: center;
+    font-weight: bold;
+    border: 0px;
+    border-bottom: 2px solid #000000;
+}
+
+select:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+p {
+    margin-left: 0.5em;
+    word-wrap: break-word;
+}
+
+.diferenzas p {
+    min-height: 60em;
+    max-height: 60em;
+    overflow-y: scroll;
+}
+
+.textoIzquierda {
+    flex-shrink: 0;
+    flex-basis: 49%;
+    border-right: 2px solid #000000;
+}
+
+.textoDerecha {
+    width: 50.5%;
+}
+
+.contenido {
+    background-color: white;
+    border: 2px solid #000000;
+}
+
+.contenido p {
+    min-height: 45.5em;
+    max-height: 45.5em;
+    overflow-y: scroll;
+}
+
+.botones {
+    padding: 1.5em;
+}
+
 .botones_principales {
     display: flex;
+    justify-content: center;
     margin-top: 1em;
 }
 
 @media (max-width: 850px) {
-    .metadatos > .colIzq {
+    .metadatos>.colIzq {
         width: 100%;
     }
-    .metadatos > .colDer {
+
+    .metadatos>.colDer {
         width: 100%;
+    }
+}
+
+
+@media (max-width: 1055px) {
+    main {
+        flex-flow: column;
+    }
+
+    main .izquierda {
+        width: 100%;
+    }
+
+    main .derecha {
+        width: 100%;
+        margin-left: 0em;
+        margin-top: 1em;
+    }
+
+    .contenido p {
+        min-height: 30em;
+    }
+
+    .botones {
+        display: flex;
+        flex-flow: row;
     }
 }
