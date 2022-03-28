@@ -1,7 +1,8 @@
-15/03 20 mins -> 1ª reunión
+15/03 0.3h -> 1ª reunión
 16/03 1h -> 1º mockup
 23/03 1h -> 2ª reunión
 24/03 2h -> 2º mockup
-25/03 2h30 -> Inicio cliente
-26/03 1h30 -> Continuar cliente
+25/03 2.5h -> Inicio cliente
+26/03 1.5h -> Continuar cliente
 27/03 2h -> Continuar cliente
+28/03 2h -> Continuar cliente
