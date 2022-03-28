@@ -96,14 +96,41 @@ p {
     width: 50.5%;
 }
 
-.contenido {
+
+
+.notas {
     background-color: white;
     border: 2px solid #000000;
 }
 
-.contenido p {
-    min-height: 45.5em;
-    max-height: 45.5em;
+.notas_contenido {
+    display: flex;
+    flex-direction: column;
+    min-height: 30em;
+    max-height: 40em;
+    overflow-y: scroll;
+}
+
+.nota {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+.nota span {
+    font-weight: bold;
+    min-width: fit-content;
+    margin-right: 0.2em;
+}
+
+.cambios {
+    background-color: white;
+    border: 2px solid #000000;
+}
+
+.cambios_contenido {
+    min-height: 30em;
+    max-height: 40em;
     overflow-y: scroll;
 }
 
