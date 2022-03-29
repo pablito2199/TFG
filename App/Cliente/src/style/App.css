@@ -56,12 +56,17 @@ main .derecha {
 
 .diferenzas {
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column;
     background-color: white;
     border: 2px solid #000000;
 }
 
-.diferenzas select {
+.selector_texto {
+    display: flex;
+    flex-flow: row;
+}
+
+.selector_texto select {
     width: 100%;
     padding: 1em;
     text-align: center;
@@ -70,33 +75,14 @@ main .derecha {
     border-bottom: 2px solid #000000;
 }
 
+.selector_texto select:first-child {
+    border-right: 2px solid #000000;
+}
+
 select:hover {
     cursor: pointer;
     text-decoration: underline;
 }
-
-p {
-    margin-left: 0.5em;
-    word-wrap: break-word;
-}
-
-.diferenzas p {
-    min-height: 60em;
-    max-height: 60em;
-    overflow-y: scroll;
-}
-
-.textoIzquierda {
-    flex-shrink: 0;
-    flex-basis: 49%;
-    border-right: 2px solid #000000;
-}
-
-.textoDerecha {
-    width: 50.5%;
-}
-
-
 
 .notas {
     background-color: white;
@@ -121,6 +107,11 @@ p {
     font-weight: bold;
     min-width: fit-content;
     margin-right: 0.2em;
+}
+
+p {
+    margin-left: 0.5em;
+    word-wrap: break-word;
 }
 
 .cambios {
