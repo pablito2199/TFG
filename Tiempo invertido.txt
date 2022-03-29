@@ -7,3 +7,5 @@
 27/03 2h -> Continuar cliente
 28/03 2h -> Continuar cliente
 29/03 1h -> Implementación react-diff-viewer
+29/03 1h -> 3ª reunión
+29/03 0,5h -> Continuar cliente

@@ -39,16 +39,13 @@ Hola
 Hola`
 
 export const App = () => {
-    const [state_izq, setStateIzq] = useState(false)
-    const [state_der, setStateDer] = useState(false)
-
     return (
         <body>
             <Header />
 
             <main>
-                <ParteIzquierda estado={state_izq} setEstado={setStateIzq} />
-                <ParteDerecha estado={state_der} setEstado={setStateDer} />
+                <ParteIzquierda />
+                <ParteDerecha />
             </main>
 
             <BotonesPrincipales />
@@ -57,21 +54,38 @@ export const App = () => {
 };
 
 function Header() {
+    const organismos = [
+        { codigo: 1, nombre: 'Durward Reynolds' },
+        { codigo: 2, nombre: 'Kenton Towne' },
+        { codigo: 3, nombre: 'Therese Wunsch' },
+        { codigo: 4, nombre: 'Benedict Kessler' },
+        { codigo: 5, nombre: 'Katelyn Rohan' }
+    ]
+
+    const [organismoSeleccionado, setOrganismoSeleccionado] = useState(organismos[0])
+    const [query, setQuery] = useState('')
+
+    const organismosFiltrados =
+        query === ''
+            ? organismos
+            : organismos.filter((organismo) => {
+                return organismo.nombre.toLowerCase().includes(query.toLowerCase())
+            })
+
     return <header>
         <h1>DATOS DE CABECEIRA</h1>
         <div className="metadatos">
             <div className="colIzq">
                 <Campo identificador="titulo" texto="Título" tipo="text" />
-                <Campo identificador="organismo" texto="Organismo" tipo="text" />
+                <Campo identificador="organismo" texto="Organismo" tipo="autocomplete" organismoSeleccionado={organismoSeleccionado} setOrganismoSeleccionado={setOrganismoSeleccionado} organismosFiltrados={organismosFiltrados} query={query} setQuery={setQuery} />
                 <Campo identificador="sumario" texto="Sumario" tipo="textarea" />
                 <Campo identificador="data_publicacion" texto="Data de publicación" tipo="date" />
                 <Campo identificador="referencia_publicacion" texto="Referencia de publicación" tipo="text" />
-                <Campo identificador="dvl_desde" texto="DVL desde" tipo="date" />
+                <Campo identificador="dvl_desde" texto="Data de entrada en vigor" tipo="date" />
             </div>
 
             <div className="colDer">
                 <Campo identificador="estado" texto="Estado" tipo="text" />
-                <Campo identificador="entrada_vigor" texto="Establecer data de entrada en vigor" tipo="date" />
                 <Campo identificador="ano" texto="Ano" tipo="text" />
                 <Campo identificador="nome_ficheiro" texto="Nome ficheiro" tipo="text" />
                 <Campo identificador="version" texto="Versión" tipo="text" />
@@ -82,7 +96,7 @@ function Header() {
     </header>
 }
 
-function ParteIzquierda({ estado, setEstado }) {
+function ParteIzquierda() {
     const newStyles = {
         diffContainer: {
             'min-height': '60em',
@@ -90,6 +104,8 @@ function ParteIzquierda({ estado, setEstado }) {
             'overflow-y': 'scroll'
         }
     };
+
+    const [estado, setEstado] = useState(false)
 
     return <section className="izquierda">
         {
@@ -127,7 +143,9 @@ function ParteIzquierda({ estado, setEstado }) {
     </section>
 }
 
-function ParteDerecha({ estado, setEstado }) {
+function ParteDerecha() {
+    const [estado, setEstado] = useState(false)
+
     return <section className="derecha">
         {
             estado === false
