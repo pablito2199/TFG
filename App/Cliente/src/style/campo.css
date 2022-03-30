@@ -1,25 +1,21 @@
 .campo {
     display: flex;
-    text-align: end;
+    flex-flow: column;
+    text-align: left;
     align-items: top;
     padding: 0.25em;
 }
 
-.campo label {
-    font-size: 0.8em;
-    margin: 0.5em 0.5em;
-    width: 20%;
-}
-
 .campo input {
+    min-height: 1.75em;
     margin-block: 0.3em;
     flex: 0.95 1 auto;
-    border: 2px solid #000000;
+    color: grey;
 }
 
 .sumario {
-    min-height: 6em;
+    min-height: 7em;
     flex: 0.95 1 auto;
-    border: 2px solid #000000;
     resize: none;
+    color: grey;
 }

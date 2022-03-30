@@ -1,42 +1,7 @@
 import { React, useState } from 'react'
-import ReactDiffViewer, { DiffMethod } from 'react-diff-viewer';
 import "./style/app.css";
 import { Boton } from "./components/Boton";
 import { Campo } from "./components/Campo";
-
-const oldCode = `
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-Hola
-Adios
-Hola que tal`
-const newCode = `
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-Hola hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola
-Hola`
 
 export const App = () => {
     return (
@@ -73,7 +38,7 @@ function Header() {
             })
 
     return <header>
-        <h1>DATOS DE CABECEIRA</h1>
+        <h1>Datos de cabeceira</h1>
         <div className="metadatos">
             <div className="colIzq">
                 <Campo identificador="titulo" texto="Título" tipo="text" />
@@ -97,14 +62,6 @@ function Header() {
 }
 
 function ParteIzquierda() {
-    const newStyles = {
-        diffContainer: {
-            'min-height': '60em',
-            'max-height': '60em',
-            'overflow-y': 'scroll'
-        }
-    };
-
     const [estado, setEstado] = useState(false)
 
     return <section className="izquierda">
@@ -112,33 +69,55 @@ function ParteIzquierda() {
             estado === false
                 ?
                 <nav className="navIzquierda">
-                    <a className="enlace_diferenzas" style={{ backgroundColor: "#bdbdbd" }}>Diferenzas</a>
+                    <a className="enlace_texto" style={{ backgroundColor: "#000000", color: "white" }}>Texto</a>
                     <a className="enlace_leisvinc" onClick={() => setEstado(true)}>Leis vinc.</a>
                 </nav>
                 :
                 <nav className="navIzquierda">
-                    <a className="enlace_diferenzas" onClick={() => setEstado(false)}>Diferenzas</a>
-                    <a className="enlace_leisvinc" style={{ backgroundColor: "#bdbdbd" }}>Leis vinc.</a>
+                    <a className="enlace_diferenzas" onClick={() => setEstado(false)}>Texto</a>
+                    <a className="enlace_leisvinc" style={{ backgroundColor: "#000000", color: "white" }}>Leis vinc.</a>
                 </nav>
         }
         {
             estado === false
                 ?
-                <div className="diferenzas">
-                    <div className="selector_texto">
-                        <select>
-                            <option>lex.gal</option>
-                            <option>DOG</option>
-                        </select>
-                        <select>
-                            <option>lex.gal</option>
-                            <option>DOG</option>
-                        </select>
-                    </div>
-                    <ReactDiffViewer styles={newStyles} oldValue={oldCode} newValue={newCode} showDiffOnly={false} compareMethod={DiffMethod.WORDS} />
+                <div className="texto">
+                    <p>
+                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                        Hola
+                        Adios
+                        Hola que tal
+                    </p>
                 </div>
                 :
-                <div className="leis_vinculadas"></div>
+                <div className="leis_vinculadas">
+                    <div className="lei_vinc">
+                        <div>
+                            <span>Lei 00000A</span>
+                            <a>(eliminar)</a>
+                        </div>
+                        <p>Modificación realizada</p>
+                    </div>
+                    <div className="lei_vinc">
+                        <div>
+                            <span>Lei 00000B</span>
+                            <a>(eliminar)</a>
+                        </div>
+                        <p>Modificación realizada</p>
+                    </div>
+                    <div class="lei_vinc">
+                        <div>
+                            <span>Lei 00000C</span>
+                            <a>(eliminar)</a>
+                        </div>
+                        <p>Modificación realizada</p>
+                    </div>
+                    <a>(+) Engadir lei vinculada manualmente</a>
+                    <div className="botones_vinc">
+                        <Boton color="gris" texto="Aceptar todas" />
+                        <Boton color="gris" texto="Rexeitar todas" />
+                    </div>
+                </div>
         }
     </section>
 }
@@ -151,13 +130,13 @@ function ParteDerecha() {
             estado === false
                 ?
                 <nav className="navIzquierda">
-                    <a className="enlace_diferenzas" style={{ backgroundColor: "#bdbdbd" }}>Notas</a>
+                    <a className="enlace_diferenzas" style={{ backgroundColor: "#000000", color: "white" }}>Notas</a>
                     <a className="enlace_leisvinc" onClick={() => setEstado(true)}>Cambios</a>
                 </nav>
                 :
                 <nav className="navIzquierda">
                     <a className="enlace_diferenzas" onClick={() => setEstado(false)}>Notas</a>
-                    <a className="enlace_leisvinc" style={{ backgroundColor: "#bdbdbd" }}>Cambios</a>
+                    <a className="enlace_leisvinc" style={{ backgroundColor: "#000000", color: "white" }}>Cambios</a>
                 </nav>
         }
         {

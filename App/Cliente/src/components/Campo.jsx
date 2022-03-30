@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ArrowDownIcon } from '@heroicons/react/solid'
 import "../style/campo.css";
+import "../styles.css"
 
 export const Campo = ({
     identificador,
