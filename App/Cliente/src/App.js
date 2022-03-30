@@ -5,7 +5,7 @@ import { Campo } from "./components/Campo";
 
 export const App = () => {
     return (
-        <body>
+        <body className='bg-red'>
             <Header />
 
             <main>
@@ -26,23 +26,23 @@ function Header() {
         { codigo: 4, nombre: 'Benedict Kessler' },
         { codigo: 5, nombre: 'Katelyn Rohan' }
     ]
+    const estados = [
+        { codigo: 1, nombre: 'Durward Reynolds' },
+        { codigo: 2, nombre: 'Kenton Towne' },
+        { codigo: 3, nombre: 'Therese Wunsch' },
+        { codigo: 4, nombre: 'Benedict Kessler' },
+        { codigo: 5, nombre: 'Katelyn Rohan' }
+    ]
 
     const [organismoSeleccionado, setOrganismoSeleccionado] = useState(organismos[0])
-    const [query, setQuery] = useState('')
-
-    const organismosFiltrados =
-        query === ''
-            ? organismos
-            : organismos.filter((organismo) => {
-                return organismo.nombre.toLowerCase().includes(query.toLowerCase())
-            })
+    const [estadoSeleccionado, setEstadoSeleccionado] = useState(estados[0])
 
     return <header>
         <h1>Datos de cabeceira</h1>
         <div className="metadatos">
             <div className="colIzq">
                 <Campo identificador="titulo" texto="Título" tipo="text" />
-                <Campo identificador="organismo" texto="Organismo" tipo="autocomplete" organismoSeleccionado={organismoSeleccionado} setOrganismoSeleccionado={setOrganismoSeleccionado} organismosFiltrados={organismosFiltrados} query={query} setQuery={setQuery} />
+                <Campo identificador="organismo" texto="Organismo" tipo="autocomplete" organismos={organismos} setOrganismoSeleccionado={setOrganismoSeleccionado} />
                 <Campo identificador="sumario" texto="Sumario" tipo="textarea" />
                 <Campo identificador="data_publicacion" texto="Data de publicación" tipo="date" />
                 <Campo identificador="referencia_publicacion" texto="Referencia de publicación" tipo="text" />
@@ -50,7 +50,7 @@ function Header() {
             </div>
 
             <div className="colDer">
-                <Campo identificador="estado" texto="Estado" tipo="text" />
+                <Campo identificador="estado" texto="Estado" tipo="autocomplete" estados={estados} setEstadoSeleccionado={setEstadoSeleccionado} />
                 <Campo identificador="ano" texto="Ano" tipo="text" />
                 <Campo identificador="nome_ficheiro" texto="Nome ficheiro" tipo="text" />
                 <Campo identificador="version" texto="Versión" tipo="text" />
