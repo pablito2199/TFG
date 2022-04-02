@@ -21,7 +21,7 @@
 }
 
 .sumario {
-    min-height: 7em;
+    min-height: 6.75em;
     margin-block: 0.3em;
     flex: 0.95 1 auto;
     resize: none;

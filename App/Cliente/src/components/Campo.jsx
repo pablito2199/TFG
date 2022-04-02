@@ -25,9 +25,9 @@ export const Campo = ({
                                 {
                                     identificador === "organismo"
                                         ?
-                                        organismos?.map(r => <option key={r.codigo} onClick={setOrganismoSeleccionado(r.codigo)}>{r.nombre}</option>)
+                                        organismos?.map(org => <option key={org.codigo} onClick={setOrganismoSeleccionado(org.codigo)}>{org.nombre}</option>)
                                         :
-                                        estados?.map(r => <option key={r.codigo} onClick={setEstadoSeleccionado(r.codigo)}>{r.nombre}</option>)
+                                        estados?.map(est => <option key={est.codigo} onClick={setEstadoSeleccionado(est.codigo)}>{est.nombre}</option>)
                                 }
                             </select>
                         )

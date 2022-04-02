@@ -9,4 +9,5 @@
 29/03 1h -> Implementación react-diff-viewer
 29/03 1h -> 3ª reunión
 29/03 0,5h -> Continuar cliente
-30/03 1h -> Reestructuración cliente
+30/03 2h -> Reestructuración cliente
+31/03 0.5h -> Empezar servidor

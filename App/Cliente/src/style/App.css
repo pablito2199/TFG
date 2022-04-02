@@ -2,6 +2,8 @@ body {
     background-color: #CCCCCC;
 }
 
+/* HEADER */
+
 header {
     display: flex;
     flex-direction: column;
@@ -36,6 +38,8 @@ header {
     width: 40%;
 }
 
+/* MAIN */
+
 main {
     margin-top: 2em;
     display: flex;
@@ -67,8 +71,8 @@ main .derecha {
     flex-flow: column;
     background-color: white;
     border: 2px solid #000000;
-    min-height: 50em;
-    max-height: 50em;
+    min-height: 60em;
+    max-height: 60em;
     overflow-y: scroll;
 }
 
@@ -77,6 +81,13 @@ main .derecha {
     flex-flow: column;
     background-color: white;
     border: 2px solid black;
+}
+
+.conxunto_leis_vinculadas {
+    max-height: 40em;
+    overflow-y: scroll;
+    border-bottom: 3px solid grey;
+    margin-bottom: 1em;
 }
 
 .leis_vinculadas .lei_vinc {
@@ -99,14 +110,12 @@ main .derecha {
 
 .leis_vinculadas .lei_vinc div a {
     border: 0px;
-    text-decoration: underline;
     font-size: 12px;
     color: blue;
 }
 
 .leis_vinculadas a {
     border: 0px;
-    text-decoration: underline;
     color: blue;
     text-align: left;
 }
@@ -115,7 +124,6 @@ main .derecha {
     flex: 1 1 auto;
     border: 0px;
     text-align: right;
-    text-decoration: underline;
     font-size: 12px;
     color: blue;
 }
@@ -152,6 +160,27 @@ select:hover {
 }
 
 .nota {
+    display: flex;
+    flex-flow: column;
+    border-bottom: 3px solid grey;
+}
+
+.notas_comentarios {
+    display: flex;
+    flex-flow: column;
+    margin: 1em 0em;
+    flex: 0.95 1 auto;
+}
+
+.notas_comentarios input {
+    min-height: 1.75em;
+    margin-left: 0.3em;
+    width: 95%;
+    border: 1px solid rgba(100, 178, 236, 0.9);
+    border-radius: 0.5em;
+}
+
+.nota_contenido {
     display: flex;
     align-items: center;
     border-bottom: 1px solid grey;

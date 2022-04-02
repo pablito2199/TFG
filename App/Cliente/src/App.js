@@ -64,6 +64,19 @@ function Header() {
 function ParteIzquierda() {
     const [estado, setEstado] = useState(false)
 
+    const leis = [
+        { id: '00000A', modificacion: 'Modificación realizada a lei A.' },
+        { id: '00000B', modificacion: 'Modificación realizada a lei B.' },
+        { id: '00000C', modificacion: 'Modificación realizada a lei C.' },
+        { id: '00000D', modificacion: 'Modificación realizada a lei D.' },
+        { id: '00000E', modificacion: 'Modificación realizada a lei E.' },
+        { id: '00000F', modificacion: 'Modificación realizada a lei F.' },
+        { id: '00000G', modificacion: 'Modificación realizada a lei G.' },
+        { id: '00000H', modificacion: 'Modificación realizada a lei H.' },
+        { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
+        { id: '00000J', modificacion: 'Modificación realizada a lei J.' }
+    ]
+
     return <section className="izquierda">
         {
             estado === false
@@ -91,28 +104,12 @@ function ParteIzquierda() {
                 </div>
                 :
                 <div className="leis_vinculadas">
-                    <div className="lei_vinc">
-                        <div>
-                            <span>Lei 00000A</span>
-                            <a>(eliminar)</a>
-                        </div>
-                        <p>Modificación realizada</p>
+                    <div className="conxunto_leis_vinculadas">
+                        {
+                            leis?.map(lei => <div className="lei_vinc" key={lei.id}><div><span>Lei {lei.id}</span><a>(eliminar)</a></div><p>{lei.modificacion}</p></div>)
+                        }
                     </div>
-                    <div className="lei_vinc">
-                        <div>
-                            <span>Lei 00000B</span>
-                            <a>(eliminar)</a>
-                        </div>
-                        <p>Modificación realizada</p>
-                    </div>
-                    <div class="lei_vinc">
-                        <div>
-                            <span>Lei 00000C</span>
-                            <a>(eliminar)</a>
-                        </div>
-                        <p>Modificación realizada</p>
-                    </div>
-                    <a>(+) Engadir lei vinculada manualmente</a>
+                    <a>(+) Engadir nova lei vinculada manualmente</a>
                     <div className="botones_vinc">
                         <Boton color="gris" texto="Aceptar todas" />
                         <Boton color="gris" texto="Rexeitar todas" />
@@ -124,6 +121,17 @@ function ParteIzquierda() {
 
 function ParteDerecha() {
     const [estado, setEstado] = useState(false)
+
+    const notas = [
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: ['Bien', 'Mal'] },
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: ['Comentario'] },
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+    ]
 
     return <section className="derecha">
         {
@@ -144,14 +152,20 @@ function ParteDerecha() {
                 ?
                 <div className="notas">
                     <div className="notas_contenido">
-                        <div class="nota">
-                            <p><span>Nota 1:</span>Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm</p>
-                            <input type="checkbox" />
-                        </div>
-                        <div class="nota">
-                            <p><span>Nota 2:</span>Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm</p>
-                            <input type="checkbox" />
-                        </div>
+                        {
+                            notas?.map((nota, i) =>
+                                <div className="nota" key={i}>
+                                    <div className="nota_contenido"><p><span>Nota {i + 1}:</span>{nota.contenido}</p><input type="checkbox" /></div>
+                                    <div className="notas_comentarios">
+                                        <ul>
+                                            {
+                                                nota.comentarios?.map(com => <li>{com}</li>)
+                                            }
+                                        </ul>
+                                        <input type="text" placeholder="Añadir comentario..."></input>
+                                    </div>
+                                </div>)
+                        }
                     </div>
                     <div className="botones">
                         <Boton color="gris" texto="Aceptar selección" />
