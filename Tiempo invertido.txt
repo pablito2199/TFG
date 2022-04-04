@@ -11,3 +11,4 @@
 29/03 0,5h -> Continuar cliente
 30/03 2h -> Reestructuración cliente
 31/03 0.5h -> Empezar servidor
+01/03 1h -> Reajustes cliente

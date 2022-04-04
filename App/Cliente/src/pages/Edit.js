@@ -1,9 +1,9 @@
 import { React, useState } from 'react'
-import "./style/app.css";
-import { Boton } from "./components/Boton";
-import { Campo } from "./components/Campo";
+import "../style/edit.css";
+import { Boton } from "../components/Boton";
+import { Campo } from "../components/Campo";
 
-export const App = () => {
+export default function Edit() {
     return (
         <body className='bg-red'>
             <Header />
@@ -37,7 +37,7 @@ function Header() {
     const [organismoSeleccionado, setOrganismoSeleccionado] = useState(organismos[0])
     const [estadoSeleccionado, setEstadoSeleccionado] = useState(estados[0])
 
-    return <header>
+    return <header className="edit-page">
         <h1>Datos de cabeceira</h1>
         <div className="metadatos">
             <div className="colIzq">
