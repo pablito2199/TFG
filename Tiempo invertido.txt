@@ -3,12 +3,14 @@
 23/03 1h -> 2ª reunión
 24/03 2h -> 2º mockup
 25/03 2.5h -> Inicio cliente
-26/03 1.5h -> Continuar cliente
-27/03 2h -> Continuar cliente
+26/03 2h -> Continuar cliente
+27/03 3h -> Continuar cliente
 28/03 2h -> Continuar cliente
 29/03 1h -> Implementación react-diff-viewer
 29/03 1h -> 3ª reunión
-29/03 0,5h -> Continuar cliente
-30/03 2h -> Reestructuración cliente
-31/03 0.5h -> Empezar servidor
-01/03 1h -> Reajustes cliente
+29/03 1h -> Continuar cliente
+30/03 3h -> Reestructuración cliente
+31/03 1.5h -> Empezar servidor
+01/04 2h -> Reajustes cliente
+04/04 1.5h -> Pagina búsquedas cliente
+05/04 1h -> Reajustes varios

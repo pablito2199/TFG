@@ -41,21 +41,21 @@ function Header() {
         <h1>Datos de cabeceira</h1>
         <div className="metadatos">
             <div className="colIzq">
-                <Campo identificador="titulo" texto="Título" tipo="text" />
+                <Campo identificador="titulo" texto="Título" tipo="text" placeholder="Título da norma..." />
                 <Campo identificador="organismo" texto="Organismo" tipo="autocomplete" organismos={organismos} setOrganismoSeleccionado={setOrganismoSeleccionado} />
-                <Campo identificador="sumario" texto="Sumario" tipo="textarea" />
+                <Campo identificador="sumario" texto="Sumario" tipo="textarea" placeholder="Escriba o sumario da norma..." />
                 <Campo identificador="data_publicacion" texto="Data de publicación" tipo="date" />
-                <Campo identificador="referencia_publicacion" texto="Referencia de publicación" tipo="text" />
+                <Campo identificador="referencia_publicacion" texto="Referencia de publicación" tipo="text" placeholder="Referencia de publicación..." />
                 <Campo identificador="dvl_desde" texto="Data de entrada en vigor" tipo="date" />
             </div>
 
             <div className="colDer">
                 <Campo identificador="estado" texto="Estado" tipo="autocomplete" estados={estados} setEstadoSeleccionado={setEstadoSeleccionado} />
-                <Campo identificador="ano" texto="Ano" tipo="text" />
-                <Campo identificador="nome_ficheiro" texto="Nome ficheiro" tipo="text" />
-                <Campo identificador="version" texto="Versión" tipo="text" />
-                <Campo identificador="referencia" texto="Referencia" tipo="text" />
-                <Campo identificador="rango" texto="Rango" tipo="text" />
+                <Campo identificador="ano" texto="Ano" tipo="text" placeholder="Ano..." />
+                <Campo identificador="nome_ficheiro" texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
+                <Campo identificador="version" texto="Versión" tipo="text" placeholder="Versión da norma..." />
+                <Campo identificador="referencia" texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
+                <Campo identificador="rango" texto="Rango" tipo="text" placeholder="Rango da norma..." />
             </div>
         </div>
     </header>

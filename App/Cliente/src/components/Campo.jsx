@@ -5,6 +5,7 @@ export const Campo = ({
     identificador,
     texto,
     tipo,
+    placeholder,
     organismos,
     setOrganismoSeleccionado,
     estados,
@@ -16,7 +17,7 @@ export const Campo = ({
             {
                 tipo === "textarea"
                     ?
-                    (<textarea className={identificador} />)
+                    (<textarea className={identificador} placeholder={placeholder} />)
                     :
                     tipo === "autocomplete"
                         ?
@@ -37,6 +38,7 @@ export const Campo = ({
                                 type={tipo}
                                 className={identificador}
                                 nombre={identificador}
+                                placeholder={placeholder}
                                 required
                             />
                         )}

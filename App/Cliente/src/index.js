@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import {
+    BrowserRouter,
+    Routes,
+    Route
+} from "react-router-dom";
 
 import Edit from './pages/Edit.js';
 import Search from './pages/Search.js';
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Search />
-    </React.StrictMode>,
+    <BrowserRouter>
+        <Routes>
+            <Route exact path="/edit" element={<Edit />} />
+            <Route exact path="/search" element={<Search />} />
+            <Route exact path="/" element={<Edit />} />
+        </Routes>
+    </BrowserRouter >,
     document.getElementById('root')
 );
