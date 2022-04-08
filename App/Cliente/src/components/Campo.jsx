@@ -1,34 +1,28 @@
 import React from "react";
-import "../style/campo.css";
 
 export const Campo = ({
     identificador,
     texto,
     tipo,
     placeholder,
-    organismos,
-    setOrganismoSeleccionado,
-    estados,
-    setEstadoSeleccionado
+    elements,
+    setElements
 }) => {
     return (
-        <div className="campo">
+        <div className='flex flex-col text-left align-top m-2 px-3'>
             <label for={identificador}>{texto}</label>
             {
                 tipo === "textarea"
                     ?
-                    (<textarea className={identificador} placeholder={placeholder} />)
+                    (<textarea className='flex-auto min-h-fit resize-none border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 min-h-textarea' placeholder={placeholder} />)
                     :
                     tipo === "autocomplete"
                         ?
                         (
-                            <select className={identificador}>
+                            <select className='flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline'>
+                                <option className='text-gray-400' disabled selected value> -- Seleccione unha opción -- </option>
                                 {
-                                    identificador === "organismo"
-                                        ?
-                                        organismos?.map(org => <option key={org.codigo} onClick={setOrganismoSeleccionado(org.codigo)}>{org.nombre}</option>)
-                                        :
-                                        estados?.map(est => <option key={est.codigo} onClick={setEstadoSeleccionado(est.codigo)}>{est.nombre}</option>)
+                                    elements?.map(org => <option key={org.id} onClick={setElements(org.id)}>{org.id} - {org.descripcion}</option>)
                                 }
                             </select>
                         )
@@ -36,7 +30,7 @@ export const Campo = ({
                         (
                             <input
                                 type={tipo}
-                                className={identificador}
+                                className='flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500'
                                 nombre={identificador}
                                 placeholder={placeholder}
                                 required

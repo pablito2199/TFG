@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "descripcion": "I. Disposicións xerais"
+    },
+    {
+        "id": 2,
+        "descripcion": "II. Autoridades e persoal"
+    },
+    {
+        "id": 3,
+        "descripcion": "a) Cesamentos"
+    },
+    {
+        "id": 4,
+        "descripcion": "b) Nomeamentos"
+    },
+    {
+        "id": 5,
+        "descripcion": "c) Substitucións"
+    },
+    {
+        "id": 6,
+        "descripcion": "III. Outras disposicións"
+    },
+    {
+        "id": 7,
+        "descripcion": "IV. Oposicións e concursos"
+    },
+    {
+        "id": 8,
+        "descripcion": "V. Administración de xustiza"
+    },
+    {
+        "id": 9,
+        "descripcion": "VI. Anuncios"
+    },
+    {
+        "id": 10,
+        "descripcion": "a) Administración autonómica"
+    },
+    {
+        "id": 11,
+        "descripcion": "b) Administración local"
+    },
+    {
+        "id": 12,
+        "descripcion": "c) Outros anuncios"
+    }
+]

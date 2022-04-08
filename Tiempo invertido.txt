@@ -14,3 +14,9 @@
 01/04 2h -> Reajustes cliente
 04/04 1.5h -> Pagina búsquedas cliente
 05/04 1h -> Reajustes varios
+05/04 0.7h -> 4ª Reunión
+05/04 0.5h -> Automatización con json
+06/04 0.7h -> Configuración de Tailwind en el proyecto
+06/04 1.5h -> Traducción a Tailwind edición
+07/04 2.5h -> Traducción a Tailwind edición
+08/04 1h -> Traducción a Tailwind búsquedas
