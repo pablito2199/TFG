@@ -1,9 +1,12 @@
 import { React, useRef, useState } from 'react'
-import { Boton } from "../components/Boton";
-import { Campo } from "../components/Campo";
 
 import organismos from "../data/listadoOrganismos.json"
 import rangos from "../data/listadoRangos.json"
+
+import { Button } from "../components/Button";
+import { Input } from "../components/Input";
+import { Textarea } from "../components/Textarea";
+import { Select } from "../components/Select";
 
 export default function Edit() {
     return (
@@ -37,21 +40,21 @@ function Header() {
         <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center'>Datos de cabeceira</p>
         <div className='flex flex-row m-3 font-semibold italic screen-min1:flex-col'>
             <div className='w-1/2 screen-min1:w-full'>
-                <Campo identificador="titulo" texto="Título" tipo="text" placeholder="Título da norma..." />
-                <Campo identificador="organismo" texto="Organismo" tipo="autocomplete" elements={organismos} setElements={setOrganismoSeleccionado} />
-                <Campo identificador="sumario" texto="Sumario" tipo="textarea" placeholder="Escriba o sumario da norma..." />
-                <Campo identificador="data_publicacion" texto="Data de publicación" tipo="date" />
-                <Campo identificador="referencia_publicacion" texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
-                <Campo identificador="dvl_desde" texto="Data de entrada en vigor" tipo="date" />
+                <Input identificador="titulo" texto="Título" tipo="text" placeholder="Título da norma..." />
+                <Select identificador="organismo" texto="Organismo" elements={organismos} setElements={setOrganismoSeleccionado} />
+                <Textarea identificador="sumario" texto="Sumario" placeholder="Escriba o sumario da norma..." />
+                <Input identificador="data_publicacion" texto="Data de publicación" tipo="date" />
+                <Input identificador="referencia_publicacion" texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
+                <Input identificador="dvl_desde" texto="Data de entrada en vigor" tipo="date" />
             </div>
 
             <div className='w-1/2 screen-min1:w-full'>
-                <Campo identificador="estado" texto="Estado" tipo="autocomplete" elements={estados} setElements={setEstadoSeleccionado} />
-                <Campo identificador="ano" texto="Ano" tipo="text" placeholder="Ano..." />
-                <Campo identificador="nome_ficheiro" texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
-                <Campo identificador="version" texto="Versión" tipo="text" placeholder="Versión da norma..." />
-                <Campo identificador="referencia" texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
-                <Campo identificador="rango" texto="Rango" tipo="autocomplete" elements={rangos} setElements={setRangoSeleccionado} />
+                <Select identificador="estado" texto="Estado" elements={estados} setElements={setEstadoSeleccionado} />
+                <Input identificador="ano" texto="Ano" tipo="text" placeholder="Ano..." />
+                <Input identificador="nome_ficheiro" texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
+                <Input identificador="version" texto="Versión" tipo="text" placeholder="Versión da norma..." />
+                <Input identificador="referencia" texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
+                <Select identificador="rango" texto="Rango" elements={rangos} setElements={setRangoSeleccionado} />
             </div>
         </div>
     </header>
@@ -235,8 +238,8 @@ function ParteIzquierda() {
                     </div>
                     <a className='mt-4 text-link underline'>(+) Engadir nova lei vinculada manualmente</a>
                     <div className='flex flex-row justify-center m-4 gap-x-5'>
-                        <Boton color="gris" texto="Aceptar todas" />
-                        <Boton color="gris" texto="Rexeitar todas" />
+                        <Button color="gris" texto="Aceptar todas" />
+                        <Button color="gris" texto="Rexeitar todas" />
                     </div>
                 </div>
         }
@@ -292,12 +295,12 @@ function ParteDerecha() {
                     </div>
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
                         <div className='flex flex-col gap-y-2'>
-                            <Boton color="gris" texto="Resolver selección" />
-                            <Boton color="gris" texto="Resolver todas" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Resolver selección" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Resolver todas" />
                         </div>
                         <div className='flex flex-col gap-y-2'>
-                            <Boton color="gris" texto="Descartar selección" />
-                            <Boton color="gris" texto="Descartar todas" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar selección" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar todas" />
                         </div>
                     </div>
                 </div>
@@ -306,12 +309,12 @@ function ParteDerecha() {
                     <div className='border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'></div>
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
                         <div className='flex flex-col gap-y-2'>
-                            <Boton color="gris" texto="Aceptar selección" />
-                            <Boton color="gris" texto="Aceptar todos" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Aceptar selección" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Aceptar todos" />
                         </div>
                         <div className='flex flex-col gap-y-2'>
-                            <Boton color="gris" texto="Descartar selección" />
-                            <Boton color="gris" texto="Descartar todos" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar selección" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar todos" />
                         </div>
                     </div>
                 </div>
@@ -350,8 +353,8 @@ function CrearNota({ notas, setNotas, i }) {
 
 function BotonesPrincipales() {
     return <div className='flex justify-center my-4 gap-20'>
-        <Boton color="verde" texto="Validar e publicar" />
-        <Boton color="gris-principal" texto="Previsualizar" />
-        <Boton color="rojo" texto="Rexeitar" />
+        <Button color="bg-green-500" colorHover="bg-green-600" anchura="60" texto="Validar e publicar" />
+        <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="60" texto="Previsualizar" />
+        <Button color="bg-red-500" colorHover="bg-red-600" anchura="60" texto="Rexeitar" />
     </div>
 }
