@@ -1,4 +1,4 @@
-import { React, useRef, useState } from 'react'
+import { React, useState, useRef } from 'react'
 
 import organismos from "../data/listadoOrganismos.json"
 import rangos from "../data/listadoRangos.json"
@@ -326,28 +326,29 @@ function CrearNota({ notas, setNotas, i }) {
     const [comentario, setComentario] = useState(false)
     const textField = useRef(null)
 
-    const submit = (comment) => {
-        if (comment !== '') {
+    const submit = async (event) => {
+        if (comentario !== '') {
             let today = new Date();
             let dd = String(today.getDate()).padStart(2, '0');
-            let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            let mm = String(today.getMonth() + 1).padStart(2, '0');
             let yyyy = today.getFullYear();
 
             today = dd + '/' + mm + '/' + yyyy;
             let myObj = {
-                'contenido': comment,
+                'contenido': comentario,
                 'fecha': today
             }
             notas[i].comentarios.push(myObj)
-            console.log(notas)
+            console.log(notas[0].comentarios)
             setNotas(notas)
+            textField.current.value = ''
             setComentario('')
         }
     }
 
     return <div className='mt-2 flex flex-col w-11/12'>
-        <textarea ref={textField} className='mb-2 w-full h-20 p-2 border border-black rounded focus:outline-none focus:border-gray-500 resize-none' name="comment" placeholder="" onChange={(event) => setComentario(event.target.value)}></textarea>
-        <a className='px-3 py-2 text-sm text-blue-100 bg-blue-600 hover:bg-blue-700 rounded text-center w-40 ml-auto mr-0 cursor-pointer' onClick={submit(comentario)}>Engadir comentario</a>
+        <textarea ref={textField} onChange={(event) => setComentario(event.target.value)} className='mb-2 w-full h-20 p-2 border border-black rounded focus:outline-none focus:border-gray-500 resize-none' name="comment" placeholder="Novo comentario..."></textarea>
+        <a onClick={submit} className='px-3 py-2 text-sm text-blue-100 bg-blue-600 hover:bg-blue-700 rounded text-center w-40 ml-auto mr-0 cursor-pointer'>Engadir comentario</a>
     </div>
 }
 

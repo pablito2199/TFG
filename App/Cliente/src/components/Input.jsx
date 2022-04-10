@@ -7,7 +7,7 @@ export const Input = ({ identificador, texto, tipo, placeholder }) => {
             <input
                 type={tipo}
                 className='flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500'
-                nombre={identificador}
+                name={identificador}
                 placeholder={placeholder}
                 required
             />

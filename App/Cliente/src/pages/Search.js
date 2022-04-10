@@ -6,22 +6,37 @@ import normas from './data.json'
 
 import { Button } from "../components/Button";
 import { SearchButton } from '../components/SearchButton';
-
+import { LeftPageButton, PageButton, RightPageButton } from '../components/Pagination';
 
 export default function Search() {
     const query = useLocation().search.replace('?', '');
 
     //const [data, setData] = useState(useNormas(query))
     const [data, setData] = useState(normas)
+    const [actualPage, setActualPage] = useState(0)
+    const [numeroNormasPagina, setNumeroNormasPagina] = useState(5)
 
-    console.log(data.response.listas.datos_informe)
     return (
         <body className='flex flex-col items-center'>
             <SearchField />
-            <Content data={data.response.listas.datos_informe} />
+            <SelectNumberPages setNumeroNormasPagina={setNumeroNormasPagina} setActualPage={setActualPage} />
+            <Content data={data.response.listas.datos_informe} actualPage={actualPage} numeroNormasPagina={numeroNormasPagina} />
+            <BotonesPaginas normas={data.response.listas.datos_informe.length} actualPage={actualPage} setActualPage={setActualPage} numeroNormasPagina={numeroNormasPagina} />
         </body>
     );
 };
+
+function SelectNumberPages({ setNumeroNormasPagina, setActualPage }) {
+    return (
+        <div className='flex m-2 p-2 bg-blue-500 text-white items-center gap-4 mt-5 ml-auto mr-16 border rounded '>
+            <label for="numberPages">Número de normas por página</label>
+            <select onChange={(e) => { setNumeroNormasPagina(e.target.value); setActualPage(0) }} name="numberPages" className='flex-auto text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer'>
+                <option key="p5">5</option>
+                <option key="p10">10</option>
+                <option key="p20">20</option>
+            </select>
+        </div>)
+}
 
 function SearchField() {
     const [params, setParams] = useState('')
@@ -44,26 +59,42 @@ function SearchField() {
     </section >
 }
 
-function Content({ data }) {
-    return <section className='mt-8 flex flex-col w-11/12'>
+function Content({ data, actualPage, numeroNormasPagina }) {
+    return <section className='mt-4 flex flex-col w-11/12'>
         {
-            data?.map(norma =>
-                <div className=' border-b-2 border-gray-300'>
-                    <div className='flex m-4 items-center'>
-                        <div className='font-serif w-9/12 mt-0 mb-auto'>
-                            <div className='flex'>
-                                <span className='font-bold'>Norma {norma.id}</span>
-                                <span className='ml-auto mr-0 italic text-gray-500'>Diario nº <span className='font-bold text-blue-400'>{norma.numeroDog}</span> da data <span className='font-bold'>{norma.fechaDogFormateada}</span></span>
+            data?.map((norma, index) =>
+                (index >= numeroNormasPagina * actualPage && index < actualPage * numeroNormasPagina + numeroNormasPagina)
+                    ?
+                    <div className=' border-b-2 border-gray-300' >
+                        <div className='flex m-4 items-center'>
+                            <div className='font-serif w-9/12 mt-0 mb-auto'>
+                                <div className='flex'>
+                                    <span className='font-bold'>Norma {norma.id}</span>
+                                    <span className='ml-auto mr-0 italic text-gray-500'>Diario nº <span className='font-bold text-blue-400'>{norma.numeroDog}</span> da data <span className='font-bold'>{norma.fechaDogFormateada}</span></span>
+                                </div>
+                                <p className='mt-2'>{norma.sumario}</p>
                             </div>
-                            <p className='mt-2'>{norma.sumario}</p>
-                        </div>
-                        <div className='flex flex-col ml-4 mr-0 flex-auto gap-2 text-center items-center'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="60" texto="Importar norma" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="60" texto="Previsualizar" url={`https://www.xunta.gal/${norma.rutaHtml}`} />
+                            <div className='flex flex-col ml-4 mr-0 flex-auto gap-2 text-center items-center'>
+                                <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="60" texto="Importar norma" />
+                                <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="60" texto="Previsualizar" url={`https://www.xunta.gal/${norma.rutaHtml}`} />
+                            </div>
                         </div>
                     </div>
-                </div>
+                    :
+                    <></>
             )
         }
     </section >
+}
+
+function BotonesPaginas({ normas, actualPage, setActualPage, numeroNormasPagina }) {
+    return (
+        <div className='m-4 flex items-center justify-center w-full'>
+            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                <LeftPageButton actualPage={actualPage} setActualPage={setActualPage} />
+                <PageButton actualPage={actualPage} setActualPage={setActualPage} numberPages={normas} numberElementsPerPage={numeroNormasPagina} />
+                <RightPageButton actualPage={actualPage} setActualPage={setActualPage} numberPages={normas} numberElementsPerPage={numeroNormasPagina} />
+            </nav>
+        </div>
+    )
 }
