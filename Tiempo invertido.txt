@@ -21,3 +21,5 @@
 07/04 2.5h -> Traducción a Tailwind edición
 08/04 1h -> Traducción a Tailwind búsquedas
 10/04 3h -> Página de búsquedas, actualización de componentes, estructuración carpetas
+10/04 2.5h -> Paginación y mejoras de la página
+10/04 1h -> Añadir comentarios automáticamente
