@@ -341,7 +341,6 @@ function ParteDerecha() {
     </section >
 }
 
-
 function CrearComentario({ notas, setNotas, nota }) {
     const [comentario, setComentario] = useState('')
 

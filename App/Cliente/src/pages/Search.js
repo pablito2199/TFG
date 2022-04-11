@@ -5,7 +5,7 @@ import { useNormas } from '../hooks';
 import normas from './data.json'
 
 import { Button } from "../components/Button";
-import { SearchButton } from '../components/SearchButton';
+import { SearchButton, SearchFilters } from '../components/Search';
 import { FirstPageButton, LastPageButton, LeftPageButton, PagesButtons, RightPageButton } from '../components/Pagination';
 
 export default function Search() {
@@ -30,7 +30,7 @@ function SelectNumberPages({ setNumeroNormasPagina, setActualPage }) {
     return (
         <div className='flex m-2 p-2 bg-blue-500 text-white items-center gap-4 mt-5 ml-auto mr-16 border rounded '>
             <span>Número de normas por página</span>
-            <select onChange={(e) => { setNumeroNormasPagina(e.target.value); setActualPage(0) }} name="numberPages" className='flex-auto text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer'>
+            <select onChange={(e) => { setNumeroNormasPagina(e.target.value); setActualPage(0) }} name="numberPages" className='flex-auto text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer w-12'>
                 <option key="p5">5</option>
                 <option key="p10">10</option>
                 <option key="p20">20</option>
@@ -39,12 +39,17 @@ function SelectNumberPages({ setNumeroNormasPagina, setActualPage }) {
 }
 
 function SearchField() {
-    const [params, setParams] = useState('')
+    const [texto, setTexto] = useState('')
+    const [soloTitulo, setSoloTitulo] = useState(false)
+    const [fraseExacta, setFraseExacta] = useState(false)
+    const [dogDesde, setDogDesde] = useState(1)
+    const [dogHasta, setDogHasta] = useState(100000)
+    const [criterioOrdenacion, setCriterioOrdenacion] = useState('ORDENACION_FECHA')
     const navigate = useNavigate()
 
     const cambiarPagina = (e) => {
         if (e.key === 'Enter') {
-            navigate(`/search?${params}`)
+            navigate(`/search?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}`)
         }
     }
 
@@ -52,9 +57,10 @@ function SearchField() {
         <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center w-full'>Búsqueda de normas</p>
         <div className='m-4 w-11/12'>
             <div className='input-group relative flex items-stretch w-full mb-4'>
-                <input onKeyDown={cambiarPagina} type="search" onChange={(event) => { setParams(event.target.value) }} className='form-control relative flex-auto min-w-0 block w-full text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500' placeholder="Búsqueda de normas..." aria-label="Search" aria-describedby="button-addon2" />
-                <SearchButton params={params} />
+                <input onKeyDown={cambiarPagina} type="search" onChange={(event) => { setTexto(event.target.value) }} className='form-control relative flex-auto min-w-0 block w-full text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500' placeholder="Búsqueda de normas..." aria-label="Search" aria-describedby="button-addon2" />
+                <SearchButton texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} />
             </div>
+            <SearchFilters soloTitulo={soloTitulo} setSoloTitulo={setSoloTitulo} fraseExacta={fraseExacta} setFraseExacta={setFraseExacta} dogDesde={dogDesde} setDogDesde={setDogDesde} dogHasta={dogHasta} setDogHasta={setDogHasta} criterioOrdenacion={criterioOrdenacion} setCriterioOrdenacion={setCriterioOrdenacion} />
         </div>
     </section >
 }
