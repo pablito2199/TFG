@@ -26,18 +26,6 @@ export default function Search() {
     );
 };
 
-function SelectNumberPages({ setNumeroNormasPagina, setActualPage }) {
-    return (
-        <div className='flex m-2 p-2 bg-blue-500 text-white items-center gap-4 mt-5 ml-auto mr-16 border rounded '>
-            <span>Número de normas por página</span>
-            <select onChange={(e) => { setNumeroNormasPagina(e.target.value); setActualPage(0) }} name="numberPages" className='flex-auto text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer w-12'>
-                <option key="p5">5</option>
-                <option key="p10">10</option>
-                <option key="p20">20</option>
-            </select>
-        </div>)
-}
-
 function SearchField() {
     const [texto, setTexto] = useState('')
     const [soloTitulo, setSoloTitulo] = useState(false)
@@ -53,7 +41,7 @@ function SearchField() {
         }
     }
 
-    return <section className='w-3/5 bg-black font-bitter bg-blue-lex-gal mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700 items-center'>
+    return <section className='w-4/5 bg-black font-bitter bg-blue-lex-gal mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700 items-center'>
         <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center w-full'>Búsqueda de normas</p>
         <div className='m-4 w-11/12'>
             <div className='input-group relative flex items-stretch w-full mb-4'>
@@ -63,6 +51,18 @@ function SearchField() {
             <SearchFilters soloTitulo={soloTitulo} setSoloTitulo={setSoloTitulo} fraseExacta={fraseExacta} setFraseExacta={setFraseExacta} dogDesde={dogDesde} setDogDesde={setDogDesde} dogHasta={dogHasta} setDogHasta={setDogHasta} criterioOrdenacion={criterioOrdenacion} setCriterioOrdenacion={setCriterioOrdenacion} />
         </div>
     </section >
+}
+
+function SelectNumberPages({ setNumeroNormasPagina, setActualPage }) {
+    return (
+        <div className='flex m-2 p-2 bg-blue-500 text-white items-center gap-4 mt-5 ml-auto mr-16 border rounded '>
+            <span>Número de normas por página</span>
+            <select onChange={(e) => { setNumeroNormasPagina(e.target.value); setActualPage(0) }} name="numberPages" className='flex-auto text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer w-12'>
+                <option key="p5">5</option>
+                <option key="p10">10</option>
+                <option key="p20">20</option>
+            </select>
+        </div>)
 }
 
 function Content({ data, actualPage, numeroNormasPagina }) {

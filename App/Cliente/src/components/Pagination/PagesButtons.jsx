@@ -3,8 +3,8 @@ import { PagesNotSeen } from './PagesNotSeen';
 
 export const PagesButtons = ({ actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
     let paginas = []
-    let numeroBotones = numberElements / numberElementsPerPage
-    const numeroMaximoPaginas = numberElements / numberElementsPerPage
+    let numeroBotones = Math.ceil(numberElements / numberElementsPerPage)
+    const numeroMaximoPaginas = Math.ceil(numberElements / numberElementsPerPage)
 
     if (numeroBotones > 5) {
         numeroBotones = 5

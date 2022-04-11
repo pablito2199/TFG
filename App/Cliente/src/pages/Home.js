@@ -26,7 +26,7 @@ function SearchField() {
         }
     }
 
-    return <section className='w-3/5 bg-black font-bitter bg-blue-lex-gal mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700 items-center'>
+    return <section className='w-4/5 bg-black font-bitter bg-blue-lex-gal mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700 items-center'>
         <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center w-full'>Búsqueda de normas</p>
         <div className='m-4 w-11/12'>
             <div className='input-group relative flex items-stretch w-full mb-4'>
