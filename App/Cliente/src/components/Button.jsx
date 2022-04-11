@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const Button = ({ color, colorHover, anchura, texto, url }) => {
+export const Button = ({ accion, color, colorHover, anchura, texto, url }) => {
     return (
-        <a className={`text-md text-center px-8 py-4 rounded-md ${color} hover:${colorHover} text-indigo-50 font-semibold cursor-pointer w-${anchura}`} href={url} target="_blank" rel="noreferrer">{texto}</a>
+        <button onClick={accion} className={`focus:outline-none text-md text-center self-center align-center px-4 py-4 rounded-md ${color} hover:${colorHover} text-indigo-50 font-semibold cursor-pointer w-${anchura}`} href={url} target="_blank" rel="noreferrer">{texto}</button>
     )
 }

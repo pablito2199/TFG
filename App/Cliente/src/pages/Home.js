@@ -5,9 +5,9 @@ import { SearchButton } from '../components/SearchButton';
 
 export default function Search() {
     return (
-        <body className='flex flex-col items-center'>
+        <div className='flex flex-col items-center'>
             <SearchField />
-        </body>
+        </div>
     );
 };
 
@@ -29,5 +29,5 @@ function SearchField() {
                 <SearchButton params={params} />
             </div>
         </div>
-    </section >
+    </section>
 }

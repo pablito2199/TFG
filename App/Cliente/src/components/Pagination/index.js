@@ -1,3 +1,6 @@
+export * from './FirstPageButton'
+export * from './LastPageButton'
 export * from './LeftPageButton'
-export * from './PageButton'
+export * from './PagesButtons'
+export * from './PagesNotSeen'
 export * from './RightPageButton'

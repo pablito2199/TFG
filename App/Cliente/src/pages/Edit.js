@@ -10,7 +10,7 @@ import { Select } from "../components/Select";
 
 export default function Edit() {
     return (
-        <body className='flex flex-col'>
+        <div className='flex flex-col'>
             <Header />
 
             <main className='mt-6 flex font-serif screen-min2:flex-col'>
@@ -19,7 +19,7 @@ export default function Edit() {
             </main>
 
             <BotonesPrincipales />
-        </body >
+        </div >
     );
 };
 
@@ -40,21 +40,21 @@ function Header() {
         <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center'>Datos de cabeceira</p>
         <div className='flex flex-row m-3 font-semibold italic screen-min1:flex-col'>
             <div className='w-1/2 screen-min1:w-full'>
-                <Input identificador="titulo" texto="Título" tipo="text" placeholder="Título da norma..." />
-                <Select identificador="organismo" texto="Organismo" elements={organismos} setElements={setOrganismoSeleccionado} />
-                <Textarea identificador="sumario" texto="Sumario" placeholder="Escriba o sumario da norma..." />
-                <Input identificador="data_publicacion" texto="Data de publicación" tipo="date" />
-                <Input identificador="referencia_publicacion" texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
-                <Input identificador="dvl_desde" texto="Data de entrada en vigor" tipo="date" />
+                <Input texto="Título" tipo="text" placeholder="Título da norma..." />
+                <Select texto="Organismo" elements={organismos} setElements={setOrganismoSeleccionado} />
+                <Textarea texto="Sumario" placeholder="Escriba o sumario da norma..." />
+                <Input texto="Data de publicación" tipo="date" />
+                <Input texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
+                <Input texto="Data de entrada en vigor" tipo="date" />
             </div>
 
             <div className='w-1/2 screen-min1:w-full'>
-                <Select identificador="estado" texto="Estado" elements={estados} setElements={setEstadoSeleccionado} />
-                <Input identificador="ano" texto="Ano" tipo="text" placeholder="Ano..." />
-                <Input identificador="nome_ficheiro" texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
-                <Input identificador="version" texto="Versión" tipo="text" placeholder="Versión da norma..." />
-                <Input identificador="referencia" texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
-                <Select identificador="rango" texto="Rango" elements={rangos} setElements={setRangoSeleccionado} />
+                <Select texto="Estado" elements={estados} setElements={setEstadoSeleccionado} />
+                <Input texto="Ano" tipo="text" placeholder="Ano..." />
+                <Input texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
+                <Input texto="Versión" tipo="text" placeholder="Versión da norma..." />
+                <Input texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
+                <Select texto="Rango" elements={rangos} setElements={setRangoSeleccionado} />
             </div>
         </div>
     </header>
@@ -63,7 +63,7 @@ function Header() {
 function ParteIzquierda() {
     const [estado, setEstado] = useState(false)
 
-    const leis = [
+    const [leis, setLeis] = useState([
         { id: '00000A', modificacion: 'Modificación realizada a lei A.' },
         { id: '00000B', modificacion: 'Modificación realizada a lei B.' },
         { id: '00000C', modificacion: 'Modificación realizada a lei C.' },
@@ -73,31 +73,28 @@ function ParteIzquierda() {
         { id: '00000G', modificacion: 'Modificación realizada a lei G.' },
         { id: '00000H', modificacion: 'Modificación realizada a lei H.' },
         { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
-        { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
-        { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
-        { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
-        { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
-        { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
-        { id: '00000I', modificacion: 'Modificación realizada a lei I.' },
-        { id: '00000J', modificacion: 'Modificación realizada a lei J.' }
-    ]
+    ])
+
+    const eliminarLeiVinculada = (lei) => {
+        setLeis(leis.filter(leiAux => lei !== leiAux.id))
+    }
 
     return <section className='flex-1 ml-10 screen-min2:w-11/12'>
         {
-            estado === false
+            !estado
                 ?
                 <nav className='flex text-lg text-center'>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Texto</a>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</a>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Texto</button>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</button>
                 </nav>
                 :
                 <nav className='flex text-lg text-center'>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Texto</a>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Leis vinc.</a>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Texto</button>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Leis vinc.</button>
                 </nav>
         }
         {
-            estado === false
+            !estado
                 ?
                 <div className='flex flex-col border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll rounded'>
                     <div className='p-4 m-4'>
@@ -233,14 +230,17 @@ function ParteIzquierda() {
                 <div className='p-4 flex flex-col border-2 border-black rounded'>
                     <div className='border-3 border-gray max-h-leis-vinculadas overflow-y-scroll'>
                         {
-                            leis?.map(lei => <div className='m-4 flex flex-col border-b-2 border-gray-lex-gal w-12/13' key={lei.id}><div className='flex flex-row items-center'><span className='font-bold'>Lei {lei.id}</span><a className='mr-4 text-link underline flex-auto text-right text-sm cursor-pointer'>(eliminar)</a></div><p className='m-4'>{lei.modificacion}</p></div>)
+                            leis?.map(lei =>
+                                <div className='m-4 flex flex-col border-b-2 border-gray-lex-gal w-12/13' key={lei.id}>
+                                    <div className='flex flex-row items-center'>
+                                        <span className='font-bold'>Lei {lei.id}</span>
+                                        <button onClick={() => eliminarLeiVinculada(lei.id)} className='focus:outline-none mr-4 text-red-500 underline flex-auto text-right text-sm cursor-pointer'>(-) eliminar</button>
+                                    </div>
+                                    <p className='m-4'>{lei.modificacion}</p>
+                                </div>)
                         }
                     </div>
-                    <a className='mt-4 text-link underline'>(+) Engadir nova lei vinculada manualmente</a>
-                    <div className='flex flex-row justify-center m-4 gap-x-5'>
-                        <Button color="gris" texto="Aceptar todas" />
-                        <Button color="gris" texto="Rexeitar todas" />
-                    </div>
+                    <button className='focus:outline-none mt-4 text-link underline'>(+) Engadir nova lei vinculada manualmente</button>
                 </div>
         }
     </section>
@@ -249,59 +249,77 @@ function ParteIzquierda() {
 function ParteDerecha() {
     const [estado, setEstado] = useState(false)
     const [notas, setNotas] = useState([
-        { id: 1, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Bienasdasdasdasdasdasdasdasdasdasdasdasdassdasdasdasdasdasdasdasdasdasdsdadsadsdasdasdasdsasdasdas', 'fecha': '12/05/2021' }, { 'contenido': 'Mal', 'fecha': '12/05/2021' }] },
-        { id: 2, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Comentario', 'fecha': '06/11/2022' }] },
-        { id: 3, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: 4, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: 5, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: 6, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: 7, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: 8, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { id: Date.now(), contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Bienasdasdasdasdasdasdasdasdasdasdasdasdassdasdasdasdasdasdasdasdasdasdsdadsadsdasdasdasdsasdasdas', 'fecha': '12/05/2021' }, { 'contenido': 'Mal', 'fecha': '12/05/2021' }] },
+        { id: Date.now() + 1, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Comentario', 'fecha': '06/11/2022' }] },
+        { id: Date.now() + 2, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { id: Date.now() + 3, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { id: Date.now() + 4, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { id: Date.now() + 5, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { id: Date.now() + 6, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
+        { id: Date.now() + 7, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
     ])
+    const [notasSeleccionadas, setNotasSeleccionadas] = useState([])
+
+    const anadirNotaSeleccionada = (event, nota) => {
+        if (event.target.checked) {
+            setNotasSeleccionadas([...notasSeleccionadas, nota.id])
+        } else if (!event.target.checked) {
+            setNotasSeleccionadas(notasSeleccionadas.filter(id => nota !== id))
+        }
+    }
+
+    const eliminarNotasSeleccionadas = () => {
+        notasSeleccionadas.forEach(notaSeleccionada => { setNotas(notas.filter(nota => nota.id !== notaSeleccionada)) })
+    }
 
     return <section className='w-1/4 mx-10 screen-min2:w-11/12 screen-min2:mt-4'>
         {
-            estado === false
+            !estado
                 ?
                 <nav className='flex text-lg text-center'>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Notas</a>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Cambios</a>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Notas</button>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Cambios</button>
                 </nav>
                 :
                 <nav className='flex text-lg text-center'>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Notas</a>
-                    <a className='p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Cambios</a>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Notas</button>
+                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Cambios</button>
                 </nav>
         }
         {
-            estado === false
+            !estado
                 ?
                 <div className='border-2 border-black rounded'>
                     <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
                         {
-                            notas?.map((nota, i) =>
-                                <div className='flex flex-col border-b-2 border-gray-300'>
-                                    <div className='m-4 flex items-center border-b-2 border-gray w-11/12'><p className='m-4'><span className='font-bold min-w-fit'>Nota {i + 1}: </span>{nota.contenido}</p><input className='cursor-pointer' type="checkbox" /></div>
+                            notas?.map((nota) =>
+                                <div key={nota.id} className='flex flex-col border-b-2 border-gray-300'>
+                                    <div className='m-4 flex items-center border-b-2 border-gray w-11/12'><p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p><input className='ml-auto mr-0 cursor-pointer' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota)} /></div>
                                     <div className='ml-8 mb-4 flex flex-col flex-auto'>
                                         <ul>
                                             {
-                                                nota.comentarios?.map(com => <div className='my-2 w-11/12'><li className='break-words'>{com.contenido}</li><p className='text-gray-400'>({com.fecha})</p></div>)
+                                                nota.comentarios?.map((com, i) =>
+                                                    <div key={i} className='my-2 w-11/12'>
+                                                        <li className='break-words'>{com.contenido}</li>
+                                                        <p className='text-gray-400'>({com.fecha})</p>
+                                                    </div>)
                                             }
                                         </ul>
-                                        <CrearNota notas={notas} setNotas={setNotas} nota={nota} i={i} />
+                                        <CrearComentario notas={notas} setNotas={setNotas} nota={nota} />
                                     </div>
                                 </div>
                             )
                         }
                     </div>
+                    <CrearNota notas={notas} setNotas={setNotas} />
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
                         <div className='flex flex-col gap-y-2'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Resolver selección" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Resolver todas" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver selección" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver todas" />
                         </div>
                         <div className='flex flex-col gap-y-2'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar selección" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar todas" />
+                            <Button accion={eliminarNotasSeleccionadas} color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar selección" />
+                            <Button accion={() => setNotas([])} color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar todas" />
                         </div>
                     </div>
                 </div>
@@ -310,12 +328,12 @@ function ParteDerecha() {
                     <div className='border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'></div>
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
                         <div className='flex flex-col gap-y-2'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Aceptar selección" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Aceptar todos" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver selección" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver todas" />
                         </div>
                         <div className='flex flex-col gap-y-2'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar selección" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="40" texto="Descartar todos" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar selección" />
+                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar todas" />
                         </div>
                     </div>
                 </div>
@@ -324,10 +342,10 @@ function ParteDerecha() {
 }
 
 
-function CrearNota({ notas, setNotas, nota }) {
+function CrearComentario({ notas, setNotas, nota }) {
     const [comentario, setComentario] = useState('')
 
-    const submit = async (event) => {
+    const submit = () => {
         if (comentario !== '') {
             let myObj = {
                 'contenido': comentario,
@@ -345,7 +363,41 @@ function CrearNota({ notas, setNotas, nota }) {
 
     return <div className='mt-2 flex flex-col w-11/12'>
         <textarea value={comentario} onChange={(event) => setComentario(event.target.value)} className='mb-2 w-full h-20 p-2 border border-black rounded focus:outline-none focus:border-gray-500 resize-none' name="comment" placeholder="Novo comentario..."></textarea>
-        <a onClick={submit} className='px-3 py-2 text-sm text-blue-100 bg-blue-600 hover:bg-blue-700 rounded text-center w-40 ml-auto mr-0 cursor-pointer'>Engadir comentario</a>
+        <button onClick={submit} className='focus:outline-none px-3 py-2 text-sm text-blue-100 bg-blue-600 hover:bg-blue-700 rounded text-center w-40 ml-auto mr-0 cursor-pointer'>Engadir comentario</button>
+    </div>
+}
+
+function CrearNota({ notas, setNotas }) {
+    const [nota, setNota] = useState('')
+    const [mostrar, setMostrar] = useState(false)
+
+    const submit = () => {
+        if (nota !== '') {
+            let myObj = {
+                'id': Date.now(),
+                'contenido': nota,
+                'comentarios': []
+            }
+            setNotas([...notas, myObj])
+            setNota('')
+            setMostrar(false)
+        }
+    }
+
+    return <div className='border-b-2 border-black'>
+        <div className='mb-4 flex flex-col w-full items-center'>
+            {
+                !mostrar
+                    ?
+                    <button onClick={() => setMostrar(true)} className='focus:outline-none mt-2 text-link underline'>(+) Engadir nova nota</button>
+                    :
+                    <>
+                        <button onClick={() => { setMostrar(false); setNota('') }} className='focus:outline-none mt-2 text-red-500 underline ml-auto mr-8 text-xs'>(-) Descartar</button>
+                        <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black rounded focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..."></textarea>
+                        <button onClick={submit} className='focus:outline-none px-3 py-2 text-sm text-blue-100 bg-blue-600 hover:bg-blue-700 rounded text-center w-40 cursor-pointer'>Engadir nota</button>
+                    </>
+            }
+        </div>
     </div>
 }
 

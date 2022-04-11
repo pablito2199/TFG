@@ -6,7 +6,7 @@ import normas from './data.json'
 
 import { Button } from "../components/Button";
 import { SearchButton } from '../components/SearchButton';
-import { LeftPageButton, PageButton, RightPageButton } from '../components/Pagination';
+import { FirstPageButton, LastPageButton, LeftPageButton, PagesButtons, RightPageButton } from '../components/Pagination';
 
 export default function Search() {
     const query = useLocation().search.replace('?', '');
@@ -17,19 +17,19 @@ export default function Search() {
     const [numeroNormasPagina, setNumeroNormasPagina] = useState(5)
 
     return (
-        <body className='flex flex-col items-center'>
+        <div className='flex flex-col items-center'>
             <SearchField />
             <SelectNumberPages setNumeroNormasPagina={setNumeroNormasPagina} setActualPage={setActualPage} />
             <Content data={data.response.listas.datos_informe} actualPage={actualPage} numeroNormasPagina={numeroNormasPagina} />
             <BotonesPaginas normas={data.response.listas.datos_informe.length} actualPage={actualPage} setActualPage={setActualPage} numeroNormasPagina={numeroNormasPagina} />
-        </body>
+        </div>
     );
 };
 
 function SelectNumberPages({ setNumeroNormasPagina, setActualPage }) {
     return (
         <div className='flex m-2 p-2 bg-blue-500 text-white items-center gap-4 mt-5 ml-auto mr-16 border rounded '>
-            <label for="numberPages">Número de normas por página</label>
+            <span>Número de normas por página</span>
             <select onChange={(e) => { setNumeroNormasPagina(e.target.value); setActualPage(0) }} name="numberPages" className='flex-auto text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer'>
                 <option key="p5">5</option>
                 <option key="p10">10</option>
@@ -65,7 +65,7 @@ function Content({ data, actualPage, numeroNormasPagina }) {
             data?.map((norma, index) =>
                 (index >= numeroNormasPagina * actualPage && index < actualPage * numeroNormasPagina + numeroNormasPagina)
                     ?
-                    <div className=' border-b-2 border-gray-300' >
+                    <div key={index} className=' border-b-2 border-gray-300' >
                         <div className='flex m-4 items-center'>
                             <div className='font-serif w-9/12 mt-0 mb-auto'>
                                 <div className='flex'>
@@ -81,7 +81,7 @@ function Content({ data, actualPage, numeroNormasPagina }) {
                         </div>
                     </div>
                     :
-                    <></>
+                    <div key={index}></div>
             )
         }
     </section >
@@ -90,10 +90,12 @@ function Content({ data, actualPage, numeroNormasPagina }) {
 function BotonesPaginas({ normas, actualPage, setActualPage, numeroNormasPagina }) {
     return (
         <div className='m-4 flex items-center justify-center w-full'>
-            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+            <nav className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px' aria-label="Pagination">
+                <FirstPageButton actualPage={actualPage} setActualPage={setActualPage} />
                 <LeftPageButton actualPage={actualPage} setActualPage={setActualPage} />
-                <PageButton actualPage={actualPage} setActualPage={setActualPage} numberPages={normas} numberElementsPerPage={numeroNormasPagina} />
-                <RightPageButton actualPage={actualPage} setActualPage={setActualPage} numberPages={normas} numberElementsPerPage={numeroNormasPagina} />
+                <PagesButtons actualPage={actualPage} setActualPage={setActualPage} numberElements={normas} numberElementsPerPage={numeroNormasPagina} />
+                <RightPageButton actualPage={actualPage} setActualPage={setActualPage} numberElements={normas} numberElementsPerPage={numeroNormasPagina} />
+                <LastPageButton setActualPage={setActualPage} numberElements={normas} numberElementsPerPage={numeroNormasPagina} />
             </nav>
         </div>
     )
