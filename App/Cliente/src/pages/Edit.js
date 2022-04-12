@@ -262,14 +262,14 @@ function ParteDerecha() {
 
     const anadirNotaSeleccionada = (event, nota) => {
         if (event.target.checked) {
-            setNotasSeleccionadas([...notasSeleccionadas, nota.id])
+            setNotasSeleccionadas([...notasSeleccionadas, nota])
         } else if (!event.target.checked) {
             setNotasSeleccionadas(notasSeleccionadas.filter(id => nota !== id))
         }
     }
 
     const eliminarNotasSeleccionadas = () => {
-        notasSeleccionadas.forEach(notaSeleccionada => { setNotas(notas.filter(nota => nota.id !== notaSeleccionada)) })
+        setNotas(notas.filter(nota => notasSeleccionadas.indexOf(nota.id) < 0));
     }
 
     return <section className='w-1/4 mx-10 screen-min2:w-11/12 screen-min2:mt-4'>
@@ -294,7 +294,10 @@ function ParteDerecha() {
                         {
                             notas?.map((nota) =>
                                 <div key={nota.id} className='flex flex-col border-b-2 border-gray-300'>
-                                    <div className='m-4 flex items-center border-b-2 border-gray w-11/12'><p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p><input className='ml-auto mr-0 cursor-pointer' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota)} /></div>
+                                    <div className='m-4 flex items-center border-b-2 border-gray w-11/12'>
+                                        <p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p>
+                                        <input className='ml-auto mr-0 cursor-pointer' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
+                                    </div>
                                     <div className='ml-8 mb-4 flex flex-col flex-auto'>
                                         <ul>
                                             {
@@ -351,7 +354,7 @@ function CrearComentario({ notas, setNotas, nota }) {
                 'fecha': new Date().toLocaleDateString()
             }
             setNotas(notas.map(notaAux => {
-                if (nota.id == notaAux.id) {
+                if (nota.id === notaAux.id) {
                     notaAux.comentarios.push(myObj);
                 }
                 return notaAux;

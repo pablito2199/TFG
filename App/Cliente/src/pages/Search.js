@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { useNormas } from '../hooks';
 import normas from './data.json'
@@ -11,8 +11,8 @@ import { Pages, SelectNumberPages } from '../components/Pagination';
 export default function Search() {
     const query = useLocation().search.replace('?', '');
 
-    //const [data, setData] = useState(useNormas(query))
-    const [data, setData] = useState(normas)
+    //const data = useNormas(query)
+    const data = normas
     const [actualPage, setActualPage] = useState(0)
     const [numeroNormasPagina, setNumeroNormasPagina] = useState(3)
 
@@ -20,8 +20,16 @@ export default function Search() {
         <div className='flex flex-col items-center'>
             <SearchField />
             <SelectNumberPages text="Número de normas por página" posibilities={[3, 5, 10, 20]} setNumberElementsPerPage={setNumeroNormasPagina} setActualPage={setActualPage} />
-            <Content data={data.response.listas.datos_informe} actualPage={actualPage} numberElementsPerPage={numeroNormasPagina} />
-            <Pages actualPage={actualPage} setActualPage={setActualPage} elements={data.response.listas.datos_informe.length} numberElementsPerPage={numeroNormasPagina} />
+            {
+                data !== undefined
+                    ?
+                    <>
+                        <Content data={data.response.listas.datos_informe} actualPage={actualPage} numberElementsPerPage={numeroNormasPagina} />
+                        <Pages actualPage={actualPage} setActualPage={setActualPage} elements={data.response.listas.datos_informe.length} numberElementsPerPage={numeroNormasPagina} />
+                    </>
+                    :
+                    <></>
+            }
         </div>
     );
 };
