@@ -5,8 +5,8 @@ import { useNormas } from '../hooks';
 import normas from './data.json'
 
 import { Button } from "../components/Button";
-import { SearchButton, SearchFilters } from '../components/Search';
-import { FirstPageButton, LastPageButton, LeftPageButton, PagesButtons, RightPageButton } from '../components/Pagination';
+import { SearchField } from '../components/Search';
+import { Pages, SelectNumberPages } from '../components/Pagination';
 
 export default function Search() {
     const query = useLocation().search.replace('?', '');
@@ -14,62 +14,23 @@ export default function Search() {
     //const [data, setData] = useState(useNormas(query))
     const [data, setData] = useState(normas)
     const [actualPage, setActualPage] = useState(0)
-    const [numeroNormasPagina, setNumeroNormasPagina] = useState(5)
+    const [numeroNormasPagina, setNumeroNormasPagina] = useState(3)
 
     return (
         <div className='flex flex-col items-center'>
             <SearchField />
-            <SelectNumberPages setNumeroNormasPagina={setNumeroNormasPagina} setActualPage={setActualPage} />
-            <Content data={data.response.listas.datos_informe} actualPage={actualPage} numeroNormasPagina={numeroNormasPagina} />
-            <BotonesPaginas normas={data.response.listas.datos_informe.length} actualPage={actualPage} setActualPage={setActualPage} numeroNormasPagina={numeroNormasPagina} />
+            <SelectNumberPages text="Número de normas por página" posibilities={[3, 5, 10, 20]} setNumberElementsPerPage={setNumeroNormasPagina} setActualPage={setActualPage} />
+            <Content data={data.response.listas.datos_informe} actualPage={actualPage} numberElementsPerPage={numeroNormasPagina} />
+            <Pages actualPage={actualPage} setActualPage={setActualPage} elements={data.response.listas.datos_informe.length} numberElementsPerPage={numeroNormasPagina} />
         </div>
     );
 };
 
-function SearchField() {
-    const [texto, setTexto] = useState('')
-    const [soloTitulo, setSoloTitulo] = useState(false)
-    const [fraseExacta, setFraseExacta] = useState(false)
-    const [dogDesde, setDogDesde] = useState(1)
-    const [dogHasta, setDogHasta] = useState(100000)
-    const [criterioOrdenacion, setCriterioOrdenacion] = useState('ORDENACION_FECHA')
-    const navigate = useNavigate()
-
-    const cambiarPagina = (e) => {
-        if (e.key === 'Enter') {
-            navigate(`/search?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}`)
-        }
-    }
-
-    return <section className='w-4/5 bg-black font-bitter bg-blue-lex-gal mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700 items-center'>
-        <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center w-full'>Búsqueda de normas</p>
-        <div className='m-4 w-11/12'>
-            <div className='input-group relative flex items-stretch w-full mb-4'>
-                <input onKeyDown={cambiarPagina} type="search" onChange={(event) => { setTexto(event.target.value) }} className='form-control relative flex-auto min-w-0 block w-full text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500' placeholder="Búsqueda de normas..." aria-label="Search" aria-describedby="button-addon2" />
-                <SearchButton texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} />
-            </div>
-            <SearchFilters soloTitulo={soloTitulo} setSoloTitulo={setSoloTitulo} fraseExacta={fraseExacta} setFraseExacta={setFraseExacta} dogDesde={dogDesde} setDogDesde={setDogDesde} dogHasta={dogHasta} setDogHasta={setDogHasta} criterioOrdenacion={criterioOrdenacion} setCriterioOrdenacion={setCriterioOrdenacion} />
-        </div>
-    </section >
-}
-
-function SelectNumberPages({ setNumeroNormasPagina, setActualPage }) {
-    return (
-        <div className='flex m-2 p-2 bg-blue-500 text-white items-center gap-4 mt-5 ml-auto mr-16 border rounded '>
-            <span>Número de normas por página</span>
-            <select onChange={(e) => { setNumeroNormasPagina(e.target.value); setActualPage(0) }} name="numberPages" className='flex-auto text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer w-12'>
-                <option key="p5">5</option>
-                <option key="p10">10</option>
-                <option key="p20">20</option>
-            </select>
-        </div>)
-}
-
-function Content({ data, actualPage, numeroNormasPagina }) {
+function Content({ data, actualPage, numberElementsPerPage }) {
     return <section className='mt-4 flex flex-col w-11/12'>
         {
             data?.map((norma, index) =>
-                (index >= numeroNormasPagina * actualPage && index < actualPage * numeroNormasPagina + numeroNormasPagina)
+                (index >= numberElementsPerPage * actualPage && index < actualPage * numberElementsPerPage + numberElementsPerPage)
                     ?
                     <div key={index} className=' border-b-2 border-gray-300' >
                         <div className='flex m-4 items-center'>
@@ -91,18 +52,4 @@ function Content({ data, actualPage, numeroNormasPagina }) {
             )
         }
     </section >
-}
-
-function BotonesPaginas({ normas, actualPage, setActualPage, numeroNormasPagina }) {
-    return (
-        <div className='m-4 flex items-center justify-center w-full'>
-            <nav className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px' aria-label="Pagination">
-                <FirstPageButton actualPage={actualPage} setActualPage={setActualPage} />
-                <LeftPageButton actualPage={actualPage} setActualPage={setActualPage} />
-                <PagesButtons actualPage={actualPage} setActualPage={setActualPage} numberElements={normas} numberElementsPerPage={numeroNormasPagina} />
-                <RightPageButton actualPage={actualPage} setActualPage={setActualPage} numberElements={normas} numberElementsPerPage={numeroNormasPagina} />
-                <LastPageButton setActualPage={setActualPage} numberElements={normas} numberElementsPerPage={numeroNormasPagina} />
-            </nav>
-        </div>
-    )
 }
