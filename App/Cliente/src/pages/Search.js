@@ -30,7 +30,7 @@ export default function Search() {
     return (
         <div className='flex flex-col items-center'>
             <SearchField initialText={query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)[0]} />
-            <SelectNumberElementsPerPage text="Número de normas por página" posibilities={[8]} setNumberElementsPerPage={setNumeroNormasPagina} setActualPage={setActualPage} />
+            <SelectNumberElementsPerPage text="Número de normas por página" posibilities={[8, 15, 20]} setNumberElementsPerPage={setNumeroNormasPagina} setActualPage={setActualPage} />
             {
                 data !== undefined && data.response !== undefined && data.response.listas !== undefined
                     ?
@@ -51,7 +51,7 @@ function Content({ data, actualPage, numberElementsPerPage }) {
         {
             data?.map((norma, index) =>
                 //(index >= numberElementsPerPage * actualPage && index < actualPage * numberElementsPerPage + numberElementsPerPage)
-                //?
+                //    ?
                 <div key={index} className=' border-b-2 border-gray-300' >
                     <div className='flex m-4 items-center'>
                         <div className='font-serif w-9/12 mt-0 mb-auto'>
@@ -67,8 +67,8 @@ function Content({ data, actualPage, numberElementsPerPage }) {
                         </div>
                     </div>
                 </div>
-                //:
-                //<div key={index}></div>
+                //    :
+                //    <div key={index}></div>
             )
         }
     </section >

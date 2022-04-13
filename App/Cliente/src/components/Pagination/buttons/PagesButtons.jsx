@@ -30,15 +30,15 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
                 }
             }
         } else {
-            paginas.push(<PagesNotSeen key="more" />)
-            for (let i = actualPage - 2; i < numeroBotones + actualPage - 2; i++) {
+            paginas.push(<PagesNotSeen key="more-izq" />)
+            for (let i = actualPage - 2; i < numeroBotones + actualPage - 2 - 1; i++) {
                 if (i === actualPage) {
                     paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
                 } else {
                     paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
                 }
             }
-            paginas.push(<PagesNotSeen key="more" />)
+            paginas.push(<PagesNotSeen key="more-der" />)
         }
     } else {
         for (let i = 0; i < numeroMaximoPaginas; i++) {

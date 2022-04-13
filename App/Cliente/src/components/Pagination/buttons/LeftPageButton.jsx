@@ -9,7 +9,7 @@ export const LeftPageButton = ({ query, actualPage, setActualPage }) => {
     return (
         <button
             onClick={() => {
-                if (actualPage > 1) {
+                if (actualPage > 0) {
                     setActualPage(parseInt(actualPage) - 1);
                     navigate(`/search?${query}${page}`)
                 }
