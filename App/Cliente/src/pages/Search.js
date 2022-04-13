@@ -1,15 +1,17 @@
 import { React, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import { useNormas } from '../hooks';
 
 import { Button } from "../components/Button";
 import { SearchField } from '../components/Search';
 import { Pages, SelectNumberElementsPerPage } from '../components/Pagination';
+import { HomeIcon } from '@heroicons/react/solid';
 
 export default function Search() {
     const query = useLocation().search.replace('?', '')
     const data = useNormas(query)
+    console.log(data)
 
     let querySinPagina
     if (query.match(/.*(?=pagina=[0-9]+)/gs)) {
@@ -18,25 +20,30 @@ export default function Search() {
         querySinPagina = query
     }
     let paginaQuery
-    if (query?.match(/(?<=pagina\s*=)[0-9]/gs)) {
-        paginaQuery = query?.match(/(?<=pagina\s*=)[0-9]/gs)
+    if (query?.match(/(?<=pagina\s*=)[0-9]+/gs)) {
+        paginaQuery = query?.match(/(?<=pagina\s*=)[0-9]+/gs)
     } else {
         paginaQuery = 1
     }
 
-    const [actualPage, setActualPage] = useState(paginaQuery - 1)
+    const [actualPage, setActualPage] = useState(paginaQuery)
     const [numeroNormasPagina, setNumeroNormasPagina] = useState(8)
 
     return (
         <div className='flex flex-col items-center'>
-            <SearchField initialText={query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)[0]} />
-            <SelectNumberElementsPerPage text="Número de normas por página" posibilities={[8, 15, 20]} setNumberElementsPerPage={setNumeroNormasPagina} setActualPage={setActualPage} />
+            <div className='flex gap-10 w-full items-center'>
+                <Link to="/" className='ml-4 flex items-center cursor-pointer'>
+                    <HomeIcon className='flex-1 h-20 w-20' />
+                </Link>
+                <SearchField initialText={query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)[0]} pagina={actualPage + 1} />
+            </div>
+            <SelectNumberElementsPerPage text="Número de normas por página" posibilities={[8/*, 15, 20*/]} setNumberElementsPerPage={setNumeroNormasPagina} setActualPage={setActualPage} />
             {
-                data !== undefined && data.response !== undefined && data.response.listas !== undefined
+                data
                     ?
                     <>
-                        <Content data={data.response.listas.datos_informe} actualPage={actualPage} numberElementsPerPage={numeroNormasPagina} />
-                        <Pages query={querySinPagina} actualPage={actualPage} setActualPage={setActualPage} elements={data.response.resultSize} numberElementsPerPage={numeroNormasPagina} />
+                        <Content data={data.response?.listas.datos_informe} actualPage={actualPage} numberElementsPerPage={numeroNormasPagina} />
+                        <Pages query={querySinPagina} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={numeroNormasPagina} />
                     </>
                     :
                     <></>
@@ -45,7 +52,6 @@ export default function Search() {
     );
 };
 
-//
 function Content({ data, actualPage, numberElementsPerPage }) {
     return <section className='mt-4 flex flex-col w-11/12'>
         {

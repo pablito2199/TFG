@@ -26,3 +26,4 @@
 11/04 3.5h -> Paginación, crear notas, eliminar notas, eliminar leyes
 11/04 2.3h -> Filtros y nuevos componentes
 12/04 2.2h -> Reestructuración en componentes y solucionar warnings
+13/04 6h -> Sincronización con la API de la xunta, adaptar paginación y búsqueda a la API

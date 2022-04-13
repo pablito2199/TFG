@@ -12,7 +12,7 @@ module.exports = {
                 'bitter': 'Bitter'
             },
             screens: {
-                'screen-min1': { 'max': '850px' },
+                'screen-min1': { 'max': '970px' },
                 'screen-min2': { 'max': '1055px' },
             },
             minHeight: {

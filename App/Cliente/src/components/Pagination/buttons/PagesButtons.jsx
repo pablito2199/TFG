@@ -16,7 +16,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
                 if (i === actualPage) {
                     paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
                 } else {
-                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
+                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
                 }
             }
             paginas.push(<PagesNotSeen key="more" />)
@@ -26,7 +26,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
                 if (i === actualPage) {
                     paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
                 } else {
-                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
+                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
                 }
             }
         } else {
@@ -35,7 +35,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
                 if (i === actualPage) {
                     paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
                 } else {
-                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
+                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
                 }
             }
             paginas.push(<PagesNotSeen key="more-der" />)
@@ -45,7 +45,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
             if (i === actualPage) {
                 paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
             } else {
-                paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
+                paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
             }
         }
     }

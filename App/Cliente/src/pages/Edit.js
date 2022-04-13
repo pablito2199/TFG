@@ -7,11 +7,18 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Textarea } from "../components/Textarea";
 import { Select } from "../components/Select";
+import { Link } from 'react-router-dom';
+import { HomeIcon } from '@heroicons/react/solid';
 
 export default function Edit() {
     return (
         <div className='flex flex-col'>
-            <Header />
+            <div className='flex gap-10 w-full'>
+                <Link to="/" className='ml-4 flex cursor-pointer'>
+                    <HomeIcon className='flex-1 h-20 w-20' />
+                </Link>
+                <Header />
+            </div>
 
             <main className='mt-6 flex font-serif screen-min2:flex-col'>
                 <ParteIzquierda />
@@ -25,23 +32,20 @@ export default function Edit() {
 
 function Header() {
     const estados = [
-        { codigo: 1, nombre: 'Durward Reynolds' },
-        { codigo: 2, nombre: 'Kenton Towne' },
-        { codigo: 3, nombre: 'Therese Wunsch' },
-        { codigo: 4, nombre: 'Benedict Kessler' },
-        { codigo: 5, nombre: 'Katelyn Rohan' }
+        { id: 1, descripcion: 'En vigor' },
+        { id: 2, descripcion: 'Derrogada' }
     ]
 
-    const [organismoSeleccionado, setOrganismoSeleccionado] = useState(organismos[0])
-    const [estadoSeleccionado, setEstadoSeleccionado] = useState(estados[0])
-    const [rangoSeleccionado, setRangoSeleccionado] = useState(rangos[0])
+    const [organismoSeleccionado, setOrganismoSeleccionado] = useState('')
+    const [estadoSeleccionado, setEstadoSeleccionado] = useState('')
+    const [rangoSeleccionado, setRangoSeleccionado] = useState('')
 
-    return <header className='bg-black font-bitter bg-blue-lex-gal w-11/12 self-center mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700'>
+    return <header className='mr-8 bg-black font-bitter bg-blue-lex-gal w-11/12 self-center mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700'>
         <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center'>Datos de cabeceira</p>
         <div className='flex flex-row m-3 font-semibold italic screen-min1:flex-col'>
             <div className='w-1/2 screen-min1:w-full'>
                 <Input texto="Título" tipo="text" placeholder="Título da norma..." />
-                <Select texto="Organismo" elements={organismos} setElements={setOrganismoSeleccionado} />
+                <Select texto="Organismo" elements={organismos} element={organismoSeleccionado} setElements={setOrganismoSeleccionado} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
                 <Textarea texto="Sumario" placeholder="Escriba o sumario da norma..." />
                 <Input texto="Data de publicación" tipo="date" />
                 <Input texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
@@ -49,12 +53,12 @@ function Header() {
             </div>
 
             <div className='w-1/2 screen-min1:w-full'>
-                <Select texto="Estado" elements={estados} setElements={setEstadoSeleccionado} />
+                <Select texto="Estado" elements={estados} element={estadoSeleccionado} setElements={setEstadoSeleccionado} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
                 <Input texto="Ano" tipo="text" placeholder="Ano..." />
                 <Input texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
                 <Input texto="Versión" tipo="text" placeholder="Versión da norma..." />
                 <Input texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
-                <Select texto="Rango" elements={rangos} setElements={setRangoSeleccionado} />
+                <Select texto="Rango" elements={rangos} element={rangoSeleccionado} setElements={setRangoSeleccionado} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
             </div>
         </div>
     </header>

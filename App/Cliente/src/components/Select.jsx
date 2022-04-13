@@ -1,13 +1,13 @@
 import React from "react";
 
-export const Select = ({ texto, elements, setElements }) => {
+export const Select = ({ texto, elements, element, setElements, opcion, posicionSpan, clase }) => {
     return (
         <div className='flex flex-col text-left align-top m-2 px-3'>
-            <span>{texto}</span>
-            <select defaultValue='DEFAULT' onChange={(e) => setElements(e.target.value)} className='flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline'>
-                <option key="not_selected" className='text-gray-400' value='DEFAULT' disabled> -- Seleccione unha opción -- </option>
+            <span className={posicionSpan}>{texto}</span>
+            <select defaultValue={element} onChange={(e) => setElements(e.target.value)} className={clase}>
+                <option key="not_selected" className='text-gray-400' value=''>{opcion} </option>
                 {
-                    elements?.map((e, index) => <option key={index}>{e.id} - {e.descripcion}</option>)
+                    elements?.map((e, index) => <option key={index} value={e.id}>{e.id} - {e.descripcion}</option>)
                 }
             </select>
         </div>
