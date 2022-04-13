@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SelectNumberPages = ({ text, posibilities, setNumberElementsPerPage, setActualPage }) => {
+export const SelectNumberElementsPerPage = ({ text, posibilities, setNumberElementsPerPage, setActualPage }) => {
     return (
         <div className='flex m-2 p-2 bg-blue-500 text-white items-center gap-4 mt-5 ml-auto mr-16 border rounded '>
             <span>{text}</span>

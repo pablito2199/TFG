@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
 
-export const SearchButton = ({ texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion }) => {
+export const SearchButton = ({ pagina, texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion }) => {
     const navigate = useNavigate()
     let render = []
 
     const cambiarPagina = () => {
-        navigate(`/search?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}`)
+        navigate(`/search?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&pagina=${pagina}`)
     }
 
     if (texto === '') {

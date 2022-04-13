@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import { PagesNotSeen } from './PagesNotSeen';
 
-export const PagesButtons = ({ actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
+export const PagesButtons = ({ query, actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
     let paginas = []
     let numeroBotones = Math.ceil(numberElements / numberElementsPerPage)
     const numeroMaximoPaginas = Math.ceil(numberElements / numberElementsPerPage)
+    const navigate = useNavigate()
 
     if (numeroBotones > 5) {
         numeroBotones = 5
@@ -14,17 +16,17 @@ export const PagesButtons = ({ actualPage, setActualPage, numberElements, number
                 if (i === actualPage) {
                     paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
                 } else {
-                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => setActualPage(i)}>{i + 1}</button>);
+                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
                 }
             }
             paginas.push(<PagesNotSeen key="more" />)
-        } else if (numeroMaximoPaginas - actualPage < 5) {
+        } else if (numeroMaximoPaginas - actualPage - 1 < 5) {
             paginas.push(<PagesNotSeen key="more" />)
             for (let i = numeroMaximoPaginas - 5; i < numeroMaximoPaginas; i++) {
                 if (i === actualPage) {
                     paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
                 } else {
-                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => setActualPage(i)}>{i + 1}</button>);
+                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
                 }
             }
         } else {
@@ -33,7 +35,7 @@ export const PagesButtons = ({ actualPage, setActualPage, numberElements, number
                 if (i === actualPage) {
                     paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
                 } else {
-                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => setActualPage(i)}>{i + 1}</button>);
+                    paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
                 }
             }
             paginas.push(<PagesNotSeen key="more" />)
@@ -43,7 +45,7 @@ export const PagesButtons = ({ actualPage, setActualPage, numberElements, number
             if (i === actualPage) {
                 paginas.push(<button key={i} className='focus:outline-none bg-blue-500 border-blue-500 text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i + 1}</button>);
             } else {
-                paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => setActualPage(i)}>{i + 1}</button>);
+                paginas.push(<button key={i} className='focus:outline-none bg-white border-blue-500 text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { console.log(i); navigate(`/search?${query}${i + 1}`); setActualPage(i) }}>{i + 1}</button>);
             }
         }
     }

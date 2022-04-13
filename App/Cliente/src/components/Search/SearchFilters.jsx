@@ -7,7 +7,7 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
     return (
         <>
             {
-                !mostrar
+                mostrar
                     ?
                     <div className='flex text-white text-center justify-end'>
                         <button onClick={() => setMostrar(!mostrar)} className="bg-black focus:outline-none relative inline-flex items-center rounded-md font-medium cursor-pointer">
@@ -27,12 +27,12 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
                             <div className='flex'>
                                 <div className='p-2 flex items-center justify-center gap-1'>
                                     <span className='ml-2 text-gray-700'>Solo título</span>
-                                    <input onClick={() => setSoloTitulo(!soloTitulo)} type="checkbox" className='rounded form-checkbox h-4 w-4 text-blue-600 cursor-pointer' />
+                                    <input defaultChecked onClick={() => setSoloTitulo(!soloTitulo)} type="checkbox" className='rounded form-checkbox h-4 w-4 text-blue-600 cursor-pointer' />
 
                                 </div>
                                 <div className='p-2 flex items-center justify-center gap-1'>
                                     <span className='ml-2 text-gray-700'>Frase exacta</span>
-                                    <input onClick={() => setFraseExacta(!fraseExacta)} type="checkbox" className='rounded form-checkbox h-4 w-4 text-blue-600 cursor-pointer' />
+                                    <input defaultChecked onClick={() => setFraseExacta(!fraseExacta)} type="checkbox" className='rounded form-checkbox h-4 w-4 text-blue-600 cursor-pointer' />
                                 </div>
                             </div>
                             <div className='flex'>
@@ -46,9 +46,10 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
                                 </div>
                                 <div className='p-2 flex flex-col items-center justify-center'>
                                     <span className='text-gray-700'>Criterio de ordenación</span>
-                                    <select onChange={(e) => setCriterioOrdenacion(e.target.value)} name="numberPages" className='w-40 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer'>
-                                        <option value="ORDENACION_ALFABETICA">Alfabéticamente</option>
-                                        <option value="ORDENACION_FECHA" selected>Fecha</option>
+                                    <select defaultValue="ORDENACION_FECHA" onChange={(e) => setCriterioOrdenacion(e.target.value)} name="numberPages" className='w-40 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer'>
+                                        <option value="ORDENACION_FECHA">Data diario</option>
+                                        <option value="ORDENACION_NUMERO">Número diario</option>
+                                        <option value="ORDENACION_RELEVANCIA">Relevancia</option>
                                     </select>
                                 </div>
                             </div>
