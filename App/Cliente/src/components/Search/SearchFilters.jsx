@@ -18,7 +18,7 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
                     ?
                     <div className='flex text-white text-center justify-end'>
                         <button onClick={() => setMostrar(!mostrar)} className="bg-black focus:outline-none relative inline-flex items-center rounded-md font-medium cursor-pointer">
-                            <span className='p-2'>Mostrar filtros avanzados</span>
+                            <span className='p-2'>Amosar filtros avanzados</span>
                             <ChevronDoubleDownIcon className="bg-black h-5 w-5 mr-2" aria-hidden="true" />
                         </button>
                     </div>
@@ -26,7 +26,7 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
                     <div>
                         <div className='flex text-white text-center justify-end'>
                             <button onClick={() => setMostrar(!mostrar)} className="bg-black focus:outline-none relative inline-flex items-center rounded-md font-medium cursor-pointer">
-                                <span className='p-2'>Mostrar filtros avanzados</span>
+                                <span className='p-2'>Amosar filtros avanzados</span>
                                 <ChevronDoubleUpIcon className="bg-black h-5 w-5 mr-2" aria-hidden="true" />
                             </button>
                         </div>
@@ -61,13 +61,13 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
                                 </div>
                             </div>
                             <div className='flex screen-min1:flex-col'>
-                                <Select texto="Colectivo" elements={colectivos} element={colectivo} setElements={setColectivo} opcion="-- Sen seleccionar --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
-                                <Select texto="Organización" elements={organismos} element={organizacion} setElements={setOrganizacion} opcion="-- Seleccione --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
-                                <Select texto="Rango" elements={rangos} element={rango} setElements={setRango} opcion="-- Seleccione --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                <Select texto="Colectivo" firstOption={true} elements={colectivos} element={colectivo} setElements={setColectivo} opcion="-- Sen seleccionar --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                <Select texto="Organización" firstOption={true} elements={organismos} element={organizacion} setElements={setOrganizacion} opcion="-- Seleccione --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                <Select texto="Rango" firstOption={true} elements={rangos} element={rango} setElements={setRango} opcion="-- Seleccione --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
                             </div>
                             <div className='flex screen-min1:flex-col'>
-                                <Select texto="Sección" elements={secciones} element={seccion} setElements={setSeccion} opcion="-- Sen seleccionar --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
-                                <Select texto="Áreas temáticas" elements={tematicas} element={tematica} setElements={setTematica} opcion="-- Sen seleccionar --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                <Select texto="Sección" firstOption={true} elements={secciones} element={seccion} setElements={setSeccion} opcion="-- Sen seleccionar --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                <Select texto="Áreas temáticas" firstOption={true} elements={tematicas} element={tematica} setElements={setTematica} opcion="-- Sen seleccionar --" posicionSpan="self-center" clase="w-48 text-black border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
                             </div>
                         </div>
                     </div>

@@ -25,6 +25,12 @@ export default function Search() {
     } else {
         paginaQuery = 1
     }
+    let initialText
+    if (query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)) {
+        initialText = query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)[0]
+    } else {
+        initialText = ''
+    }
 
     const [actualPage, setActualPage] = useState(paginaQuery)
     const [numeroNormasPagina, setNumeroNormasPagina] = useState(8)
@@ -35,7 +41,7 @@ export default function Search() {
                 <Link to="/" className='ml-4 flex items-center cursor-pointer'>
                     <HomeIcon className='flex-1 h-20 w-20' />
                 </Link>
-                <SearchField initialText={query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)[0]} pagina={actualPage + 1} />
+                <SearchField initialText={initialText} pagina={actualPage + 1} />
             </div>
             <SelectNumberElementsPerPage text="Número de normas por página" posibilities={[8/*, 15, 20*/]} setNumberElementsPerPage={setNumeroNormasPagina} setActualPage={setActualPage} />
             {

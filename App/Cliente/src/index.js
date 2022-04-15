@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom'
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
+    Navigate
 } from "react-router-dom";
 import ReactFontLoader from 'react-font-loader'
 
 import Edit from './pages/Edit'
 import Search from './pages/Search'
 import Home from './pages/Home'
+import NotFound from './pages/NotFound';
 
 import './styles.css'
 
@@ -22,6 +24,8 @@ ReactDOM.render(
             <Route exact path="/" element={<Home />} />
             <Route exact path="/edit" element={<Edit />} />
             <Route path="/search" element={<Search />} />
+            <Route exact path='/404' element={<NotFound />} />
+            <Route path="*" element={<Navigate to='/404' replace />} />
         </Routes>
     </BrowserRouter>,
     document.getElementById('root')
