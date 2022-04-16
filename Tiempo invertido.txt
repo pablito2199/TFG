@@ -28,3 +28,5 @@
 12/04 2.2h -> Reestructuración en componentes y solucionar warnings
 13/04 7h -> Sincronización con la API de la xunta, adaptar paginación y búsqueda a la API
 15/04 2h -> Página 404 y arreglar cosas
+15/04 2h -> Documentarse acerca de JAXB
+15/04 3h -> Convertir XML a Java Object empregando JAXB
