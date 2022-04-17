@@ -1,4 +1,4 @@
-package Cabecera;
+package tfg.project.model.Cabecera;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -19,8 +19,9 @@ public class Id {
     }
 
     @XmlAttribute
-    public void setAno(Integer ano) {
+    public Id setAno(Integer ano) {
         this.ano = ano;
+        return this;
     }
 
     public String getOrganismo() {
@@ -28,8 +29,9 @@ public class Id {
     }
 
     @XmlAttribute
-    public void setOrganismo(String organismo) {
+    public Id setOrganismo(String organismo) {
         this.organismo = organismo;
+        return this;
     }
 
     public String getRango() {
@@ -37,8 +39,9 @@ public class Id {
     }
 
     @XmlAttribute
-    public void setRango(String rango) {
+    public Id setRango(String rango) {
         this.rango = rango;
+        return this;
     }
 
     public String getRef() {
@@ -46,8 +49,9 @@ public class Id {
     }
 
     @XmlAttribute
-    public void setRef(String ref) {
+    public Id setRef(String ref) {
         this.ref = ref;
+        return this;
     }
 
     public Integer getVersion() {
@@ -55,8 +59,9 @@ public class Id {
     }
 
     @XmlAttribute
-    public void setVersion(Integer version) {
+    public Id setVersion(Integer version) {
         this.version = version;
+        return this;
     }
 
     public String getId() {
@@ -64,12 +69,20 @@ public class Id {
     }
 
     @XmlValue
-    public void setId(String id) {
+    public Id setId(String id) {
         this.id = id;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "Id{" + "ano=" + ano + ", organismo=" + organismo + ", rango=" + rango + ", ref=" + ref + ", version=" + version + ", id=" + id + '}';
+        return "Id{" +
+                "ano=" + ano +
+                ", organismo='" + organismo + '\'' +
+                ", rango='" + rango + '\'' +
+                ", ref='" + ref + '\'' +
+                ", version=" + version +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

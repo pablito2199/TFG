@@ -1,4 +1,4 @@
-package Corpo;
+package tfg.project.model.Corpo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
@@ -13,12 +13,15 @@ public class Parrafo {
     }
 
     @XmlValue
-    public void setParrafo(String parrafo) {
+    public Parrafo setParrafo(String parrafo) {
         this.parrafo = parrafo;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "Parrafo{" + "parrafo=" + parrafo + '}';
+        return "Parrafo{" +
+                "parrafo='" + parrafo + '\'' +
+                '}';
     }
 }

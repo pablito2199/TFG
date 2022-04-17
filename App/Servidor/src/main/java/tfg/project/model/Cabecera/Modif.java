@@ -1,4 +1,4 @@
-package Cabecera;
+package tfg.project.model.Cabecera;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -18,8 +18,9 @@ public class Modif {
     }
 
     @XmlAttribute
-    public void setElemento(String elemento) {
+    public Modif setElemento(String elemento) {
         this.elemento = elemento;
+        return this;
     }
 
     public String getLei_fonte() {
@@ -27,8 +28,9 @@ public class Modif {
     }
 
     @XmlAttribute(name = "lei_fonte")
-    public void setLei_fonte(String lei_fonte) {
+    public Modif setLei_fonte(String lei_fonte) {
         this.lei_fonte = lei_fonte;
+        return this;
     }
 
     public String getLei_modif() {
@@ -36,8 +38,9 @@ public class Modif {
     }
 
     @XmlAttribute(name = "lei_modif")
-    public void setLei_modif(String lei_modif) {
+    public Modif setLei_modif(String lei_modif) {
         this.lei_modif = lei_modif;
+        return this;
     }
 
     public String getTipo() {
@@ -45,8 +48,9 @@ public class Modif {
     }
 
     @XmlAttribute
-    public void setTipo(String tipo) {
+    public Modif setTipo(String tipo) {
         this.tipo = tipo;
+        return this;
     }
 
     public String getModif() {
@@ -54,12 +58,19 @@ public class Modif {
     }
 
     @XmlValue
-    public void setModif(String modif) {
+    public Modif setModif(String modif) {
         this.modif = modif;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "Modif{" + "elemento=" + elemento + ", lei_fonte=" + lei_fonte + ", lei_modif=" + lei_modif + ", tipo=" + tipo + ", modif=" + modif + '}';
+        return "Modif{" +
+                "elemento='" + elemento + '\'' +
+                ", lei_fonte='" + lei_fonte + '\'' +
+                ", lei_modif='" + lei_modif + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", modif='" + modif + '\'' +
+                '}';
     }
 }

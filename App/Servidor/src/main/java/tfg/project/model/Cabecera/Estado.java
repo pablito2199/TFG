@@ -1,4 +1,4 @@
-package Cabecera;
+package tfg.project.model.Cabecera;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,12 +13,15 @@ public class Estado {
     }
 
     @XmlAttribute
-    public void setEstado(String estado) {
+    public Estado setEstado(String estado) {
         this.estado = estado;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "Estado{" + "estado=" + estado + '}';
+        return "Estado{" +
+                "estado='" + estado + '\'' +
+                '}';
     }
 }

@@ -1,9 +1,10 @@
-package Corpo;
+package tfg.project.model.Corpo;
 
-import java.util.List;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 @XmlRootElement(name = "art")
 public class Art {
@@ -17,16 +18,18 @@ public class Art {
     }
 
     @XmlAttribute
-    public void setId(String id) {
+    public Art setId(String id) {
         this.id = id;
+        return this;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
+    public Art setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
     public List<Parrafo> getParrafos() {
@@ -34,12 +37,17 @@ public class Art {
     }
 
     @XmlElement(name = "p")
-    public void setParrafos(List<Parrafo> parrafos) {
+    public Art setParrafos(List<Parrafo> parrafos) {
         this.parrafos = parrafos;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "Art{" + "id=" + id + ", titulo=" + titulo + ", parrafos=" + parrafos + '}';
+        return "Art{" +
+                "id='" + id + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", parrafos=" + parrafos +
+                '}';
     }
 }

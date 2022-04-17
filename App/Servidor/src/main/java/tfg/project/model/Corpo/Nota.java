@@ -1,4 +1,4 @@
-package Corpo;
+package tfg.project.model.Corpo;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -15,8 +15,9 @@ public class Nota {
     }
 
     @XmlAttribute
-    public void setTipo(String tipo) {
+    public Nota setTipo(String tipo) {
         this.tipo = tipo;
+        return this;
     }
 
     public String getNota() {
@@ -24,12 +25,16 @@ public class Nota {
     }
 
     @XmlValue
-    public void setNota(String nota) {
+    public Nota setNota(String nota) {
         this.nota = nota;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "Nota{" + "tipo=" + tipo + ", nota=" + nota + '}';
+        return "Nota{" +
+                "tipo='" + tipo + '\'' +
+                ", nota='" + nota + '\'' +
+                '}';
     }
 }
