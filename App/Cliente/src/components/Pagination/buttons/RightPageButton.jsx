@@ -4,13 +4,12 @@ import { ChevronRightIcon } from '@heroicons/react/solid'
 
 export const RightPageButton = ({ actualPage, query, setActualPage, numberElements, numberElementsPerPage }) => {
     const navigate = useNavigate()
-    const page = parseInt(actualPage) + 1
-
     return (
         <button
             onClick={() => {
                 if (actualPage < Math.ceil(numberElements / numberElementsPerPage - 1)) {
                     setActualPage(parseInt(actualPage) + 1);
+                    let page = actualPage + 1
                     navigate(`/search?${query}${page}`)
                 }
             }}

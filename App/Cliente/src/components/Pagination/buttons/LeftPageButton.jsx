@@ -4,13 +4,13 @@ import { ChevronLeftIcon } from '@heroicons/react/solid'
 
 export const LeftPageButton = ({ query, actualPage, setActualPage }) => {
     const navigate = useNavigate()
-    const page = parseInt(actualPage) - 1
 
     return (
         <button
             onClick={() => {
-                if (actualPage > 0) {
+                if (actualPage > 1) {
                     setActualPage(parseInt(actualPage) - 1);
+                    let page = actualPage - 1
                     navigate(`/search?${query}${page}`)
                 }
             }}

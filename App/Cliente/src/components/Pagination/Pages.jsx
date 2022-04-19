@@ -6,7 +6,6 @@ import { PagesButtons } from './buttons/PagesButtons';
 import { RightPageButton } from './buttons/RightPageButton';
 
 export const Pages = ({ query, actualPage, setActualPage, elements, numberElementsPerPage }) => {
-    //
     return (
         <div className='m-4 flex items-center justify-center w-full'>
             <nav className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px' aria-label="Pagination">

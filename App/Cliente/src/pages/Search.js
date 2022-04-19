@@ -11,7 +11,6 @@ import { HomeIcon } from '@heroicons/react/solid';
 export default function Search() {
     const query = useLocation().search.replace('?', '')
     const data = useNormas(query)
-    console.log(data)
 
     let querySinPagina
     if (query.match(/.*(?=pagina=[0-9]+)/gs)) {
@@ -34,7 +33,6 @@ export default function Search() {
 
     const [actualPage, setActualPage] = useState(paginaQuery)
     const [numeroNormasPagina, setNumeroNormasPagina] = useState(8)
-
     return (
         <div className='flex flex-col items-center'>
             <div className='flex gap-10 w-full items-center'>

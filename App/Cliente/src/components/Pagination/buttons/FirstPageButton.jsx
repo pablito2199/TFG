@@ -8,7 +8,7 @@ export const FirstPageButton = ({ query, setActualPage }) => {
 
     return (
         <button
-            onClick={() => { navigate(`/search?${query}${page}`); setActualPage(page - 1) }}
+            onClick={() => { navigate(`/search?${query}${page}`); setActualPage(1) }}
             className="focus:outline-none relative inline-flex items-center px-2 py-2 rounded-l-md border border-blue-500 bg-white text-sm font-medium text-gray-500 hover:bg-blue-50 cursor-pointer"
         >
             <span className="sr-only">Previous</span>
