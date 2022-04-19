@@ -5,7 +5,10 @@ import tfg.project.model.Documento;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.File;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class AuxMethods {
     private static final String DOCUMENT = "norma.xml";
@@ -14,8 +17,13 @@ public class AuxMethods {
         try {
             JAXBContext context = JAXBContext.newInstance(Documento.class);
             Unmarshaller un = context.createUnmarshaller();
+            RandomAccessFile f = new RandomAccessFile(new File(DOCUMENT), "rw");
+            f.seek(0);
+            String newString = "<cdg>                                                                                                                                     ";
+            f.write(newString.getBytes());
+            f.close();
             return (Documento) un.unmarshal(new File(DOCUMENT));
-        } catch (JAXBException e) {
+        } catch (JAXBException | IOException e) {
             e.printStackTrace();
         }
         return null;

@@ -31,3 +31,6 @@
 15/04 2h -> Documentarse acerca de JAXB
 15/04 3h -> Convertir XML a Java Object empregando JAXB
 18/04 1.5h -> Utilizar JAXB en Spring Boot
+19/04 0.3h -> Bug de páginas
+19/04 0.7h -> 5ª reunión
+19/04 0.5h -> Leer bien XML servidor
