@@ -11,25 +11,27 @@ import { Input } from "../components/Input";
 import { Textarea } from "../components/Textarea";
 import { Select } from "../components/Select";
 import { Link } from 'react-router-dom';
-import { ChevronDoubleDownIcon, ChevronDoubleUpIcon, HomeIcon } from '@heroicons/react/solid';
+import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid';
 
 export default function Edit() {
     return (
-        <div className='flex flex-col'>
-            <div className='flex gap-10 w-full'>
+        <div className='flex flex-row'>
+            <div className='bg-black pt-6 pr-4 w-16 h-screen fixed'>
                 <Link to="/" className='ml-4 flex cursor-pointer'>
-                    <HomeIcon className='flex-1 h-20 w-20' />
+                    <img src="https://www.lex.gal/lexgal-theme/images/plantilla/lexgal-vertical.png" />
                 </Link>
-                <Header />
             </div>
+            <div className='flex flex-col ml-12'>
+                <Header />
 
-            <main className='mt-6 flex font-serif screen-min2:flex-col'>
-                <ParteIzquierda />
-                <ParteDerecha />
-            </main>
+                <main className='mt-6 flex font-serif screen-min2:flex-col'>
+                    <ParteIzquierda />
+                    <ParteDerecha />
+                </main>
 
-            <BotonesPrincipales />
-        </div >
+                <BotonesPrincipales />
+            </div >
+        </div>
     );
 };
 
@@ -53,7 +55,7 @@ function Header() {
                 ?
                 <div className='flex'>
                     <button onClick={() => setMostrar(!mostrar)} className="w-full bg-gray-lex-gal text-white focus:outline-none relative inline-flex items-center rounded-md font-medium cursor-pointer">
-                        <span className='w-full text-2xl py-3 rounded-xl font-bold text-center'>Mostrar datos de cabeceira</span>
+                        <span className='w-full text-2xl py-3 rounded-xl font-bold text-center'>Amosar datos de cabeceira</span>
                         <ChevronDoubleDownIcon className="h-5 w-5 mr-2" aria-hidden="true" />
                     </button>
                 </div>

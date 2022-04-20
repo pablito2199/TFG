@@ -25,13 +25,12 @@ export const SearchField = ({ initialText, pagina }) => {
         }
     }
 
-    return <section className='w-4/5 mr-20 bg-black font-bitter bg-blue-lex-gal mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700 items-center'>
-        <p className='bg-gray-lex-gal text-white text-2xl py-3 rounded-xl font-bold text-center w-full'>Búsqueda de normas</p>
-        <div className='m-4 w-11/12'>
-            <div className='input-group relative flex items-stretch w-full mb-4'>
-                <input value={texto} onKeyDown={cambiarPagina} type="search" onChange={(event) => { setTexto(event.target.value) }} className='form-control relative flex-auto min-w-0 block w-full text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500' placeholder="Búsqueda de normas..." aria-label="Search" aria-describedby="button-addon2" />
-                <SearchButton texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} />
-            </div>
+    return <section className='w-11/12 font-bitter mt-5 flex flex-col rounded-xl px-2'>
+        <div className='w-80 p-4 bg-blue-400 text-center'>
+            <span className='text-white text-2xl py-3 rounded-xl'>Búsqueda de normas</span>
+        </div>
+        <div className='p-6 bg-blue-400'>
+            <input value={texto} onKeyDown={cambiarPagina} type="search" onChange={(event) => { setTexto(event.target.value) }} className='w-full font-normal text-gray-700 border border-solid border-gray-300 transition ease-in-out py-2 px-2 focus:outline-none focus:border-gray-500' placeholder="Búsqueda de normas..." aria-label="Search" aria-describedby="button-addon2" />
             <SearchFilters
                 soloTitulo={soloTitulo} setSoloTitulo={setSoloTitulo}
                 fraseExacta={fraseExacta} setFraseExacta={setFraseExacta}
@@ -44,6 +43,12 @@ export const SearchField = ({ initialText, pagina }) => {
                 seccion={seccion} setSeccion={setSeccion}
                 tematica={tematica} setTematica={setTematica}
             />
+            <div className='w-full mt-4 flex gap-4 justify-end'>
+                <button onClick={() => setTexto('')} className='px-6 py-2.5 bg-gray-300 hover:bg-gray-400 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition ease-in-out flex items-center' type="button" id="button-addon2">
+                    <span>Limpar</span>
+                </button>
+                <SearchButton texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} />
+            </div>
         </div>
     </section >
 };
