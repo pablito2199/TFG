@@ -18,7 +18,7 @@ export default function Edit() {
         <div className='flex flex-row'>
             <div className='bg-black pt-6 pr-4 w-16 h-screen fixed'>
                 <Link to="/" className='ml-4 flex cursor-pointer'>
-                    <img src="https://www.lex.gal/lexgal-theme/images/plantilla/lexgal-vertical.png" />
+                    <img alt="Páxina de inicio" src="https://www.lex.gal/lexgal-theme/images/plantilla/lexgal-vertical.png" />
                 </Link>
             </div>
             <div className='flex flex-col ml-12'>

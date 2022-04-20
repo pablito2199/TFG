@@ -30,7 +30,7 @@ export default function NotFound() {
         return <div className='flex flex-row'>
             <div className='bg-black pt-6 pr-4 h-screen w-16 fixed'>
                 <Link to="/" className='ml-4 flex cursor-pointer'>
-                    <img src="https://www.lex.gal/lexgal-theme/images/plantilla/lexgal-vertical.png" />
+                    <img alt="Páxina de inicio" src="https://www.lex.gal/lexgal-theme/images/plantilla/lexgal-vertical.png" />
                 </Link>
             </div>
             <div className="h-screen w-screen bg-gray-100 flex items-center">
