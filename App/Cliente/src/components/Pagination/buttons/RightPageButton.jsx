@@ -6,6 +6,7 @@ export const RightPageButton = ({ actualPage, query, setActualPage, numberElemen
     const navigate = useNavigate()
     return (
         <button
+            title='Seguinte páxina'
             onClick={() => {
                 if (actualPage < Math.ceil(numberElements / numberElementsPerPage - 1)) {
                     setActualPage(parseInt(actualPage) + 1);

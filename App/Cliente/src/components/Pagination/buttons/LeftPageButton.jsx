@@ -7,6 +7,7 @@ export const LeftPageButton = ({ query, actualPage, setActualPage }) => {
 
     return (
         <button
+            title='Páxina anterior'
             onClick={() => {
                 if (actualPage > 1) {
                     setActualPage(parseInt(actualPage) - 1);

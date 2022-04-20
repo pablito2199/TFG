@@ -7,6 +7,7 @@ module.exports = {
                 'gray-lex-gal': '#333',
                 'link': '#0000FF',
                 'blue-lex-gal': 'rgba(63,169,245,0.7)',
+                'white-lex-gal': 'rgba(255,255,255,0.3)'
             },
             fontFamily: {
                 'bitter': 'Bitter'
@@ -14,6 +15,7 @@ module.exports = {
             screens: {
                 'screen-min1': { 'max': '970px' },
                 'screen-min2': { 'max': '1055px' },
+                'screen-min3': { 'max': '1500px' }
             },
             minHeight: {
                 'textarea': '7rem',

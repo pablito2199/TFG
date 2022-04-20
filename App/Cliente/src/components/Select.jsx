@@ -1,9 +1,9 @@
 import React from "react";
 
-export const Select = ({ texto, firstOption, elements, element, setElements, opcion, posicionSpan, clase }) => {
+export const Select = ({ texto, firstOption, elements, element, setElements, opcion, claseSpan, clase }) => {
     return (
         <div className='flex flex-col text-left align-top m-2 px-3'>
-            <span className={posicionSpan}>{texto}</span>
+            <span className={claseSpan}>{texto}</span>
             <select defaultValue={element} onChange={(e) => setElements(e.target.value)} className={clase}>
                 {
                     firstOption
