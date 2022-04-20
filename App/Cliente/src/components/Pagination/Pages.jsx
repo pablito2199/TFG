@@ -8,7 +8,7 @@ import { RightPageButton } from './buttons/RightPageButton';
 export const Pages = ({ query, actualPage, setActualPage, elements, numberElementsPerPage }) => {
     return (
         <div className='m-4 flex items-center justify-center w-full'>
-            <nav className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px' aria-label="Pagination">
+            <nav className='relative z-0 inline-flex shadow-sm -space-x-px' aria-label="Pagination">
                 <FirstPageButton query={query} actualPage={actualPage} setActualPage={setActualPage} />
                 <LeftPageButton query={query} actualPage={actualPage} setActualPage={setActualPage} />
                 <PagesButtons query={query} actualPage={actualPage} setActualPage={setActualPage} numberElements={elements} numberElementsPerPage={numberElementsPerPage} />

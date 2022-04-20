@@ -14,7 +14,7 @@ export const RightPageButton = ({ actualPage, query, setActualPage, numberElemen
                     navigate(`/search?${query}${page}`)
                 }
             }}
-            className="focus:outline-none relative inline-flex items-center px-2 py-2 border border-blue-500 bg-white text-sm font-medium text-gray-500 hover:bg-blue-50 cursor-pointer"
+            className="focus:outline-none relative inline-flex items-center px-2 py-2 border border-black bg-white text-sm font-medium text-gray-500 hover:bg-blue-50 cursor-pointer"
         >
             <span className="sr-only">Next</span>
             <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />

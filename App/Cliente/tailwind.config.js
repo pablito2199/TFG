@@ -7,7 +7,8 @@ module.exports = {
                 'gray-lex-gal': '#333',
                 'link': '#0000FF',
                 'blue-lex-gal': 'rgba(63,169,245,0.7)',
-                'white-lex-gal': 'rgba(255,255,255,0.3)'
+                'white-lex-gal': 'rgba(255,255,255,0.3)',
+                'blue-green': 'rgb(0, 113, 189)'
             },
             fontFamily: {
                 'bitter': 'Bitter'
