@@ -60,8 +60,7 @@ export default function Search() {
 };
 
 function Tabla({ data }) {
-
-    return <table className='flex w-11/12 mt-8 flex flex-col text-left font-medium'>
+    return <table className='px-1 flex w-11/12 mt-8 flex flex-col text-left font-medium'>
         <tbody className='border border-white text-center'>
             <tr className='flex'>
                 <th className='w-1/12 p-2 border-2 border-white bg-black text-white'>DOG nº</th>
