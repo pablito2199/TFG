@@ -26,7 +26,7 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
                     <div>
                         <div className='flex text-white text-center mt-4'>
                             <button onClick={() => setMostrar(!mostrar)} className="bg-black focus:outline-none relative inline-flex items-center font-medium cursor-pointer">
-                                <span className='p-2'>Amosar filtros avanzados</span>
+                                <span className='p-2'>Agochar filtros avanzados</span>
                                 <ChevronDoubleUpIcon className="bg-black h-5 w-5 mr-2" aria-hidden="true" />
                             </button>
                         </div>
@@ -61,21 +61,21 @@ export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFrase
                             </div>
                             <div className='flex w-full'>
                                 <div className='w-1/3'>
-                                    <Select texto="Colectivo" firstOption={true} elements={colectivos} element={colectivo} setElements={setColectivo} opcion="Calquera" claseSpan="ml-1 text-lg italic mb-1" clase="text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                    <Select texto="Colectivo" firstOption={true} elements={colectivos} element={colectivo} setElements={setColectivo} opcion="Calquera" />
                                 </div>
                                 <div className='w-1/3'>
-                                    <Select texto="Organización" firstOption={true} elements={organismos} element={organizacion} setElements={setOrganizacion} opcion="Calquera" claseSpan="ml-1 text-lg italic mb-1" clase="text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                    <Select texto="Organización" firstOption={true} elements={organismos} element={organizacion} setElements={setOrganizacion} opcion="Calquera" />
                                 </div>
                                 <div className='w-1/3'>
-                                    <Select texto="Rango" firstOption={true} elements={rangos} element={rango} setElements={setRango} opcion="Calquera" claseSpan="ml-1 text-lg italic mb-1" clase="text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                    <Select texto="Rango" firstOption={true} elements={rangos} element={rango} setElements={setRango} opcion="Calquera" />
                                 </div>
                             </div>
                             <div className='flex w-full mb-4'>
                                 <div className='w-1/2'>
-                                    <Select texto="Sección" firstOption={true} elements={secciones} element={seccion} setElements={setSeccion} opcion="Calquera" claseSpan="ml-1 text-lg italic mb-1" clase="text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                    <Select texto="Sección" firstOption={true} elements={secciones} element={seccion} setElements={setSeccion} opcion="Calquera" />
                                 </div>
                                 <div className='w-1/2'>
-                                    <Select texto="Áreas temáticas" firstOption={true} elements={tematicas} element={tematica} setElements={setTematica} opcion="Calquera" claseSpan="ml-1 text-lg italic mb-1" clase="text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer" />
+                                    <Select texto="Áreas temáticas" firstOption={true} elements={tematicas} element={tematica} setElements={setTematica} opcion="Calquera" />
                                 </div>
                             </div>
                         </div>

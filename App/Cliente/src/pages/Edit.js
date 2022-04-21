@@ -10,31 +10,24 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Textarea } from "../components/Textarea";
 import { Select } from "../components/Select";
-import { Link } from 'react-router-dom';
 import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid';
 
 import add from '../images/add.png'
 import remove from '../images/remove.png'
+import save from '../images/save.png'
 
 export default function Edit() {
     return (
-        <div className='flex flex-row'>
-            <div className='bg-black pt-6 pr-4 w-16 h-screen fixed'>
-                <Link to="/" className='ml-4 flex cursor-pointer'>
-                    <img alt="Páxina de inicio" src="https://www.lex.gal/lexgal-theme/images/plantilla/lexgal-vertical.png" />
-                </Link>
-            </div>
-            <div className='flex flex-col ml-12'>
-                <Header />
+        <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-4'>
+            <Header />
 
-                <main className='mt-6 flex screen-min4:flex-col'>
-                    <ParteIzquierda />
-                    <ParteDerecha />
-                </main>
+            <main className='w-full mt-6 flex screen-min4:flex-col'>
+                <ParteIzquierda />
+                <ParteDerecha />
+            </main>
 
-                <BotonesPrincipales />
-            </div >
-        </div>
+            <BotonesPrincipales />
+        </div >
     );
 };
 
@@ -52,25 +45,21 @@ function Header() {
     const [organismoSeleccionado, setOrganismoSeleccionado] = useState('')
     const [rangoSeleccionado, setRangoSeleccionado] = useState('')
 
-    return <div className='mr-8 bg-black font-bitter bg-blue-lex-gal w-11/12 self-center mt-5 flex flex-col rounded-xl border-2 border-solid border-inherit-700'>
+    return <section className='z-0 w-full font-medium mt-5 pr-10 flex flex-col px-2 screen-min3:w-10/12 screen-min1:w-9/12'>
         {
             !mostrar
                 ?
-                <div className='flex'>
-                    <button onClick={() => setMostrar(!mostrar)} className="w-full bg-gray-lex-gal text-white focus:outline-none relative inline-flex items-center rounded-md font-medium cursor-pointer">
-                        <span className='w-full text-2xl py-3 rounded-xl font-bold text-center'>Amosar datos de cabeceira</span>
-                        <ChevronDoubleDownIcon className="h-5 w-5 mr-2" aria-hidden="true" />
-                    </button>
+                <div className='flex w-80 p-1 bg-blue-lex-gal text-center items-center'>
+                    <span className='text-white ml-4 text-2xl py-3'>Datos de cabeceira</span>
+                    <ChevronDoubleDownIcon onClick={() => setMostrar(!mostrar)} className="flex-1 h-8 w-8 text-white cursor-pointer" aria-hidden="true" />
                 </div>
                 :
                 <div>
-                    <div className='flex'>
-                        <button onClick={() => setMostrar(!mostrar)} className="w-full bg-gray-lex-gal text-white focus:outline-none relative inline-flex items-center rounded-md font-medium cursor-pointer">
-                            <span className='w-full text-2xl py-3 rounded-xl font-bold text-center'>Amosar datos de cabeceira</span>
-                            <ChevronDoubleUpIcon className="h-5 w-5 mr-2" aria-hidden="true" />
-                        </button>
+                    <div className='flex w-80 p-1 bg-blue-lex-gal text-center items-center'>
+                        <span className='text-white ml-4 text-2xl py-3'>Datos de cabeceira</span>
+                        <ChevronDoubleUpIcon onClick={() => setMostrar(!mostrar)} className="flex-1 h-8 w-8 text-white cursor-pointer" aria-hidden="true" />
                     </div>
-                    <div className='flex flex-row m-3 font-semibold italic screen-min1:flex-col'>
+                    <div className='flex flex-row bg-blue-lex-gal font-semibold italic screen-min1:flex-col'>
                         <div className='w-1/2 screen-min1:w-full'>
                             <Input texto="Título" tipo="text" placeholder="Título da norma..." />
                             <Textarea texto="Sumario" placeholder="Escriba o sumario da norma..." />
@@ -82,18 +71,18 @@ function Header() {
                         </div>
                         <div className='w-1/2 screen-min1:w-full'>
                             <Input texto="Data de entrada en vigor" tipo="date" />
-                            <Select texto="Estado" elements={estados} element={estadoSeleccionado} setElements={setEstadoSeleccionado} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
+                            <Select texto="Estado" elements={estados} element={estadoSeleccionado} setElements={setEstadoSeleccionado} opcion="-- Seleccione unha opción --" />
                             <Input texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
-                            <Select texto="Colectivo" firstOption={false} elements={colectivos} element={colectivoSeleccionado} setElements={setColectivoSeleccionado} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
-                            <Select texto="Organización" firstOption={false} elements={organismos} element={organismoSeleccionado} setElements={setOrganismoSeleccionado} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
-                            <Select texto="Rango" firstOption={false} elements={rangos} element={rangoSeleccionado} setElements={setRangoSeleccionado} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
-                            <Select texto="Sección" firstOption={false} elements={secciones} element={seccionSeleccionada} setElements={setSeccionSeleccionada} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
-                            <Select texto="Área temática" firstOption={false} elements={tematicas} element={tematicaSeleccionada} setElements={setTematicaSeleccionada} opcion="-- Seleccione unha opción --" clase="flex-auto border rounded py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer hover:underline" />
+                            <Select texto="Colectivo" firstOption={false} elements={colectivos} element={colectivoSeleccionado} setElements={setColectivoSeleccionado} opcion="-- Seleccione unha opción --" />
+                            <Select texto="Organización" firstOption={false} elements={organismos} element={organismoSeleccionado} setElements={setOrganismoSeleccionado} opcion="-- Seleccione unha opción --" />
+                            <Select texto="Rango" firstOption={false} elements={rangos} element={rangoSeleccionado} setElements={setRangoSeleccionado} opcion="-- Seleccione unha opción --" />
+                            <Select texto="Sección" firstOption={false} elements={secciones} element={seccionSeleccionada} setElements={setSeccionSeleccionada} opcion="-- Seleccione unha opción --" />
+                            <Select texto="Área temática" firstOption={false} elements={tematicas} element={tematicaSeleccionada} setElements={setTematicaSeleccionada} opcion="-- Seleccione unha opción --" />
                         </div>
                     </div>
                 </div>
         }
-    </div>
+    </section >
 }
 
 function ParteIzquierda() {
@@ -117,18 +106,24 @@ function ParteIzquierda() {
         setLeis(leis.filter(leiAux => lei !== leiAux.id))
     }
 
-    return <section className='flex-1 ml-10 screen-min4:w-5/6'>
+    return <section className='z-0 flex-1 ml-2 screen-min4:w-5/6'>
         {
             !estado
                 ?
                 <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Texto</button>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</button>
+                    <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Texto</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</button>
+                    <button className='focus:outline-none flex flex-1 justify-end'>
+                        <div className='h-full px-4 flex border border-black bg-gray-200 hover:bg-gray-300 items-center gap-2 cursor-pointer'>
+                            <img alt="gardar" src={save} className='h-6' />
+                            <span className='font-medium'>Gardar cambios</span>
+                        </div>
+                    </button>
                 </nav>
                 :
                 <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Texto</button>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Leis vinc.</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Texto</button>
+                    <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Leis vinc.</button>
                 </nav>
         }
         {
@@ -137,7 +132,7 @@ function ParteIzquierda() {
                 <textarea className="p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll" type="text" value={text} onChange={(e) => setText(e.target.value)} />
                 :
                 <div className='p-4 flex flex-col border-2 border-black'>
-                    <div className='border-b-2 border-gray-500 max-h-leis-vinculadas overflow-y-scroll'>
+                    <div className='border-2 border-black max-h-leis-vinculadas overflow-y-scroll'>
                         {
                             leis?.map(lei =>
                                 <div className='m-4 flex flex-col border-b-2 border-gray-lex-gal w-12/13' key={lei.id}>
@@ -187,18 +182,18 @@ function ParteDerecha() {
         setNotas(notas.filter(nota => notasSeleccionadas.indexOf(nota.id) < 0));
     }
 
-    return <section className='w-1/4 mx-10 screen-min4:w-5/6 screen-min2:mt-4'>
+    return <section className='z-0 w-1/4 mx-10 screen-min4:w-5/6 screen-min2:mt-4'>
         {
             !estado
                 ?
                 <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Notas</button>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Cambios</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Notas</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Cambios</button>
                 </nav>
                 :
                 <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Notas</button>
-                    <button className='focus:outline-none p-2 w-32 rounded-t-lg border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Cambios</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Notas</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Cambios</button>
                 </nav>
         }
         {
@@ -240,8 +235,8 @@ function ParteDerecha() {
                 <div className='border-2 border-black'>
                     <div className='border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'></div>
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
-                        <Button accion={eliminarNotasSeleccionadas} titulo="Resolver selección" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver selección" />
-                        <Button accion={() => setNotas([])} titulo="Resolver todas" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver todas" />
+                        <Button accion={eliminarNotasSeleccionadas} titulo="Descartar selección" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar selección" />
+                        <Button accion={() => setNotas([])} titulo="Descartar todos" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar todos" />
                     </div>
                 </div>
         }
@@ -313,7 +308,7 @@ function CrearNota({ notas, setNotas }) {
 }
 
 function BotonesPrincipales() {
-    return <div className='flex justify-center my-4 gap-20'>
+    return <div className=' fixed left-0 bottom-0 w-screen border-t-2 bg-white z-1 flex justify-center gap-20 py-4'>
         <Button color="bg-green-500" colorHover="bg-green-600" anchura="60" texto="Validar e publicar" />
         <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="60" texto="Previsualizar" />
         <Button color="bg-red-500" colorHover="bg-red-600" anchura="60" texto="Rexeitar" />

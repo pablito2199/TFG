@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { useNormas } from '../hooks';
 
@@ -34,25 +34,18 @@ export default function Search() {
 
     const [actualPage, setActualPage] = useState(paginaQuery)
     return (
-        <div className='flex flex-row font-bitter'>
-            <div className='bg-black pt-6 pr-4 h-screen w-16 fixed'>
-                <Link to="/" className='ml-4 flex cursor-pointer'>
-                    <img alt="Páxina de inicio" src="https://www.lex.gal/lexgal-theme/images/plantilla/lexgal-vertical.png" />
-                </Link>
-            </div>
-            <div className='flex flex-col ml-20 items-center w-full'>
-                <SearchField initialText={initialText} pagina={actualPage + 1} />
-                {
-                    data
-                        ?
-                        <>
-                            <Tabla data={data.response?.listas.datos_informe} />
-                            <Pages query={querySinPagina} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
-                        </>
-                        :
-                        <></>
-                }
-            </div>
+        <div className='flex flex-col ml-20 items-center w-full'>
+            <SearchField initialText={initialText} pagina={actualPage + 1} />
+            {
+                data
+                    ?
+                    <>
+                        <Tabla data={data.response?.listas.datos_informe} />
+                        <Pages query={querySinPagina} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
+                    </>
+                    :
+                    <></>
+            }
         </div>
     );
 };

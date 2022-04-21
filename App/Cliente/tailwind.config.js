@@ -4,11 +4,12 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                'gray-lex-gal': '#333',
-                'link': '#0000FF',
+                'blue-green': 'rgb(0, 113, 189)',
                 'blue-lex-gal': 'rgba(63,169,245,0.7)',
-                'white-lex-gal': 'rgba(255,255,255,0.3)',
-                'blue-green': 'rgb(0, 113, 189)'
+                'gray-lex-gal': '#333',
+                'lime': 'rgb(132 204 22)',
+                'link': '#0000FF',
+                'white-lex-gal': 'rgba(255,255,255,0.3)'
             },
             fontFamily: {
                 'bitter': 'Bitter'
@@ -20,13 +21,13 @@ module.exports = {
                 'screen-min4': { 'max': '1300px' }
             },
             minHeight: {
-                'textarea': '7rem',
-                'texto-principal': '60rem',
-                'leis-vinculadas': '40rem'
+                'leis-vinculadas': '40rem',
+                'textarea': '7.8rem',
+                'texto-principal': '60rem'
             },
             maxHeight: {
-                'texto-principal': '60rem',
-                'leis-vinculadas': '40rem'
+                'leis-vinculadas': '40rem',
+                'texto-principal': '60rem'
             }
         }
     }
