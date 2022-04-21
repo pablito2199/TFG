@@ -21,7 +21,7 @@ export default function Edit() {
         <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-4'>
             <Header />
 
-            <main className='w-full mt-6 flex screen-min4:flex-col'>
+            <main className='w-full mt-6 flex screen-min4:flex-col mb-24'>
                 <ParteIzquierda />
                 <ParteDerecha />
             </main>
@@ -132,7 +132,7 @@ function ParteIzquierda() {
                 <textarea className="p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll" type="text" value={text} onChange={(e) => setText(e.target.value)} />
                 :
                 <div className='p-4 flex flex-col border-2 border-black'>
-                    <div className='border-2 border-black max-h-leis-vinculadas overflow-y-scroll'>
+                    <div className='border-2 border-black max-h-leis-vinculadas-top overflow-y-scroll'>
                         {
                             leis?.map(lei =>
                                 <div className='m-4 flex flex-col border-b-2 border-gray-lex-gal w-12/13' key={lei.id}>

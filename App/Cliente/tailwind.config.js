@@ -22,11 +22,13 @@ module.exports = {
             },
             minHeight: {
                 'leis-vinculadas': '40rem',
+                'leis-vinculadas-top': '44rem',
                 'textarea': '7.8rem',
                 'texto-principal': '60rem'
             },
             maxHeight: {
                 'leis-vinculadas': '40rem',
+                'leis-vinculadas-top': '42.7rem',
                 'texto-principal': '60rem'
             }
         }
