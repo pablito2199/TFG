@@ -30,7 +30,7 @@ export const SearchField = ({ initialText, pagina }) => {
             <span className='text-white text-2xl py-3 rounded-xl'>Búsqueda de normas</span>
         </div>
         <div className='p-6 bg-blue-lex-gal'>
-            <span className="ml-1 text-lg font-semibold italic">Insira o texto da búsqueda...</span>
+            <span className="font-serif ml-1 text-lg font-semibold italic">Insira o texto da búsqueda...</span>
             <input value={texto} onKeyDown={cambiarPagina} type="search" onChange={(event) => { setTexto(event.target.value) }} className=' mt-1 w-full font-normal text-gray-700 border border-solid border-gray-300 transition ease-in-out py-2 px-2 focus:outline-none focus:border-gray-500' placeholder="Búsqueda de normas..." aria-label="Search" aria-describedby="button-addon2" />
             <SearchFilters
                 soloTitulo={soloTitulo} setSoloTitulo={setSoloTitulo}

@@ -10,11 +10,10 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Textarea } from "../components/Textarea";
 import { Select } from "../components/Select";
-import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid';
+import { ChevronDoubleDownIcon, ChevronDoubleUpIcon, EyeIcon, ThumbUpIcon, XCircleIcon } from '@heroicons/react/solid';
 
-import add from '../images/add.png'
-import remove from '../images/remove.png'
-import save from '../images/save.png'
+import add_img from '../images/add.png'
+import save_img from '../images/save.png'
 
 export default function Edit() {
     return (
@@ -115,7 +114,7 @@ function ParteIzquierda() {
                     <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</button>
                     <button className='focus:outline-none flex flex-1 justify-end'>
                         <div className='h-full px-4 flex border border-black bg-gray-200 hover:bg-gray-300 items-center gap-2 cursor-pointer'>
-                            <img alt="gardar" src={save} className='h-6' />
+                            <img alt="gardar" src={save_img} className='h-6' />
                             <span className='font-medium'>Gardar cambios</span>
                         </div>
                     </button>
@@ -139,7 +138,7 @@ function ParteIzquierda() {
                                     <div className='flex flex-row items-center'>
                                         <span className='font-bold'>Lei {lei.id}</span>
                                         <button title="Eliminar lei vinculada" onClick={() => eliminarLeiVinculada(lei.id)} className='focus:outline-none py-2 flex justify-end items-center text-red-500 flex-auto text-right text-sm cursor-pointer gap-1'>
-                                            <img alt="eliminar" src={remove} className='h-4 w-4' />
+                                            <XCircleIcon className='h-4 text-red-500' />
                                             <span>Eliminar</span>
                                         </button>
                                     </div>
@@ -148,7 +147,7 @@ function ParteIzquierda() {
                         }
                     </div>
                     <button title="Engadir nova lei vinculada manualmente" className='py-2 flex focus:outline-none mt-2 items-center justify-center gap-2'>
-                        <img alt="engadir" src={add} className='h-8 w-8' />
+                        <img alt="engadir" src={add_img} className='h-8 w-8' />
                         <span>Engadir nova lei vinculada manualmente</span>
                     </button>
                 </div>
@@ -187,13 +186,13 @@ function ParteDerecha() {
             !estado
                 ?
                 <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Notas</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer bg-black text-white'>Notas</button>
                     <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Cambios</button>
                 </nav>
                 :
                 <nav className='flex text-lg text-center'>
                     <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Notas</button>
-                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' style={{ backgroundColor: "#000000", color: "white" }}>Cambios</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer bg-black text-white'>Cambios</button>
                 </nav>
         }
         {
@@ -203,23 +202,25 @@ function ParteDerecha() {
                     <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
                         {
                             notas?.map((nota) =>
-                                <div key={nota.id} className='flex flex-col border-b-2 border-gray-300'>
-                                    <div className='m-4 flex items-center border-b-2 border-gray w-11/12'>
-                                        <p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p>
-                                        <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
-                                    </div>
-                                    <div className='ml-8 mb-4 flex flex-col flex-auto'>
-                                        <ul>
-                                            {
-                                                nota.comentarios?.map((com, i) =>
-                                                    <div key={i} className='my-2 w-11/12'>
-                                                        <li className='break-words'>{com.contenido}</li>
-                                                        <p className='text-gray-400'>({com.fecha})</p>
-                                                    </div>
-                                                )
-                                            }
-                                        </ul>
-                                        <CrearComentario notas={notas} setNotas={setNotas} nota={nota} />
+                                <div className='p-2'>
+                                    <div key={nota.id} className='flex flex-col border-2 border-gray-400'>
+                                        <div className='m-4 flex items-center border-b-2 border-gray w-11/12'>
+                                            <p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p>
+                                            <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
+                                        </div>
+                                        <div className='ml-8 mb-4 flex flex-col flex-auto'>
+                                            <ul>
+                                                {
+                                                    nota.comentarios?.map((com, i) =>
+                                                        <div key={i} className='my-2 w-11/12'>
+                                                            <li className='break-words'>{com.contenido}</li>
+                                                            <p className='text-gray-400'>({com.fecha})</p>
+                                                        </div>
+                                                    )
+                                                }
+                                            </ul>
+                                            <CrearComentario notas={notas} setNotas={setNotas} nota={nota} />
+                                        </div>
                                     </div>
                                 </div>
                             )
@@ -233,7 +234,7 @@ function ParteDerecha() {
                 </div>
                 :
                 <div className='border-2 border-black'>
-                    <div className='border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'></div>
+                    <div className='border-b-2 border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'></div>
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
                         <Button accion={eliminarNotasSeleccionadas} titulo="Descartar selección" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar selección" />
                         <Button accion={() => setNotas([])} titulo="Descartar todos" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar todos" />
@@ -291,15 +292,18 @@ function CrearNota({ notas, setNotas }) {
                 !mostrar
                     ?
                     <button title="Engadir nova nota" onClick={() => setMostrar(true)} className='flex focus:outline-none mt-2 items-center gap-2'>
-                        <img alt="engadir" src={add} className='h-8 w-8' />
+                        <img alt="engadir" src={add_img} className='h-8 w-8' />
                         <span>Engadir nova nota</span>
                     </button>
                     :
                     <>
+                        <button title="Eliminar lei vinculada" onClick={() => { setMostrar(false); setNota('') }} className='w-full mr-8 focus:outline-none py-2 flex justify-end items-center text-red-500 flex-auto text-right text-sm cursor-pointer gap-1'>
+                            <XCircleIcon className='h-4 text-red-500' />
+                            <span>Descartar nova nota</span>
+                        </button>
                         <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..."></textarea>
                         <div className='flex gap-4'>
                             <button title="Engadir nota" onClick={submit} className='focus:outline-none px-3 py-3 text-sm text-white bg-blue-green hover:bg-blue-700 font-semibold text-center w-40 cursor-pointer'>Engadir nota</button>
-                            <button title="Engadir nota" onClick={() => { setMostrar(false); setNota('') }} className='focus:outline-none px-3 py-3 text-sm text-white bg-red-600 hover:bg-red-700 font-semibold text-center w-40 cursor-pointer'>Descartar nota</button>
                         </div>
                     </>
             }
@@ -309,8 +313,17 @@ function CrearNota({ notas, setNotas }) {
 
 function BotonesPrincipales() {
     return <div className=' fixed left-0 bottom-0 w-screen border-t-2 bg-white z-1 flex justify-center gap-20 py-4'>
-        <Button color="bg-green-500" colorHover="bg-green-600" anchura="60" texto="Validar e publicar" />
-        <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="60" texto="Previsualizar" />
-        <Button color="bg-red-500" colorHover="bg-red-600" anchura="60" texto="Rexeitar" />
+        <button className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-green-500 hover:bg-green-600 w-60 text-white font-semibold cursor-pointer'>
+            <ThumbUpIcon className='h-6 text-white' />
+            <span>Validar e publicar</span>
+        </button>
+        <button className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-gray-500 hover:bg-gray-600 w-60 text-white font-semibold cursor-pointer'>
+            <EyeIcon className='h-6 text-white' />
+            <span>Previsualizar</span>
+        </button>
+        <button className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>
+            <XCircleIcon className='h-6 text-white' />
+            <span>Rexeitar</span>
+        </button>
     </div>
 }

@@ -3,7 +3,7 @@ import React from "react";
 export const Select = ({ texto, firstOption, elements, element, setElements, opcion }) => {
     return (
         <div className='flex flex-col text-left align-top m-4 px-3'>
-            <span className="ml-1 text-lg italic mr-1">{texto}</span>
+            <span className="font-serif ml-1 text-lg italic mr-1">{texto}</span>
             <select defaultValue={element} onChange={(e) => setElements(e.target.value)} className="text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500 cursor-pointer">
                 {
                     firstOption

@@ -5,9 +5,9 @@ import { useNormas } from '../hooks';
 
 import { SearchField } from '../components/Search';
 import { Pages } from '../components/Pagination';
+import { EyeIcon } from '@heroicons/react/solid';
 
-import import_img from '../images/import.png'
-import visualization from '../images/vision.png'
+import import_white_img from '../images/import-white.png'
 
 export default function Search() {
     const query = useLocation().search.replace('?', '')
@@ -70,10 +70,10 @@ function Tabla({ data }) {
                         <td className='w-1/12 screen-min3:w-2/12 screen-min2:w-3/12'>
                             <div className='flex gap-2 justify-center items-center py-4 screen-min1:flex-col'>
                                 <a title="Previsualizar" href={`https://www.xunta.gal/${norma.rutaHtml}`} target="_blank" rel='noreferrer' className='focus:outline-none text-md text-center self-center align-center px-4 py-4 hover:bg-gray-200 border cursor-pointer'>
-                                    <img alt="Previsualizar" src={visualization} className='h-5 w-5' />
+                                    <EyeIcon className='h-5' />
                                 </a>
                                 <button title="Importar" className='focus:outline-none text-md text-center self-center align-center px-4 py-4 bg-black hover:bg-gray-600 text-indigo-50 font-semibold cursor-pointer'>
-                                    <img alt="Importar" src={import_img} className='h-5 w-5' />
+                                    <img alt="Importar" src={import_white_img} className='h-5 w-5' />
                                 </button>
                             </div>
                         </td>
