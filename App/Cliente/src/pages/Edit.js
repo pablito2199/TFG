@@ -13,6 +13,9 @@ import { Select } from "../components/Select";
 import { Link } from 'react-router-dom';
 import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid';
 
+import add from '../images/add.png'
+import remove from '../images/remove.png'
+
 export default function Edit() {
     return (
         <div className='flex flex-row'>
@@ -24,7 +27,7 @@ export default function Edit() {
             <div className='flex flex-col ml-12'>
                 <Header />
 
-                <main className='mt-6 flex font-serif screen-min2:flex-col'>
+                <main className='mt-6 flex screen-min4:flex-col'>
                     <ParteIzquierda />
                     <ParteDerecha />
                 </main>
@@ -114,7 +117,7 @@ function ParteIzquierda() {
         setLeis(leis.filter(leiAux => lei !== leiAux.id))
     }
 
-    return <section className='flex-1 ml-10 screen-min2:w-11/12'>
+    return <section className='flex-1 ml-10 screen-min4:w-5/6'>
         {
             !estado
                 ?
@@ -131,22 +134,28 @@ function ParteIzquierda() {
         {
             !estado
                 ?
-                <textarea className="p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll rounded" type="text" value={text} onChange={(e) => setText(e.target.value)} />
+                <textarea className="p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll" type="text" value={text} onChange={(e) => setText(e.target.value)} />
                 :
-                <div className='p-4 flex flex-col border-2 border-black rounded'>
-                    <div className='border-3 border-gray max-h-leis-vinculadas overflow-y-scroll'>
+                <div className='p-4 flex flex-col border-2 border-black'>
+                    <div className='border-b-2 border-gray-500 max-h-leis-vinculadas overflow-y-scroll'>
                         {
                             leis?.map(lei =>
                                 <div className='m-4 flex flex-col border-b-2 border-gray-lex-gal w-12/13' key={lei.id}>
                                     <div className='flex flex-row items-center'>
                                         <span className='font-bold'>Lei {lei.id}</span>
-                                        <button onClick={() => eliminarLeiVinculada(lei.id)} className='focus:outline-none mr-4 text-red-500 underline flex-auto text-right text-sm cursor-pointer'>(-) eliminar</button>
+                                        <button title="Eliminar lei vinculada" onClick={() => eliminarLeiVinculada(lei.id)} className='focus:outline-none py-2 flex justify-end items-center text-red-500 flex-auto text-right text-sm cursor-pointer gap-1'>
+                                            <img alt="eliminar" src={remove} className='h-4 w-4' />
+                                            <span>Eliminar</span>
+                                        </button>
                                     </div>
                                     <p className='m-4'>{lei.modificacion}</p>
                                 </div>)
                         }
                     </div>
-                    <button className='focus:outline-none mt-4 text-link underline'>(+) Engadir nova lei vinculada manualmente</button>
+                    <button title="Engadir nova lei vinculada manualmente" className='py-2 flex focus:outline-none mt-2 items-center justify-center gap-2'>
+                        <img alt="engadir" src={add} className='h-8 w-8' />
+                        <span>Engadir nova lei vinculada manualmente</span>
+                    </button>
                 </div>
         }
     </section>
@@ -178,7 +187,7 @@ function ParteDerecha() {
         setNotas(notas.filter(nota => notasSeleccionadas.indexOf(nota.id) < 0));
     }
 
-    return <section className='w-1/4 mx-10 screen-min2:w-11/12 screen-min2:mt-4'>
+    return <section className='w-1/4 mx-10 screen-min4:w-5/6 screen-min2:mt-4'>
         {
             !estado
                 ?
@@ -195,14 +204,14 @@ function ParteDerecha() {
         {
             !estado
                 ?
-                <div className='border-2 border-black rounded'>
+                <div className='border-2 border-black'>
                     <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
                         {
                             notas?.map((nota) =>
                                 <div key={nota.id} className='flex flex-col border-b-2 border-gray-300'>
                                     <div className='m-4 flex items-center border-b-2 border-gray w-11/12'>
                                         <p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p>
-                                        <input className='ml-auto mr-0 cursor-pointer' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
+                                        <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
                                     </div>
                                     <div className='ml-8 mb-4 flex flex-col flex-auto'>
                                         <ul>
@@ -211,7 +220,8 @@ function ParteDerecha() {
                                                     <div key={i} className='my-2 w-11/12'>
                                                         <li className='break-words'>{com.contenido}</li>
                                                         <p className='text-gray-400'>({com.fecha})</p>
-                                                    </div>)
+                                                    </div>
+                                                )
                                             }
                                         </ul>
                                         <CrearComentario notas={notas} setNotas={setNotas} nota={nota} />
@@ -222,28 +232,16 @@ function ParteDerecha() {
                     </div>
                     <CrearNota notas={notas} setNotas={setNotas} />
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
-                        <div className='flex flex-col gap-y-2'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver selección" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver todas" />
-                        </div>
-                        <div className='flex flex-col gap-y-2'>
-                            <Button accion={eliminarNotasSeleccionadas} color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar selección" />
-                            <Button accion={() => setNotas([])} color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar todas" />
-                        </div>
+                        <Button accion={eliminarNotasSeleccionadas} titulo="Resolver selección" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver selección" />
+                        <Button accion={() => setNotas([])} titulo="Resolver todas" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver todas" />
                     </div>
                 </div>
                 :
-                <div className='border-2 border-black rounded'>
+                <div className='border-2 border-black'>
                     <div className='border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'></div>
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
-                        <div className='flex flex-col gap-y-2'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver selección" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Resolver todas" />
-                        </div>
-                        <div className='flex flex-col gap-y-2'>
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar selección" />
-                            <Button color="bg-gray-500" colorHover="bg-gray-600" anchura="28 screen-min2:w-60" texto="Descartar todas" />
-                        </div>
+                        <Button accion={eliminarNotasSeleccionadas} titulo="Resolver selección" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver selección" />
+                        <Button accion={() => setNotas([])} titulo="Resolver todas" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver todas" />
                     </div>
                 </div>
         }
@@ -270,8 +268,8 @@ function CrearComentario({ notas, setNotas, nota }) {
     }
 
     return <div className='mt-2 flex flex-col w-11/12'>
-        <textarea value={comentario} onChange={(event) => setComentario(event.target.value)} className='mb-2 w-full h-20 p-2 border border-black rounded focus:outline-none focus:border-gray-500 resize-none' name="comment" placeholder="Novo comentario..."></textarea>
-        <button onClick={submit} className='focus:outline-none px-3 py-2 text-sm text-blue-100 bg-blue-600 hover:bg-blue-700 rounded text-center w-40 ml-auto mr-0 cursor-pointer'>Engadir comentario</button>
+        <textarea value={comentario} onChange={(event) => setComentario(event.target.value)} className='mb-2 w-full h-20 p-2 border border-black focus:outline-none focus:border-gray-500 resize-none' name="comment" placeholder="Novo comentario..."></textarea>
+        <button onClick={submit} className='focus:outline-none px-3 py-2 text-sm font-semibold text-white bg-blue-green hover:bg-blue-700 text-center w-40 ml-auto mr-0 cursor-pointer'>Engadir comentario</button>
     </div>
 }
 
@@ -297,16 +295,21 @@ function CrearNota({ notas, setNotas }) {
             {
                 !mostrar
                     ?
-                    <button onClick={() => setMostrar(true)} className='focus:outline-none mt-2 text-link underline'>(+) Engadir nova nota</button>
+                    <button title="Engadir nova nota" onClick={() => setMostrar(true)} className='flex focus:outline-none mt-2 items-center gap-2'>
+                        <img alt="engadir" src={add} className='h-8 w-8' />
+                        <span>Engadir nova nota</span>
+                    </button>
                     :
                     <>
-                        <button onClick={() => { setMostrar(false); setNota('') }} className='focus:outline-none mt-2 text-red-500 underline ml-auto mr-8 text-xs'>(-) Descartar</button>
-                        <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black rounded focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..."></textarea>
-                        <button onClick={submit} className='focus:outline-none px-3 py-2 text-sm text-blue-100 bg-blue-600 hover:bg-blue-700 rounded text-center w-40 cursor-pointer'>Engadir nota</button>
+                        <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..."></textarea>
+                        <div className='flex gap-4'>
+                            <button title="Engadir nota" onClick={submit} className='focus:outline-none px-3 py-3 text-sm text-white bg-blue-green hover:bg-blue-700 font-semibold text-center w-40 cursor-pointer'>Engadir nota</button>
+                            <button title="Engadir nota" onClick={() => { setMostrar(false); setNota('') }} className='focus:outline-none px-3 py-3 text-sm text-white bg-red-600 hover:bg-red-700 font-semibold text-center w-40 cursor-pointer'>Descartar nota</button>
+                        </div>
                     </>
             }
         </div>
-    </div>
+    </div >
 }
 
 function BotonesPrincipales() {

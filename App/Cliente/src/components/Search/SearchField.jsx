@@ -25,7 +25,7 @@ export const SearchField = ({ initialText, pagina }) => {
         }
     }
 
-    return <section className='w-11/12 font-medium mt-5 flex flex-col rounded-xl px-2 screen-min3:w-10/12'>
+    return <section className='w-11/12 font-medium mt-5 flex flex-col rounded-xl px-2 screen-min3:w-10/12 screen-min1:w-9/12'>
         <div className='w-80 p-4 bg-blue-lex-gal text-center'>
             <span className='text-white text-2xl py-3 rounded-xl'>Búsqueda de normas</span>
         </div>
