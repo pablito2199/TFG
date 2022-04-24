@@ -6,14 +6,21 @@ import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tfg.project.model.Documento;
 
 @RestController
+@RequestMapping("documents")
 public class DocumentController {
-    @GetMapping(value = "/", produces = APPLICATION_XML_VALUE)
+    @GetMapping(path = "{id}", produces = APPLICATION_XML_VALUE)
     ResponseEntity<Documento> get(
+            @PathVariable("id") Integer id
     ) {
-        return ResponseEntity.ok().body(convertXMLToObject());
+        if (id == 1) {
+            return ResponseEntity.ok().body(convertXMLToObject());
+        }
+        return null;
     }
 }

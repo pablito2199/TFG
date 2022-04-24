@@ -14,13 +14,16 @@ import { ChevronDoubleDownIcon, ChevronDoubleUpIcon, EyeIcon, ThumbUpIcon, XCirc
 
 import add_img from '../images/add.png'
 import save_img from '../images/save.png'
+import { useDocument } from '../hooks'
 
 export default function Edit() {
-    return (
-        <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-4'>
-            <Header />
+    const data = useDocument(1)
 
-            <main className='w-full mt-6 flex screen-min4:flex-col mb-24'>
+    return (
+        <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
+            <Header data={data.cab} />
+
+            <main className='w-full mt-6 flex screen-min4:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                 <ParteIzquierda />
                 <ParteDerecha />
             </main>
@@ -30,21 +33,30 @@ export default function Edit() {
     );
 };
 
-function Header() {
+function Header({ data }) {
     const [mostrar, setMostrar] = useState(false)
     const estados = [
         { id: 1, descripcion: 'En vigor' },
         { id: 2, descripcion: 'Derrogada' }
     ]
 
-    const [estadoSeleccionado, setEstadoSeleccionado] = useState('')
+    const [titulo, setTitulo] = useState(data?.tit_curto._text)
+    const [sumario, setSumario] = useState(data?.titulo._text)
+    const [dpub, setDpub] = useState(data?.dpub._text)
+    const [refpub, setRefpub] = useState(data?.refpub._text)
+    const [ano, setAno] = useState(data?.id.attributes?.ano)
+    const [version, setVersion] = useState(data?.titulo._text)
+    const [referencia, setReferencia] = useState(data?.id.attributes?.ref)
+    const [dvl_desde, setDvl_desde] = useState(data?.dvl_desde._text)
+    const [estadoSeleccionado, setEstadoSeleccionado] = useState(data?.estado._attributes?.estado)
+    const [nomfic, setNomFic] = useState(data?.nomfic._text)
     const [colectivoSeleccionado, setColectivoSeleccionado] = useState('')
     const [tematicaSeleccionada, setTematicaSeleccionada] = useState('')
     const [seccionSeleccionada, setSeccionSeleccionada] = useState('')
     const [organismoSeleccionado, setOrganismoSeleccionado] = useState('')
     const [rangoSeleccionado, setRangoSeleccionado] = useState('')
 
-    return <section className='z-0 w-full font-medium mt-5 pr-10 flex flex-col px-2 screen-min3:w-10/12 screen-min1:w-9/12'>
+    return <section className='z-0 w-full font-medium mt-5 pr-10 flex flex-col px-2 screen-min3:w-11/12 screen-min1:w-9/12'>
         {
             !mostrar
                 ?
@@ -60,18 +72,18 @@ function Header() {
                     </div>
                     <div className='flex flex-row bg-blue-lex-gal font-semibold italic screen-min1:flex-col'>
                         <div className='w-1/2 screen-min1:w-full'>
-                            <Input texto="Título" tipo="text" placeholder="Título da norma..." />
-                            <Textarea texto="Sumario" placeholder="Escriba o sumario da norma..." />
-                            <Input texto="Data de publicación" tipo="date" />
-                            <Input texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
-                            <Input texto="Ano" tipo="text" placeholder="Ano..." />
-                            <Input texto="Versión" tipo="text" placeholder="Versión da norma..." />
-                            <Input texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
+                            <Input valor={titulo} setValor={setTitulo} texto="Título" tipo="text" placeholder="Título da norma..." />
+                            <Textarea valor={sumario} setValor={setSumario} texto="Sumario" placeholder="Escriba o sumario da norma..." />
+                            <Input valor={dpub} setValor={setDpub} texto="Data de publicación" tipo="date" />
+                            <Input valor={refpub} setValor={setRefpub} texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
+                            <Input valor={ano} setValor={setAno} texto="Ano" tipo="text" placeholder="Ano..." />
+                            <Input valor={version} setValor={setVersion} texto="Versión" tipo="text" placeholder="Versión da norma..." />
+                            <Input valor={referencia} setValor={setReferencia} texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
                         </div>
                         <div className='w-1/2 screen-min1:w-full'>
-                            <Input texto="Data de entrada en vigor" tipo="date" />
+                            <Input valor={dvl_desde} setValor={setDvl_desde} texto="Data de entrada en vigor" tipo="date" />
                             <Select texto="Estado" elements={estados} element={estadoSeleccionado} setElements={setEstadoSeleccionado} opcion="-- Seleccione unha opción --" />
-                            <Input texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
+                            <Input valor={nomfic} setValor={setNomFic} texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
                             <Select texto="Colectivo" firstOption={false} elements={colectivos} element={colectivoSeleccionado} setElements={setColectivoSeleccionado} opcion="-- Seleccione unha opción --" />
                             <Select texto="Organización" firstOption={false} elements={organismos} element={organismoSeleccionado} setElements={setOrganismoSeleccionado} opcion="-- Seleccione unha opción --" />
                             <Select texto="Rango" firstOption={false} elements={rangos} element={rangoSeleccionado} setElements={setRangoSeleccionado} opcion="-- Seleccione unha opción --" />
@@ -181,7 +193,7 @@ function ParteDerecha() {
         setNotas(notas.filter(nota => notasSeleccionadas.indexOf(nota.id) < 0));
     }
 
-    return <section className='z-0 w-1/4 mx-10 screen-min4:w-5/6 screen-min2:mt-4'>
+    return <section className='z-0 w-1/4 mx-10 screen-min4:w-5/6 screen-min4:mx-2 screen-min2:mt-4'>
         {
             !estado
                 ?
@@ -202,8 +214,8 @@ function ParteDerecha() {
                     <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
                         {
                             notas?.map((nota) =>
-                                <div className='p-2'>
-                                    <div key={nota.id} className='flex flex-col border-2 border-gray-400'>
+                                <div key={nota.id} className='p-2'>
+                                    <div className='flex flex-col border-2 border-gray-400'>
                                         <div className='m-4 flex items-center border-b-2 border-gray w-11/12'>
                                             <p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p>
                                             <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
