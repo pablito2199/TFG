@@ -31,12 +31,8 @@ export function useDocument(id) {
         const getData = async () => {
             await fetch(`/documents/${id}`, requestOptions)
                 .then(response => response.text())
-                .then(text => {
-                    setData(JSON.parse(xml2json(text, { compact: true, spaces: 4 })).cdg);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                .then(text => setData(JSON.parse(xml2json(text, { compact: true, spaces: 4 })).cdg))
+                .catch((error) => console.log(error))
         };
         getData();
     }, [id])
