@@ -37,4 +37,4 @@
 19/04 0.3h -> Arreglar fallos
 20/04 6.5h -> Perfeccionar de nuevo la página de búsquedas
 21/04 5h -> Perfeccionar de nuevo la de edición
-22/04 2.5h -> Leer XML en el cliente y arreglar fallos
+22/04 6.5h -> Leer XML en el cliente, arreglar fallos y crear componentes
