@@ -3,9 +3,8 @@ import { React, useState } from 'react'
 import { XCircleIcon } from '@heroicons/react/solid';
 
 import add_img from '../../images/add.png'
-import save_img from '../../images/save.png'
 
-export const LeftSide = ({ data }) => {
+export const LeftSide = ({ data, setParrafoACambiar, parrafoCambiado, setParrafoCambiado, mostrarInput, setMostrarInput }) => {
     const [estado, setEstado] = useState(false)
 
     const [leis, setLeis] = useState([
@@ -31,12 +30,6 @@ export const LeftSide = ({ data }) => {
                 <nav className='flex text-lg text-center'>
                     <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Texto</button>
                     <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</button>
-                    <div className='flex flex-1 justify-end'>
-                        <button className='focus:outline-none h-full px-4 flex border border-black bg-gray-200 hover:bg-gray-300 items-center gap-2 cursor-pointer'>
-                            <img alt="gardar" src={save_img} className='h-6' />
-                            <span className='font-medium'>Gardar cambios</span>
-                        </button>
-                    </div>
                 </nav>
                 :
                 <nav className='flex text-lg text-center'>
@@ -47,38 +40,55 @@ export const LeftSide = ({ data }) => {
         {
             !estado
                 ?
-                <div className="p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
+                <div className="p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll cursor-pointer">
                     {
-                        data.intro.p.map((parrafo, index) => <textarea key={index} className="w-full resize-none border-0 h-fit" type="text" value={parrafo?._text} />)
+                        data.intro.p.map((parrafo, index) =>
+                            <div>
+                                <p onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
+                            </div>
+                        )
                     }
                     {
                         data.est_lei.art.map((articulo, index) =>
-                            <>
-                                <textarea key={index} className="w-full resize-none border-0 h-fit" type="text" value={articulo?.titulo?._text} />
+                            <div className='mt-4'>
+                                <p onClick={() => { setParrafoACambiar(articulo?.titulo?._text); setParrafoCambiado(articulo?.titulo?._text); setMostrarInput(true) }} key={index}>{articulo?.titulo?._text}</p>
                                 {
                                     articulo.p !== undefined
                                         ?
                                         articulo.p.length
                                             ?
-                                            <div>
+                                            <>
                                                 {
-                                                    articulo.p.map((parrafo, index) =>
-                                                        <textarea key={index} className="w-full resize-none border-0 h-fit" type="text" value={parrafo._text} />
+                                                    articulo.p.map((parrafo, index2) =>
+                                                        <div>
+                                                            <p onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index + "artp" + index2}>{parrafo?._text}</p>
+                                                        </div>
                                                     )
                                                 }
-                                            </div>
+                                            </>
                                             :
-                                            <textarea key={index} className="w-full resize-none border-0 h-fit" type="text" value={articulo.p._text} />
+                                            <div>
+                                                <p onClick={() => { setParrafoACambiar(articulo.p._text); setParrafoCambiado(articulo.p._text); setMostrarInput(true) }} key={index + "artpp"}>{articulo.p._text}</p>
+                                            </div>
                                         :
                                         <></>
                                 }
-                            </>
+                            </div>
                         )
                     }
-                    <textarea className="w-full resize-none border-0 h-fit" type="text" value={data.anexo?.titulo._text} />
+                    {
+                        data.est_lei.firma?.p.map((parrafo, index) =>
+                            <div className='mt-4'>
+                                <p key={index} onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} className='text-center'>{parrafo?._text}</p>
+                            </div>
+                        )
+                    }
+                    <p onClick={() => { setParrafoACambiar(data.anexo?.titulo._text); setParrafoCambiado(data.anexo?.titulo._text); setMostrarInput(true) }} className='mt-8 font-bold text-center'>{data.anexo?.titulo._text}</p>
                     {
                         data.anexo?.p.map((parrafo, index) =>
-                            <textarea key={index} className="w-full resize-none border-0 h-fit" type="text" value={parrafo._text} />
+                            <div>
+                                <p onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
+                            </div>
                         )
                     }
                 </div>

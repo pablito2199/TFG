@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import ReactDiffViewer from 'react-diff-viewer'
 
 import { XCircleIcon } from '@heroicons/react/solid';
 
@@ -6,7 +7,7 @@ import { Button } from "../Button";
 
 import add_img from '../../images/add.png'
 
-export const RightSide = () => {
+export const RightSide = ({ cambios, setCambios }) => {
     const [estado, setEstado] = useState(false)
     const [notas, setNotas] = useState([
         { id: Date.now(), contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Bienasdasdasdasdasdasdasdasdasdasdasdasdassdasdasdasdasdasdasdasdasdasdsdadsadsdasdasdasdsasdasdas', 'fecha': '12/05/2021' }, { 'contenido': 'Mal', 'fecha': '12/05/2021' }] },
@@ -19,6 +20,7 @@ export const RightSide = () => {
         { id: Date.now() + 7, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
     ])
     const [notasSeleccionadas, setNotasSeleccionadas] = useState([])
+    const [cambiosSeleccionados, setCambiosSeleccionados] = useState([])
 
     const anadirNotaSeleccionada = (event, nota) => {
         if (event.target.checked) {
@@ -32,7 +34,19 @@ export const RightSide = () => {
         setNotas(notas.filter(nota => notasSeleccionadas.indexOf(nota.id) < 0));
     }
 
-    return <section className='z-0 w-1/4 mx-10 screen-min4:w-5/6 screen-min4:mx-2 screen-min2:mt-4'>
+    const anadirCambioSeleccionado = (event, cambio) => {
+        if (event.target.checked) {
+            setCambiosSeleccionados([...cambiosSeleccionados, cambio])
+        } else if (!event.target.checked) {
+            setCambiosSeleccionados(cambiosSeleccionados.filter(id => cambio !== id))
+        }
+    }
+
+    const eliminarCambiosSeleccionados = () => {
+        setCambios(cambios.filter(cambio => cambiosSeleccionados.indexOf(cambio.id) < 0));
+    }
+
+    return <section className='z-0 w-1/3 mx-10 screen-min4:w-5/6 screen-min4:mx-2 screen-min4:mt-4'>
         {
             !estado
                 ?
@@ -52,11 +66,11 @@ export const RightSide = () => {
                 <div className='border-2 border-black'>
                     <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
                         {
-                            notas?.map((nota) =>
+                            notas?.map((nota, index) =>
                                 <div key={nota.id} className='p-2'>
                                     <div className='flex flex-col border-2 border-gray-400'>
                                         <div className='m-4 flex items-center border-b-2 border-gray w-11/12'>
-                                            <p className='m-4'><span className='font-bold min-w-fit'>Nota {nota.id}: </span>{nota.contenido}</p>
+                                            <p className='m-4'><span className='font-bold min-w-fit'>Nota {index + 1}: </span>{nota.contenido}</p>
                                             <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
                                         </div>
                                         <div className='ml-8 mb-4 flex flex-col flex-auto'>
@@ -85,10 +99,26 @@ export const RightSide = () => {
                 </div>
                 :
                 <div className='border-2 border-black'>
-                    <div className='border-b-2 border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'></div>
+                    <div className='border-b-2 border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'>
+                        {
+                            cambios?.map((cambio, index) =>
+                                <div key={cambio.id} className='p-2'>
+                                    <div className='flex flex-col border-2 border-gray-400'>
+                                        <div className='m-4 flex items-center border-b-2 border-gray w-11/12 gap-2'>
+                                            <div className='flex flex-col gap-2'>
+                                                <p className='font-bold min-w-fit'>Cambio {index + 1}: </p>
+                                                <ReactDiffViewer oldValue={cambio.parrafoAntiguo} newValue={cambio.parrafoNuevo} splitView={false} hideLineNumbers={true} />
+                                            </div>
+                                            <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
                     <div className='m-2 flex text-center justify-center items-center gap-4'>
-                        <Button accion={eliminarNotasSeleccionadas} titulo="Descartar selección" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar selección" />
-                        <Button accion={() => setNotas([])} titulo="Descartar todos" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar todos" />
+                        <Button accion={eliminarCambiosSeleccionados} titulo="Descartar selección" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar selección" />
+                        <Button accion={() => setCambios([])} titulo="Descartar todos" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar todos" />
                     </div>
                 </div>
         }
