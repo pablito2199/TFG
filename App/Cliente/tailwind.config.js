@@ -1,5 +1,5 @@
 module.exports = {
-    plugins: [require('@tailwindcss/forms'),],
+    plugins: [require('@tailwindcss/forms')],
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     theme: {
         extend: {
@@ -9,6 +9,7 @@ module.exports = {
                 'gray-lex-gal': '#333',
                 'lime': 'rgb(132 204 22)',
                 'link': '#0000FF',
+                'orange': 'rgb(234 88 12)',
                 'white-lex-gal': 'rgba(255,255,255,0.3)'
             },
             fontFamily: {

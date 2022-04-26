@@ -1,11 +1,12 @@
 import { React, useState } from 'react'
 
-import { XCircleIcon } from '@heroicons/react/solid';
+import { QuestionMarkCircleIcon, XCircleIcon } from '@heroicons/react/solid';
 
 import add_img from '../../images/add.png'
 
-export const LeftSide = ({ data, setParrafoACambiar, parrafoCambiado, setParrafoCambiado, mostrarInput, setMostrarInput }) => {
+export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setMostrarInput }) => {
     const [estado, setEstado] = useState(false)
+    const [mostrarInfo, setMostrarInfo] = useState(false)
 
     const [leis, setLeis] = useState([
         { id: '00000A', modificacion: 'Modificación realizada a lei A.' },
@@ -24,27 +25,39 @@ export const LeftSide = ({ data, setParrafoACambiar, parrafoCambiado, setParrafo
     }
 
     return <section className='z-0 flex-1 ml-2 screen-min4:w-5/6'>
+        <nav className='flex text-lg items-center gap-2'>
+            {
+                !estado
+                    ?
+                    <div className='flex'>
+                        <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Norma</button>
+                        <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</button>
+                    </div>
+                    :
+                    <div className='flex'>
+                        <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Norma</button>
+                        <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Leis vinc.</button>
+                    </div>
+            }
+            <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
+                {
+                    mostrarInfo
+                        ?
+                        <p className='border p-1'>Para propoñer un cambio pinche en calquer parágrafo e garde.</p>
+                        :
+                        <></>
+                }
+                <QuestionMarkCircleIcon className='h-8 text-orange' onMouseOver={() => setMostrarInfo(true)} onMouseOut={() => setMostrarInfo(false)} />
+            </div>
+        </nav>
         {
             !estado
                 ?
-                <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Texto</button>
-                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(true)}>Leis vinc.</button>
-                </nav>
-                :
-                <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 border-2 border-black hover:underline cursor-pointer' onClick={() => setEstado(false)}>Texto</button>
-                    <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Leis vinc.</button>
-                </nav>
-        }
-        {
-            !estado
-                ?
-                <div className="p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll cursor-pointer">
+                <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll cursor-pointer">
                     {
                         data.intro.p.map((parrafo, index) =>
                             <div>
-                                <p onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
+                                <p className='indent-8' onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
                             </div>
                         )
                     }
@@ -115,5 +128,5 @@ export const LeftSide = ({ data, setParrafoACambiar, parrafoCambiado, setParrafo
                     </button>
                 </div>
         }
-    </section>
+    </section >
 }

@@ -63,9 +63,7 @@ export default function Edit() {
                         <LeftSide
                             data={data.corpo}
                             setParrafoACambiar={setParrafoACambiar}
-                            parrafoCambiado={parrafoCambiado}
                             setParrafoCambiado={setParrafoCambiado}
-                            mostrarInput={mostrarInput}
                             setMostrarInput={setMostrarInput}
                         />
                         <RightSide cambios={cambios} setCambios={setCambios} />

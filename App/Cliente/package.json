@@ -9,6 +9,7 @@
     "@graywolfai/react-heroicons": "^1.2.3",
     "@headlessui/react": "^0.0.0-dev.0ce63d8",
     "@heroicons/react": "^1.0.6",
+    "@icon/heroicons-outline": "^0.4.2-alpha.0",
     "@mui/material": "^5.6.0",
     "@tailwindcss/postcss7-compat": "^2.1.1",
     "autoprefixer": "^9.8.6",
@@ -58,6 +59,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.0",
     "http-proxy-middleware": "^0.19.1",
-    "react-dom-parser": "^0.1.7"
+    "react-dom-parser": "^0.1.7",
+    "tailwindcss-text-indent": "^1.0.2"
   }
 }
