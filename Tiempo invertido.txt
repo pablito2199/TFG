@@ -39,4 +39,4 @@
 21/04 5h -> Perfeccionar de nuevo la de edición
 22/04 6.5h -> Leer XML en el cliente, arreglar fallos y crear componentes
 25/04 3.5h -> Mostrar cambios con respecto al XML
-26/04 1h -> Pequeños retoques a la interfaz
+26/04 2h -> Pequeños retoques a la interfaz

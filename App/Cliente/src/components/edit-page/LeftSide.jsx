@@ -4,7 +4,7 @@ import { QuestionMarkCircleIcon, XCircleIcon } from '@heroicons/react/solid';
 
 import add_img from '../../images/add.png'
 
-export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setMostrarInput }) => {
+export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setMostrarInput, setOpacity }) => {
     const [estado, setEstado] = useState(false)
     const [mostrarInfo, setMostrarInfo] = useState(false)
 
@@ -57,14 +57,14 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setMost
                     {
                         data.intro.p.map((parrafo, index) =>
                             <div>
-                                <p className='indent-8' onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
+                                <p className='indent-8' onClick={() => { setOpacity('opacity-50'); setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
                             </div>
                         )
                     }
                     {
                         data.est_lei.art.map((articulo, index) =>
                             <div className='mt-4'>
-                                <p onClick={() => { setParrafoACambiar(articulo?.titulo?._text); setParrafoCambiado(articulo?.titulo?._text); setMostrarInput(true) }} key={index}>{articulo?.titulo?._text}</p>
+                                <p onClick={() => { setOpacity('opacity-50'); setParrafoACambiar(articulo?.titulo?._text); setParrafoCambiado(articulo?.titulo?._text); setMostrarInput(true) }} key={index}>{articulo?.titulo?._text}</p>
                                 {
                                     articulo.p !== undefined
                                         ?
@@ -74,14 +74,14 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setMost
                                                 {
                                                     articulo.p.map((parrafo, index2) =>
                                                         <div>
-                                                            <p onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index + "artp" + index2}>{parrafo?._text}</p>
+                                                            <p onClick={() => { setOpacity('opacity-50'); setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index + "artp" + index2}>{parrafo?._text}</p>
                                                         </div>
                                                     )
                                                 }
                                             </>
                                             :
                                             <div>
-                                                <p onClick={() => { setParrafoACambiar(articulo.p._text); setParrafoCambiado(articulo.p._text); setMostrarInput(true) }} key={index + "artpp"}>{articulo.p._text}</p>
+                                                <p onClick={() => { setOpacity('opacity-50'); setParrafoACambiar(articulo.p._text); setParrafoCambiado(articulo.p._text); setMostrarInput(true) }} key={index + "artpp"}>{articulo.p._text}</p>
                                             </div>
                                         :
                                         <></>
@@ -92,15 +92,15 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setMost
                     {
                         data.est_lei.firma?.p.map((parrafo, index) =>
                             <div className='mt-4'>
-                                <p key={index} onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} className='text-center'>{parrafo?._text}</p>
+                                <p key={index} onClick={() => { setOpacity('opacity-50'); setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} className='text-center'>{parrafo?._text}</p>
                             </div>
                         )
                     }
-                    <p onClick={() => { setParrafoACambiar(data.anexo?.titulo._text); setParrafoCambiado(data.anexo?.titulo._text); setMostrarInput(true) }} className='mt-8 font-bold text-center'>{data.anexo?.titulo._text}</p>
+                    <p onClick={() => { setOpacity('opacity-50'); setParrafoACambiar(data.anexo?.titulo._text); setParrafoCambiado(data.anexo?.titulo._text); setMostrarInput(true) }} className='mt-8 font-bold text-center'>{data.anexo?.titulo._text}</p>
                     {
                         data.anexo?.p.map((parrafo, index) =>
                             <div>
-                                <p onClick={() => { setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
+                                <p onClick={() => { setOpacity('opacity-50'); setParrafoACambiar(parrafo?._text); setParrafoCambiado(parrafo?._text); setMostrarInput(true) }} key={index}>{parrafo?._text}</p>
                             </div>
                         )
                     }
