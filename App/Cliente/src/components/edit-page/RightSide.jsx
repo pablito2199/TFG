@@ -23,7 +23,7 @@ export const RightSide = ({ cambios, setCambios }) => {
     ])
 
     const [notas, setNotas] = useState([
-        { id: Date.now(), contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Bienasdasdasdasdasdasdasdasdasdasdasdasdassdasdasdasdasdasdasdasdasdasdsdadsadsdasdasdasdsasdasdas', 'fecha': '12/05/2021' }, { 'contenido': 'Mal', 'fecha': '12/05/2021' }] },
+        { id: Date.now(), contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Comentario 1', 'fecha': '12/05/2021' }, { 'contenido': 'Comentario 2', 'fecha': '12/05/2021' }] },
         { id: Date.now() + 1, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Comentario', 'fecha': '06/11/2022' }] },
         { id: Date.now() + 2, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
         { id: Date.now() + 3, contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
@@ -118,6 +118,10 @@ export const RightSide = ({ cambios, setCambios }) => {
                 estado === 'l'
                     ?
                     <div className='p-4 flex flex-col border-2 border-black'>
+                        <button title="Engadir nova lei vinculada manualmente" className='pb-4 flex focus:outline-none items-center justify-center gap-2'>
+                            <img alt="engadir" src={add_img} className='h-8 w-8' />
+                            <span>Engadir nova lei vinculada manualmente</span>
+                        </button>
                         <div className='border-2 border-black max-h-leis-vinculadas-top overflow-y-scroll'>
                             {
                                 leis?.map(lei =>
@@ -130,23 +134,21 @@ export const RightSide = ({ cambios, setCambios }) => {
                                             </button>
                                         </div>
                                         <p className='m-4'>{lei.modificacion}</p>
-                                    </div>)
+                                    </div>
+                                )
                             }
                         </div>
-                        <button title="Engadir nova lei vinculada manualmente" className='py-2 flex focus:outline-none mt-2 items-center justify-center gap-2'>
-                            <img alt="engadir" src={add_img} className='h-8 w-8' />
-                            <span>Engadir nova lei vinculada manualmente</span>
-                        </button>
                     </div>
                     :
                     <div className='border-2 border-black'>
+                        <CrearNota notas={notas} setNotas={setNotas} />
                         <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
                             {
                                 notas?.map((nota, index) =>
                                     <div key={nota.id} className='p-2'>
                                         <div className='flex flex-col border-2 border-gray-400'>
                                             <div className='m-4 flex items-center border-b-2 border-gray w-11/12'>
-                                                <p className='m-4'><span className='font-bold min-w-fit'>Nota {index + 1}: </span>{nota.contenido}</p>
+                                                <p className='m-4'>{nota.contenido}</p>
                                                 <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
                                             </div>
                                             <div className='ml-8 mb-4 flex flex-col flex-auto'>
@@ -167,7 +169,6 @@ export const RightSide = ({ cambios, setCambios }) => {
                                 )
                             }
                         </div>
-                        <CrearNota notas={notas} setNotas={setNotas} />
                         <div className='m-2 flex text-center justify-center items-center gap-4'>
                             <Button accion={eliminarNotasSeleccionadas} titulo="Resolver selección" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver selección" />
                             <Button accion={() => setNotas([])} titulo="Resolver todas" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver todas" />
@@ -219,8 +220,8 @@ function CrearNota({ notas, setNotas }) {
         }
     }
 
-    return <div className='border-b-2 border-black'>
-        <div className='mb-4 flex flex-col w-full items-center'>
+    return <div>
+        <div className='mt-1 mb-2 flex flex-col w-full items-center'>
             {
                 !mostrar
                     ?
@@ -229,16 +230,18 @@ function CrearNota({ notas, setNotas }) {
                         <span>Engadir nova nota</span>
                     </button>
                     :
-                    <>
-                        <button title="Eliminar lei vinculada" onClick={() => { setMostrar(false); setNota('') }} className='w-full mr-8 focus:outline-none py-2 flex justify-end items-center text-red-500 flex-auto text-right text-sm cursor-pointer gap-1'>
+                    <div className='w-full flex flex-col border-b-2 border-black pb-4'>
+                        <button title="Eliminar lei vinculada" onClick={() => { setMostrar(false); setNota('') }} className='w-full pr-4 focus:outline-none py-2 flex justify-end items-center text-red-500 flex-auto text-right text-sm cursor-pointer gap-1'>
                             <XCircleIcon className='h-4 text-red-500' />
                             <span>Descartar nova nota</span>
                         </button>
-                        <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..."></textarea>
-                        <div className='flex gap-4'>
-                            <button title="Engadir nota" onClick={submit} className='focus:outline-none px-3 py-3 text-sm text-white bg-blue-green hover:bg-blue-700 font-semibold text-center w-40 cursor-pointer'>Engadir nota</button>
+                        <div className='flex flex-col items-center'>
+                            <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..."></textarea>
+                            <div className='flex gap-4 justify-center'>
+                                <button title="Engadir nota" onClick={submit} className='focus:outline-none px-3 py-3 text-sm text-white bg-blue-green hover:bg-blue-700 font-semibold text-center w-40 cursor-pointer'>Engadir nota</button>
+                            </div>
                         </div>
-                    </>
+                    </div>
             }
         </div>
     </div >
