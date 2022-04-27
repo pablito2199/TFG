@@ -11,14 +11,12 @@ export const SearchButton = ({ texto, soloTitulo, fraseExacta, dogDesde, dogHast
     }
 
     if (texto === '') {
-        render = <button className='focus:outline-none font-semibold px-6 py-2.5 bg-blue-green text-white hover:bg-blue-700 hover:shadow-lg transition duration-150 ease-in-out flex items-center' type="button" id="button-addon2">
+        return <button className='focus:outline-none font-semibold px-6 py-2.5 bg-blue-green text-white hover:bg-blue-700 hover:shadow-lg transition duration-150 ease-in-out flex items-center' type="button" id="button-addon2">
             <span>Buscar</span>
         </button>
-    } else {
-        render = <button onClick={cambiarPagina} className='focus:outline-none font-semibold px-6 py-2.5 bg-blue-green text-white hover:bg-blue-700 hover:shadow-lg transition duration-150 ease-in-out flex items-center' type="button" id="button-addon2">
-            <span>Buscar</span>
-        </button >
     }
 
-    return render
+    return <button onClick={cambiarPagina} className='focus:outline-none font-semibold px-6 py-2.5 bg-blue-green text-white hover:bg-blue-700 hover:shadow-lg transition duration-150 ease-in-out flex items-center' type="button" id="button-addon2">
+        <span>Buscar</span>
+    </button >
 }

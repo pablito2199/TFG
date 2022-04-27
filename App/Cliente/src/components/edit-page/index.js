@@ -1,5 +1,5 @@
 export * from './Header'
-export * from './LeftSide'
+export * from './left-side/LeftSide'
 export * from './ParagraphEditor'
 export * from './PrincipalButtons'
-export * from './RightSide'
+export * from './right-side/RightSide'
