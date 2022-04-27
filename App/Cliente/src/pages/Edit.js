@@ -28,7 +28,7 @@ export default function Edit() {
 
             <div className={opacity}>
                 {
-                    data.cab !== undefined
+                    data?.cab !== undefined
                         ?
                         <Header data={data.cab} />
                         :
@@ -36,7 +36,7 @@ export default function Edit() {
                 }
 
                 {
-                    data.corpo !== undefined
+                    data?.corpo !== undefined
                         ?
                         <main className='z-0 w-full mt-6 flex screen-min4:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                             <LeftSide
@@ -57,4 +57,3 @@ export default function Edit() {
         </div>
     );
 };
-
