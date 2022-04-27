@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 export const SearchButton = ({ texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion, colectivo, organizacion, rango, seccion, tematica, pagina }) => {
     const navigate = useNavigate()
-    let render = []
 
     const cambiarPagina = () => {
         pagina === undefined ? pagina = '' : pagina = pagina + ''
