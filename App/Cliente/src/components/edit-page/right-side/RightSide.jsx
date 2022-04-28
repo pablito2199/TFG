@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 
 import { LeisVinculadas } from './LeisVinculadas';
 import { Cambios } from './Cambios';
-import { Notas } from './Notas';
+import { Notas } from './notas/Notas';
 
 export const RightSide = ({ cambios, setCambios }) => {
     const [estado, setEstado] = useState('c')

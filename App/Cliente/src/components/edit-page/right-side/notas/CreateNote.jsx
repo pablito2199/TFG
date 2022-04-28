@@ -11,7 +11,7 @@ export const CreateNote = ({ notas, setNotas }) => {
         if (nota !== '') {
             let myObj = {
                 'id': Date.now(),
-                'fecha': new Date,
+                'fecha': new Date(),
                 'usuario': 'Nome Apelido',
                 'contenido': nota,
                 'comentarios': []
