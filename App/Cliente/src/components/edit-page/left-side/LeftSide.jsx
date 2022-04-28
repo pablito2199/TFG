@@ -6,7 +6,7 @@ import { Anexo } from './Anexo';
 import { EstLei } from './EstLei';
 import { Intro } from './Intro';
 
-export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow }) => {
+export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
 
     const handleContextMenu = (event, text) => {
         event.preventDefault()
@@ -25,7 +25,7 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnch
         };
     });
 
-    return <section className='z-0 flex-1 ml-2 screen-min4:w-5/6'>
+    return <section className={claseLeftSide}>
         <nav className='flex text-lg items-center gap-2'>
             <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Norma</button>
             <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>

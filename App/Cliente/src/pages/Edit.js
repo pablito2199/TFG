@@ -12,6 +12,7 @@ export default function Edit() {
     const [opacity, setOpacity] = useState('opacity-100')
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
     const [show, setShow] = useState(false);
+    const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min4:w-5/6')
 
     let selectedText = window.getSelection();
     let data = useDocument(1)
@@ -52,8 +53,14 @@ export default function Edit() {
                                 setAnchorPoint={setAnchorPoint}
                                 show={show}
                                 setShow={setShow}
+                                claseLeftSide={claseLeftSide}
                             />
-                            <RightSide cambios={cambios} setCambios={setCambios} />
+                            <RightSide
+                                cambios={cambios}
+                                setCambios={setCambios}
+                                claseLeftSide={claseLeftSide}
+                                setClaseLeftSide={setClaseLeftSide}
+                            />
                         </main>
                         :
                         <></>

@@ -6,14 +6,14 @@ import { CreateComment } from "./CreateComment";
 export const Note = ({ nota, getStringDate, anadirNotaSeleccionada, notas, setNotas }) => {
     const [mostrar, setMostrar] = useState(false)
 
-    return <div key={nota.id} className='p-2 border-b-2'>
+    return <div key={nota.id} className='shadow-inner p-2 border-b-2'>
         {
             !mostrar
                 ?
                 <div className="flex mr-2 h-6 w-full">
                     <div className="flex cursor-default flex-1">
                         <span className="flex w-1/3 font-semibold">{nota.usuario}</span>
-                        <p className="flex flex-1 text-ellipsis overflow-hidden ...">{nota.contenido}</p>
+                        <p className="flex flex-1 text-ellipsis overflow-hidden">{nota.contenido}</p>
                     </div>
                     <ChevronDoubleDownIcon className="cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(true)} />
                 </div>

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 import { Button } from "../../../Button";
-import { Comment } from "./Comment";
-import { CreateComment } from "./CreateComment";
 import { CreateNote } from "./CreateNote";
 import { Note } from "./Note";
 

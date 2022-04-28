@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ReactDiffViewer from 'react-diff-viewer'
 
-import { Button } from "../../Button";
+import { Button } from "../../../Button";
+import { Change } from "./Change";
 
-export const Cambios = ({ cambios, setCambios }) => {
+export const Cambios = ({ cambios, setCambios, claseLeftSide }) => {
     const [cambiosSeleccionados, setCambiosSeleccionados] = useState([])
 
     const anadirCambioSeleccionado = (event, cambio) => {
@@ -21,18 +21,13 @@ export const Cambios = ({ cambios, setCambios }) => {
     return <div className='border-2 border-black'>
         <div className='border-b-2 border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'>
             {
-                cambios?.map((cambio, index) =>
-                    <div key={cambio.id} className='p-2'>
-                        <div className='flex flex-col border-2 border-gray-400'>
-                            <div className='m-4 flex items-center w-11/12 gap-2'>
-                                <div className='text-justify flex flex-col gap-2'>
-                                    <p className='font-bold min-w-fit'>Cambio {index + 1}: </p>
-                                    <ReactDiffViewer oldValue={cambio.parrafoAntiguo} newValue={cambio.parrafoNuevo} splitView={false} hideLineNumbers={true} compareMethod="diffWords" />
-                                </div>
-                                <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
-                            </div>
-                        </div>
-                    </div>
+                cambios?.map(cambio =>
+                    <Change
+                        cambio={cambio}
+                        anadirCambioSeleccionado={anadirCambioSeleccionado}
+                        claseLeftSide={claseLeftSide}
+                        key={cambio.id}
+                    />
                 )
             }
         </div>
