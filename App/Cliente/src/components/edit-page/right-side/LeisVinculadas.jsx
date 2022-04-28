@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 import { XCircleIcon } from "@heroicons/react/solid";
-
-import add_img from '../../../images/add.png'
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 export const LeisVinculadas = () => {
     const [leis, setLeis] = useState([
@@ -23,7 +22,7 @@ export const LeisVinculadas = () => {
 
     return <div className='p-4 flex flex-col border-2 border-black'>
         <button title="Engadir nova lei vinculada manualmente" className='pb-4 flex focus:outline-none items-center justify-center gap-2'>
-            <img alt="engadir" src={add_img} className='h-8 w-8' />
+            <AddCircleOutlineOutlinedIcon sx={{ fontSize: 35 }} />
             <span>Engadir nova lei vinculada manualmente</span>
         </button>
         <div className='border-2 border-black max-h-leis-vinculadas-top overflow-y-scroll'>

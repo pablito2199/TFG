@@ -1,8 +1,7 @@
 import { React } from 'react'
 
 import { XCircleIcon } from '@heroicons/react/solid'
-
-import save_img from '../../images/save-white.png'
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 
 export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado, setParrafoCambiado, parrafoACambiar, setParrafoACambiar, cambios, setCambios, setOpacity }) => {
     const nuevoCambio = () => {
@@ -25,7 +24,7 @@ export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado
             <textarea className='border border-blue-green bg-white min-h-textarea' value={parrafoCambiado} onChange={(e) => setParrafoCambiado(e.target.value)} />
             <div className='flex justify-center gap-2 cursor-default'>
                 <button onClick={nuevoCambio} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-green-500 hover:bg-green-600 w-60 text-white font-semibold cursor-pointer'>
-                    <img src={save_img} alt="gardar" className='h-6 text-white' />
+                    <SaveOutlinedIcon className='text-green-100' sx={{ fontSize: 25 }} />
                     <span>Gardar cambios</span>
                 </button>
                 <button onClick={() => { setMostrarInput(false); setOpacity('opacity-100'); }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>

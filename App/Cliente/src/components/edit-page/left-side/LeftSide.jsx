@@ -1,12 +1,12 @@
-import { React, useCallback, useEffect, useState } from 'react'
+import { React, useCallback, useEffect } from 'react'
 
+import { Tooltip } from '@mui/material';
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid';
 import { Anexo } from './Anexo';
 import { EstLei } from './EstLei';
 import { Intro } from './Intro';
 
 export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow }) => {
-    const [mostrarInfo, setMostrarInfo] = useState(false)
 
     const handleContextMenu = (event, text) => {
         event.preventDefault()
@@ -29,14 +29,9 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnch
         <nav className='flex text-lg items-center gap-2'>
             <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Norma</button>
             <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
-                {
-                    mostrarInfo
-                        ?
-                        <p className='border p-1'>Para propoñer un cambio pinche dúas veces en calquer parágrafo e garde.</p>
-                        :
-                        <></>
-                }
-                <QuestionMarkCircleIcon className='h-8 text-orange' onMouseOver={() => setMostrarInfo(true)} onMouseOut={() => setMostrarInfo(false)} />
+                <Tooltip title="Para propoñer un cambio faga click dereito sobre calquer parágrafo e pinche en 'Propoñer un cambio'." placement="top" arrow>
+                    <QuestionMarkCircleIcon className='h-8 text-orange' />
+                </Tooltip>
             </div>
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">

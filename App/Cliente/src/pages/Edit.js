@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 
 import { useDocument } from '../hooks'
 import { Header, LeftSide, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page';
-import { ContextMenu } from '../components/ContextMenu';
+import { ContextMenu } from '../components/edit-page';
 
 export default function Edit() {
     const [parrafoACambiar, setParrafoACambiar] = useState('')
