@@ -44,3 +44,5 @@
 27/04 0.5h -> Modificar pequeños aspectos de la interfaz
 27/04 0.5h -> Grabación de vídeos de funcionamiento de las páginas
 27/04 3h -> Menú de click derecho, pequeños ajustes interfaz y nuevos componentes
+
+28/04 3.5h -> Tooltip, nuevos componentes, notas como acordeón
