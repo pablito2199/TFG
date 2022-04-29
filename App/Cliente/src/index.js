@@ -11,10 +11,10 @@ import ReactFontLoader from 'react-font-loader'
 import Edit from './pages/Edit'
 import Search from './pages/Search'
 import Home from './pages/Home'
-import NotFound from './pages/NotFound';
+import NotFound from './pages/NotFound'
 
 import './styles.css'
-import { SideBar } from './components/SideBar';
+import { SideBar } from './components/SideBar'
 
 ReactDOM.render(
     <BrowserRouter>

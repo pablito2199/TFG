@@ -1,5 +1,5 @@
-import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid';
-import { React, useState } from 'react';
+import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid'
+import { React, useState } from 'react'
 import { Select } from '../Select'
 
 import organismos from "../../data/listadoOrganismos.json"

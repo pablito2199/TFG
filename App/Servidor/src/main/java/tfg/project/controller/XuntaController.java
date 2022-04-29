@@ -1,13 +1,9 @@
 package tfg.project.controller;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import tfg.project.model.Documento;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
-import static tfg.project.utilities.AuxMethods.convertXMLToObject;
 
 @RestController
 @RequestMapping("xunta")

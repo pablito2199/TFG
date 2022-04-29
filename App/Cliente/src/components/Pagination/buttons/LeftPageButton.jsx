@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronLeftIcon } from '@heroicons/react/solid'
 
@@ -9,7 +9,7 @@ export const LeftPageButton = ({ query, actualPage, setActualPage }) => {
         title='Páxina anterior'
         onClick={() => {
             if (actualPage > 1) {
-                setActualPage(parseInt(actualPage) - 1);
+                setActualPage(parseInt(actualPage) - 1)
                 let page = actualPage - 1
                 navigate(`/search?${query}${page}`)
             }

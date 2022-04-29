@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export const Comment = ({ data, getStringDate }) => {
     return <div className='mb-4 w-11/12'>
@@ -8,4 +8,4 @@ export const Comment = ({ data, getStringDate }) => {
         </div>
         <p className='break-words mt-1'>{data.contenido}</p>
     </div>
-};
+}

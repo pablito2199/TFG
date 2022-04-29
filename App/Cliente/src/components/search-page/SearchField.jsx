@@ -1,7 +1,7 @@
-import { React, useState } from "react";
+import { React, useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import { SearchButton } from "./SearchButton";
-import { SearchFilters } from "./SearchFilters";
+import { SearchButton } from "./SearchButton"
+import { SearchFilters } from "./SearchFilters"
 
 export const SearchField = ({ initialText, pagina }) => {
     initialText === undefined ? initialText = '' : initialText = initialText + ''
@@ -52,4 +52,4 @@ export const SearchField = ({ initialText, pagina }) => {
             </div>
         </div>
     </section >
-};
+}

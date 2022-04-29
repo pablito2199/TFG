@@ -6,10 +6,10 @@ import rangos from "../../data/listadoRangos.json"
 import secciones from "../../data/listadoSecciones.json"
 import tematicas from "../../data/listadoTematicas.json"
 
-import { Input } from "../Input";
-import { Textarea } from "../Textarea";
-import { Select } from "../Select";
-import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid';
+import { Input } from "../Input"
+import { Textarea } from "../Textarea"
+import { Select } from "../Select"
+import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid'
 
 export const Header = ({ data }) => {
     const [mostrar, setMostrar] = useState(false)

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { XCircleIcon } from '@heroicons/react/solid';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { XCircleIcon } from '@heroicons/react/solid'
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
 
 export const CreateNote = ({ notas, setNotas }) => {
     const [nota, setNota] = useState('')

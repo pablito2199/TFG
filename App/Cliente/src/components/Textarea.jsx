@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export const Textarea = ({ valor, setNuevoValor, texto, placeholder }) => {
     return <div className='flex flex-col text-left align-top m-4 px-3'>
@@ -10,4 +10,4 @@ export const Textarea = ({ valor, setNuevoValor, texto, placeholder }) => {
             placeholder={placeholder}
         />
     </div>
-};
+}

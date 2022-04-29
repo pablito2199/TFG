@@ -1,10 +1,9 @@
-import { EyeIcon } from '@heroicons/react/solid';
-import React from 'react';
+import { EyeIcon } from '@heroicons/react/solid'
+import React from 'react'
 
 import import_white_img from '../../images/import-white.png'
 
 export const Content = ({ data }) => {
-    console.log(data)
     return <table className='px-1 flex w-11/12 mt-8 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
         <tbody className='border border-white text-center'>
             <tr className='flex'>

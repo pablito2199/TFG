@@ -1,7 +1,7 @@
-import React from "react";
-import { PencilAltOutline } from "@graywolfai/react-heroicons";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import React from "react"
+import { PencilAltOutline } from "@graywolfai/react-heroicons"
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import ContentPasteIcon from '@mui/icons-material/ContentPaste'
 
 export const ContextMenu = ({ anchorPoint, show, selectedText, setOpacity, setMostrarInput }) => {
     if (show) {
@@ -31,5 +31,5 @@ export const ContextMenu = ({ anchorPoint, show, selectedText, setOpacity, setMo
             </button>
         </div>
     }
-    return <></>;
-};
+    return <></>
+}

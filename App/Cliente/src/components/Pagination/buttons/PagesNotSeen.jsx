@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { DotsHorizontalIcon } from '@heroicons/react/solid'
 
 export const PagesNotSeen = () => {

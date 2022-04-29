@@ -1,21 +1,30 @@
-import { React } from 'react'
+import { React, useEffect } from 'react'
 
-export const Anexo = ({ data, handleContextMenu, leisVinculadas, regex }) => {
-    if (data.anexo?.titulo._text !== null && (data.anexo?.titulo._text).match(regex)?.length !== 0) {
-        (data.anexo?.titulo._text).match(regex)?.forEach(norma => leisVinculadas.push(norma))
-    }
+export const Anexo = ({ data, handleContextMenu, leisVinculadas, setLeisVinculadas, regex }) => {
+
+    useEffect(() => {
+        let resultado = (data.anexo?.titulo._text).match(regex)
+        if (resultado !== null && resultado?.length !== 0) {
+            setLeisVinculadas([...leisVinculadas, resultado])
+        }
+
+        data.anexo?.p.forEach((parrafo) => {
+            resultado = (parrafo?._text).match(regex)
+            if (resultado !== null && resultado?.length !== 0) {
+                setLeisVinculadas([...leisVinculadas, resultado])
+            }
+        })
+
+    }, [data])
 
     return <div>
         <p onContextMenu={(e) => handleContextMenu(e, data.anexo?.titulo._text)} className='mt-8 font-bold text-center'>{data.anexo?.titulo._text}</p>
         {
-            data.anexo?.p.map((parrafo, index) => {
-                if ((parrafo?._text).match(regex) !== null && (parrafo?._text).match(regex).length !== 0) {
-                    (parrafo?._text).match(regex)?.forEach(norma => leisVinculadas.push(norma))
-                }
-                return <div key={index}>
+            data.anexo?.p.map((parrafo, index) =>
+                <div key={index}>
                     <p onContextMenu={(e) => handleContextMenu(e, parrafo?._text)}>{parrafo?._text}</p>
                 </div>
-            })
+            )
         }
     </div>
 }

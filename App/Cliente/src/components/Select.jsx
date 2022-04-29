@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export const Select = ({ texto, firstOption, elements, element, setElements, opcion }) => {
     return <div className='flex flex-col text-left align-top m-4 px-3'>
@@ -16,4 +16,4 @@ export const Select = ({ texto, firstOption, elements, element, setElements, opc
             }
         </select>
     </div>
-};
+}

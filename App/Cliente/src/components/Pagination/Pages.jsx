@@ -1,9 +1,10 @@
-import React from 'react';
-import { FirstPageButton } from './buttons/FirstPageButton';
-import { LastPageButton } from './buttons/LastPageButton';
-import { LeftPageButton } from './buttons/LeftPageButton';
-import { PagesButtons } from './buttons/PagesButtons';
-import { RightPageButton } from './buttons/RightPageButton';
+import React from 'react'
+
+import { FirstPageButton } from './buttons/FirstPageButton'
+import { LastPageButton } from './buttons/LastPageButton'
+import { LeftPageButton } from './buttons/LeftPageButton'
+import { PagesButtons } from './buttons/PagesButtons'
+import { RightPageButton } from './buttons/RightPageButton'
 
 export const Pages = ({ query, actualPage, setActualPage, elements, numberElementsPerPage }) => {
     return <div className='m-4 flex items-center justify-center w-full'>

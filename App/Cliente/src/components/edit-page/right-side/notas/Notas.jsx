@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Button } from "../../../Button";
-import { CreateNote } from "./CreateNote";
-import { Note } from "./Note";
+import { Button } from "../../../Button"
+import { CreateNote } from "./CreateNote"
+import { Note } from "./Note"
 
 export const Notas = () => {
     const [notas, setNotas] = useState([
@@ -31,7 +31,7 @@ export const Notas = () => {
     }
 
     const eliminarNotasSeleccionadas = () => {
-        setNotas(notas.filter(nota => notasSeleccionadas.indexOf(nota.id) < 0));
+        setNotas(notas.filter(nota => notasSeleccionadas.indexOf(nota.id) < 0))
     }
 
     return <div className='border-2 border-black'>
@@ -48,4 +48,4 @@ export const Notas = () => {
             <Button accion={() => setNotas([])} titulo="Resolver todas" color="bg-green-500" colorHover="bg-green-600" anchura="42" texto="Resolver todas" />
         </div>
     </div >
-};
+}

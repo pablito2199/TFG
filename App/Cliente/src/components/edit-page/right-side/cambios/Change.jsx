@@ -1,5 +1,5 @@
-import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from "@heroicons/react/solid"
+import React, { useState } from "react"
 
 import ReactDiffViewer from 'react-diff-viewer'
 

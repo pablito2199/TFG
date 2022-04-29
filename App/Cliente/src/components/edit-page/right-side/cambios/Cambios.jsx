@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Button } from "../../../Button";
-import { Change } from "./Change";
+import { Button } from "../../../Button"
+import { Change } from "./Change"
 
 export const Cambios = ({ cambios, setCambios, claseLeftSide }) => {
     const [cambiosSeleccionados, setCambiosSeleccionados] = useState([])
@@ -15,7 +15,7 @@ export const Cambios = ({ cambios, setCambios, claseLeftSide }) => {
     }
 
     const eliminarCambiosSeleccionados = () => {
-        setCambios(cambios.filter(cambio => cambiosSeleccionados.indexOf(cambio.id) < 0));
+        setCambios(cambios.filter(cambio => cambiosSeleccionados.indexOf(cambio.id) < 0))
     }
 
     return <div className='border-2 border-black'>
@@ -36,4 +36,4 @@ export const Cambios = ({ cambios, setCambios, claseLeftSide }) => {
             <Button accion={() => setCambios([])} titulo="Descartar todos" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar todos" />
         </div>
     </div>
-};
+}

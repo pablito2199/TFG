@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { PagesNotSeen } from './PagesNotSeen';
+import { PagesNotSeen } from './PagesNotSeen'
 
 export const PagesButtons = ({ query, actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
     let paginas = []

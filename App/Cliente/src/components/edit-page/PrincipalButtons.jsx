@@ -1,6 +1,6 @@
 import { React } from 'react'
 
-import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons';
+import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 
 export const PrincipalButtons = () => {
     return <div className=' fixed left-0 bottom-0 w-screen border-t-2 bg-white z-1 flex justify-center gap-20 py-4'>

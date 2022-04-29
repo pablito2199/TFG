@@ -3,14 +3,14 @@ import { React, useCallback, useEffect, useState } from 'react'
 import listadoMeses from '../../../data/listadoMeses.json'
 import listadoRangos from '../../../data/listadoRangos.json'
 
-import { Tooltip } from '@mui/material';
-import { QuestionMarkCircleIcon } from '@heroicons/react/solid';
-import { Anexo } from './Anexo';
-import { EstLei } from './EstLei';
-import { Intro } from './Intro';
+import { Tooltip } from '@mui/material'
+import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
+import { Anexo } from './Anexo'
+import { EstLei } from './EstLei'
+import { Intro } from './Intro'
 
 export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
-    //const [leisVinculadas, setLeisVinculadas] = useState([])
+    const [leisVinculadas, setLeisVinculadas] = useState([])
     let mesesRegex = "("
     listadoMeses.forEach(mes => mesesRegex += mes.name + "|")
     mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
@@ -20,7 +20,6 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnch
     rangosRegex = rangosRegex.substring(0, rangosRegex.length - 1)
     rangosRegex += ")"
     const regex = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
-    let leisVinculadas = []
 
     const handleContextMenu = (event, text) => {
         event.preventDefault()
@@ -30,14 +29,14 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnch
         setParrafoCambiado(text)
     }
 
-    const handleClick = useCallback(() => (show ? setShow(false) : null), [show, setShow]);
+    const handleClick = useCallback(() => (show ? setShow(false) : null), [show, setShow])
 
     useEffect(() => {
-        document.addEventListener("click", handleClick);
+        document.addEventListener("click", handleClick)
         return () => {
-            document.removeEventListener("click", handleClick);
-        };
-    });
+            document.removeEventListener("click", handleClick)
+        }
+    })
 
     return <section className={claseLeftSide}>
         <nav className='flex text-lg items-center gap-2'>
@@ -49,9 +48,10 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnch
             </div>
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
-            <Intro data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} regex={regex} />
+            <Intro data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas} regex={regex} />
             <EstLei data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} regex={regex} />
-            <Anexo data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} regex={regex} />
+            <Anexo data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas} regex={regex} />
         </div>
+        {console.log(leisVinculadas)}
     </section >
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 export const CreateComment = ({ notas, setNotas, nota }) => {
     const [comentario, setComentario] = useState('')
@@ -12,10 +12,10 @@ export const CreateComment = ({ notas, setNotas, nota }) => {
             }
             setNotas(notas.map(notaAux => {
                 if (nota.id === notaAux.id) {
-                    notaAux.comentarios.push(myObj);
+                    notaAux.comentarios.push(myObj)
                 }
-                return notaAux;
-            }));
+                return notaAux
+            }))
             setComentario('')
         }
     }

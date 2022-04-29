@@ -1,9 +1,9 @@
 import { React, useState } from 'react'
 
-import { LeisVinculadas } from './LeisVinculadas';
-import { Cambios } from './cambios/Cambios';
-import { Notas } from './notas/Notas';
-import { ArrowsExpandOutline } from '@graywolfai/react-heroicons';
+import { LeisVinculadas } from './LeisVinculadas'
+import { Cambios } from './cambios/Cambios'
+import { Notas } from './notas/Notas'
+import { ArrowsExpandOutline } from '@graywolfai/react-heroicons'
 
 export const RightSide = ({ cambios, setCambios, claseLeftSide, setClaseLeftSide }) => {
     const [estado, setEstado] = useState('c')

@@ -1,8 +1,8 @@
 import { React, useState } from 'react'
 
 import { useDocument } from '../hooks'
-import { Header, LeftSide, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page';
-import { ContextMenu } from '../components/edit-page';
+import { Header, LeftSide, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
+import { ContextMenu } from '../components/edit-page'
 
 export default function Edit() {
     const [parrafoACambiar, setParrafoACambiar] = useState('')
@@ -10,11 +10,11 @@ export default function Edit() {
     const [mostrarInput, setMostrarInput] = useState(false)
     const [cambios, setCambios] = useState([])
     const [opacity, setOpacity] = useState('opacity-100')
-    const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
-    const [show, setShow] = useState(false);
+    const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
+    const [show, setShow] = useState(false)
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min4:w-5/6')
 
-    let selectedText = window.getSelection();
+    let selectedText = window.getSelection()
     let data = useDocument(1)
 
     return (
@@ -77,5 +77,5 @@ export default function Edit() {
                 setMostrarInput={setMostrarInput}
             />
         </div>
-    );
-};
+    )
+}

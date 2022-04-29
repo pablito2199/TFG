@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export const Input = ({ valor, setValor, texto, tipo, placeholder, readOnly = false }) => {
     return <div className='flex flex-col text-left align-top m-4 px-3'>
@@ -13,4 +13,4 @@ export const Input = ({ valor, setValor, texto, tipo, placeholder, readOnly = fa
             required
         />
     </div>
-};
+}

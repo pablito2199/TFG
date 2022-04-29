@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 
@@ -8,7 +8,7 @@ export const RightPageButton = ({ actualPage, query, setActualPage, numberElemen
         title='Seguinte páxina'
         onClick={() => {
             if (actualPage < Math.ceil(numberElements / numberElementsPerPage - 1)) {
-                setActualPage(parseInt(actualPage) + 1);
+                setActualPage(parseInt(actualPage) + 1)
                 let page = actualPage + 1
                 navigate(`/search?${query}${page}`)
             }

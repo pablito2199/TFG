@@ -1,7 +1,7 @@
-import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
-import { Comment } from "./Comment";
-import { CreateComment } from "./CreateComment";
+import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from "@heroicons/react/solid"
+import React, { useState } from "react"
+import { Comment } from "./Comment"
+import { CreateComment } from "./CreateComment"
 
 export const Note = ({ nota, getStringDate, anadirNotaSeleccionada, notas, setNotas }) => {
     const [mostrar, setMostrar] = useState(false)
