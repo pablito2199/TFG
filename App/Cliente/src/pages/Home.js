@@ -1,6 +1,6 @@
 import { React } from 'react'
 
-import { SearchField } from '../components/Search';
+import { SearchField } from '../components/search-page';
 
 export default function Search() {
     return (

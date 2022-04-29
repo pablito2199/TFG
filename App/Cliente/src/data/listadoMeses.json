@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Xaneiro"
+    },
+    {
+        "id": 2,
+        "name": "Febreiro"
+    },
+    {
+        "id": 3,
+        "name": "Marzo"
+    },
+    {
+        "id": 4,
+        "name": "Abril"
+    },
+    {
+        "id": 5,
+        "name": "Maio"
+    },
+    {
+        "id": 6,
+        "name": "Xuño"
+    },
+    {
+        "id": 7,
+        "name": "Xullo"
+    },
+    {
+        "id": 8,
+        "name": "Agosto"
+    },
+    {
+        "id": 9,
+        "name": "Setembro"
+    },
+    {
+        "id": 10,
+        "name": "Outubro"
+    },
+    {
+        "id": 11,
+        "name": "Novembro"
+    },
+    {
+        "id": 12,
+        "name": "Decembro"
+    }
+]

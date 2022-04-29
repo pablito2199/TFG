@@ -3,10 +3,10 @@ import { useLocation } from 'react-router-dom'
 
 import { useNormas } from '../hooks';
 
-import { SearchField } from '../components/Search';
+import { SearchField } from '../components/search-page';
 import { Pages } from '../components/Pagination';
 
-import { Content } from '../components/Search/Content';
+import { Content } from '../components/search-page/Content';
 
 export default function Search() {
     const query = useLocation().search.replace('?', '')
