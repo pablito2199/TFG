@@ -6,7 +6,7 @@ export function useNormas(query = '') {
 
     useEffect(() => {
         const getData = async () => {
-            const url = `/diario-oficial-galicia/buscarAnunciosPublico.do?method=listado&${query}`
+            const url = `/xunta/normas?${query}`
             const response = await fetch(url);
             const jsonData = await response.json();
             setData(jsonData);
