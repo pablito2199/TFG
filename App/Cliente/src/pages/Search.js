@@ -46,11 +46,11 @@ export default function Search() {
                             <Pages query={querySinPagina} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
                         </>
                         :
-                        <div className='mt-4 text-gray-600 font-semibold italic'>
+                        <div className='py-4 text-gray-600 font-semibold italic'>
                             <p>Non se atoparon resultados na súa búsqueda. Por favor, inténteo de novo.</p>
                         </div>
                     :
-                    <div className='mt-4 text-gray-600 font-semibold italic'>
+                    <div className='py-4 text-gray-600 font-semibold italic'>
                         <p>Por favor, insire algún texto para realizar a búsqueda...</p>
                     </div>
             }

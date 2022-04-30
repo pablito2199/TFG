@@ -28,7 +28,7 @@ export const Content = ({ data }) => {
                                     <EyeIcon className='h-5' />
                                 </a>
                                 <button onClick={() => navigate('/edit')} title="Importar" className='focus:outline-none text-md text-center self-center align-center px-4 py-4 bg-black hover:bg-gray-600 text-indigo-50 font-semibold cursor-pointer'>
-                                    <img alt="Importar" src={import_white_img} className='h-5 w-5' />
+                                    <img alt="Importar" src={import_white_img} className='h-5' />
                                 </button>
                             </div>
                         </td>

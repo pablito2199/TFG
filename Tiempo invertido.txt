@@ -50,3 +50,5 @@
 29/04 3.5h -> Empezar regex de búsqueda de leyes vinculadas
 29/04 2h -> Mostrar leyes vinculadas de forma dinámica con regex, añadirlas y eliminadas
 02/05 3.5h -> Responsividad, solución error y mostrar parte cambiada
+
+02/05 1.5h -> Memoria

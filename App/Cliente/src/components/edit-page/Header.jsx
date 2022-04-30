@@ -56,23 +56,23 @@ export const Header = ({ data }) => {
                     </div>
                     <div className='flex flex-row bg-blue-lex-gal font-semibold italic screen-min1:flex-col'>
                         <div className='w-1/2 screen-min1:w-full'>
-                            <Input valor={titulo} setValor={setTitulo} texto="Título" tipo="text" placeholder="Título da norma..." />
-                            <Textarea valor={sumario} setValor={setSumario} texto="Sumario" placeholder="Escriba o sumario da norma..." />
-                            <Input valor={dpub} setValor={setDpub} texto="Data de publicación" tipo="date" />
-                            <Input valor={refpub} setValor={setRefpub} texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
-                            <Input valor={ano} setValor={setAno} texto="Ano" tipo="text" placeholder="Ano..." readOnly={true} />
-                            <Input valor={version} setValor={setVersion} texto="Versión" tipo="text" placeholder="Versión da norma..." readOnly={true} />
-                            <Input valor={referencia} setValor={setReferencia} texto="Referencia" tipo="text" placeholder="Referencia da norma..." readOnly={true} />
+                            <Input valor={titulo} setValor={setTitulo} texto="Título" tipo="text" placeholder="Título da norma..." disabled={true} />
+                            <Textarea valor={sumario} setValor={setSumario} texto="Sumario" placeholder="Escriba o sumario da norma..." disabled={true} opacity="opacity-70" />
+                            <Input valor={dpub} setValor={setDpub} texto="Data de publicación" tipo="date" disabled={true} />
+                            <Input valor={refpub} setValor={setRefpub} texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." disabled={true} />
+                            <Input valor={ano} setValor={setAno} texto="Ano" tipo="text" placeholder="Ano..." disabled={true} />
+                            <Input valor={version} setValor={setVersion} texto="Versión" tipo="text" placeholder="Versión da norma..." disabled={true} />
+                            <Input valor={referencia} setValor={setReferencia} texto="Referencia" tipo="text" placeholder="Referencia da norma..." disabled={true} />
                         </div>
                         <div className='w-1/2 screen-min1:w-full'>
-                            <Input valor={dvl_desde} setValor={setDvl_desde} texto="Data de entrada en vigor" tipo="date" />
-                            <Select texto="Estado" elements={estados} element={estadoSeleccionado} setElements={setEstadoSeleccionado} opcion="-- Seleccione unha opción --" />
-                            <Input valor={nomfic} setValor={setNomFic} texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" />
-                            <Select texto="Colectivo" firstOption={false} elements={colectivos} element={colectivoSeleccionado} setElements={setColectivoSeleccionado} opcion="-- Seleccione unha opción --" />
-                            <Select texto="Organización" firstOption={false} elements={organismos} element={organismoSeleccionado} setElements={setOrganismoSeleccionado} opcion="-- Seleccione unha opción --" />
-                            <Select texto="Rango" firstOption={false} elements={rangos} element={rangoSeleccionado} setElements={setRangoSeleccionado} opcion="-- Seleccione unha opción --" />
-                            <Select texto="Sección" firstOption={false} elements={secciones} element={seccionSeleccionada} setElements={setSeccionSeleccionada} opcion="-- Seleccione unha opción --" />
-                            <Select texto="Área temática" firstOption={false} elements={tematicas} element={tematicaSeleccionada} setElements={setTematicaSeleccionada} opcion="-- Seleccione unha opción --" />
+                            <Input valor={dvl_desde} setValor={setDvl_desde} texto="Data de entrada en vigor" tipo="date" disabled={true} />
+                            <Select texto="Estado" elements={estados} element={estadoSeleccionado} setElements={setEstadoSeleccionado} opcion="-- Seleccione unha opción --" disabled={true} />
+                            <Input valor={nomfic} setValor={setNomFic} texto="Nome ficheiro" tipo="text" placeholder="Ej: ficheiro.pdf" disabled={true} />
+                            <Select texto="Colectivo" firstOption={false} elements={colectivos} element={colectivoSeleccionado} setElements={setColectivoSeleccionado} opcion="-- Seleccione unha opción --" disabled={true} />
+                            <Select texto="Organización" firstOption={false} elements={organismos} element={organismoSeleccionado} setElements={setOrganismoSeleccionado} opcion="-- Seleccione unha opción --" disabled={true} />
+                            <Select texto="Rango" firstOption={false} elements={rangos} element={rangoSeleccionado} setElements={setRangoSeleccionado} opcion="-- Seleccione unha opción --" disabled={true} />
+                            <Select texto="Sección" firstOption={false} elements={secciones} element={seccionSeleccionada} setElements={setSeccionSeleccionada} opcion="-- Seleccione unha opción --" disabled={true} />
+                            <Select texto="Área temática" firstOption={false} elements={tematicas} element={tematicaSeleccionada} setElements={setTematicaSeleccionada} opcion="-- Seleccione unha opción --" disabled={true} />
                         </div>
                     </div>
                 </div>
