@@ -48,3 +48,4 @@
 28/04 2h -> Remodelar parte de cambios y botón para expandir
 29/04 1.5h -> Conectar API de la Xunta a mi Servidor
 29/04 3.5h -> Empezar regex de búsqueda de leyes vinculadas
+29/04 2h -> Mostrar leyes vinculadas de forma dinámica con regex, añadirlas y eliminadas
