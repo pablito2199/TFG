@@ -31,10 +31,11 @@ export default function Search() {
         initialText = ''
     }
 
-    const [actualPage, setActualPage] = useState(paginaQuery)
+    const [actualPage, setActualPage] = useState(paginaQuery[0])
+
     return (
         <div className='flex flex-col ml-20 items-center w-full screen-min5:ml-10'>
-            <SearchField initialText={initialText} pagina={actualPage + 1} />
+            <SearchField initialText={initialText} pagina={actualPage + 1} setPagina={setActualPage} />
             {
                 data.response?.listas.datos_informe
                     ?

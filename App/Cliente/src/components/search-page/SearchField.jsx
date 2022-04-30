@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { SearchButton } from "./SearchButton"
 import { SearchFilters } from "./SearchFilters"
 
-export const SearchField = ({ initialText, pagina }) => {
+export const SearchField = ({ initialText, setPagina }) => {
     initialText === undefined ? initialText = '' : initialText = initialText + ''
     const [texto, setTexto] = useState(initialText)
     const [soloTitulo, setSoloTitulo] = useState(true)
@@ -20,8 +20,10 @@ export const SearchField = ({ initialText, pagina }) => {
 
     const cambiarPagina = (e) => {
         if (e.key === 'Enter') {
-            pagina === undefined ? pagina = '' : pagina = pagina + ''
-            navigate(`/search?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&pagina=`)
+            navigate(`/search?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&pagina=1`)
+        }
+        if (setPagina) {
+            setPagina(1)
         }
     }
 
@@ -48,7 +50,7 @@ export const SearchField = ({ initialText, pagina }) => {
                 <button onClick={() => setTexto('')} className='px-6 py-2.5 focus:outline-none' type="button" id="button-addon2">
                     <span className="font-semibold">Limpar</span>
                 </button>
-                <SearchButton texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} />
+                <SearchButton texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} setPagina={setPagina} />
             </div>
         </div>
     </section >
