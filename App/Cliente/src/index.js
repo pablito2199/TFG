@@ -24,7 +24,7 @@ ReactDOM.render(
         <div className='flex flex-row'>
             <SideBar />
             <Routes>
-                <Route exact path="/" element={<Edit />} />
+                <Route exact path="/" element={<Home />} />
                 <Route exact path="/edit" element={<Edit />} />
                 <Route exact path="/home" element={<Home />} />
                 <Route path="/search" element={<Search />} />

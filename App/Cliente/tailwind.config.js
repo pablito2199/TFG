@@ -30,7 +30,8 @@ module.exports = {
                 'screen-min1': { 'max': '970px' },
                 'screen-min2': { 'max': '1055px' },
                 'screen-min3': { 'max': '1500px' },
-                'screen-min4': { 'max': '1300px' }
+                'screen-min4': { 'max': '1300px' },
+                'screen-min5': { 'max': '1220px' }
             }
         }
     }

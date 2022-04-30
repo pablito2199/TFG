@@ -43,7 +43,7 @@ export default function Edit() {
                 {
                     data?.corpo !== undefined
                         ?
-                        <main className='z-0 w-full mt-6 flex screen-min4:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
+                        <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                             <LeftSide
                                 data={data.corpo}
                                 setParrafoACambiar={setParrafoACambiar}

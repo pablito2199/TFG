@@ -87,7 +87,7 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
         setLeisVinculadas([...leisVinculadas, ...resultado])
     }
 
-    return <section className='z-0 flex-1 mx-10 screen-min4:w-5/6 screen-min4:mx-2 screen-min4:mt-4'>
+    return <section className='z-0 flex-1 mx-10 screen-min4:w-5/6 screen-min4:mx-2 screen-min5:mt-4'>
         {
             estado === 'c'
                 ?

@@ -40,7 +40,7 @@ export const Header = ({ data }) => {
     const [seccionSeleccionada, setSeccionSeleccionada] = useState('')
     const [tematicaSeleccionada, setTematicaSeleccionada] = useState('')
 
-    return <section className='z-0 w-full font-medium mt-5 pr-10 flex flex-col px-2 screen-min3:w-11/12 screen-min1:w-9/12'>
+    return <section className='z-0 w-full font-medium mt-5 pr-10 flex flex-col px-2 screen-min5:w-11/12 screen-min1:w-9/12'>
         {
             !mostrar
                 ?

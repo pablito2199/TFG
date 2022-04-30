@@ -20,7 +20,8 @@ public class XuntaController {
             @RequestParam(name = "listado_seccion", defaultValue = "", required = false) String listado_seccion,
             @RequestParam(name = "listado_taxorga", defaultValue = "", required = false) String listado_taxorga,
             @RequestParam(name = "listado_tematica", defaultValue = "", required = false) String listado_tematica,
-            @RequestParam(name = "criterioOrdenacion", defaultValue = "ORDENACION_FECHA", required = false) String criterioOrdenacion
+            @RequestParam(name = "criterioOrdenacion", defaultValue = "ORDENACION_FECHA", required = false) String criterioOrdenacion,
+            @RequestParam(name = "pagina", defaultValue = "1", required = false) String pagina
     ) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(
@@ -36,6 +37,7 @@ public class XuntaController {
                         + "&listado_taxorga=" + listado_taxorga
                         + "&listado_tematica=" + listado_tematica
                         + "&criterioOrdenacion=" + criterioOrdenacion
+                        + "&pagina=" + pagina
                 ,
                 String.class
         );
