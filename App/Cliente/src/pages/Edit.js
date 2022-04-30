@@ -56,6 +56,7 @@ export default function Edit() {
                                 claseLeftSide={claseLeftSide}
                             />
                             <RightSide
+                                data={data.corpo}
                                 cambios={cambios}
                                 setCambios={setCambios}
                                 claseLeftSide={claseLeftSide}

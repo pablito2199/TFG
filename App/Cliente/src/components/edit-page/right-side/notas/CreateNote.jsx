@@ -38,7 +38,7 @@ export const CreateNote = ({ notas, setNotas }) => {
                             <span>Descartar nova nota</span>
                         </button>
                         <div className='flex flex-col items-center'>
-                            <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..."></textarea>
+                            <textarea value={nota} onChange={(event) => setNota(event.target.value)} className='my-2 w-11/12 h-20 p-2 border border-black focus:outline-none focus:border-gray-500 resize-none' name="note" placeholder="Nova nota..." />
                             <div className='flex gap-4 justify-center'>
                                 <button title="Engadir nota" onClick={submit} className='focus:outline-none px-3 py-3 text-sm text-white bg-blue-green hover:bg-blue-700 font-semibold text-center w-40 cursor-pointer'>Engadir nota</button>
                             </div>

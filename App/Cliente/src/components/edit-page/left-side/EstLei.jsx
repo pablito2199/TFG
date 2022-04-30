@@ -1,16 +1,10 @@
 import { React } from 'react'
 
-export const EstLei = ({ data, handleContextMenu, leisVinculadas, regex }) => {
+export const EstLei = ({ data, handleContextMenu }) => {
     return <div>
         {
-            data.est_lei.art.map((articulo, index) => {
-                if (articulo?.titulo && (articulo?.titulo?._text).match(regex) !== null && (articulo?.titulo?._text).match(regex)?.length !== 0) {
-                    (articulo?.titulo?._text).match(regex)?.forEach(norma => leisVinculadas.push(norma))
-                }
-                /*if (articulo?.p && (articulo?.p?._text)?.match(regex) !== null && (articulo?.p?._text)?.match(regex)?.length !== 0) {
-                    (articulo?.p?._text).match(regex)?.forEach(norma => leisVinculadas.push(norma))
-                }*/
-                return <div className='mt-4' key={index}>
+            data.est_lei?.art.map((articulo, index) =>
+                <div className='mt-4' key={index}>
                     <p onContextMenu={(e) => handleContextMenu(e, articulo?.titulo?._text)}>{articulo?.titulo?._text}</p>
                     {
                         articulo.p !== undefined
@@ -19,14 +13,11 @@ export const EstLei = ({ data, handleContextMenu, leisVinculadas, regex }) => {
                                 ?
                                 <>
                                     {
-                                        articulo.p.map((parrafo, index2) => {
-                                            if ((parrafo?._text).match(regex) !== null && (parrafo?._text).match(regex)?.length !== 0) {
-                                                (parrafo?._text).match(regex)?.forEach(norma => leisVinculadas.push(norma))
-                                            }
-                                            return <div key={index + "artp" + index2}>
+                                        articulo.p.map((parrafo, index2) =>
+                                            <div key={index + "artp" + index2}>
                                                 <p onContextMenu={(e) => handleContextMenu(e, parrafo?._text)}>{parrafo?._text}</p>
                                             </div>
-                                        })
+                                        )
                                     }
                                 </>
                                 :
@@ -37,17 +28,14 @@ export const EstLei = ({ data, handleContextMenu, leisVinculadas, regex }) => {
                             <></>
                     }
                 </div>
-            })
+            )
         }
         {
-            data.est_lei.firma?.p.map((parrafo, index) => {
-                if ((parrafo?._text).match(regex) !== null && (parrafo?._text).match(regex)?.length !== 0) {
-                    (parrafo?._text).match(regex)?.forEach(norma => leisVinculadas.push(norma))
-                }
-                return <div className='mt-4' key={index}>
+            data.est_lei.firma?.p.map((parrafo, index) =>
+                <div className='mt-4' key={index}>
                     <p onContextMenu={(e) => handleContextMenu(e, parrafo?._text)} className='text-center'>{parrafo?._text}</p>
                 </div>
-            })
+            )
         }
     </div>
 }

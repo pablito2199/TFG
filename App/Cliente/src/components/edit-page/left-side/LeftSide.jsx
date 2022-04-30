@@ -1,7 +1,4 @@
-import { React, useCallback, useEffect, useState } from 'react'
-
-import listadoMeses from '../../../data/listadoMeses.json'
-import listadoRangos from '../../../data/listadoRangos.json'
+import { React, useCallback, useEffect } from 'react'
 
 import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
@@ -10,17 +7,6 @@ import { EstLei } from './EstLei'
 import { Intro } from './Intro'
 
 export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
-    const [leisVinculadas, setLeisVinculadas] = useState([])
-    let mesesRegex = "("
-    listadoMeses.forEach(mes => mesesRegex += mes.name + "|")
-    mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
-    mesesRegex += ")"
-    let rangosRegex = "("
-    listadoRangos.forEach(rango => rangosRegex += rango.descripcion + "|")
-    rangosRegex = rangosRegex.substring(0, rangosRegex.length - 1)
-    rangosRegex += ")"
-    const regex = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
-
     const handleContextMenu = (event, text) => {
         event.preventDefault()
         setAnchorPoint({ x: event.pageX, y: event.pageY })
@@ -48,10 +34,9 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnch
             </div>
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
-            <Intro data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas} regex={regex} />
-            <EstLei data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} regex={regex} />
-            <Anexo data={data} handleContextMenu={handleContextMenu} leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas} regex={regex} />
+            <Intro data={data} handleContextMenu={handleContextMenu} />
+            <EstLei data={data} handleContextMenu={handleContextMenu} />
+            <Anexo data={data} handleContextMenu={handleContextMenu} />
         </div>
-        {console.log(leisVinculadas)}
     </section >
 }
