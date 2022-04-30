@@ -12,7 +12,7 @@ export default function Edit() {
     const [opacity, setOpacity] = useState('opacity-100')
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
     const [show, setShow] = useState(false)
-    const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min4:w-5/6')
+    const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
 
     let selectedText = window.getSelection()
     let data = useDocument(1)
@@ -46,6 +46,7 @@ export default function Edit() {
                         <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                             <LeftSide
                                 data={data.corpo}
+                                cambios={cambios}
                                 setParrafoACambiar={setParrafoACambiar}
                                 setParrafoCambiado={setParrafoCambiado}
                                 setMostrarInput={setMostrarInput}

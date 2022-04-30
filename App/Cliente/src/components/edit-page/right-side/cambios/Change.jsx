@@ -14,6 +14,7 @@ export const Change = ({ cambio, anadirCambioSeleccionado, claseLeftSide }) => {
                     <p className="text-ellipsis overflow-hidden">{cambio.parrafoNuevo}</p>
                     <div className="flex flex-1 justify-end">
                         <ChevronDoubleDownIcon className="cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(true)} />
+                        <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none self-center' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
                     </div>
                 </div>
                 :

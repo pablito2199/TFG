@@ -28,54 +28,60 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
         const regex = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
 
         // Leis vinculadas Introducción
-        data.intro?.p.forEach(parrafo => {
-            resultado = (parrafo?._text).match(regex)
-            if (resultado !== null && resultado?.length !== 0) {
-                resultado.forEach(res => auxiliar.push(res))
-            }
-        })
-
-        // Leis vinculadas Estatuto Lei - Artículos
-        data.est_lei?.art.forEach(articulo => {
-            if (articulo?.titulo) {
-                resultado = (articulo?.titulo?._text).match(regex)
+        if (data.intro) {
+            data.intro?.p.forEach(parrafo => {
+                resultado = (parrafo?._text).match(regex)
                 if (resultado !== null && resultado?.length !== 0) {
                     resultado.forEach(res => auxiliar.push(res))
                 }
-            }
-            if (articulo?.p && articulo?.p.length) {
-                articulo.p.forEach(parrafo => {
-                    resultado = (parrafo._text).match(regex)
+            })
+        }
+
+        if (data.est_lei) {
+            // Leis vinculadas Estatuto Lei - Artículos
+            data.est_lei?.art.forEach(articulo => {
+                if (articulo?.titulo) {
+                    resultado = (articulo?.titulo?._text).match(regex)
                     if (resultado !== null && resultado?.length !== 0) {
                         resultado.forEach(res => auxiliar.push(res))
                     }
-                })
-            } else if (articulo?.p) {
-                resultado = (articulo?.p?._text).match(regex)
+                }
+                if (articulo?.p && articulo?.p.length) {
+                    articulo.p.forEach(parrafo => {
+                        resultado = (parrafo._text).match(regex)
+                        if (resultado !== null && resultado?.length !== 0) {
+                            resultado.forEach(res => auxiliar.push(res))
+                        }
+                    })
+                } else if (articulo?.p) {
+                    resultado = (articulo?.p?._text).match(regex)
+                    if (resultado !== null && resultado?.length !== 0) {
+                        resultado.forEach(res => auxiliar.push(res))
+                    }
+                }
+            })
+            // Leis vinculadas Estatuto Lei - Firma
+            data.est_lei.firma?.p.forEach(parrafo => {
+                resultado = (parrafo?._text).match(regex)
                 if (resultado !== null && resultado?.length !== 0) {
                     resultado.forEach(res => auxiliar.push(res))
                 }
-            }
-        })
-        // Leis vinculadas Estatuto Lei - Firma
-        data.est_lei.firma?.p.forEach(parrafo => {
-            resultado = (parrafo?._text).match(regex)
-            if (resultado !== null && resultado?.length !== 0) {
-                resultado.forEach(res => auxiliar.push(res))
-            }
-        })
+            })
+        }
 
         // Leis vinculadas Anexo
-        resultado = (data.anexo?.titulo._text).match(regex)
-        if (resultado !== null && resultado?.length !== 0) {
-            resultado.forEach(res => auxiliar.push(res))
-        }
-        data.anexo?.p.forEach(parrafo => {
-            resultado = (parrafo?._text).match(regex)
+        if (data.anexo) {
+            resultado = (data.anexo?.titulo._text).match(regex)
             if (resultado !== null && resultado?.length !== 0) {
                 resultado.forEach(res => auxiliar.push(res))
             }
-        })
+            data.anexo?.p.forEach(parrafo => {
+                resultado = (parrafo?._text).match(regex)
+                if (resultado !== null && resultado?.length !== 0) {
+                    resultado.forEach(res => auxiliar.push(res))
+                }
+            })
+        }
 
         //Eliminar leis duplicadas
         auxiliar = [...new Set(auxiliar)]
@@ -87,7 +93,7 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
         setLeisVinculadas([...leisVinculadas, ...resultado])
     }
 
-    return <section className='z-0 flex-1 mx-10 screen-min4:w-5/6 screen-min4:mx-2 screen-min5:mt-4'>
+    return <section className='z-0 flex-1 mx-10 screen-min5:w-5/6 screen-min4:mx-2 screen-min5:mt-4'>
         {
             estado === 'c'
                 ?
@@ -97,11 +103,11 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
                     <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer' onClick={() => setEstado('n')}>Notas</button>
                     <div className='flex flex-1 self-end justify-end h-5'>
                         {
-                            claseLeftSide === 'z-0 w-2/12 ml-2 screen-min4:w-5/6'
+                            claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'
                                 ?
-                                <ZoomOutOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-7/12 ml-2 screen-min4:w-5/6')} />
+                                <ZoomOutOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-7/12 ml-2 screen-min5:w-5/6')} />
                                 :
-                                <ZoomInOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-2/12 ml-2 screen-min4:w-5/6')} />
+                                <ZoomInOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-2/12 ml-2 screen-min5:w-5/6')} />
                         }
                     </div>
                 </nav>
@@ -114,11 +120,11 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
                         <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer' onClick={() => { setEstado('n'); setLeisVinculadas([]) }}>Notas</button>
                         <div className='flex flex-1 self-end justify-end h-5'>
                             {
-                                claseLeftSide === 'z-0 w-2/12 ml-2 screen-min4:w-5/6'
+                                claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'
                                     ?
-                                    <ZoomOutOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-7/12 ml-2 screen-min4:w-5/6')} />
+                                    <ZoomOutOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-7/12 ml-2 screen-min5:w-5/6')} />
                                     :
-                                    <ZoomInOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-2/12 ml-2 screen-min4:w-5/6')} />
+                                    <ZoomInOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-2/12 ml-2 screen-min5:w-5/6')} />
                             }
                         </div>
                     </nav>
@@ -129,11 +135,11 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
                         <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Notas</button>
                         <div className='flex flex-1 self-end justify-end h-5'>
                             {
-                                claseLeftSide === 'z-0 w-2/12 ml-2 screen-min4:w-5/6'
+                                claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'
                                     ?
-                                    <ZoomOutOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-7/12 ml-2 screen-min4:w-5/6')} />
+                                    <ZoomOutOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-7/12 ml-2 screen-min5:w-5/6')} />
                                     :
-                                    <ZoomInOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-2/12 ml-2 screen-min4:w-5/6')} />
+                                    <ZoomInOutline className='cursor-pointer border border-black hover:bg-gray-300' onClick={() => setClaseLeftSide('z-0 w-2/12 ml-2 screen-min5:w-5/6')} />
                             }
                         </div>
                     </nav>

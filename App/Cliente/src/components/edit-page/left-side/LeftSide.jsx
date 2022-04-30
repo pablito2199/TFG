@@ -6,7 +6,7 @@ import { Anexo } from './Anexo'
 import { EstLei } from './EstLei'
 import { Intro } from './Intro'
 
-export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
+export const LeftSide = ({ data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
     const handleContextMenu = (event, text) => {
         event.preventDefault()
         setAnchorPoint({ x: event.pageX, y: event.pageY })
@@ -34,9 +34,9 @@ export const LeftSide = ({ data, setParrafoACambiar, setParrafoCambiado, setAnch
             </div>
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
-            <Intro data={data} handleContextMenu={handleContextMenu} />
-            <EstLei data={data} handleContextMenu={handleContextMenu} />
-            <Anexo data={data} handleContextMenu={handleContextMenu} />
+            <Intro data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
+            <EstLei data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
+            <Anexo data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
         </div>
     </section >
 }

@@ -16,6 +16,7 @@ export const Note = ({ nota, getStringDate, anadirNotaSeleccionada, notas, setNo
                         <p className="flex flex-1 text-ellipsis overflow-hidden">{nota.contenido}</p>
                     </div>
                     <ChevronDoubleDownIcon className="cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(true)} />
+                    <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none self-center' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
                 </div>
                 :
                 <div className='flex flex-col w-full'>

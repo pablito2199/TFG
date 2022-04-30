@@ -1,11 +1,11 @@
-import { React } from 'react'
+import { React, useEffect, useState } from 'react'
 
-export const EstLei = ({ data, handleContextMenu }) => {
+export const EstLei = ({ data, cambios, handleContextMenu }) => {
     return <div>
         {
             data.est_lei?.art.map((articulo, index) =>
                 <div className='mt-4' key={index}>
-                    <p onContextMenu={(e) => handleContextMenu(e, articulo?.titulo?._text)}>{articulo?.titulo?._text}</p>
+                    <Parrafo cambios={cambios} parrafo={articulo?.titulo?._text} handleContextMenu={handleContextMenu} clase="mt-3" />
                     {
                         articulo.p !== undefined
                             ?
@@ -15,14 +15,14 @@ export const EstLei = ({ data, handleContextMenu }) => {
                                     {
                                         articulo.p.map((parrafo, index2) =>
                                             <div key={index + "artp" + index2}>
-                                                <p onContextMenu={(e) => handleContextMenu(e, parrafo?._text)}>{parrafo?._text}</p>
+                                                <Parrafo cambios={cambios} parrafo={parrafo?._text} handleContextMenu={handleContextMenu} clase="mt-3" />
                                             </div>
                                         )
                                     }
                                 </>
                                 :
                                 <div key={index + "artpp"}>
-                                    <p onContextMenu={(e) => handleContextMenu(e, articulo.p._text)}>{articulo.p._text}</p>
+                                    <Parrafo cambios={cambios} parrafo={articulo.p._text} handleContextMenu={handleContextMenu} clase="mt-3" />
                                 </div>
                             :
                             <></>
@@ -33,9 +33,32 @@ export const EstLei = ({ data, handleContextMenu }) => {
         {
             data.est_lei.firma?.p.map((parrafo, index) =>
                 <div className='mt-4' key={index}>
-                    <p onContextMenu={(e) => handleContextMenu(e, parrafo?._text)} className='text-center'>{parrafo?._text}</p>
+                    <Parrafo cambios={cambios} parrafo={parrafo?._text} handleContextMenu={handleContextMenu} clase="text-center" />
                 </div>
             )
+        }
+    </div>
+}
+
+const Parrafo = ({ parrafo, handleContextMenu, cambios, clase }) => {
+    const [claseAntiguo, setClaseAntiguo] = useState(false)
+    useEffect(() => {
+        let show = false
+        cambios.forEach(cambio => cambio.parrafoAntiguo === parrafo ? show = true : null)
+        if (show) {
+            setClaseAntiguo(true)
+        } else {
+            setClaseAntiguo(false)
+        }
+    }, [cambios, parrafo]);
+
+    return <div>
+        {
+            claseAntiguo
+                ?
+                <p className={clase + ' bg-red-200'} onContextMenu={(e) => handleContextMenu(e, parrafo)}>{parrafo}</p>
+                :
+                <p className={clase} onContextMenu={(e) => handleContextMenu(e, parrafo)}>{parrafo}</p>
         }
     </div>
 }
