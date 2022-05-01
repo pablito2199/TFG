@@ -52,3 +52,5 @@
 02/05 3.5h -> Responsividad, solución error y mostrar parte cambiada
 
 02/05 1.5h -> Memoria
+02/05 0.5h -> Botones principales
+02/05 1h -> Open API Swagger
