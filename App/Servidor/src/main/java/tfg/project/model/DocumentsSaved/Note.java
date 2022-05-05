@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public class Note {
     private String id;
-    private String user;
-    private String date;
-    private String content;
-    private List<Comment> comments;
+    private String usuario;
+    private String fecha;
+    private String contenido;
+    private List<Comment> comentarios;
 
     public String getId() {
         return id;
@@ -18,36 +18,36 @@ public class Note {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getDate() {
-        return date;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public String getContent() {
-        return content;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<Comment> getComentarios() {
+        return comentarios;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setComentarios(List<Comment> comentarios) {
+        this.comentarios = comentarios;
     }
 
     @Override
@@ -55,22 +55,22 @@ public class Note {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Note note = (Note) o;
-        return Objects.equals(id, note.id) && Objects.equals(user, note.user) && Objects.equals(date, note.date) && Objects.equals(content, note.content) && Objects.equals(comments, note.comments);
+        return Objects.equals(id, note.id) && Objects.equals(usuario, note.usuario) && Objects.equals(fecha, note.fecha) && Objects.equals(contenido, note.contenido) && Objects.equals(comentarios, note.comentarios);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, date, content, comments);
+        return Objects.hash(id, usuario, fecha, contenido, comentarios);
     }
 
     @Override
     public String toString() {
         return "Note{" +
                 "id='" + id + '\'' +
-                ", user='" + user + '\'' +
-                ", date='" + date + '\'' +
-                ", content='" + content + '\'' +
-                ", comments=" + comments +
+                ", usuario='" + usuario + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", contenido='" + contenido + '\'' +
+                ", comentarios=" + comentarios +
                 '}';
     }
 }

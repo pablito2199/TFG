@@ -3,32 +3,32 @@ package tfg.project.model.DocumentsSaved;
 import java.util.Objects;
 
 public class Comment {
-    private String date;
-    private String user;
-    private String content;
+    private String fecha;
+    private String usuario;
+    private String contenido;
 
-    public String getDate() {
-        return date;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getContent() {
-        return content;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
 
     @Override
@@ -36,20 +36,20 @@ public class Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(date, comment.date) && Objects.equals(user, comment.user) && Objects.equals(content, comment.content);
+        return Objects.equals(fecha, comment.fecha) && Objects.equals(usuario, comment.usuario) && Objects.equals(contenido, comment.contenido);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, user, content);
+        return Objects.hash(fecha, usuario, contenido);
     }
 
     @Override
     public String toString() {
         return "Comment{" +
-                "date='" + date + '\'' +
-                ", user='" + user + '\'' +
-                ", content='" + content + '\'' +
+                "fecha='" + fecha + '\'' +
+                ", usuario='" + usuario + '\'' +
+                ", contenido='" + contenido + '\'' +
                 '}';
     }
 }

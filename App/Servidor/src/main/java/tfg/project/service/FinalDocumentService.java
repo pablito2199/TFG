@@ -15,7 +15,11 @@ public class FinalDocumentService {
     public FinalDocumentService(FinalDocumentRepository finalDocuments) {
         this.finalDocuments = finalDocuments;
     }
-
+    
+    public Optional<FinalDocument> get(String id) {
+        return finalDocuments.findById(id);
+    }
+    
     public FinalDocument save(FinalDocument finalDocument) {
         return finalDocuments.save(finalDocument);
     }

@@ -8,7 +8,7 @@ import { Cambios } from './cambios/Cambios'
 import { Notas } from './notas/Notas'
 import { ZoomInOutline, ZoomOutOutline } from '@graywolfai/react-heroicons'
 
-export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLeftSide }) => {
+export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLeftSide, notas, setNotas }) => {
     const [estado, setEstado] = useState('c')
     const [leisVinculadas, setLeisVinculadas] = useState([])
     const [leisEliminadas, setLeisEliminadas] = useState([])
@@ -160,7 +160,7 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
                         setLeisAnadidasManualmente={setLeisAnadidasManualmente}
                     />
                     :
-                    <Notas />
+                    <Notas notas={notas} setNotas={setNotas} />
         }
     </section >
 }

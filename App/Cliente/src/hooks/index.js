@@ -39,3 +39,40 @@ export function useDocument(id) {
 
     return data
 }
+
+export function useFinalDocument(id = 1) {
+    const [data, setData] = useState({})
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        }
+
+        const getData = async () => {
+            const response = await fetch(`/documents/savedDocuments/${id}`, requestOptions);
+            const jsonData = await response.json()
+            setData(jsonData)
+        }
+        getData()
+    }, [id])
+
+    const put = finalDocument => {
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id: finalDocument.id,
+                notes: finalDocument.notes,
+                changes: finalDocument.changes
+            })
+        }
+
+        fetch('/documents/savedDocuments', requestOptions);
+    }
+
+    return {
+        data,
+        put
+    }
+}

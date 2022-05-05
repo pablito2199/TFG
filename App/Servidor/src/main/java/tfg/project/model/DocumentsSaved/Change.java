@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Change {
     private String id;
-    private String oldValue;
-    private String newValue;
+    private String parrafoAntiguo;
+    private String parrafoNuevo;
 
     public String getId() {
         return id;
@@ -15,20 +15,20 @@ public class Change {
         this.id = id;
     }
 
-    public String getOldValue() {
-        return oldValue;
+    public String getParrafoAntiguo() {
+        return parrafoAntiguo;
     }
 
-    public void setOldValue(String oldValue) {
-        this.oldValue = oldValue;
+    public void setParrafoAntiguo(String parrafoAntiguo) {
+        this.parrafoAntiguo = parrafoAntiguo;
     }
 
-    public String getNewValue() {
-        return newValue;
+    public String getParrafoNuevo() {
+        return parrafoNuevo;
     }
 
-    public void setNewValue(String newValue) {
-        this.newValue = newValue;
+    public void setParrafoNuevo(String parrafoNuevo) {
+        this.parrafoNuevo = parrafoNuevo;
     }
 
     @Override
@@ -36,20 +36,20 @@ public class Change {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Change change = (Change) o;
-        return Objects.equals(id, change.id) && Objects.equals(oldValue, change.oldValue) && Objects.equals(newValue, change.newValue);
+        return Objects.equals(id, change.id) && Objects.equals(parrafoAntiguo, change.parrafoAntiguo) && Objects.equals(parrafoNuevo, change.parrafoNuevo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, oldValue, newValue);
+        return Objects.hash(id, parrafoAntiguo, parrafoNuevo);
     }
 
     @Override
     public String toString() {
         return "Change{" +
                 "id='" + id + '\'' +
-                ", oldValue='" + oldValue + '\'' +
-                ", newValue='" + newValue + '\'' +
+                ", parrafoAntiguo='" + parrafoAntiguo + '\'' +
+                ", parrafoNuevo='" + parrafoNuevo + '\'' +
                 '}';
     }
 }

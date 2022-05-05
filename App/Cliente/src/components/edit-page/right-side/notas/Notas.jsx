@@ -4,20 +4,9 @@ import { Button } from "../../../Button"
 import { CreateNote } from "./CreateNote"
 import { Note } from "./Note"
 
-export const Notas = () => {
-    const [notas, setNotas] = useState([
-        { id: Date.now(), fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Comentario 1', 'fecha': new Date(), usuario: 'Nome Apelido' }, { 'contenido': 'Comentario 2', 'fecha': new Date(), usuario: 'Nome Apelido' }] },
-        { id: Date.now() + 1, fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [{ 'contenido': 'Comentario', 'fecha': new Date(), usuario: 'Nome Apelido' }] },
-        { id: Date.now() + 2, fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: Date.now() + 3, fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: Date.now() + 4, fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: Date.now() + 5, fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: Date.now() + 6, fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-        { id: Date.now() + 7, fecha: new Date(), usuario: 'Nome Apelido', contenido: 'Lorem ipsum dolor situm Lorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situmLorem ipsum dolor situm', comentarios: [] },
-    ])
-
+export const Notas = ({ notas, setNotas }) => {
     const getStringDate = (data) => {
-        return String(data.getDate()).padStart(2, '0') + '/' + String(data.getMonth() + 1).padStart(2, '0') + '/' + data.getFullYear()
+        return data.substring(8, 10) + '/' + data.substring(5, 7) + '/' + data.substring(0, 4)
     }
 
     const [notasSeleccionadas, setNotasSeleccionadas] = useState([])

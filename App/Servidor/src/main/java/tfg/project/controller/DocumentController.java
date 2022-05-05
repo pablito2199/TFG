@@ -18,6 +18,8 @@ import tfg.project.model.Documento;
 import tfg.project.model.DocumentsSaved.FinalDocument;
 import tfg.project.service.FinalDocumentService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("documents")
 public class DocumentController {
@@ -59,9 +61,52 @@ public class DocumentController {
         return null;
     }
 
-    @PutMapping (consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<FinalDocument> post(
+    @GetMapping(path = "savedDocuments/{id}", produces = APPLICATION_JSON_VALUE)
+    @Operation(
+            operationId = "getDocumentData",
+            summary = "Obter os datos dun documento.",
+            description = "Obter os datos dun documento a partir do seu id."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "O documento foi atopado.",
+                    content = @Content(
+                            mediaType = "application/xml",
+                            schema = @Schema(implementation = String.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Documento non atopado.",
+                    content = @Content
+            )
+    })
+    ResponseEntity<Optional<FinalDocument>> getSavedDocument(
             @Parameter(description = "Id do documento a buscar")
+            @PathVariable("id") String id
+    ) {
+        return ResponseEntity.ok().body(finalDocuments.get(id));
+    }
+
+    @PutMapping (path="savedDocuments", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @Operation(
+            operationId = "putDocumentData",
+            summary = "Gardar os datos dun documento.",
+            description = "Gardar os datos dun documento (id, notas e cambios)."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "O documento foi gardado correctamente.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = FinalDocument.class)
+                    )
+            )
+    })
+    ResponseEntity<FinalDocument> put(
+            @Parameter(description = "Datos adicionais do documento que se está a editar")
             @RequestBody FinalDocument finalDocument
     ) {
         return ResponseEntity.ok().body(finalDocuments.save(finalDocument));

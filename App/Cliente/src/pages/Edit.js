@@ -1,21 +1,27 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 
-import { useDocument } from '../hooks'
+import { useDocument, useFinalDocument } from '../hooks'
 import { Header, LeftSide, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 
 export default function Edit() {
+    let selectedText = window.getSelection()
+    let data = useDocument(1)
+    let documentAdditionalData = useFinalDocument(1651743500014).data
+
     const [parrafoACambiar, setParrafoACambiar] = useState('')
     const [parrafoCambiado, setParrafoCambiado] = useState('')
     const [mostrarInput, setMostrarInput] = useState(false)
     const [cambios, setCambios] = useState([])
+    const [notas, setNotas] = useState([])
     const [opacity, setOpacity] = useState('opacity-100')
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
     const [show, setShow] = useState(false)
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
 
-    let selectedText = window.getSelection()
-    let data = useDocument(1)
+    useEffect(() => {
+        setNotas(documentAdditionalData.notes)
+    }, [documentAdditionalData])
 
     return (
         <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
@@ -62,13 +68,15 @@ export default function Edit() {
                                 setCambios={setCambios}
                                 claseLeftSide={claseLeftSide}
                                 setClaseLeftSide={setClaseLeftSide}
+                                notas={notas}
+                                setNotas={setNotas}
                             />
                         </main>
                         :
                         <></>
                 }
 
-                <PrincipalButtons />
+                <PrincipalButtons id={documentAdditionalData.id} notas={notas} cambios={cambios} />
             </div >
 
             <ContextMenu
