@@ -20,6 +20,7 @@ export default function Edit() {
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
 
     useEffect(() => {
+        setCambios(documentAdditionalData.changes)
         setNotas(documentAdditionalData.notes)
     }, [documentAdditionalData])
 
