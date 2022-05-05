@@ -11,13 +11,23 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tfg.project.model.Documento;
+import tfg.project.model.DocumentsSaved.FinalDocument;
+import tfg.project.service.FinalDocumentService;
 
 @RestController
 @RequestMapping("documents")
 public class DocumentController {
+    private final FinalDocumentService finalDocuments;
+
+    @Autowired
+    public DocumentController(FinalDocumentService finalDocuments) {
+        this.finalDocuments = finalDocuments;
+    }
+
     @GetMapping(path = "{id}", produces = APPLICATION_XML_VALUE)
     @Operation(
             operationId = "getDocument",
@@ -49,14 +59,11 @@ public class DocumentController {
         return null;
     }
 
-    @PostMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<Documento> post(
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<FinalDocument> post(
             @Parameter(description = "Id do documento a buscar")
-            @PathVariable("id") Integer id
+            @RequestBody FinalDocument finalDocument
     ) {
-        if (id == 1) {
-            return ResponseEntity.ok().body(convertXMLToObject());
-        }
-        return null;
+        return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
     }
 }
