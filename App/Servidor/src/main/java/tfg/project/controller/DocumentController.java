@@ -59,7 +59,7 @@ public class DocumentController {
         return null;
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     ResponseEntity<FinalDocument> post(
             @Parameter(description = "Id do documento a buscar")
             @RequestBody FinalDocument finalDocument
