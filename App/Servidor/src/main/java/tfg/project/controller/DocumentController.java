@@ -1,5 +1,6 @@
 package tfg.project.controller;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static tfg.project.utilities.AuxMethods.convertXMLToObject;
 
 import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
@@ -11,10 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tfg.project.model.Documento;
 
 @RestController
@@ -42,6 +40,17 @@ public class DocumentController {
             )
     })
     ResponseEntity<Documento> get(
+            @Parameter(description = "Id do documento a buscar")
+            @PathVariable("id") Integer id
+    ) {
+        if (id == 1) {
+            return ResponseEntity.ok().body(convertXMLToObject());
+        }
+        return null;
+    }
+
+    @PostMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<Documento> post(
             @Parameter(description = "Id do documento a buscar")
             @PathVariable("id") Integer id
     ) {
