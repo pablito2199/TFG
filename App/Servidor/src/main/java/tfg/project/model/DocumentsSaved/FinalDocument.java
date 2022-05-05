@@ -13,6 +13,8 @@ public class FinalDocument {
     private String id;
     @Schema(description = "Lista de notas escritas no documento.")
     private List<Note> notes;
+    @Schema(description = "Lista de leis vinculadas co documento.")
+    private List<Law> laws;
     @Schema(description = "Lista de cambios propostos no documento.")
     private List<Change> changes;
 
@@ -32,6 +34,14 @@ public class FinalDocument {
         this.notes = notes;
     }
 
+    public List<Law> getLaws() {
+        return laws;
+    }
+
+    public void setLaws(List<Law> laws) {
+        this.laws = laws;
+    }
+
     public List<Change> getChanges() {
         return changes;
     }
@@ -45,12 +55,12 @@ public class FinalDocument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FinalDocument that = (FinalDocument) o;
-        return Objects.equals(id, that.id) && Objects.equals(notes, that.notes) && Objects.equals(changes, that.changes);
+        return Objects.equals(id, that.id) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, notes, changes);
+        return Objects.hash(id, notes, laws, changes);
     }
 
     @Override
@@ -58,6 +68,7 @@ public class FinalDocument {
         return "FinalDocument{" +
                 "id='" + id + '\'' +
                 ", notes=" + notes +
+                ", laws=" + laws +
                 ", changes=" + changes +
                 '}';
     }

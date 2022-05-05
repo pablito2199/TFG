@@ -13,6 +13,7 @@ export default function Edit() {
     const [parrafoCambiado, setParrafoCambiado] = useState('')
     const [mostrarInput, setMostrarInput] = useState(false)
     const [cambios, setCambios] = useState([])
+    const [leisVinculadas, setLeisVinculadas] = useState([])
     const [notas, setNotas] = useState([])
     const [opacity, setOpacity] = useState('opacity-100')
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
@@ -20,8 +21,15 @@ export default function Edit() {
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
 
     useEffect(() => {
-        setCambios(documentAdditionalData.changes)
-        setNotas(documentAdditionalData.notes)
+        if (documentAdditionalData.changes) {
+            setCambios(documentAdditionalData.changes)
+        }
+        if (documentAdditionalData.laws) {
+            setLeisVinculadas(documentAdditionalData.laws)
+        }
+        if (documentAdditionalData.notes) {
+            setNotas(documentAdditionalData.notes)
+        }
     }, [documentAdditionalData])
 
     return (
@@ -71,13 +79,15 @@ export default function Edit() {
                                 setClaseLeftSide={setClaseLeftSide}
                                 notas={notas}
                                 setNotas={setNotas}
+                                leisVinculadas={leisVinculadas}
+                                setLeisVinculadas={setLeisVinculadas}
                             />
                         </main>
                         :
                         <></>
                 }
 
-                <PrincipalButtons id={documentAdditionalData.id} notas={notas} cambios={cambios} />
+                <PrincipalButtons id={documentAdditionalData.id} notas={notas} cambios={cambios} leyes={leisVinculadas} />
             </div >
 
             <ContextMenu

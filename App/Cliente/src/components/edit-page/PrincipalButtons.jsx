@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 
-export const PrincipalButtons = ({ id, notas, cambios }) => {
+export const PrincipalButtons = ({ id, notas, cambios, leyes }) => {
     const { put } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async () => {
+        console.log(leyes)
         try {
             put({
                 id: id,
                 notes: notas,
-                changes: cambios
+                changes: cambios,
+                laws: leyes
             })
 
             navigate('/')

@@ -8,10 +8,11 @@ export const CreateNote = ({ notas, setNotas }) => {
     const [mostrar, setMostrar] = useState(false)
 
     const submit = () => {
+
         if (nota !== '') {
             let myObj = {
                 'id': Date.now(),
-                'fecha': new Date(),
+                'fecha': new Date().toLocaleDateString(),
                 'usuario': 'Nome Apelido',
                 'contenido': nota,
                 'comentarios': []

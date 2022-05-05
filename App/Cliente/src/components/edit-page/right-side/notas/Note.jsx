@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Comment } from "./Comment"
 import { CreateComment } from "./CreateComment"
 
-export const Note = ({ nota, getStringDate, anadirNotaSeleccionada, notas, setNotas }) => {
+export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas }) => {
     const [mostrar, setMostrar] = useState(false)
 
     return <div key={nota.id} className='shadow-inner p-2 border-b-2'>
@@ -27,7 +27,7 @@ export const Note = ({ nota, getStringDate, anadirNotaSeleccionada, notas, setNo
                         <div className='flex flex-col w-full'>
                             <div className="flex w-full">
                                 <span className="mx-4 font-semibold">{nota.usuario}</span>
-                                <div className="flex flex-1 justify-end italic font-semibold text-gray-600 w-full">({getStringDate(nota.fecha)})</div>
+                                <div className="flex flex-1 justify-end italic font-semibold text-gray-600 w-full">({nota.fecha})</div>
                             </div>
                             <p className='mt-2 mx-4 mb-4'>{nota.contenido}</p>
                         </div>
@@ -37,7 +37,7 @@ export const Note = ({ nota, getStringDate, anadirNotaSeleccionada, notas, setNo
                         <div>
                             {
                                 nota.comentarios?.map((com, i) =>
-                                    <Comment data={com} getStringDate={getStringDate} key={i} />
+                                    <Comment data={com} key={i} />
                                 )
                             }
                         </div>

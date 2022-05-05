@@ -64,7 +64,8 @@ export function useFinalDocument(id = 1) {
             body: JSON.stringify({
                 id: finalDocument.id,
                 notes: finalDocument.notes,
-                changes: finalDocument.changes
+                changes: finalDocument.changes,
+                laws: finalDocument.laws
             })
         }
 

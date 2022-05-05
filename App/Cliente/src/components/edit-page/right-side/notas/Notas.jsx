@@ -5,10 +5,6 @@ import { CreateNote } from "./CreateNote"
 import { Note } from "./Note"
 
 export const Notas = ({ notas, setNotas }) => {
-    const getStringDate = (data) => {
-        return data.substring(8, 10) + '/' + data.substring(5, 7) + '/' + data.substring(0, 4)
-    }
-
     const [notasSeleccionadas, setNotasSeleccionadas] = useState([])
 
     const anadirNotaSeleccionada = (event, nota) => {
@@ -28,7 +24,7 @@ export const Notas = ({ notas, setNotas }) => {
         <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
             {
                 notas?.map(nota =>
-                    <Note nota={nota} getStringDate={getStringDate} anadirNotaSeleccionada={anadirNotaSeleccionada} notas={notas} setNotas={setNotas} key={nota.id} />
+                    <Note nota={nota} anadirNotaSeleccionada={anadirNotaSeleccionada} notas={notas} setNotas={setNotas} key={nota.id} />
                 )
             }
         </div>

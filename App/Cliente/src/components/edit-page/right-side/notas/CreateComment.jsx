@@ -7,7 +7,7 @@ export const CreateComment = ({ notas, setNotas, nota }) => {
         if (comentario !== '') {
             let myObj = {
                 'contenido': comentario,
-                'fecha': new Date(),
+                'fecha': new Date().toLocaleDateString(),
                 'usuario': 'Nome Apelido'
             }
             setNotas(notas.map(notaAux => {
