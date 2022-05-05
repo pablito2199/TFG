@@ -1,10 +1,16 @@
 package tfg.project.model.DocumentsSaved;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.Objects;
 
+@Schema(description = "Comentarios realizados nunha nota.")
 public class Comment {
+    @Schema(description = "Data na que se escribiu o comentario.", example = "2022-05-05T09:37:56.157Z")
     private String fecha;
+    @Schema(description = "Usuario que escribiu o comentario.", example = "Nome Apelido")
     private String usuario;
+    @Schema(description = "Contido do comentario.", example = "Contido do comentario")
     private String contenido;
 
     public String getFecha() {

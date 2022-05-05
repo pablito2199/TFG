@@ -72,7 +72,7 @@ public class DocumentController {
                     responseCode = "200",
                     description = "O documento foi atopado.",
                     content = @Content(
-                            mediaType = "application/xml",
+                            mediaType = "application/json",
                             schema = @Schema(implementation = String.class)
                     )
             ),
@@ -83,12 +83,12 @@ public class DocumentController {
             )
     })
     ResponseEntity<Optional<FinalDocument>> getSavedDocument(
-            @Parameter(description = "Id do documento a buscar")
+            @Parameter(description = "Id do documento a buscar", example = "1651743500014")
             @PathVariable("id") String id
     ) {
         return ResponseEntity.ok().body(finalDocuments.get(id));
     }
-
+    
     @PutMapping (path="savedDocuments", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "putDocumentData",

@@ -1,14 +1,19 @@
 package tfg.project.model.DocumentsSaved;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "finalDocuments")
+@Schema(description = "Datos adicionais dun documento.")
 public class FinalDocument {
+    @Schema(description = "Id do documento.", example = "1651743500014")
     private String id;
+    @Schema(description = "Lista de notas escritas no documento.")
     private List<Note> notes;
+    @Schema(description = "Lista de cambios propostos no documento.")
     private List<Change> changes;
 
     public String getId() {

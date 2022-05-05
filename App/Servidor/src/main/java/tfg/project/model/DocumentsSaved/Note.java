@@ -1,13 +1,21 @@
 package tfg.project.model.DocumentsSaved;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.List;
 import java.util.Objects;
 
+@Schema(description = "Notas escritas nun documento.")
 public class Note {
+    @Schema(description = "Id da nota.", example = "1651743476158")
     private String id;
-    private String usuario;
+    @Schema(description = "Data na que se escribiu a nota.", example = "2022-05-05T09:37:56.157Z")
     private String fecha;
+    @Schema(description = "Usuario que escribiu a nota.", example = "Nome Apelido")
+    private String usuario;
+    @Schema(description = "Contido da nota.", example = "Contido da nota")
     private String contenido;
+    @Schema(description = "Lista de comentarios que recibiu a nota.")
     private List<Comment> comentarios;
 
     public String getId() {

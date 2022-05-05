@@ -1,10 +1,16 @@
 package tfg.project.model.DocumentsSaved;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.Objects;
 
+@Schema(description = "Cambios propostos nun documento.")
 public class Change {
+    @Schema(description = "Id do cambio.", example = "1651746730145")
     private String id;
+    @Schema(description = "Parágrafo antigo do documento.", example = "Cambiar")
     private String parrafoAntiguo;
+    @Schema(description = "Parágrafo novo do documento.", example = "Cambiado")
     private String parrafoNuevo;
 
     public String getId() {
