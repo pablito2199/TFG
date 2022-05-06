@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 import ReactFontLoader from 'react-font-loader'
 
-import Edit from './pages/Edit'
+import EditXml from './pages/EditXml'
+import EditDog from './pages/EditDog'
 import Search from './pages/Search'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
@@ -25,7 +26,8 @@ ReactDOM.render(
             <SideBar />
             <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route exact path="/edit" element={<Edit />} />
+                <Route exact path="/edit" element={<EditXml />} />
+                <Route exact path="/edit/:id1/:id2/:id3/:id4/:id5" element={<EditDog />} />
                 <Route exact path="/home" element={<Home />} />
                 <Route path="/search" element={<Search />} />
                 <Route exact path='/404' element={<NotFound />} />

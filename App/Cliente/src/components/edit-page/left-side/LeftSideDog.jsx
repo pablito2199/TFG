@@ -2,11 +2,9 @@ import { React, useCallback, useEffect } from 'react'
 
 import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
-import { Anexo } from './Anexo'
-import { EstLei } from './EstLei'
-import { Intro } from './Intro'
+import { DogContent } from './DogContent'
 
-export const LeftSide = ({ data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
+export const LeftSideDog = ({ data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
     const handleContextMenu = (event, text) => {
         event.preventDefault()
         setAnchorPoint({ x: event.pageX, y: event.pageY })
@@ -34,9 +32,7 @@ export const LeftSide = ({ data, cambios, setParrafoACambiar, setParrafoCambiado
             </div>
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
-            <Intro data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
-            <EstLei data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
-            <Anexo data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
+            <DogContent data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
         </div>
     </section >
 }

@@ -1,12 +1,12 @@
 import { React, useEffect, useState } from 'react'
 
-import { useDocument, useFinalDocument } from '../hooks'
-import { Header, LeftSide, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
+import { useXmlDocument, useFinalDocument } from '../hooks'
+import { HeaderXml, LeftSideXml, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 
-export default function Edit() {
+export default function EditXml() {
     let selectedText = window.getSelection()
-    let data = useDocument(1)
+    const data = useXmlDocument(1)
     let documentAdditionalData = useFinalDocument(1651743500014).data
 
     const [parrafoACambiar, setParrafoACambiar] = useState('')
@@ -45,12 +45,11 @@ export default function Edit() {
                 setCambios={setCambios}
                 setOpacity={setOpacity}
             />
-
             <div className={opacity}>
                 {
                     data?.cab !== undefined
                         ?
-                        <Header data={data.cab} />
+                        <HeaderXml data={data.cab} />
                         :
                         <></>
                 }
@@ -59,7 +58,7 @@ export default function Edit() {
                     data?.corpo !== undefined
                         ?
                         <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                            <LeftSide
+                            <LeftSideXml
                                 data={data.corpo}
                                 cambios={cambios}
                                 setParrafoACambiar={setParrafoACambiar}

@@ -11,7 +11,7 @@ import { Textarea } from "../Textarea"
 import { Select } from "../Select"
 import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid'
 
-export const Header = ({ data }) => {
+export const HeaderXml = ({ data }) => {
     const [mostrar, setMostrar] = useState(false)
     const estados = [
         { id: 1, descripcion: 'En vigor' },

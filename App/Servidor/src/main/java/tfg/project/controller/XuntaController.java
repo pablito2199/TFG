@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import tfg.project.model.CriterioOrdenacion;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
 @RestController
 @RequestMapping("xunta")
@@ -81,6 +82,17 @@ public class XuntaController {
                         + "&pagina=" + pagina
                 ,
                 String.class
+        );
+    }
+    
+    @GetMapping(path = "norma", produces = APPLICATION_XML_VALUE)
+    private String getNorma(
+            @Parameter(description = "Páxina onde realizar a búsqueda")
+            @RequestParam(name = "url", defaultValue = "") String url
+    ) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(
+                url, String.class
         );
     }
 }

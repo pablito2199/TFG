@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { xml2json } from 'xml-js'
+import XMLParser from 'react-xml-parser';
 
 export function useNormas(query = '') {
     const [data, setData] = useState({})
@@ -17,7 +18,7 @@ export function useNormas(query = '') {
     return data
 }
 
-export function useDocument(id) {
+export function useXmlDocument(id) {
     const [data, setData] = useState({})
 
     useEffect(() => {
@@ -38,6 +39,31 @@ export function useDocument(id) {
     }, [id])
 
     return data
+}
+
+export function useDogDocument(url) {
+    const [htmlCode, setHtmlCode] = useState('')
+
+    useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/xml"
+            }
+        }
+
+        const getUrl = async () => {
+            await fetch(`/xunta/norma?url=${url}`, requestOptions)
+                .then(response => response.text())
+                .then(text => {
+                    console.log(text); setHtmlCode(new XMLParser().parseFromString(text))
+                })
+                .catch(error => console.log(error))
+        }
+        getUrl()
+    }, [url])
+
+    return htmlCode
 }
 
 export function useFinalDocument(id = 1) {
