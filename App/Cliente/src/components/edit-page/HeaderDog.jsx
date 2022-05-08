@@ -24,8 +24,8 @@ export const HeaderDog = ({ data }) => {
         return fecha
     }
 
-    const [titulo, setTitulo] = useState(data.children[0].children[0].value)
-    const [sumario, setSumario] = useState(data.children[2].children[0].value)
+    const [titulo, setTitulo] = useState(data.getElementsByClassName('dog-texto-seccion')[0].innerText)
+    const [sumario, setSumario] = useState(data.getElementsByClassName('dog-texto-sumario')[0].innerText)
     const [dpub, setDpub] = useState(convertirFecha(''))
     const [refpub, setRefpub] = useState('')
     const [ano, setAno] = useState('')
@@ -42,7 +42,7 @@ export const HeaderDog = ({ data }) => {
 
     return <section className='z-0 w-full font-medium mt-5 pr-10 flex flex-col px-2 screen-min5:w-11/12 screen-min1:w-9/12'>
         {
-            !mostrar
+            mostrar
                 ?
                 <div className='flex w-80 p-1 bg-blue-lex-gal text-center items-center'>
                     <span className='text-white ml-4 text-2xl py-3'>Datos de cabeceira</span>

@@ -1,11 +1,10 @@
 import { React, useEffect, useState } from 'react'
 
 export const DogContent = ({ data, cambios, handleContextMenu }) => {
-    console.log(data.children)
     return <div>
         {
-            data.children.map((parrafo, index) =>
-                <Parrafo cambios={cambios} parrafo={parrafo.value} handleContextMenu={handleContextMenu} clase="mt-3" key={index} />
+            Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) =>
+                <Parrafo cambios={cambios} parrafo={parrafo.innerText} handleContextMenu={handleContextMenu} clase="mt-3" key={index} />
             )
         }
     </div>

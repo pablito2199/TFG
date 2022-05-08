@@ -10,8 +10,6 @@ export default function EditDog() {
     const id = useParams()
     let selectedText = window.getSelection()
     const htmlCode = useDogDocument(`https://www.xunta.gal/${id.id1}/${id.id2}/${id.id3}/${id.id4}/${id.id5}`)
-    if (htmlCode)
-        console.log(htmlCode.children[0].children[0].children[23].children[0].children[1].children[1])
     let documentAdditionalData = useFinalDocument(1651743500014).data
 
     const [parrafoACambiar, setParrafoACambiar] = useState('')
@@ -55,11 +53,11 @@ export default function EditDog() {
                     htmlCode
                         ?
                         <>
-                            <HeaderDog data={htmlCode.children[0].children[0].children[23].children[0].children[1].children[1].children[4].children[1].children[0].children[0]} />
+                            <HeaderDog data={htmlCode} />
 
                             <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                                 <LeftSideDog
-                                    data={htmlCode.children[0].children[0].children[23].children[0].children[1].children[1].children[4].children[1].children[0].children[1]}
+                                    data={htmlCode}
                                     cambios={cambios}
                                     setParrafoACambiar={setParrafoACambiar}
                                     setParrafoCambiado={setParrafoCambiado}
