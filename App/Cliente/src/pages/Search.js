@@ -24,18 +24,12 @@ export default function Search() {
     } else {
         paginaQuery = 1
     }
-    let initialText
-    if (query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)) {
-        initialText = query.match(/(?<=texto\s*=).*(?=&soloTitulo)/g)[0]
-    } else {
-        initialText = ''
-    }
 
     const [actualPage, setActualPage] = useState(paginaQuery[0])
 
     return (
         <div className='flex flex-col ml-20 items-center w-full screen-min5:ml-10'>
-            <SearchField initialText={initialText} pagina={actualPage + 1} setPagina={setActualPage} />
+            <SearchField pagina={actualPage + 1} setPagina={setActualPage} />
             {
                 data.response?.listas.datos_informe
                     ?
@@ -46,7 +40,7 @@ export default function Search() {
                             <Pages query={querySinPagina} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
                         </>
                         :
-                        <div className='py-4 text-gray-600 font-semibold italic'>
+                        <div className='py-4 text-red-600 font-semibold italic'>
                             <p>Non se atoparon resultados na súa búsqueda. Por favor, inténteo de novo.</p>
                         </div>
                     :

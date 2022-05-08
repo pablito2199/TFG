@@ -6,11 +6,11 @@ import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSide } from '../co
 import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
 
-export default function EditDog() {
+export default function EditDogExceptional() {
     const id = useParams()
     let selectedText = window.getSelection()
     const htmlCode = useDogDocument(`https://www.xunta.gal/${id.id1}/${id.id2}/${id.id3}/${id.id4}/${id.id5}`)
-    let documentAdditionalData = useFinalDocument(id.id5).data
+    let documentAdditionalData = useFinalDocument(id.id7).data
 
     const [parrafoACambiar, setParrafoACambiar] = useState('')
     const [parrafoCambiado, setParrafoCambiado] = useState('')
@@ -52,7 +52,7 @@ export default function EditDog() {
             />
             <div className={opacity}>
                 {
-                    htmlCode
+                    htmlCode.innerText
                         ?
                         <>
                             <HeaderDog data={htmlCode} />
@@ -84,10 +84,12 @@ export default function EditDog() {
                             </main>
                         </>
                         :
-                        <></>
+                        <div className='mt-80 text-red-600 font-semibold italic'>
+                            <p>O formato do ficheiro non é compatible coa páxina. Por favor, inténteo de novo.</p>
+                        </div>
                 }
 
-                <PrincipalButtons id={id.id5} notas={notas} cambios={cambios} leyes={leisVinculadas} />
+                <PrincipalButtons id={id.id7} notas={notas} cambios={cambios} leyes={leisVinculadas} />
             </div >
 
             <ContextMenu
