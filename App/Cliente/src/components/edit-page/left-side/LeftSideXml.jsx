@@ -28,7 +28,7 @@ export const LeftSideXml = ({ data, cambios, setParrafoACambiar, setParrafoCambi
         <nav className='flex text-lg items-center gap-2'>
             <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Norma</button>
             <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
-                <Tooltip title="Para propoñer un cambio faga click dereito sobre calquer parágrafo e pinche en 'Propoñer un cambio'." placement="top" arrow>
+                <Tooltip title="Para propoñer un cambio faga click dereito sobre calquer parágrafo e pinche en 'Propoñer cambio'." placement="top" arrow>
                     <QuestionMarkCircleIcon className='h-8 text-orange' />
                 </Tooltip>
             </div>

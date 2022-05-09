@@ -16,20 +16,28 @@ export const LeisVinculadas = ({ leis, setLeis, leisEliminadas, setLeisEliminada
             leisAnadidasManualmente={leisAnadidasManualmente}
             setLeisAnadidasManualmente={setLeisAnadidasManualmente}
         />
-        <div className='border border-black max-h-leis-vinculadas-top overflow-y-scroll'>
-            {
-                leis?.map(lei =>
-                    <div className='m-4 flex flex-col border-b border-gray-lex-gal w-12/13' key={lei.id}>
-                        <div className='flex flex-row items-center'>
-                            <span className='font-semibold'>{lei.name}</span>
-                            <button title="Eliminar lei vinculada" onClick={() => eliminarLeiVinculada(lei.id)} className='focus:outline-none py-2 flex justify-end items-center text-red-500 flex-auto text-right text-sm cursor-pointer gap-1'>
-                                <XCircleIcon className='h-4 text-red-500' />
-                                <span>Eliminar</span>
-                            </button>
-                        </div>
-                    </div>
-                )
-            }
-        </div>
+        {
+            leis.length !== 0
+                ?
+                <div className='border border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'>
+                    {
+                        leis?.map(lei =>
+                            <div className='m-4 flex flex-col border-b border-gray-lex-gal w-12/13' key={lei.id}>
+                                <div className='flex flex-row items-center'>
+                                    <span className='font-semibold'>{lei.name}</span>
+                                    <div className="flex flex-auto justify-end">
+                                        <button title="Eliminar lei vinculada" onClick={() => eliminarLeiVinculada(lei.id)} className='focus:outline-none flex py-2 items-center text-red-500 text-right text-sm cursor-pointer gap-1'>
+                                            <XCircleIcon className='h-4 text-red-500' />
+                                            <span>Eliminar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+                :
+                <div className='min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'></div>
+        }
     </div>
 }

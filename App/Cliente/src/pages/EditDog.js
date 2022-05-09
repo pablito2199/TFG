@@ -87,7 +87,7 @@ export default function EditDog() {
                         <></>
                 }
 
-                <PrincipalButtons id={id.id5} notas={notas} cambios={cambios} leyes={leisVinculadas} />
+                <PrincipalButtons idDb={id.id5} enlace={'https://www.xunta.gal/' + id.id1 + '/' + id.id2 + '/' + id.id3 + '/' + id.id4 + '/' + id.id5} notas={notas} cambios={cambios} leyes={leisVinculadas} />
             </div>
 
             <ContextMenu
