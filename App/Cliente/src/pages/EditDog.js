@@ -88,7 +88,7 @@ export default function EditDog() {
                 }
 
                 <PrincipalButtons id={id.id5} notas={notas} cambios={cambios} leyes={leisVinculadas} />
-            </div >
+            </div>
 
             <ContextMenu
                 show={show}

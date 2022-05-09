@@ -13,7 +13,7 @@ export default function NotFound() {
                 default: throw new Error('invalid action')
             }
         },
-        15,
+        10,
         arg => arg
     )
 
