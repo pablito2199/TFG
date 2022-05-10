@@ -53,12 +53,9 @@ public class DocumentController {
     })
     ResponseEntity<Documento> get(
             @Parameter(description = "Id do documento a buscar")
-            @PathVariable("id") Integer id
+            @PathVariable("id") String id
     ) {
-        if (id == 1) {
-            return ResponseEntity.ok().body(convertXMLToObject());
-        }
-        return null;
+            return ResponseEntity.ok().body(convertXMLToObject(id));
     }
 
     @GetMapping(path = "savedDocuments/{id}", produces = APPLICATION_JSON_VALUE)
@@ -109,6 +106,7 @@ public class DocumentController {
             @Parameter(description = "Datos adicionais do documento que se está a editar")
             @RequestBody FinalDocument finalDocument
     ) {
+        System.out.println(finalDocument);
         return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
     }
 }

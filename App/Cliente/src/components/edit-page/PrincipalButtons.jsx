@@ -4,18 +4,32 @@ import { useNavigate } from 'react-router-dom'
 import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 
-export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes }) => {
+export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, refpub, ano, version, referencia, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada }) => {
     const { put } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async () => {
-        console.log(leyes)
         try {
             put({
                 id: idDb,
                 notes: notas,
                 changes: cambios,
-                laws: leyes
+                laws: leyes,
+                headerItems: {
+                    dpub: dpub,
+                    refpub: refpub,
+                    ano: ano,
+                    version: version,
+                    referencia: referencia,
+                    dvl_desde: dvl_desde,
+                    estadoSeleccionado: estadoSeleccionado,
+                    nomfic: nomfic,
+                    colectivoSeleccionado: colectivoSeleccionado,
+                    organismoSeleccionado: organismoSeleccionado,
+                    rangoSeleccionado: rangoSeleccionado,
+                    seccionSeleccionada: seccionSeleccionada,
+                    tematicaSeleccionada: tematicaSeleccionada
+                }
             })
 
             navigate('/')

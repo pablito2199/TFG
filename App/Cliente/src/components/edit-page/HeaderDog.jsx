@@ -11,34 +11,12 @@ import { Textarea } from "../Textarea"
 import { Select } from "../Select"
 import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid'
 
-export const HeaderDog = ({ data }) => {
+export const HeaderDog = ({ titulo, setTitulo, sumario, setSumario, dpub, setDpub, refpub, setRefpub, ano, version, referencia, setReferencia, dvl_desde, setDvl_desde, estadoSeleccionado, setEstadoSeleccionado, nomfic, setNomFic, colectivoSeleccionado, setColectivoSeleccionado, organismoSeleccionado, setOrganismoSeleccionado, rangoSeleccionado, setRangoSeleccionado, seccionSeleccionada, setSeccionSeleccionada, tematicaSeleccionada, setTematicaSeleccionada }) => {
     const [mostrar, setMostrar] = useState(false)
     const estados = [
         { id: 1, descripcion: 'En vigor' },
         { id: 2, descripcion: 'Derrogada' }
     ]
-
-    function convertirFecha(fecha) {
-        fecha = fecha.split('/')
-        fecha = fecha[2] + '-' + fecha[1] + '-' + fecha[0]
-        return fecha
-    }
-
-    const [titulo, setTitulo] = useState(data.getElementsByClassName('dog-texto-seccion')[0].innerText)
-    const [sumario, setSumario] = useState(data.getElementsByClassName('dog-texto-sumario')[0].innerText)
-    const [dpub, setDpub] = useState(convertirFecha(''))
-    const [refpub, setRefpub] = useState('')
-    const [ano, setAno] = useState('')
-    const [version, setVersion] = useState('')
-    const [referencia, setReferencia] = useState('')
-    const [dvl_desde, setDvl_desde] = useState(convertirFecha(''))
-    const [estadoSeleccionado, setEstadoSeleccionado] = useState('')
-    const [nomfic, setNomFic] = useState('')
-    const [colectivoSeleccionado, setColectivoSeleccionado] = useState('')
-    const [organismoSeleccionado, setOrganismoSeleccionado] = useState('')
-    const [rangoSeleccionado, setRangoSeleccionado] = useState('')
-    const [seccionSeleccionada, setSeccionSeleccionada] = useState('')
-    const [tematicaSeleccionada, setTematicaSeleccionada] = useState('')
 
     return <section className='z-0 w-full font-medium mt-5 pr-10 flex flex-col px-2 screen-min5:w-11/12 screen-min1:w-9/12'>
         {
@@ -60,8 +38,8 @@ export const HeaderDog = ({ data }) => {
                             <Textarea valor={sumario} setValor={setSumario} texto="Sumario" placeholder="Escriba o sumario da norma..." disabled={true} opacity="opacity-70" />
                             <Input valor={dpub} setValor={setDpub} texto="Data de publicación" tipo="date" />
                             <Input valor={refpub} setValor={setRefpub} texto="Referencia da publicación" tipo="text" placeholder="Referencia de publicación..." />
-                            <Input valor={ano} setValor={setAno} texto="Ano" tipo="text" placeholder="Ano..." />
-                            <Input valor={version} setValor={setVersion} texto="Versión" tipo="text" placeholder="Versión da norma..." />
+                            <Input valor={ano} texto="Ano" tipo="text" placeholder="Ano..." disabled={true} opacity="opacity-75" />
+                            <Input valor={version} texto="Versión" tipo="text" placeholder="Versión da norma..." disabled={true} opacity="opacity-75" />
                             <Input valor={referencia} setValor={setReferencia} texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
                         </div>
                         <div className='w-1/2 screen-min1:w-full'>

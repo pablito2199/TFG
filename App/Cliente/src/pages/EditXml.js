@@ -1,13 +1,15 @@
 import { React, useEffect, useState } from 'react'
 
 import { useXmlDocument, useFinalDocument } from '../hooks'
-import { HeaderXml, LeftSideXml, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
+import { HeaderXml, LeftSideXml, ParagraphEditor, PrincipalButtons, RightSideXml } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
+import { useParams } from 'react-router-dom'
 
 export default function EditXml() {
+    const id = useParams()
     let selectedText = window.getSelection()
-    const data = useXmlDocument(1)
-    let documentAdditionalData = useFinalDocument(1651743500014).data
+    const data = useXmlDocument(id.id1)
+    let documentAdditionalData = useFinalDocument("norma.xml").data
 
     const [parrafoACambiar, setParrafoACambiar] = useState('')
     const [parrafoCambiado, setParrafoCambiado] = useState('')
@@ -21,14 +23,16 @@ export default function EditXml() {
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
 
     useEffect(() => {
-        if (documentAdditionalData.changes) {
-            setCambios(documentAdditionalData.changes)
-        }
-        if (documentAdditionalData.laws) {
-            setLeisVinculadas(documentAdditionalData.laws)
-        }
-        if (documentAdditionalData.notes) {
-            setNotas(documentAdditionalData.notes)
+        if (documentAdditionalData) {
+            if (documentAdditionalData.changes) {
+                setCambios(documentAdditionalData.changes)
+            }
+            if (documentAdditionalData.laws) {
+                setLeisVinculadas(documentAdditionalData.laws)
+            }
+            if (documentAdditionalData.notes) {
+                setNotas(documentAdditionalData.notes)
+            }
         }
     }, [documentAdditionalData])
 
@@ -70,7 +74,7 @@ export default function EditXml() {
                                 setShow={setShow}
                                 claseLeftSide={claseLeftSide}
                             />
-                            <RightSide
+                            <RightSideXml
                                 data={data.corpo}
                                 cambios={cambios}
                                 setCambios={setCambios}
@@ -86,7 +90,7 @@ export default function EditXml() {
                         <></>
                 }
 
-                <PrincipalButtons id={documentAdditionalData.id} notas={notas} cambios={cambios} leyes={leisVinculadas} />
+                <PrincipalButtons id={id.id1} notas={notas} cambios={cambios} leyes={leisVinculadas} />
             </div >
 
             <ContextMenu

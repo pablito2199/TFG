@@ -6,6 +6,14 @@ import { CreateComment } from "./CreateComment"
 export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas }) => {
     const [mostrar, setMostrar] = useState(false)
 
+    function convertirFecha(fecha) {
+        if (fecha) {
+            fecha = fecha.split('/')
+            fecha = fecha[0].padStart(2, "0") + '/' + fecha[1].padStart(2, "0") + '/' + fecha[2]
+        }
+        return fecha
+    }
+
     return <div key={nota.id} className='shadow-inner p-2 border-b-2'>
         {
             !mostrar
@@ -27,7 +35,7 @@ export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas }) => {
                         <div className='flex flex-col w-full'>
                             <div className="flex w-full">
                                 <span className="mx-4 font-semibold">{nota.usuario}</span>
-                                <div className="flex flex-1 justify-end italic font-semibold text-gray-600 w-full">({nota.fecha})</div>
+                                <div className="flex flex-1 justify-end italic font-semibold text-gray-600 w-full">({convertirFecha(nota.fecha)})</div>
                             </div>
                             <p className='mt-2 mx-4 mb-4'>{nota.contenido}</p>
                         </div>

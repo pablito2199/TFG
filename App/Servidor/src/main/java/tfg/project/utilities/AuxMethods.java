@@ -8,18 +8,17 @@ import javax.xml.bind.Unmarshaller;
 import java.io.*;
 
 public class AuxMethods {
-    private static final String DOCUMENT = "norma.xml";
-
-    public static Documento convertXMLToObject() {
+    public static Documento convertXMLToObject(String nombreFichero) {
         try {
+            System.out.println(nombreFichero);
             JAXBContext context = JAXBContext.newInstance(Documento.class);
             Unmarshaller un = context.createUnmarshaller();
-            RandomAccessFile f = new RandomAccessFile(new File(DOCUMENT), "rw");
+            RandomAccessFile f = new RandomAccessFile(new File(nombreFichero), "rw");
             f.seek(0);
             String newString = "<cdg>                                                                                                                                     ";
             f.write(newString.getBytes());
             f.close();
-            return (Documento) un.unmarshal(new File(DOCUMENT));
+            return (Documento) un.unmarshal(new File(nombreFichero));
         } catch (JAXBException | IOException e) {
             e.printStackTrace();
         }

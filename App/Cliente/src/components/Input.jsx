@@ -7,7 +7,7 @@ export const Input = ({ valor, setValor, texto, tipo, placeholder, disabled = fa
             type={tipo}
             value={valor}
             onChange={(e) => setValor(e.target.value)}
-            className={opacity + ' text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500'}
+            className={opacity + ' placeholder-gray-400 text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500'}
             placeholder={placeholder}
             disabled={disabled}
             required

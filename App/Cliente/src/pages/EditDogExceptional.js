@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useDogDocument, useFinalDocument } from '../hooks'
-import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
+import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
 
@@ -70,7 +70,7 @@ export default function Exceptional() {
                                     setShow={setShow}
                                     claseLeftSide={claseLeftSide}
                                 />
-                                <RightSide
+                                <RightSideDog
                                     data={htmlCode}
                                     cambios={cambios}
                                     setCambios={setCambios}

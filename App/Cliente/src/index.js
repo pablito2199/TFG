@@ -27,7 +27,7 @@ ReactDOM.render(
             <SideBar />
             <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route exact path="/edit" element={<EditXml />} />
+                <Route exact path="/edit/:id1" element={<EditXml />} />
                 <Route exact path="/edit/:id1/:id2/:id3/:id4/:id5" element={<EditDog />} />
                 <Route exact path="/edit/:id1/:id2/:id3/:id4/:id5/:id6/:id7" element={<EditDogExceptional />} />
                 <Route exact path="/home" element={<Home />} />

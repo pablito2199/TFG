@@ -8,7 +8,7 @@ import { Cambios } from './cambios/Cambios'
 import { Notas } from './notas/Notas'
 import { ZoomInOutline, ZoomOutOutline } from '@graywolfai/react-heroicons'
 
-export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLeftSide, notas, setNotas, leisVinculadas, setLeisVinculadas }) => {
+export const RightSideXml = ({ data, cambios, setCambios, claseLeftSide, setClaseLeftSide, notas, setNotas, leisVinculadas, setLeisVinculadas }) => {
     const [estado, setEstado] = useState('c')
     const [leisEliminadas, setLeisEliminadas] = useState([])
     const [leisAnadidasManualmente, setLeisAnadidasManualmente] = useState([])
@@ -28,13 +28,57 @@ export const RightSide = ({ data, cambios, setCambios, claseLeftSide, setClaseLe
             const regex = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
 
             // Leis vinculadas Introducción
-            Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).forEach(parrafo => {
-                resultado = (parrafo.innerText).match(regex)
-                console.log(resultado)
-                if (resultado !== null && resultado?.length !== 0) {
-                    resultado.forEach(res => auxiliar.push(res))
-                }
-            })
+            if (data.intro) {
+                data.intro?.p.forEach(parrafo => {
+                    resultado = (parrafo?._text).match(regex)
+                    if (resultado !== null && resultado?.length !== 0) {
+                        resultado.forEach(res => auxiliar.push(res))
+                    }
+                })
+            }
+
+            if (data.est_lei) {
+                // Leis vinculadas Estatuto Lei - Artículos
+                data.est_lei?.art.forEach(articulo => {
+                    if (articulo?.titulo) {
+                        resultado = (articulo?.titulo?._text).match(regex)
+                        if (resultado !== null && resultado?.length !== 0) {
+                            resultado.forEach(res => auxiliar.push(res))
+                        }
+                    }
+                    if (articulo?.p && articulo?.p.length) {
+                        articulo.p.forEach(parrafo => {
+                            resultado = (parrafo._text).match(regex)
+                            if (resultado !== null && resultado?.length !== 0) {
+                                resultado.forEach(res => auxiliar.push(res))
+                            }
+                        })
+                    } else if (articulo?.p) {
+                        resultado = (articulo?.p?._text).match(regex)
+                        if (resultado !== null && resultado?.length !== 0) {
+                            resultado.forEach(res => auxiliar.push(res))
+                        }
+                    }
+                })
+                // Leis vinculadas Estatuto Lei - Firma
+                data.est_lei.firma?.p.forEach(parrafo => {
+                    resultado = (parrafo?._text).match(regex)
+                    if (resultado !== null && resultado?.length !== 0) {
+                        resultado.forEach(res => auxiliar.push(res))
+                    }
+                })
+            }
+
+            // Leis vinculadas Anexo
+            if (data.anexo) {
+                resultado = (data.anexo?.titulo._text).match(regex)
+                data.anexo?.p.forEach(parrafo => {
+                    resultado = (parrafo?._text).match(regex)
+                    if (resultado !== null && resultado?.length !== 0) {
+                        resultado.forEach(res => auxiliar.push(res))
+                    }
+                })
+            }
 
             //Eliminar leis duplicadas
             auxiliar = [...new Set(auxiliar)]

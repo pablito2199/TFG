@@ -6,7 +6,7 @@ export const Textarea = ({ valor, setNuevoValor, texto, placeholder, disabled = 
         <textarea
             value={valor}
             onChange={(e) => setNuevoValor(e.target.value)}
-            className={opacity + ' resize-none min-h-textarea text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500'}
+            className={opacity + ' placeholder-gray-400 resize-none min-h-textarea text-lg text-black border-blue-300 py-2 px-2 leading-tight focus:outline-none focus:border-gray-500'}
             placeholder={placeholder}
             disabled={disabled}
         />
