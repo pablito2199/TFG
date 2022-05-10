@@ -11,10 +11,10 @@ export const Change = ({ cambio, anadirCambioSeleccionado, claseLeftSide }) => {
             !mostrar
                 ?
                 <div className="flex mr-2 h-6 w-full cursor-default">
+                    <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none self-center mr-2' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
                     <p className="text-ellipsis overflow-hidden">{cambio.parrafoNuevo}</p>
                     <div className="flex flex-1 justify-end">
                         <ChevronDoubleDownIcon className="cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(true)} />
-                        <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none self-center' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
                     </div>
                 </div>
                 :
@@ -23,6 +23,7 @@ export const Change = ({ cambio, anadirCambioSeleccionado, claseLeftSide }) => {
                         <ChevronDoubleUpIcon className="w-6 cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(false)} />
                     </div>
                     <div className='m-4 flex items-center w-11/12 gap-2'>
+                        <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
                         <div className='text-justify flex flex-col gap-2'>
                             {
                                 claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'
@@ -32,7 +33,6 @@ export const Change = ({ cambio, anadirCambioSeleccionado, claseLeftSide }) => {
                                     <ReactDiffViewer oldValue={cambio.parrafoAntiguo} newValue={cambio.parrafoNuevo} splitView={false} hideLineNumbers={true} compareMethod="diffWords" />
                             }
                         </div>
-                        <input className='ml-auto mr-0 cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
                     </div>
                 </div>
         }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const Content = ({ data }) => {
     const navigate = useNavigate()
-    return <table className='px-1 flex w-11/12 mt-8 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
+    return <table className='px-1 flex w-11/12 mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
         <tbody className='border border-white text-center'>
             <tr className='flex'>
                 <th className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>DOG nº</th>

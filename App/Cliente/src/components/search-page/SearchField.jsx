@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { SearchButton } from "./SearchButton"
 import { SearchFilters } from "./SearchFilters"
 
-export const SearchField = ({ setPagina }) => {
-    const [texto, setTexto] = useState('')
+export const SearchField = ({ initialText, setPagina }) => {
+    initialText === undefined ? initialText = '' : initialText = initialText + ''
+    const [texto, setTexto] = useState(initialText)
     const [soloTitulo, setSoloTitulo] = useState(true)
     const [fraseExacta, setFraseExacta] = useState(true)
     const [dogDesde, setDogDesde] = useState(1)

@@ -15,8 +15,16 @@ export const DogContent = ({ data, cambios, handleContextMenu }) => {
     return <div className='' ref={ref}></div>*/
     return <div>
         {
-            Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) =>
-                <Parrafo cambios={cambios} parrafo={parrafo.innerText} handleContextMenu={handleContextMenu} clase="mt-3" key={index} />
+            Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
+                let clase = "mt-3"
+                if (parrafo.className === "dog-firma-centrada") {
+                    clase += " text-center"
+                }
+                if (parrafo.className === "dog-anexo-encabezado") {
+                    clase += " text-center font-bold mt-6"
+                }
+                return <Parrafo cambios={cambios} parrafo={parrafo.innerText} handleContextMenu={handleContextMenu} clase={clase} key={index} />
+            }
             )
         }
     </div>

@@ -31,7 +31,7 @@ export default function NotFound() {
             <div className="container flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
                 <div className="max-w-md">
                     <p className="text-2xl md:text-3xl font-light leading-normal">Sentímolo, non se puido atopar esta páxina.</p>
-                    <p className="mb-4">Retornarás á páxina principal en {timeout} segundos</p>
+                    <p className="mb-4">Voltarás á páxina principal en {timeout} segundos</p>
                     <button onClick={() => navigate('/')} className="px-4 inline py-2 text-sm font-medium leading-5 shadow text-white transition-colors duration-150 border border-transparent focus:outline-none focus:shadow-outline-blue bg-blue-600 active:bg-blue-600 hover:bg-blue-700">Volver á páxina principal</button>
                 </div>
                 <div className="max-w-lg">
