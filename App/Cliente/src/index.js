@@ -16,6 +16,7 @@ import NotFound from './pages/NotFound'
 
 import './styles.css'
 import { SideBar } from './components/SideBar'
+import Save from './pages/Save';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -26,6 +27,7 @@ ReactDOM.render(
             <SideBar />
             <Routes>
                 <Route exact path="/" element={<Home />} />
+                <Route exact path="/save" element={<Save />} />
                 <Route exact path="/edit/local/:id" element={<EditXml />} />
                 <Route exact path="/edit/xunta/:id" element={<EditDog />} />
                 <Route exact path="/home" element={<Home />} />

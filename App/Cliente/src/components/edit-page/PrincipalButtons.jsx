@@ -9,7 +9,7 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, re
     const navigate = useNavigate()
 
     const submit = async () => {
-        if (window.confirm('Os cambios serán gardados. Desexa continuar?')) {
+        if (window.confirm('Os seus cambios serán gardados. Desexa continuar?')) {
             try {
                 put({
                     id: idDb,
@@ -22,7 +22,7 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, re
                         ano: ano,
                         version: version,
                         referencia: referencia,
-                        fechaDog, fechaDog,
+                        fechaDog: fechaDog,
                         dvl_desde: dvl_desde,
                         estadoSeleccionado: estadoSeleccionado,
                         nomfic: nomfic,
@@ -35,7 +35,7 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, re
                     }
                 })
 
-                navigate('/', {
+                navigate('/save', {
                     state: {
                         mensajeAviso: true,
                     }
@@ -55,7 +55,7 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, re
             <EyeOutline className='h-6 text-white' />
             <span>Previsualizar</span>
         </a>
-        <button onClick={() => navigate('/')} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>
+        <button onClick={() => { if (window.confirm('Os seus cambios serán descartados. Desexa continuar?')) navigate('/') }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>
             <XCircleOutline className='h-6 text-white' />
             <span>Rexeitar</span>
         </button>

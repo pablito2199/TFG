@@ -167,7 +167,7 @@ export default function EditDog() {
 
             <PrincipalButtons
                 idDb={location.state.norma.id}
-                enlace={'https://www.xunta.gal/' + id.id1 + '/' + id.id2 + '/' + id.id3 + '/' + id.id4 + '/' + id.id5}
+                enlace={'https://www.xunta.gal' + location.state.norma.rutaHtml}
                 notas={notas}
                 cambios={cambios}
                 leyes={leisVinculadas}

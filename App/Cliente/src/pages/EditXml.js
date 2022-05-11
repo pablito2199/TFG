@@ -89,7 +89,7 @@ export default function EditXml() {
                     <></>
             }
 
-            <PrincipalButtons id={id} notas={notas} cambios={cambios} leyes={leisVinculadas} />
+            <PrincipalButtons id={id} enlace={'https://www.xunta.gal//dog/Publicados/excepcional/2022/20220325/2925/AnuncioC3K1-240322-2_gl.html'} notas={notas} cambios={cambios} leyes={leisVinculadas} />
         </div >
 
         <ContextMenu
