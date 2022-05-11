@@ -84,7 +84,6 @@ export function useFinalDocument(id = 1) {
     }, [id])
 
     const put = finalDocument => {
-        console.log(finalDocument)
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },

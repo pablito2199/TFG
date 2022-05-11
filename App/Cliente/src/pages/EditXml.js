@@ -6,9 +6,9 @@ import { ContextMenu } from '../components/edit-page'
 import { useParams } from 'react-router-dom'
 
 export default function EditXml() {
-    const id = useParams()
+    const id = useParams().id
     let selectedText = window.getSelection()
-    const data = useXmlDocument(id.id1)
+    const data = useXmlDocument(id)
     let documentAdditionalData = useFinalDocument("norma.xml").data
 
     const [parrafoACambiar, setParrafoACambiar] = useState('')
@@ -36,70 +36,68 @@ export default function EditXml() {
         }
     }, [documentAdditionalData])
 
-    return (
-        <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
-            <ParagraphEditor
-                mostrarInput={mostrarInput}
-                setMostrarInput={setMostrarInput}
-                parrafoCambiado={parrafoCambiado}
-                setParrafoCambiado={setParrafoCambiado}
-                parrafoACambiar={parrafoACambiar}
-                setParrafoACambiar={setParrafoACambiar}
-                cambios={cambios}
-                setCambios={setCambios}
-                setOpacity={setOpacity}
-            />
-            <div className={opacity}>
-                {
-                    data?.cab !== undefined
-                        ?
-                        <HeaderXml data={data.cab} />
-                        :
-                        <></>
-                }
+    return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
+        <ParagraphEditor
+            mostrarInput={mostrarInput}
+            setMostrarInput={setMostrarInput}
+            parrafoCambiado={parrafoCambiado}
+            setParrafoCambiado={setParrafoCambiado}
+            parrafoACambiar={parrafoACambiar}
+            setParrafoACambiar={setParrafoACambiar}
+            cambios={cambios}
+            setCambios={setCambios}
+            setOpacity={setOpacity}
+        />
+        <div className={opacity}>
+            {
+                data?.cab !== undefined
+                    ?
+                    <HeaderXml data={data.cab} />
+                    :
+                    <></>
+            }
 
-                {
-                    data?.corpo !== undefined
-                        ?
-                        <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                            <LeftSideXml
-                                data={data.corpo}
-                                cambios={cambios}
-                                setParrafoACambiar={setParrafoACambiar}
-                                setParrafoCambiado={setParrafoCambiado}
-                                setMostrarInput={setMostrarInput}
-                                setOpacity={setOpacity}
-                                setAnchorPoint={setAnchorPoint}
-                                show={show}
-                                setShow={setShow}
-                                claseLeftSide={claseLeftSide}
-                            />
-                            <RightSideXml
-                                data={data.corpo}
-                                cambios={cambios}
-                                setCambios={setCambios}
-                                claseLeftSide={claseLeftSide}
-                                setClaseLeftSide={setClaseLeftSide}
-                                notas={notas}
-                                setNotas={setNotas}
-                                leisVinculadas={leisVinculadas}
-                                setLeisVinculadas={setLeisVinculadas}
-                            />
-                        </main>
-                        :
-                        <></>
-                }
+            {
+                data?.corpo !== undefined
+                    ?
+                    <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
+                        <LeftSideXml
+                            data={data.corpo}
+                            cambios={cambios}
+                            setParrafoACambiar={setParrafoACambiar}
+                            setParrafoCambiado={setParrafoCambiado}
+                            setMostrarInput={setMostrarInput}
+                            setOpacity={setOpacity}
+                            setAnchorPoint={setAnchorPoint}
+                            show={show}
+                            setShow={setShow}
+                            claseLeftSide={claseLeftSide}
+                        />
+                        <RightSideXml
+                            data={data.corpo}
+                            cambios={cambios}
+                            setCambios={setCambios}
+                            claseLeftSide={claseLeftSide}
+                            setClaseLeftSide={setClaseLeftSide}
+                            notas={notas}
+                            setNotas={setNotas}
+                            leisVinculadas={leisVinculadas}
+                            setLeisVinculadas={setLeisVinculadas}
+                        />
+                    </main>
+                    :
+                    <></>
+            }
 
-                <PrincipalButtons id={id.id1} notas={notas} cambios={cambios} leyes={leisVinculadas} />
-            </div >
+            <PrincipalButtons id={id} notas={notas} cambios={cambios} leyes={leisVinculadas} />
+        </div >
 
-            <ContextMenu
-                show={show}
-                anchorPoint={anchorPoint}
-                selectedText={selectedText.toString()}
-                setOpacity={setOpacity}
-                setMostrarInput={setMostrarInput}
-            />
-        </div>
-    )
+        <ContextMenu
+            show={show}
+            anchorPoint={anchorPoint}
+            selectedText={selectedText.toString()}
+            setOpacity={setOpacity}
+            setMostrarInput={setMostrarInput}
+        />
+    </div>
 }

@@ -27,9 +27,9 @@ export const RightSideDog = ({ data, cambios, setCambios, claseLeftSide, setClas
             rangosRegex += ")"
             const regex = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
 
+            // Búsqueda en todos los párrafos
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).forEach(parrafo => {
                 resultado = (parrafo.innerText).match(regex)
-                console.log(resultado)
                 if (resultado !== null && resultado?.length !== 0) {
                     resultado.forEach(res => auxiliar.push(res))
                 }

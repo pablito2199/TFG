@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import { useDogDocument, useFinalDocument } from '../hooks'
 import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
@@ -7,10 +7,12 @@ import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
 
 export default function EditDog() {
+    const location = useLocation()
+    console.log(location)
     const id = useParams()
     let selectedText = window.getSelection()
-    const htmlCode = useDogDocument(`https://www.xunta.gal/${id.id1}/${id.id2}/${id.id3}/${id.id4}/${id.id5}`)
-    let documentAdditionalData = useFinalDocument(id.id5).data
+    const htmlCode = useDogDocument(`https://www.xunta.gal/${location.state.norma.rutaHtml}`)
+    let documentAdditionalData = useFinalDocument(location.state.norma.id).data
 
     function convertirFecha(fecha) {
         if (fecha) {
@@ -27,6 +29,7 @@ export default function EditDog() {
     const [dpub, setDpub] = useState('')
     const [refpub, setRefpub] = useState('')
     const [referencia, setReferencia] = useState('')
+    const [fechaDog, setFechaDog] = useState('')
     const [dvl_desde, setDvl_desde] = useState('')
     const [estadoSeleccionado, setEstadoSeleccionado] = useState('')
     const [nomfic, setNomFic] = useState('')
@@ -35,6 +38,7 @@ export default function EditDog() {
     const [rangoSeleccionado, setRangoSeleccionado] = useState('')
     const [seccionSeleccionada, setSeccionSeleccionada] = useState('')
     const [tematicaSeleccionada, setTematicaSeleccionada] = useState('')
+    const [numDog, setNumDog] = useState('')
     const [parrafoACambiar, setParrafoACambiar] = useState('')
     const [parrafoCambiado, setParrafoCambiado] = useState('')
     const [mostrarInput, setMostrarInput] = useState(false)
@@ -49,7 +53,15 @@ export default function EditDog() {
     useEffect(() => {
         if (htmlCode) {
             setTitulo(htmlCode.getElementsByClassName('dog-texto-seccion')[0].innerText)
-            setSumario(htmlCode.getElementsByClassName('dog-texto-sumario')[0].innerText)
+        }
+        if (location.state) {
+            setSumario(location.state.norma.sumario)
+            setColectivoSeleccionado(location.state.norma.taxcolectivo)
+            setOrganismoSeleccionado(location.state.norma.taxorganizativa)
+            setRangoSeleccionado(location.state.norma.idTipo)
+            setSeccionSeleccionada(location.state.norma.idSeccion)
+            setFechaDog(location.state.norma.fechaDogFormateada)
+            setNumDog(location.state.norma.numeroDog)
         }
         if (documentAdditionalData) {
             if (documentAdditionalData.changes) {
@@ -68,109 +80,121 @@ export default function EditDog() {
                 setDvl_desde(convertirFecha(documentAdditionalData.headerItems.dvl_desde))
                 setEstadoSeleccionado(documentAdditionalData.headerItems.estadoSeleccionado)
                 setNomFic(documentAdditionalData.headerItems.nomfic)
-                setColectivoSeleccionado(documentAdditionalData.headerItems.colectivoSeleccionado)
-                setOrganismoSeleccionado(documentAdditionalData.headerItems.organismoSeleccionado)
-                setRangoSeleccionado(documentAdditionalData.headerItems.rangoSeleccionado)
-                setSeccionSeleccionada(documentAdditionalData.headerItems.seccionSeleccionada)
-                setTematicaSeleccionada(documentAdditionalData.headerItems.tematicaSeleccionada)
+                if (documentAdditionalData.headerItems.colectivoSeleccionado) {
+                    setColectivoSeleccionado(documentAdditionalData.headerItems.colectivoSeleccionado)
+                }
+                if (documentAdditionalData.headerItems.organismoSeleccionado) {
+                    setOrganismoSeleccionado(documentAdditionalData.headerItems.organismoSeleccionado)
+                }
+                if (documentAdditionalData.headerItems.rangoSeleccionado) {
+                    setRangoSeleccionado(documentAdditionalData.headerItems.rangoSeleccionado)
+                }
+                if (documentAdditionalData.headerItems.seccionSeleccionada) {
+                    setSeccionSeleccionada(documentAdditionalData.headerItems.seccionSeleccionada)
+                }
+                if (documentAdditionalData.headerItems.tematicaSeleccionada) {
+                    setTematicaSeleccionada(documentAdditionalData.headerItems.tematicaSeleccionada)
+                }
             }
         }
-    }, [documentAdditionalData, htmlCode])
+    }, [documentAdditionalData, htmlCode, location.state])
 
-    return (
-        <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
-            <ParagraphEditor
-                mostrarInput={mostrarInput}
-                setMostrarInput={setMostrarInput}
-                parrafoCambiado={parrafoCambiado}
-                setParrafoCambiado={setParrafoCambiado}
-                parrafoACambiar={parrafoACambiar}
-                setParrafoACambiar={setParrafoACambiar}
-                cambios={cambios}
-                setCambios={setCambios}
-                setOpacity={setOpacity}
-            />
-            <div className={opacity}>
-                {
-                    htmlCode
-                        ?
-                        <>
-                            <HeaderDog
-                                titulo={titulo} setTitulo={setTitulo}
-                                sumario={sumario} setSumario={setSumario}
-                                dpub={dpub} setDpub={setDpub}
-                                refpub={refpub} setRefpub={setRefpub}
-                                ano={ano} version={version}
-                                referencia={referencia} setReferencia={setReferencia}
-                                dvl_desde={dvl_desde} setDvl_desde={setDvl_desde}
-                                nomfic={nomfic} setNomFic={setNomFic}
-                                estadoSeleccionado={estadoSeleccionado} setEstadoSeleccionado={setEstadoSeleccionado}
-                                colectivoSeleccionado={colectivoSeleccionado} setColectivoSeleccionado={setColectivoSeleccionado}
-                                organismoSeleccionado={organismoSeleccionado} setOrganismoSeleccionado={setOrganismoSeleccionado}
-                                rangoSeleccionado={rangoSeleccionado} setRangoSeleccionado={setRangoSeleccionado}
-                                seccionSeleccionada={seccionSeleccionada} setSeccionSeleccionada={setSeccionSeleccionada}
-                                tematicaSeleccionada={tematicaSeleccionada} setTematicaSeleccionada={setTematicaSeleccionada}
+    return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
+        <ParagraphEditor
+            mostrarInput={mostrarInput}
+            setMostrarInput={setMostrarInput}
+            parrafoCambiado={parrafoCambiado}
+            setParrafoCambiado={setParrafoCambiado}
+            parrafoACambiar={parrafoACambiar}
+            setParrafoACambiar={setParrafoACambiar}
+            cambios={cambios}
+            setCambios={setCambios}
+            setOpacity={setOpacity}
+        />
+        <div className={opacity}>
+            {
+                htmlCode
+                    ?
+                    <>
+                        <HeaderDog
+                            titulo={titulo} setTitulo={setTitulo}
+                            sumario={sumario} setSumario={setSumario}
+                            dpub={dpub} setDpub={setDpub}
+                            refpub={refpub} setRefpub={setRefpub}
+                            ano={ano} version={version}
+                            referencia={referencia} setReferencia={setReferencia}
+                            fechaDog={fechaDog}
+                            dvl_desde={dvl_desde} setDvl_desde={setDvl_desde}
+                            nomfic={nomfic} setNomFic={setNomFic}
+                            estadoSeleccionado={estadoSeleccionado} setEstadoSeleccionado={setEstadoSeleccionado}
+                            colectivoSeleccionado={colectivoSeleccionado} setColectivoSeleccionado={setColectivoSeleccionado}
+                            organismoSeleccionado={organismoSeleccionado} setOrganismoSeleccionado={setOrganismoSeleccionado}
+                            rangoSeleccionado={rangoSeleccionado} setRangoSeleccionado={setRangoSeleccionado}
+                            seccionSeleccionada={seccionSeleccionada} setSeccionSeleccionada={setSeccionSeleccionada}
+                            tematicaSeleccionada={tematicaSeleccionada} setTematicaSeleccionada={setTematicaSeleccionada}
+                            numDog={numDog}
+                        />
+
+                        <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
+                            <LeftSideDog
+                                data={htmlCode}
+                                cambios={cambios}
+                                setParrafoACambiar={setParrafoACambiar}
+                                setParrafoCambiado={setParrafoCambiado}
+                                setMostrarInput={setMostrarInput}
+                                setOpacity={setOpacity}
+                                setAnchorPoint={setAnchorPoint}
+                                show={show}
+                                setShow={setShow}
+                                claseLeftSide={claseLeftSide}
                             />
+                            <RightSideDog
+                                data={htmlCode}
+                                cambios={cambios}
+                                setCambios={setCambios}
+                                claseLeftSide={claseLeftSide}
+                                setClaseLeftSide={setClaseLeftSide}
+                                notas={notas}
+                                setNotas={setNotas}
+                                leisVinculadas={leisVinculadas}
+                                setLeisVinculadas={setLeisVinculadas}
+                            />
+                        </main>
+                    </>
+                    :
+                    <></>
+            }
 
-                            <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                                <LeftSideDog
-                                    data={htmlCode}
-                                    cambios={cambios}
-                                    setParrafoACambiar={setParrafoACambiar}
-                                    setParrafoCambiado={setParrafoCambiado}
-                                    setMostrarInput={setMostrarInput}
-                                    setOpacity={setOpacity}
-                                    setAnchorPoint={setAnchorPoint}
-                                    show={show}
-                                    setShow={setShow}
-                                    claseLeftSide={claseLeftSide}
-                                />
-                                <RightSideDog
-                                    data={htmlCode}
-                                    cambios={cambios}
-                                    setCambios={setCambios}
-                                    claseLeftSide={claseLeftSide}
-                                    setClaseLeftSide={setClaseLeftSide}
-                                    notas={notas}
-                                    setNotas={setNotas}
-                                    leisVinculadas={leisVinculadas}
-                                    setLeisVinculadas={setLeisVinculadas}
-                                />
-                            </main>
-                        </>
-                        :
-                        <></>
-                }
-
-                <PrincipalButtons
-                    idDb={id.id5}
-                    enlace={'https://www.xunta.gal/' + id.id1 + '/' + id.id2 + '/' + id.id3 + '/' + id.id4 + '/' + id.id5}
-                    notas={notas}
-                    cambios={cambios}
-                    leyes={leisVinculadas}
-                    dpub={dpub}
-                    refpub={refpub}
-                    ano={ano}
-                    version={version}
-                    referencia={referencia}
-                    dvl_desde={dvl_desde}
-                    nomfic={nomfic}
-                    estadoSeleccionado={estadoSeleccionado}
-                    colectivoSeleccionado={colectivoSeleccionado}
-                    organismoSeleccionado={organismoSeleccionado}
-                    rangoSeleccionado={rangoSeleccionado}
-                    seccionSeleccionada={seccionSeleccionada}
-                    tematicaSeleccionada={tematicaSeleccionada}
-                />
-            </div>
-
-            <ContextMenu
-                show={show}
-                anchorPoint={anchorPoint}
-                selectedText={selectedText.toString()}
-                setOpacity={setOpacity}
-                setMostrarInput={setMostrarInput}
+            <PrincipalButtons
+                idDb={location.state.norma.id}
+                enlace={'https://www.xunta.gal/' + id.id1 + '/' + id.id2 + '/' + id.id3 + '/' + id.id4 + '/' + id.id5}
+                notas={notas}
+                cambios={cambios}
+                leyes={leisVinculadas}
+                dpub={dpub}
+                refpub={refpub}
+                ano={ano}
+                version={version}
+                referencia={referencia}
+                fechaDog={fechaDog}
+                dvl_desde={dvl_desde}
+                nomfic={nomfic}
+                estadoSeleccionado={estadoSeleccionado}
+                colectivoSeleccionado={colectivoSeleccionado}
+                organismoSeleccionado={organismoSeleccionado}
+                rangoSeleccionado={rangoSeleccionado}
+                seccionSeleccionada={seccionSeleccionada}
+                tematicaSeleccionada={tematicaSeleccionada}
+                numDog={numDog}
             />
         </div>
-    )
+
+        <ContextMenu
+            show={show}
+            anchorPoint={anchorPoint}
+            selectedText={selectedText.toString()}
+            setOpacity={setOpacity}
+            setMostrarInput={setMostrarInput}
+        />
+    </div>
 }

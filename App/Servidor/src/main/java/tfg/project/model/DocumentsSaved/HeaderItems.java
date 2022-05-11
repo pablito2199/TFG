@@ -11,6 +11,7 @@ public class HeaderItems {
     private String ano;
     private String version;
     private String referencia;
+    private String fechaDog;
     private String dvl_desde;
     private String estadoSeleccionado;
     private String nomfic;
@@ -19,6 +20,7 @@ public class HeaderItems {
     private String rangoSeleccionado;
     private String seccionSeleccionada;
     private String tematicaSeleccionada;
+    private String numDog;
 
     public String getDpub() {
         return dpub;
@@ -58,6 +60,14 @@ public class HeaderItems {
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    public String getFechaDog() {
+        return fechaDog;
+    }
+
+    public void setFechaDog(String fechaDog) {
+        this.fechaDog = fechaDog;
     }
 
     public String getDvl_desde() {
@@ -124,17 +134,25 @@ public class HeaderItems {
         this.tematicaSeleccionada = tematicaSeleccionada;
     }
 
+    public String getNumDog() {
+        return numDog;
+    }
+
+    public void setNumDog(String numDog) {
+        this.numDog = numDog;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HeaderItems that = (HeaderItems) o;
-        return Objects.equals(dpub, that.dpub) && Objects.equals(refpub, that.refpub) && Objects.equals(ano, that.ano) && Objects.equals(version, that.version) && Objects.equals(referencia, that.referencia) && Objects.equals(dvl_desde, that.dvl_desde) && Objects.equals(estadoSeleccionado, that.estadoSeleccionado) && Objects.equals(nomfic, that.nomfic) && Objects.equals(colectivoSeleccionado, that.colectivoSeleccionado) && Objects.equals(organismoSeleccionado, that.organismoSeleccionado) && Objects.equals(rangoSeleccionado, that.rangoSeleccionado) && Objects.equals(seccionSeleccionada, that.seccionSeleccionada) && Objects.equals(tematicaSeleccionada, that.tematicaSeleccionada);
+        return Objects.equals(dpub, that.dpub) && Objects.equals(refpub, that.refpub) && Objects.equals(ano, that.ano) && Objects.equals(version, that.version) && Objects.equals(referencia, that.referencia) && Objects.equals(fechaDog, that.fechaDog) && Objects.equals(dvl_desde, that.dvl_desde) && Objects.equals(estadoSeleccionado, that.estadoSeleccionado) && Objects.equals(nomfic, that.nomfic) && Objects.equals(colectivoSeleccionado, that.colectivoSeleccionado) && Objects.equals(organismoSeleccionado, that.organismoSeleccionado) && Objects.equals(rangoSeleccionado, that.rangoSeleccionado) && Objects.equals(seccionSeleccionada, that.seccionSeleccionada) && Objects.equals(tematicaSeleccionada, that.tematicaSeleccionada) && Objects.equals(numDog, that.numDog);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dpub, refpub, ano, version, referencia, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada);
+        return Objects.hash(dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog);
     }
 
     @Override
@@ -145,6 +163,7 @@ public class HeaderItems {
                 ", ano='" + ano + '\'' +
                 ", version='" + version + '\'' +
                 ", referencia='" + referencia + '\'' +
+                ", fechaDog='" + fechaDog + '\'' +
                 ", dvl_desde='" + dvl_desde + '\'' +
                 ", estadoSeleccionado='" + estadoSeleccionado + '\'' +
                 ", nomfic='" + nomfic + '\'' +
@@ -153,6 +172,7 @@ public class HeaderItems {
                 ", rangoSeleccionado='" + rangoSeleccionado + '\'' +
                 ", seccionSeleccionada='" + seccionSeleccionada + '\'' +
                 ", tematicaSeleccionada='" + tematicaSeleccionada + '\'' +
+                ", numDog='" + numDog + '\'' +
                 '}';
     }
 }

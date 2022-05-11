@@ -25,7 +25,7 @@ export const Content = ({ data }) => {
                                 <a title="Previsualizar" href={`https://www.xunta.gal/${norma.rutaHtml}`} target="_blank" rel='noreferrer' className='focus:outline-none text-md text-center self-center align-center px-4 py-4 hover:bg-gray-200 border cursor-pointer'>
                                     <EyeIcon className='h-3' />
                                 </a>
-                                <button onClick={() => navigate(`/edit${norma.rutaHtml}`)} title="Importar" className='focus:outline-none text-md text-center self-center align-center px-4 py-4 bg-black hover:bg-gray-600 text-indigo-50 font-semibold cursor-pointer' >
+                                <button onClick={() => navigate(`/edit/xunta/${norma.id}`, { state: { norma: norma } })} title="Importar" className='focus:outline-none text-md text-center self-center align-center px-4 py-4 bg-black hover:bg-gray-600 text-indigo-50 font-semibold cursor-pointer' >
                                     <PencilAltIcon className='h-3' />
                                 </button>
                             </div>

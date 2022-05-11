@@ -11,7 +11,7 @@ import { Textarea } from "../Textarea"
 import { Select } from "../Select"
 import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid'
 
-export const HeaderDog = ({ titulo, setTitulo, sumario, setSumario, dpub, setDpub, refpub, setRefpub, ano, version, referencia, setReferencia, dvl_desde, setDvl_desde, estadoSeleccionado, setEstadoSeleccionado, nomfic, setNomFic, colectivoSeleccionado, setColectivoSeleccionado, organismoSeleccionado, setOrganismoSeleccionado, rangoSeleccionado, setRangoSeleccionado, seccionSeleccionada, setSeccionSeleccionada, tematicaSeleccionada, setTematicaSeleccionada }) => {
+export const HeaderDog = ({ titulo, setTitulo, sumario, setSumario, dpub, setDpub, refpub, setRefpub, ano, version, referencia, setReferencia, fechaDog, dvl_desde, setDvl_desde, estadoSeleccionado, setEstadoSeleccionado, nomfic, setNomFic, colectivoSeleccionado, setColectivoSeleccionado, organismoSeleccionado, setOrganismoSeleccionado, rangoSeleccionado, setRangoSeleccionado, seccionSeleccionada, setSeccionSeleccionada, tematicaSeleccionada, setTematicaSeleccionada, numDog }) => {
     const [mostrar, setMostrar] = useState(false)
     const estados = [
         { id: 1, descripcion: 'En vigor' },
@@ -41,6 +41,7 @@ export const HeaderDog = ({ titulo, setTitulo, sumario, setSumario, dpub, setDpu
                             <Input valor={ano} texto="Ano" tipo="text" placeholder="Ano..." disabled={true} opacity="opacity-75" />
                             <Input valor={version} texto="Versión" tipo="text" placeholder="Versión da norma..." disabled={true} opacity="opacity-75" />
                             <Input valor={referencia} setValor={setReferencia} texto="Referencia" tipo="text" placeholder="Referencia da norma..." />
+                            <Input valor={fechaDog} texto="Data do DOG" tipo="text" placeholder="Data do DOG..." disabled={true} opacity="opacity-70" />
                         </div>
                         <div className='w-1/2 screen-min1:w-full'>
                             <Input valor={dvl_desde} setValor={setDvl_desde} texto="Data de entrada en vigor" tipo="date" />
@@ -51,6 +52,7 @@ export const HeaderDog = ({ titulo, setTitulo, sumario, setSumario, dpub, setDpu
                             <Select texto="Rango" firstOption={false} elements={rangos} element={rangoSeleccionado} setElements={setRangoSeleccionado} opcion="-- Seleccione unha opción --" />
                             <Select texto="Sección" firstOption={false} elements={secciones} element={seccionSeleccionada} setElements={setSeccionSeleccionada} opcion="-- Seleccione unha opción --" />
                             <Select texto="Área temática" firstOption={false} elements={tematicas} element={tematicaSeleccionada} setElements={setTematicaSeleccionada} opcion="-- Seleccione unha opción --" />
+                            <Input valor={numDog} texto="Número do DOG" tipo="text" placeholder="Número do DOG..." disabled={true} opacity="opacity-70" />
                         </div>
                     </div>
                 </div>

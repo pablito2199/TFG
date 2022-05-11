@@ -1,18 +1,6 @@
 import { React, useEffect, useState } from 'react'
 
 export const DogContent = ({ data, cambios, handleContextMenu }) => {
-    /*const ref = useRef(null);
-
-    useEffect(() => {
-        const elm = data.getElementsByClassName('story')[0]
-        if (elm) {
-            elm.setAttribute("class", "flex flex-col gap-y-3")
-            if (ref.current)
-                ref.current.appendChild(elm)
-        }
-    }, [data, ref]);
-
-    return <div className='' ref={ref}></div>*/
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {

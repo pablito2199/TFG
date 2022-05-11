@@ -4,37 +4,45 @@ import { useNavigate } from 'react-router-dom'
 import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 
-export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, refpub, ano, version, referencia, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada }) => {
+export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
     const { put } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async () => {
-        try {
-            put({
-                id: idDb,
-                notes: notas,
-                changes: cambios,
-                laws: leyes,
-                headerItems: {
-                    dpub: dpub,
-                    refpub: refpub,
-                    ano: ano,
-                    version: version,
-                    referencia: referencia,
-                    dvl_desde: dvl_desde,
-                    estadoSeleccionado: estadoSeleccionado,
-                    nomfic: nomfic,
-                    colectivoSeleccionado: colectivoSeleccionado,
-                    organismoSeleccionado: organismoSeleccionado,
-                    rangoSeleccionado: rangoSeleccionado,
-                    seccionSeleccionada: seccionSeleccionada,
-                    tematicaSeleccionada: tematicaSeleccionada
-                }
-            })
+        if (window.confirm('Os cambios serán gardados. Desexa continuar?')) {
+            try {
+                put({
+                    id: idDb,
+                    notes: notas,
+                    changes: cambios,
+                    laws: leyes,
+                    headerItems: {
+                        dpub: dpub,
+                        refpub: refpub,
+                        ano: ano,
+                        version: version,
+                        referencia: referencia,
+                        fechaDog, fechaDog,
+                        dvl_desde: dvl_desde,
+                        estadoSeleccionado: estadoSeleccionado,
+                        nomfic: nomfic,
+                        colectivoSeleccionado: colectivoSeleccionado,
+                        organismoSeleccionado: organismoSeleccionado,
+                        rangoSeleccionado: rangoSeleccionado,
+                        seccionSeleccionada: seccionSeleccionada,
+                        tematicaSeleccionada: tematicaSeleccionada,
+                        numDog: numDog
+                    }
+                })
 
-            navigate('/')
-        } catch (err) {
-            console.log(err)
+                navigate('/', {
+                    state: {
+                        mensajeAviso: true,
+                    }
+                })
+            } catch (err) {
+                console.log(err)
+            }
         }
     }
 

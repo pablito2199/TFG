@@ -16,7 +16,6 @@ import NotFound from './pages/NotFound'
 
 import './styles.css'
 import { SideBar } from './components/SideBar'
-import EditDogExceptional from './pages/EditDogExceptional';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -27,9 +26,8 @@ ReactDOM.render(
             <SideBar />
             <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route exact path="/edit/:id1" element={<EditXml />} />
-                <Route exact path="/edit/:id1/:id2/:id3/:id4/:id5" element={<EditDog />} />
-                <Route exact path="/edit/:id1/:id2/:id3/:id4/:id5/:id6/:id7" element={<EditDogExceptional />} />
+                <Route exact path="/edit/local/:id" element={<EditXml />} />
+                <Route exact path="/edit/xunta/:id" element={<EditDog />} />
                 <Route exact path="/home" element={<Home />} />
                 <Route path="/search" element={<Search />} />
                 <Route exact path='/404' element={<NotFound />} />
