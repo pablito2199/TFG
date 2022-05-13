@@ -6,6 +6,8 @@ import { useDogDocument, useFinalDocument } from '../hooks'
 import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
+import { LinkedDocuments } from '../components/edit-page/linked-documets/LinkedDocuments'
+import { PrincipalLaw } from '../components/edit-page/principal-law/PrincipalLaw'
 
 export default function EditDog() {
     const location = useLocation()
@@ -19,6 +21,7 @@ export default function EditDog() {
         }
         return fecha
     }
+    console.log(location)
 
     const fechaActual = new Date()
     const ano = String(fechaActual.getFullYear())
@@ -97,7 +100,12 @@ export default function EditDog() {
                 }
             }
         }
-    }, [documentAdditionalData, htmlCode, location.state])
+        if (enabled) {
+            setClaseLeftSide('z-0 w-1/2 ml-2')
+        } else {
+            setClaseLeftSide('z-0 w-7/12 ml-2 screen-min5:w-5/6')
+        }
+    }, [documentAdditionalData, htmlCode, location.state, enabled])
 
     return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20 z-0'>
         <div className='w-full flex justify-end pr-10 fixed z-10 mt-5 mr-20'>
@@ -153,7 +161,7 @@ export default function EditDog() {
                             numDog={numDog}
                         />
                         {
-                            enabled
+                            !enabled
                                 ?
                                 <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                                     <LeftSideDog
@@ -179,7 +187,7 @@ export default function EditDog() {
                                 </main>
                                 :
                                 <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                                    <LeftSideDog
+                                    <LinkedDocuments
                                         data={htmlCode}
                                         cambios={cambios}
                                         setParrafoACambiar={setParrafoACambiar}
@@ -190,7 +198,8 @@ export default function EditDog() {
                                         show={show} setShow={setShow}
                                         claseLeftSide={claseLeftSide}
                                     />
-                                    <RightSideDog
+                                    <PrincipalLaw
+                                        titulo={titulo}
                                         data={htmlCode}
                                         cambios={cambios}
                                         setCambios={setCambios}

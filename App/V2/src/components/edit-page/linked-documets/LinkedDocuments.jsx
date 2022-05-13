@@ -3,8 +3,9 @@ import { React, useCallback, useEffect } from 'react'
 import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
 import { DogContent } from './DogContent'
+import { Select } from '../../Select'
 
-export const LeftSideDog = ({ data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
+export const LinkedDocuments = ({ data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
     const handleContextMenu = (event, text) => {
         event.preventDefault()
         setAnchorPoint({ x: event.pageX, y: event.pageY })
@@ -23,10 +24,13 @@ export const LeftSideDog = ({ data, cambios, setParrafoACambiar, setParrafoCambi
     })
 
     return <section className={claseLeftSide}>
-        <nav className='flex text-lg items-center gap-2'>
-            <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black cursor-default'>Norma</button>
+        <nav className='flex text-lg items-center'>
+            <select className='w-96 text-center bg-black text-white cursor-pointer p-3'>
+                <option>Anuncio do 5 de maio de 2022</option>
+                <option>Anuncio do 6 de maio de 2022</option>
+            </select>
             <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
-                <Tooltip title="Para propoñer un cambio faga click dereito sobre calquer parágrafo e pinche en 'Propoñer cambio'." placement="top" arrow>
+                <Tooltip title="Escolla calquera lei relacionada no seleccionable." placement="top" arrow>
                     <QuestionMarkCircleIcon className='h-8 text-orange' />
                 </Tooltip>
             </div>
