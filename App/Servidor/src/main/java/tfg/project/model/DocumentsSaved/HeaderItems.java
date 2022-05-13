@@ -6,20 +6,35 @@ import java.util.Objects;
 
 @Schema(description = "Cambios propostos nun documento.")
 public class HeaderItems {
+    @Schema(description = "Data de publicación.", example = "04-04-2020")
     private String dpub;
+    @Schema(description = "Referencia de publicación.", example = "DOG 190 01/10/2021")
     private String refpub;
+    @Schema(description = "Ano de publicación.", example = "2022")
     private String ano;
+    @Schema(description = "Versión da norma.", example = "20220224")
     private String version;
+    @Schema(description = "Referencia.", example = "2909A")
     private String referencia;
+    @Schema(description = "Data de publicación no DOG.", example = "04-04-2020")
     private String fechaDog;
+    @Schema(description = "Data de entrada en vigor da lei.", example = "04-04-2020")
     private String dvl_desde;
+    @Schema(description = "Estado da norma.", example = "En vigor")
     private String estadoSeleccionado;
+    @Schema(description = "Nome do ficheiro.", example = "ord_CS-------_2909B_2021_20210929.pdf")
     private String nomfic;
+    @Schema(description = "Colectivo ao que afecta a norma.", example = "21001")
     private String colectivoSeleccionado;
+    @Schema(description = "Organismo ao que afecta a norma.", example = "20001")
     private String organismoSeleccionado;
+    @Schema(description = "Tipo de norma.", example = "1")
     private String rangoSeleccionado;
+    @Schema(description = "Sección da norma.", example = "1")
     private String seccionSeleccionada;
+    @Schema(description = "Temática da norma.", example = "22001")
     private String tematicaSeleccionada;
+    @Schema(description = "Número do DOG no que está publicado.", example = "86")
     private String numDog;
 
     public String getDpub() {

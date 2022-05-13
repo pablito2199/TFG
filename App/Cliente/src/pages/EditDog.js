@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { useDogDocument, useFinalDocument } from '../hooks'
 import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
@@ -9,7 +9,6 @@ import { HeaderDog } from '../components/edit-page/HeaderDog'
 export default function EditDog() {
     const location = useLocation()
     console.log(location)
-    const id = useParams()
     let selectedText = window.getSelection()
     const htmlCode = useDogDocument(`https://www.xunta.gal/${location.state.norma.rutaHtml}`)
     let documentAdditionalData = useFinalDocument(location.state.norma.id).data
