@@ -21,7 +21,6 @@ export default function EditDog() {
         }
         return fecha
     }
-    console.log(location)
 
     const fechaActual = new Date()
     const ano = String(fechaActual.getFullYear())
@@ -101,14 +100,14 @@ export default function EditDog() {
             }
         }
         if (enabled) {
-            setClaseLeftSide('z-0 w-1/2 ml-2')
+            setClaseLeftSide('z-0 w-1/2 ml-2 screen-min1:w-11/12')
         } else {
             setClaseLeftSide('z-0 w-7/12 ml-2 screen-min5:w-5/6')
         }
     }, [documentAdditionalData, htmlCode, location.state, enabled])
 
     return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20 z-0'>
-        <div className='w-full flex justify-end pr-10 fixed z-10 mt-5 mr-20'>
+        <div className='flex pr-10 fixed z-10 mt-5 right-0'>
             <div className='bg-white p-2 shadow-lg'>
                 <div className='flex bg-black text-white py-4 px-4 items-center'>
                     <span className='mr-2 text-lg font-semibold'>Modo de edición de leis vinculadas</span>
@@ -186,30 +185,9 @@ export default function EditDog() {
                                     />
                                 </main>
                                 :
-                                <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                                    <LinkedDocuments
-                                        data={htmlCode}
-                                        cambios={cambios}
-                                        setParrafoACambiar={setParrafoACambiar}
-                                        setParrafoCambiado={setParrafoCambiado}
-                                        setMostrarInput={setMostrarInput}
-                                        setOpacity={setOpacity}
-                                        setAnchorPoint={setAnchorPoint}
-                                        show={show} setShow={setShow}
-                                        claseLeftSide={claseLeftSide}
-                                    />
-                                    <PrincipalLaw
-                                        titulo={titulo}
-                                        data={htmlCode}
-                                        cambios={cambios}
-                                        setCambios={setCambios}
-                                        claseLeftSide={claseLeftSide}
-                                        setClaseLeftSide={setClaseLeftSide}
-                                        notas={notas}
-                                        setNotas={setNotas}
-                                        leisVinculadas={leisVinculadas}
-                                        setLeisVinculadas={setLeisVinculadas}
-                                    />
+                                <main className='z-0 w-full mt-6 flex screen-min1:flex-col mb-24'>
+                                    <LinkedDocuments claseLeftSide={claseLeftSide} />
+                                    <PrincipalLaw data={htmlCode} />
                                 </main>
                         }
                     </>
