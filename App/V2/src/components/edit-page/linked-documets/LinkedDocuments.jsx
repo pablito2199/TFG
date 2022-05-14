@@ -22,6 +22,7 @@ export const LinkedDocuments = ({ claseLeftSide }) => {
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2022/20220311/2914/AnuncioC3K1-090322-1_gl.html`)
     ]
     const [leiSeleccionada, setLeiSeleccionada] = useState(0)
+    const [cambiosVinculadas, setCambiosVinculadas] = useState([])
 
     return <section className={claseLeftSide}>
         <nav className='flex text-lg items-center'>
@@ -50,7 +51,12 @@ export const LinkedDocuments = ({ claseLeftSide }) => {
             {
                 documentos[leiSeleccionada]
                     ?
-                    <DogContent data={documentos[leiSeleccionada]} />
+                    <DogContent
+                        data={documentos[leiSeleccionada]}
+                        leiSeleccionada={leiSeleccionada}
+                        cambiosVinculadas={cambiosVinculadas}
+                        setCambiosVinculadas={setCambiosVinculadas}
+                    />
                     :
                     <></>
             }
