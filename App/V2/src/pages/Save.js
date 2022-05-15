@@ -1,8 +1,9 @@
 import { CheckIcon } from '@heroicons/react/solid'
 import { useEffect, useReducer } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export default function Save() {
+    const navigate = useNavigate()
     const [timeout, dispatch] = useReducer(
         (state, action) => {
             switch (action) {
@@ -31,6 +32,7 @@ export default function Save() {
                 <div className="max-w-md">
                     <p className="text-2xl md:text-3xl font-light leading-normal">Os seus cambios foron gardados correctamente.</p>
                     <p className="mt-4">Redirixindo á páxina principal...</p>
+                    <button onClick={() => navigate('/')} className="px-4 inline py-2 text-sm font-medium leading-5 shadow text-white transition-colors duration-150 border border-transparent focus:outline-none focus:shadow-outline-blue bg-blue-600 active:bg-blue-600 hover:bg-blue-700">Volver á páxina principal</button>
                 </div>
             </div>
         </div>
