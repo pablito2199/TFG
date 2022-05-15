@@ -65,23 +65,11 @@ const Parrafo = ({ parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVincul
         {
             parrafoCambiado !== ''
                 ?
-                <p
-                    contentEditable="true"
-                    suppressContentEditableWarning={true}
-                    ref={ref}
-                    className={claseCambiado}
-                    onFocus={() => setMostrarBotones(true)}
-                /*onBlur={() => setMostrarBotones(false); }*/
-                >
+                <p contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={claseCambiado} onFocus={() => setMostrarBotones(true)}>
                     {parrafoCambiado}
-                </p> : <p
-                    contentEditable="true"
-                    suppressContentEditableWarning={true}
-                    ref={ref}
-                    className={clase}
-                    onFocus={() => setMostrarBotones(true)}
-                /*onBlur={() => setMostrarBotones(false); }*/
-                >
+                </p>
+                :
+                <p contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={clase} onFocus={() => setMostrarBotones(true)}>
                     {parrafo}
                 </p>
         }

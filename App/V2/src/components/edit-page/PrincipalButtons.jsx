@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 
-export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
+export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosVinculadas, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
     const { put } = useFinalDocument()
     const navigate = useNavigate()
 
@@ -32,7 +32,8 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, re
                         seccionSeleccionada: seccionSeleccionada,
                         tematicaSeleccionada: tematicaSeleccionada,
                         numDog: numDog
-                    }
+                    },
+                    linkedChanges: cambiosVinculadas
                 })
 
                 navigate('/save', {

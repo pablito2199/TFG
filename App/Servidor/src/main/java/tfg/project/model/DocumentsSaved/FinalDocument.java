@@ -19,6 +19,8 @@ public class FinalDocument {
     private List<Law> laws;
     @Schema(description = "Lista de cambios propostos no documento.")
     private List<Change> changes;
+    @Schema(description = "Lista de cambios realizados sobre leis vinculadas.")
+    private List<LinkedChange> linkedChanges;
 
     public String getId() {
         return id;
@@ -60,17 +62,25 @@ public class FinalDocument {
         this.changes = changes;
     }
 
+    public List<LinkedChange> getLinkedChanges() {
+        return linkedChanges;
+    }
+
+    public void setLinkedChanges(List<LinkedChange> linkedChanges) {
+        this.linkedChanges = linkedChanges;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FinalDocument that = (FinalDocument) o;
-        return Objects.equals(id, that.id) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes);
+        return Objects.equals(id, that.id) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, headerItems, notes, laws, changes);
+        return Objects.hash(id, headerItems, notes, laws, changes, linkedChanges);
     }
 
     @Override
@@ -81,6 +91,7 @@ public class FinalDocument {
                 ", notes=" + notes +
                 ", laws=" + laws +
                 ", changes=" + changes +
+                ", linkedChanges=" + linkedChanges +
                 '}';
     }
 }

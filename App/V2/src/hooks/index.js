@@ -92,7 +92,8 @@ export function useFinalDocument(id = 1) {
                 notes: finalDocument.notes,
                 changes: finalDocument.changes,
                 laws: finalDocument.laws,
-                headerItems: finalDocument.headerItems
+                headerItems: finalDocument.headerItems,
+                linkedChanges: finalDocument.linkedChanges
             })
         }
 

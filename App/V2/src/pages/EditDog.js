@@ -46,6 +46,8 @@ export default function EditDog() {
     const [cambios, setCambios] = useState([])
     const [leisVinculadas, setLeisVinculadas] = useState([])
     const [notas, setNotas] = useState([])
+    const [leiSeleccionada, setLeiSeleccionada] = useState(0)
+    const [cambiosVinculadas, setCambiosVinculadas] = useState([])
     const [opacity, setOpacity] = useState('opacity-100')
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
     const [show, setShow] = useState(false)
@@ -97,6 +99,9 @@ export default function EditDog() {
                 if (documentAdditionalData.headerItems.tematicaSeleccionada) {
                     setTematicaSeleccionada(documentAdditionalData.headerItems.tematicaSeleccionada)
                 }
+            }
+            if (documentAdditionalData.linkedChanges) {
+                setCambiosVinculadas(documentAdditionalData.linkedChanges)
             }
         }
         if (enabled) {
@@ -186,7 +191,11 @@ export default function EditDog() {
                                 </main>
                                 :
                                 <main className='z-0 w-full mt-6 flex screen-min1:flex-col mb-24'>
-                                    <LinkedDocuments claseLeftSide={claseLeftSide} />
+                                    <LinkedDocuments
+                                        claseLeftSide={claseLeftSide}
+                                        leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
+                                        cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
+                                    />
                                     <PrincipalLaw data={htmlCode} />
                                 </main>
                         }
@@ -201,6 +210,7 @@ export default function EditDog() {
                 notas={notas}
                 cambios={cambios}
                 leyes={leisVinculadas}
+                cambiosVinculadas={cambiosVinculadas}
                 dpub={dpub}
                 refpub={refpub}
                 ano={ano}
