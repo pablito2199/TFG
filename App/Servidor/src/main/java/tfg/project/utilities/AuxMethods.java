@@ -10,7 +10,6 @@ import java.io.*;
 public class AuxMethods {
     public static Documento convertXMLToObject(String nombreFichero) {
         try {
-            System.out.println(nombreFichero);
             JAXBContext context = JAXBContext.newInstance(Documento.class);
             Unmarshaller un = context.createUnmarshaller();
             RandomAccessFile f = new RandomAccessFile(new File(nombreFichero), "rw");

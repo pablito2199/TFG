@@ -6,7 +6,7 @@ export function useNormas(query = '') {
 
     useEffect(() => {
         const getData = async () => {
-            const url = `/xunta/normas?${query}`
+            const url = `/xunta?${query}`
             const response = await fetch(url)
             const jsonData = await response.json()
             setData(jsonData)
@@ -29,7 +29,7 @@ export function useXmlDocument(id) {
         }
 
         const getData = async () => {
-            await fetch(`/documents/${id}`, requestOptions)
+            await fetch(`/local/${id}`, requestOptions)
                 .then(response => response.text())
                 .then(text => setData(JSON.parse(xml2json(text, { compact: true, spaces: 4 })).cdg))
                 .catch(error => console.log(error))
@@ -66,7 +66,7 @@ export function useDogDocument(url) {
     return htmlCode
 }
 
-export function useFinalDocument(id = 1) {
+export function useFinalDocument(id) {
     const [data, setData] = useState({})
 
     useEffect(() => {
@@ -76,7 +76,7 @@ export function useFinalDocument(id = 1) {
         }
 
         const getData = async () => {
-            const response = await fetch(`/documents/savedDocuments/${id}`, requestOptions);
+            const response = await fetch(`/local/${id}/savedData`, requestOptions);
             const jsonData = await response.json()
             setData(jsonData)
         }
@@ -97,7 +97,7 @@ export function useFinalDocument(id = 1) {
             })
         }
 
-        fetch('/documents/savedDocuments', requestOptions);
+        fetch(`/local/${finalDocument.id}`, requestOptions);
     }
 
     return {

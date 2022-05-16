@@ -21,12 +21,12 @@ import tfg.project.service.FinalDocumentService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("documents")
-public class DocumentController {
+@RequestMapping("local")
+public class LocalController {
     private final FinalDocumentService finalDocuments;
 
     @Autowired
-    public DocumentController(FinalDocumentService finalDocuments) {
+    public LocalController(FinalDocumentService finalDocuments) {
         this.finalDocuments = finalDocuments;
     }
 
@@ -58,7 +58,7 @@ public class DocumentController {
             return ResponseEntity.ok().body(convertXMLToObject(id));
     }
 
-    @GetMapping(path = "savedDocuments/{id}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "{id}/savedData", produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "getDocumentData",
             summary = "Obter os datos dun documento.",
@@ -86,7 +86,7 @@ public class DocumentController {
         return ResponseEntity.ok().body(finalDocuments.get(id));
     }
     
-    @PutMapping (path="savedDocuments", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PutMapping (path="{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "putDocumentData",
             summary = "Gardar os datos dun documento.",
@@ -106,6 +106,7 @@ public class DocumentController {
             @Parameter(description = "Datos adicionais do documento que se está a editar")
             @RequestBody FinalDocument finalDocument
     ) {
+        System.out.println(finalDocument);
         return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
     }
 }

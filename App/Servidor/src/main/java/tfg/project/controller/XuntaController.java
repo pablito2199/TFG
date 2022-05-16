@@ -16,7 +16,7 @@ import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 @RestController
 @RequestMapping("xunta")
 public class XuntaController {
-    @GetMapping(path = "normas", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "getNormas",
             summary = "Obter a lista de normas dunha búsqueda no DOG.",
