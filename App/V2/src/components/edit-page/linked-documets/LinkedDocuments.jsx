@@ -10,6 +10,7 @@ export const LinkedDocuments = ({ claseLeftSide, leiSeleccionada, setLeiSeleccio
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211021/2794/AnuncioC3K1-211021-1_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211022/2796/AnuncioC3K1-221021-2_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211028/2801/AnuncioC3K1-261021-6_gl.html`),
+        useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20210914/2760/AnuncioC3K1-140921-1_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211008/2785/AnuncioC3K1-061021-13_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211125/2825/AnuncioC3K1-251121-5_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211216/2842/AnuncioC3K1-151221-4_gl.html`),
@@ -23,22 +24,23 @@ export const LinkedDocuments = ({ claseLeftSide, leiSeleccionada, setLeiSeleccio
 
     return <section className={claseLeftSide}>
         <nav className='flex text-lg items-center'>
-            <select className='w-96 text-center bg-black text-white cursor-pointer p-3' onChange={(e) => setLeiSeleccionada(e.target.value)}>
+            <select className='w-96 text-center bg-black text-white cursor-pointer p-3' onChange={(e) => setLeiSeleccionada(e.target.value)} defaultValue={leiSeleccionada}>
                 <option value={0}>Resolución do 21 de outubro de 2021</option>
                 <option value={1}>Orde do 22 de outubro de 2021</option>
                 <option value={2}>Orde do 26 de outubro de 2021</option>
-                <option value={3}>Orde do 6 de outubro de 2021</option>
-                <option value={4}>Orde do 25 de novembro de 2021</option>
-                <option value={5}>Orde do 15 de decembro de 2021</option>
-                <option value={6}>Orde do 29 de decembro de 2021</option>
-                <option value={7}>Orde do 13 de xaneiro de 2022</option>
-                <option value={8}>Orde do 11 de febreiro de 2022</option>
-                <option value={9}>Orde do 29 de setembro de 2021</option>
-                <option value={10}>Orde do 24 de febreiro de 2022</option>
-                <option value={11}>Orde do 9 de marzo de 2022</option>
+                <option value={3}>Orde do 14 de setembro de 2021</option>
+                <option value={4}>Orde do 6 de outubro de 2021</option>
+                <option value={5}>Orde do 25 de novembro de 2021</option>
+                <option value={6}>Orde do 15 de decembro de 2021</option>
+                <option value={7}>Orde do 29 de decembro de 2021</option>
+                <option value={8}>Orde do 13 de xaneiro de 2022</option>
+                <option value={9}>Orde do 11 de febreiro de 2022</option>
+                <option value={10}>Orde do 29 de setembro de 2021</option>
+                <option value={11}>Orde do 24 de febreiro de 2022</option>
+                <option value={12}>Orde do 9 de marzo de 2022</option>
             </select>
             <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
-                <Tooltip title="Escolla calquera lei vinculada no seleccionable." placement="top" arrow>
+                <Tooltip title="Escolla a lei vinculada que queres modificar no seleccionable." placement="top" arrow>
                     <QuestionMarkCircleIcon className='h-8 text-orange' />
                 </Tooltip>
             </div>

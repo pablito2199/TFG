@@ -10,5 +10,5 @@ export const PrincipalLaw = ({ data }) => {
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
             <DogContent data={data} />
         </div>
-    </section >
+    </section>
 }

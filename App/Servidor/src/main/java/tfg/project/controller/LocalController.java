@@ -106,7 +106,6 @@ public class LocalController {
             @Parameter(description = "Datos adicionais do documento que se está a editar")
             @RequestBody FinalDocument finalDocument
     ) {
-        System.out.println(finalDocument);
         return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
     }
 }

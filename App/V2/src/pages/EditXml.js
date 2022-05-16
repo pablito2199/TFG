@@ -1,9 +1,12 @@
 import { React, useEffect, useState } from 'react'
+import { Switch } from '@headlessui/react'
 
 import { useXmlDocument, useFinalDocument } from '../hooks'
 import { HeaderXml, LeftSideXml, ParagraphEditor, PrincipalButtons, RightSideXml } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 import { useParams } from 'react-router-dom'
+import { LinkedDocuments } from '../components/edit-page/linked-documets/LinkedDocuments'
+import { PrincipalLawXml } from '../components/edit-page/principal-law/PrincipalLawXml'
 
 export default function EditXml() {
     const id = useParams().id
@@ -114,6 +117,24 @@ export default function EditXml() {
     }, [data, documentAdditionalData, enabled])
 
     return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
+        <div className='flex pr-10 fixed z-10 mt-5 right-0'>
+            <div className='bg-white p-2 shadow-lg'>
+                <div className='flex bg-black text-white py-4 px-4 items-center'>
+                    <span className='mr-2 text-lg font-semibold'>Modo de edición de leis vinculadas</span>
+                    <Switch
+                        checked={enabled}
+                        onChange={setEnabled}
+                        className={`${enabled ? 'bg-blue-lex-gal' : 'bg-gray-200'
+                            } relative inline-flex h-6 w-11 items-center rounded-full`}
+                    >
+                        <span
+                            className={`${enabled ? 'translate-x-6' : 'translate-x-1'
+                                } inline-block h-4 w-4 transform rounded-full bg-white transform transition ease-in-out duration-200`}
+                        />
+                    </Switch>
+                </div>
+            </div>
+        </div>
         <ParagraphEditor
             mostrarInput={mostrarInput}
             setMostrarInput={setMostrarInput}
@@ -155,29 +176,46 @@ export default function EditXml() {
                 data?.corpo !== undefined
                     ?
                     <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                        <LeftSideXml
-                            data={data.corpo}
-                            cambios={cambios}
-                            setParrafoACambiar={setParrafoACambiar}
-                            setParrafoCambiado={setParrafoCambiado}
-                            setMostrarInput={setMostrarInput}
-                            setOpacity={setOpacity}
-                            setAnchorPoint={setAnchorPoint}
-                            show={show}
-                            setShow={setShow}
-                            claseLeftSide={claseLeftSide}
-                        />
-                        <RightSideXml
-                            data={data.corpo}
-                            cambios={cambios}
-                            setCambios={setCambios}
-                            claseLeftSide={claseLeftSide}
-                            setClaseLeftSide={setClaseLeftSide}
-                            notas={notas}
-                            setNotas={setNotas}
-                            leisVinculadas={leisVinculadas}
-                            setLeisVinculadas={setLeisVinculadas}
-                        />
+                        {
+                            !enabled
+                                ?
+                                <>
+                                    <LeftSideXml
+                                        data={data.corpo}
+                                        cambios={cambios}
+                                        setParrafoACambiar={setParrafoACambiar}
+                                        setParrafoCambiado={setParrafoCambiado}
+                                        setMostrarInput={setMostrarInput}
+                                        setOpacity={setOpacity}
+                                        setAnchorPoint={setAnchorPoint}
+                                        show={show}
+                                        setShow={setShow}
+                                        claseLeftSide={claseLeftSide}
+                                    />
+                                    <RightSideXml
+                                        data={data.corpo}
+                                        cambios={cambios}
+                                        setCambios={setCambios}
+                                        claseLeftSide={claseLeftSide}
+                                        setClaseLeftSide={setClaseLeftSide}
+                                        notas={notas}
+                                        setNotas={setNotas}
+                                        leisVinculadas={leisVinculadas}
+                                        setLeisVinculadas={setLeisVinculadas}
+                                        setEnabled={setEnabled}
+                                        setLeiSeleccionada={setLeiSeleccionada}
+                                    />
+                                </>
+                                :
+                                <main className='z-0 w-full mt-6 flex screen-min1:flex-col mb-24'>
+                                    <LinkedDocuments
+                                        claseLeftSide={claseLeftSide}
+                                        leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
+                                        cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
+                                    />
+                                    <PrincipalLawXml data={data.corpo} />
+                                </main>
+                        }
                     </main>
                     :
                     <></>

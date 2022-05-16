@@ -178,15 +178,15 @@ export default function EditDog() {
                                         setAnchorPoint={setAnchorPoint}
                                         show={show} setShow={setShow}
                                         claseLeftSide={claseLeftSide}
-                                        enabled={enabled} setEnabled={setEnabled}
                                     />
                                     <RightSideDog
                                         data={htmlCode}
-                                        cambios={cambios}
-                                        setCambios={setCambios}
+                                        cambios={cambios} setCambios={setCambios}
                                         claseLeftSide={claseLeftSide} setClaseLeftSide={setClaseLeftSide}
                                         notas={notas} setNotas={setNotas}
                                         leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
+                                        setEnabled={setEnabled}
+                                        setLeiSeleccionada={setLeiSeleccionada}
                                     />
                                 </main>
                                 :

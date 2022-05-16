@@ -21,7 +21,7 @@ export const CreateLei = ({ leis, setLeis, leisAnadidasManualmente, setLeisAnadi
     }
 
     return <div>
-        <div className='pt-1 pb-2 flex flex-col w-full items-center'>
+        <div className='pt-1 flex flex-col w-full items-center'>
             {
                 !mostrar
                     ?
