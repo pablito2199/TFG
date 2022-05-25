@@ -1,4 +1,4 @@
-import { EyeIcon, PencilAltIcon } from '@heroicons/react/solid'
+import { EyeIcon, SaveIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,10 +23,10 @@ export const Content = ({ data }) => {
                         <td className='w-1/12 screen-min3:w-2/12 screen-min2:w-3/12'>
                             <div className='flex gap-2 justify-center items-center py-4 screen-min1:flex-col'>
                                 <a title="Previsualizar" href={`https://www.xunta.gal/${norma.rutaHtml}`} target="_blank" rel='noreferrer' className='focus:outline-none text-md text-center self-center align-center px-4 py-4 hover:bg-gray-200 border cursor-pointer'>
-                                    <EyeIcon className='h-3' />
+                                    <EyeIcon className='h-4' />
                                 </a>
                                 <button onClick={() => navigate(`/edit/xunta/${norma.id}`, { state: { norma: norma } })} title="Importar" className='focus:outline-none text-md text-center self-center align-center px-4 py-4 bg-black hover:bg-gray-600 text-indigo-50 font-semibold cursor-pointer' >
-                                    <PencilAltIcon className='h-3' />
+                                    <SaveIcon className='h-4' />
                                 </button>
                             </div>
                         </td>

@@ -2,11 +2,24 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PagesNotSeen } from './PagesNotSeen'
 
-export const PagesButtons = ({ query, actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
+export const PagesButtons = ({ setData, modal, query, actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
     let paginas = []
     let numeroBotones = Math.ceil(numberElements / numberElementsPerPage)
     const numeroMaximoPaginas = Math.ceil(numberElements / numberElementsPerPage)
     const navigate = useNavigate()
+
+    const cambiarPagina = async (i) => {
+        if (!modal) {
+            navigate(`/search?${query}${i}`)
+            setActualPage(i)
+        } else {
+            const url = `/xunta${query}pagina=${i}`
+            const response = await fetch(url)
+            const jsonData = await response.json()
+            setData(jsonData)
+            setActualPage(i)
+        }
+    }
 
     if (numeroBotones > 5) {
         // Más de 5 páginas
@@ -18,7 +31,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
                 if (i === parseInt(actualPage)) {
                     paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
                 } else {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i}`); setActualPage(i) }}>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
                 }
             }
             paginas.push(<PagesNotSeen key="more" />)
@@ -29,7 +42,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
                 if (i === parseInt(actualPage)) {
                     paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
                 } else {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i}`); setActualPage(i) }}>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
                 }
             }
         } else {
@@ -39,7 +52,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
                 if (i === parseInt(actualPage)) {
                     paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
                 } else {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i}`); setActualPage(i) }}>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
                 }
             }
             paginas.push(<PagesNotSeen key="more-der" />)
@@ -50,7 +63,7 @@ export const PagesButtons = ({ query, actualPage, setActualPage, numberElements,
             if (i === parseInt(actualPage)) {
                 paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
             } else {
-                paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { navigate(`/search?${query}${i}`); setActualPage(i) }}>{i}</button>);
+                paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
             }
         }
     }
