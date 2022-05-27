@@ -2,23 +2,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronDoubleLeftIcon } from '@heroicons/react/solid'
 
-export const FirstPageButton = ({ setData, modal, query, setActualPage }) => {
+export const FirstPageButton = ({ initialText, setActualPage }) => {
     const navigate = useNavigate()
-    const page = 1
 
     return <button
         title='Primeira páxina'
         onClick={async () => {
-            if (!modal) {
-                navigate(`/search?${query}${page}`)
-                setActualPage(1)
-            } else {
-                const url = `/xunta${query}pagina=${page}`
-                const response = await fetch(url)
-                const jsonData = await response.json()
-                setData(jsonData)
-                setActualPage(1)
-            }
+            navigate(`/search?text=${initialText}&page=1`, { state: { initialText: initialText, page: 1 } })
+            setActualPage(1)
         }}
         className="focus:outline-none relative inline-flex items-center px-2 py-2 border border-black bg-white text-sm font-medium text-gray-500 hover:bg-blue-50 cursor-pointer"
     >

@@ -5,9 +5,16 @@ export function useNormas(query = '') {
     const [data, setData] = useState({})
 
     useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+
         const getData = async () => {
-            const url = `/xunta?${query}`
-            const response = await fetch(url)
+            const url = `/local${query}`
+            const response = await fetch(url, requestOptions)
             const jsonData = await response.json()
             setData(jsonData)
         }

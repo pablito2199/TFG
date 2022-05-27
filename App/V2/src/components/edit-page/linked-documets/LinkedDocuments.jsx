@@ -3,11 +3,10 @@ import { React } from 'react'
 import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
 import { DogContent } from './DogContent'
-import { useDogDocument } from '../../../hooks'
 
 export const LinkedDocuments = ({ claseLeftSide, leiSeleccionada, setLeiSeleccionada, cambiosVinculadas, setCambiosVinculadas }) => {
     const documentos = [
-        useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211021/2794/AnuncioC3K1-211021-1_gl.html`),
+        /*useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211021/2794/AnuncioC3K1-211021-1_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211022/2796/AnuncioC3K1-221021-2_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20211028/2801/AnuncioC3K1-261021-6_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20210914/2760/AnuncioC3K1-140921-1_gl.html`),
@@ -19,7 +18,7 @@ export const LinkedDocuments = ({ claseLeftSide, leiSeleccionada, setLeiSeleccio
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2022/20220211/2891/AnuncioC3K1-110222-2_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2021/20210930/2775/AnuncioC3K1-300921-1_gl.html`),
         useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2022/20220225/2903/AnuncioC3K1-240222-3_gl.html`),
-        useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2022/20220311/2914/AnuncioC3K1-090322-1_gl.html`)
+        useDogDocument(`https://www.xunta.gal/dog/Publicados/excepcional/2022/20220311/2914/AnuncioC3K1-090322-1_gl.html`)*/
     ]
 
     return <section className={claseLeftSide}>

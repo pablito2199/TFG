@@ -1,12 +1,12 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const SearchButton = ({ setData, modal, texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion, colectivo, organizacion, rango, seccion, tematica, setPagina }) => {
+export const SearchButton = ({ initialText, setData, modal, texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion, colectivo, organizacion, rango, seccion, tematica, setPagina }) => {
     const navigate = useNavigate()
 
     const cambiarPagina = async () => {
         if (!modal) {
-            navigate(`/search?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&pagina=1`)
+            navigate(`/search?text=${initialText}`, { state: { initialText: initialText, page: 1, size: 8 } })
             if (setPagina) {
                 setPagina(1)
             }

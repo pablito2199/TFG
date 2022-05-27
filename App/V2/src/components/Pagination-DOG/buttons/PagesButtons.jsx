@@ -1,24 +1,17 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { PagesNotSeen } from './PagesNotSeen'
 
-export const PagesButtons = ({ setData, modal, query, actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
+export const PagesButtons = ({ initialText, setData, modal, query, actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
     let paginas = []
     let numeroBotones = Math.ceil(numberElements / numberElementsPerPage)
     const numeroMaximoPaginas = Math.ceil(numberElements / numberElementsPerPage)
-    const navigate = useNavigate()
 
     const cambiarPagina = async (i) => {
-        if (!modal) {
-            navigate(`/search?${query}${i}`)
-            setActualPage(i)
-        } else {
-            const url = `/xunta${query}pagina=${i}`
-            const response = await fetch(url)
-            const jsonData = await response.json()
-            setData(jsonData)
-            setActualPage(i)
-        }
+        const url = `/xunta${query}pagina=${i}`
+        const response = await fetch(url, { state: { initialText: initialText } })
+        const jsonData = await response.json()
+        setData(jsonData)
+        setActualPage(i)
     }
 
     if (numeroBotones > 5) {

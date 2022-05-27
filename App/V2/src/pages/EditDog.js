@@ -12,7 +12,7 @@ import { PrincipalLaw } from '../components/edit-page/principal-law/PrincipalLaw
 export default function EditDog() {
     const location = useLocation()
     let selectedText = window.getSelection()
-    const htmlCode = useDogDocument(`https://www.xunta.gal/${location.state.norma.rutaHtml}`)
+    const htmlCode = useDogDocument(location.state.norma.urlDog)
     let documentAdditionalData = useFinalDocument(location.state.norma.id).data
 
     function convertirFecha(fecha) {
@@ -55,18 +55,6 @@ export default function EditDog() {
     const [enabled, setEnabled] = useState(false)
 
     useEffect(() => {
-        if (htmlCode) {
-            setTitulo(htmlCode.getElementsByClassName('dog-texto-seccion')[0].innerText)
-        }
-        if (location.state) {
-            setSumario(location.state.norma.sumario)
-            setColectivoSeleccionado(location.state.norma.taxcolectivo)
-            setOrganismoSeleccionado(location.state.norma.taxorganizativa)
-            setRangoSeleccionado(location.state.norma.idTipo)
-            setSeccionSeleccionada(location.state.norma.idSeccion)
-            setFechaDog(location.state.norma.fechaDogFormateada)
-            setNumDog(location.state.norma.numeroDog)
-        }
         if (documentAdditionalData) {
             if (documentAdditionalData.changes) {
                 setCambios(documentAdditionalData.changes)
@@ -78,6 +66,9 @@ export default function EditDog() {
                 setNotas(documentAdditionalData.notes)
             }
             if (documentAdditionalData.headerItems) {
+                setSumario(documentAdditionalData.headerItems.sumario)
+                setFechaDog(documentAdditionalData.headerItems.fechaDog)
+                setNumDog(documentAdditionalData.headerItems.numDog)
                 setDpub(convertirFecha(documentAdditionalData.headerItems.dpub))
                 setRefpub(documentAdditionalData.headerItems.refpub)
                 setReferencia(documentAdditionalData.headerItems.referencia)

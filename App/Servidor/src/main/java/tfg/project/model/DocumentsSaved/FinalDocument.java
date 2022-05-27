@@ -11,6 +11,10 @@ import java.util.Objects;
 public class FinalDocument {
     @Schema(description = "Id do documento.", example = "1651743500014")
     private String id;
+    @Schema(description = "Url ao documento no DOG.", example = "/dog/Publicados/2022/20220525/AnuncioL180-200522-0001_gl.html")
+    private String urlDog;
+    @Schema(description = "HTML do documento a editar.", example = "<p>Documento</p>")
+    private String htmlDoc;
     @Schema(description = "Datos de cabeceira do documento.")
     private HeaderItems headerItems;
     @Schema(description = "Lista de notas escritas no documento.")
@@ -28,6 +32,22 @@ public class FinalDocument {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrlDog() {
+        return urlDog;
+    }
+
+    public void setUrlDog(String urlDog) {
+        this.urlDog = urlDog;
+    }
+
+    public String getHtmlDoc() {
+        return htmlDoc;
+    }
+
+    public void setHtmlDoc(String htmlDoc) {
+        this.htmlDoc = htmlDoc;
     }
 
     public HeaderItems getHeaderItems() {
@@ -75,18 +95,20 @@ public class FinalDocument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FinalDocument that = (FinalDocument) o;
-        return Objects.equals(id, that.id) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
+        return Objects.equals(id, that.id) && Objects.equals(urlDog, that.urlDog) && Objects.equals(htmlDoc, that.htmlDoc) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, headerItems, notes, laws, changes, linkedChanges);
+        return Objects.hash(id, urlDog, htmlDoc, headerItems, notes, laws, changes, linkedChanges);
     }
 
     @Override
     public String toString() {
         return "FinalDocument{" +
                 "id='" + id + '\'' +
+                ", urlDog='" + urlDog + '\'' +
+                ", htmlDoc='" + htmlDoc + '\'' +
                 ", headerItems=" + headerItems +
                 ", notes=" + notes +
                 ", laws=" + laws +

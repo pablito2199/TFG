@@ -1,7 +1,7 @@
 import { React, useState } from "react"
 
-import { Pages } from "../Pagination"
-import { Content } from "./Content"
+import { Pages } from "../Pagination-DOG"
+import { ContentDOG } from "./ContentDOG"
 
 import { SearchButton } from "./SearchButton"
 import { SearchFilters } from "./SearchFilters"
@@ -24,15 +24,15 @@ export const SearchFieldDOG = ({ initialText, setPagina }) => {
     const cambiarPagina = async (e) => {
         if (e.key === 'Enter') {
             const url = `/xunta?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&pagina=1`
-            const response = await fetch(url)
+            const response = await fetch(url, { state: { initialText: initialText } })
             const jsonData = await response.json()
             setData(jsonData)
         }
     }
 
-    return <section className='w-11/12 font-medium mt-5 flex flex-col rounded-xl px-2 screen-min3:w-10/12 screen-min1:w-9/12'>
+    return <section className='font-medium mt-5 flex flex-col rounded-xl screen-min3:w-10/12 screen-min1:w-9/12'>
         <div className='w-80 p-4 bg-blue-lex-gal text-center'>
-            <span className='text-white text-2xl py-3 rounded-xl'>Búsqueda de normas</span>
+            <span className='text-white text-2xl py-3 rounded-xl'>Importar do DOG</span>
         </div>
         <div className='p-6 bg-blue-lex-gal'>
             <span className="font-serif ml-1 text-lg font-semibold italic">Insira o texto da búsqueda...</span>
@@ -59,7 +59,7 @@ export const SearchFieldDOG = ({ initialText, setPagina }) => {
         {
             data
                 ?
-                <div className='flex flex-col ml-20 items-center w-full screen-min5:ml-10'>
+                <div className='flex flex-col items-center w-full screen-min5:ml-10'>
                     {
                         data.response?.listas.datos_informe
                             ?
@@ -67,10 +67,10 @@ export const SearchFieldDOG = ({ initialText, setPagina }) => {
                                 ?
                                 <>
                                     <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse {data?.response.resultSize} resultados para "{texto}"</p>
-                                    <Pages setData={setData} modal={true} query={`?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&`} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
-                                    <Content data={data.response?.listas.datos_informe} />
+                                    <Pages initialText={texto} setData={setData} query={`?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&`} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
+                                    <ContentDOG data={data.response?.listas.datos_informe} />
                                     <div className='m-4' />
-                                    <Pages setData={setData} modal={true} query={`?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&`} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
+                                    <Pages initialText={texto} setData={setData} query={`?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&`} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
                                     <div className='m-4' />
                                 </>
                                 :

@@ -1,4 +1,4 @@
 export * from './SearchButton'
-export * from './SearchField'
+export * from './SearchFieldLEXGAL'
 export * from './SearchFieldDOG'
 export * from './SearchFilters'
