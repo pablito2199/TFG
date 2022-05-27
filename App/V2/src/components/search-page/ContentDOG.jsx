@@ -2,7 +2,7 @@ import { EyeIcon, SaveIcon } from '@heroicons/react/solid'
 import React from 'react'
 
 export const ContentDOG = ({ data }) => {
-    const cambiarPagina = async (norma) => {
+    const anadirDoc = async (norma) => {
         const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -23,6 +23,7 @@ export const ContentDOG = ({ data }) => {
         }
 
         fetch(`/local/${norma.id}`, requestOptions);
+        alert('El documento ha sido importado a lex.gal correctamente.')
     }
 
     return <table className='px-1 flex mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
@@ -46,7 +47,7 @@ export const ContentDOG = ({ data }) => {
                                 <a title="Previsualizar" href={`https://www.xunta.gal/${norma.rutaHtml}`} target="_blank" rel='noreferrer' className='focus:outline-none text-md text-center self-center align-center px-4 py-4 hover:bg-gray-200 border cursor-pointer'>
                                     <EyeIcon className='h-4' />
                                 </a>
-                                <button onClick={() => cambiarPagina(norma)} title="Importar" className='focus:outline-none text-md text-center self-center align-center px-4 py-4 bg-black hover:bg-gray-600 text-indigo-50 font-semibold cursor-pointer' >
+                                <button onClick={() => anadirDoc(norma)} title="Importar" className='focus:outline-none text-md text-center self-center align-center px-4 py-4 bg-black hover:bg-gray-600 text-indigo-50 font-semibold cursor-pointer' >
                                     <SaveIcon className='h-4' />
                                 </button>
                             </div>
