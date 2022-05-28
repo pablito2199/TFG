@@ -84,35 +84,4 @@ public class XuntaController {
                 String.class
         );
     }
-    
-    @GetMapping(path = "norma", produces = APPLICATION_XML_VALUE)
-    @Operation(
-            operationId = "getNorma",
-            summary = "Obter o código HTML dunha norma do DOG.",
-            description = "Obter o código dunha norma en formato HTML para poder manexalo a conveniencia. Fíltrase pola URL."
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "A norma atopada.",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = String.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Non se atopou a norma correspondente ao enlace.",
-                    content = @Content
-            )
-    })
-    private String getNorma(
-            @Parameter(description = "URL onde se atopa a norma.")
-            @RequestParam(name = "url", defaultValue = "") String url
-    ) {
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(
-                url, String.class
-        );
-    }
 }

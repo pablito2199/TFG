@@ -47,32 +47,6 @@ export function useXmlDocument(id) {
     return data
 }
 
-export function useDogDocument(url) {
-    const [htmlCode, setHtmlCode] = useState('')
-
-    useEffect(() => {
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/xml"
-            }
-        }
-
-        const getUrl = async () => {
-            await fetch(`/xunta/norma?url=${url}`, requestOptions)
-                .then(response => response.text())
-                .then(text => {
-                    const parser = new DOMParser()
-                    setHtmlCode(parser.parseFromString(text, "text/xml"))
-                })
-                .catch(error => console.log(error))
-        }
-        getUrl()
-    }, [url])
-
-    return htmlCode
-}
-
 export function useFinalDocument(id) {
     const [data, setData] = useState({})
 

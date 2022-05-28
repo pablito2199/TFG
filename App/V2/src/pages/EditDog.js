@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Switch } from '@headlessui/react'
 
-import { useDogDocument, useFinalDocument } from '../hooks'
+import { useFinalDocument } from '../hooks'
 import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
@@ -11,8 +11,9 @@ import { PrincipalLaw } from '../components/edit-page/principal-law/PrincipalLaw
 
 export default function EditDog() {
     const location = useLocation()
+    const parser = new DOMParser()
     let selectedText = window.getSelection()
-    const htmlCode = useDogDocument(location.state.norma.urlDog)
+    const htmlCode = parser.parseFromString(location.state.norma.htmlDoc, "text/xml")
     let documentAdditionalData = useFinalDocument(location.state.norma.id).data
 
     function convertirFecha(fecha) {
