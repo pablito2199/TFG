@@ -6,7 +6,7 @@ import { ContentDOG } from "./ContentDOG"
 import { SearchButton } from "./SearchButton"
 import { SearchFilters } from "./SearchFilters"
 
-export const SearchFieldDOG = ({ initialText, setPagina }) => {
+export const SearchFieldDOG = ({ setPagina }) => {
     const [data, setData] = useState('')
     const [texto, setTexto] = useState('')
     const [soloTitulo, setSoloTitulo] = useState(true)
@@ -20,13 +20,15 @@ export const SearchFieldDOG = ({ initialText, setPagina }) => {
     const [seccion, setSeccion] = useState('')
     const [tematica, setTematica] = useState('')
     const [actualPage, setActualPage] = useState(1)
+    const [textoBuscado, setTextoBuscado] = useState('')
 
     const cambiarPagina = async (e) => {
         if (e.key === 'Enter') {
             const url = `/xunta?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&pagina=1`
-            const response = await fetch(url, { state: { initialText: initialText } })
+            const response = await fetch(url)
             const jsonData = await response.json()
             setData(jsonData)
+            setTextoBuscado(texto)
         }
     }
 
@@ -53,7 +55,7 @@ export const SearchFieldDOG = ({ initialText, setPagina }) => {
                 <button onClick={() => setTexto('')} className='px-6 py-2.5 focus:outline-none' type="button" id="button-addon2">
                     <span className="font-semibold">Limpar</span>
                 </button>
-                <SearchButton setData={setData} modal={true} texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} setPagina={setPagina} />
+                <SearchButton setTextoBuscado={setTextoBuscado} setData={setData} modal={true} texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} setPagina={setPagina} />
             </div>
         </div>
         {
@@ -66,7 +68,7 @@ export const SearchFieldDOG = ({ initialText, setPagina }) => {
                             data.response?.listas.datos_informe.length !== 0
                                 ?
                                 <>
-                                    <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse {data?.response.resultSize} resultados para "{texto}"</p>
+                                    <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse {data?.response.resultSize} resultados para "{textoBuscado}"</p>
                                     <Pages initialText={texto} setData={setData} query={`?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&`} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
                                     <ContentDOG data={data.response?.listas.datos_informe} />
                                     <div className='m-4' />
@@ -74,7 +76,7 @@ export const SearchFieldDOG = ({ initialText, setPagina }) => {
                                     <div className='m-4' />
                                 </>
                                 :
-                                <p className='py-4 text-red-600 font-semibold italic'>Non se atoparon resultados para "{initialText}". Por favor, inténteo de novo.</p>
+                                <p className='py-4 text-red-600 font-semibold italic'>Non se atoparon resultados para "{textoBuscado}". Por favor, inténteo de novo.</p>
                             :
                             <p className='py-4 text-gray-600 font-semibold italic'>Por favor, insire algún texto para realizar a búsqueda...</p>
                     }

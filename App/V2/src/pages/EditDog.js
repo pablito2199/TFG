@@ -133,7 +133,7 @@ export default function EditDog() {
             setCambios={setCambios}
             setOpacity={setOpacity}
         />
-        <div className={opacity}>
+        <div className={'w-full ' + opacity}>
             {
                 htmlCode
                     ?

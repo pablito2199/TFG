@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const SearchButton = ({ initialText, setData, modal, texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion, colectivo, organizacion, rango, seccion, tematica, setPagina }) => {
+export const SearchButton = ({ setTextoBuscado, initialText, setData, modal, texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion, colectivo, organizacion, rango, seccion, tematica, setPagina }) => {
     const navigate = useNavigate()
 
     const cambiarPagina = async () => {
@@ -15,6 +15,7 @@ export const SearchButton = ({ initialText, setData, modal, texto, soloTitulo, f
             const response = await fetch(url)
             const jsonData = await response.json()
             setData(jsonData)
+            setTextoBuscado(texto)
         }
     }
 
