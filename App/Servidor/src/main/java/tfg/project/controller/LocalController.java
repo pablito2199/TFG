@@ -14,9 +14,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 import tfg.project.model.Documento;
 import tfg.project.model.DocumentsSaved.FinalDocument;
 import tfg.project.service.FinalDocumentService;
@@ -135,6 +137,38 @@ public class LocalController {
             @PathVariable("id") String id
     ) {
         return ResponseEntity.ok().body(finalDocuments.get(id));
+    }
+
+    @GetMapping(path = "{id}/htmlDoc", produces = APPLICATION_JSON_VALUE)
+    @Operation(
+            operationId = "getHtmlDoc",
+            summary = "Obter o código HTML dun documento.",
+            description = "Obter o código HTML dun documento a partir do seu id."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "O documento foi atopado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Documento non atopado.",
+                    content = @Content
+            )
+    })
+    ResponseEntity<String> getHtmlDoc(
+            @Parameter(description = "Id do documento a buscar", example = "1651743500014")
+            @PathVariable("id") String id
+    ) {
+        Optional<FinalDocument> result = finalDocuments.get(id);
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
+        }
+        return ResponseEntity.ok().body(finalDocuments.get(id).get().getHtmlDoc());
     }
 
     @PutMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)

@@ -183,12 +183,11 @@ export default function EditDog() {
                                 </main>
                                 :
                                 <main className='z-0 w-full mt-6 flex screen-min1:flex-col mb-24'>
+                                    <PrincipalLaw data={htmlCode} claseLeftSide={claseLeftSide} />
                                     <LinkedDocuments
-                                        claseLeftSide={claseLeftSide}
                                         leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
                                         cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
                                     />
-                                    <PrincipalLaw data={htmlCode} />
                                 </main>
                         }
                     </>

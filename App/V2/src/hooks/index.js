@@ -86,3 +86,27 @@ export function useFinalDocument(id) {
         put
     }
 }
+
+export function useHtmlDoc(id) {
+    const [data, setData] = useState('')
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/xml' }
+        }
+
+        const getData = async () => {
+            fetch(`/local/${id}/htmlDoc`, requestOptions)
+                .then(response => response.text())
+                .then(text => {
+                    const parser = new DOMParser()
+                    setData(parser.parseFromString(text, "text/xml"))
+                })
+                .catch(error => console.log(error))
+        }
+        getData()
+    }, [id])
+
+    return data
+}

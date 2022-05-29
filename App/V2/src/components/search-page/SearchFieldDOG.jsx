@@ -6,7 +6,7 @@ import { ContentDOG } from "./ContentDOG"
 import { SearchButton } from "./SearchButton"
 import { SearchFilters } from "./SearchFilters"
 
-export const SearchFieldDOG = ({ setPagina }) => {
+export const SearchFieldDOG = () => {
     const [data, setData] = useState('')
     const [texto, setTexto] = useState('')
     const [soloTitulo, setSoloTitulo] = useState(true)
@@ -55,7 +55,7 @@ export const SearchFieldDOG = ({ setPagina }) => {
                 <button onClick={() => setTexto('')} className='px-6 py-2.5 focus:outline-none' type="button" id="button-addon2">
                     <span className="font-semibold">Limpar</span>
                 </button>
-                <SearchButton setTextoBuscado={setTextoBuscado} setData={setData} modal={true} texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} setPagina={setPagina} />
+                <SearchButton setTextoBuscado={setTextoBuscado} setData={setData} modal={true} texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} />
             </div>
         </div>
         {
