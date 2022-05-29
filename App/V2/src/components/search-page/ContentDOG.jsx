@@ -23,7 +23,7 @@ export const ContentDOG = ({ data }) => {
         }
 
         fetch(`/local/${norma.id}`, requestOptions);
-        alert('El documento ha sido importado a lex.gal correctamente.')
+        alert('O documento foi importado a lex.gal correctamente.')
     }
 
     return <table className='px-1 flex mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
