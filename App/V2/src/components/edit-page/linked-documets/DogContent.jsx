@@ -2,11 +2,12 @@ import { React, useRef, useState } from 'react'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import { XCircleOutline } from '@graywolfai/react-heroicons'
 
-export const DogContent = ({ data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas }) => {
+export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas }) => {
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
                 return <Parrafo
+                    parrafosAModificar={parrafosAModificar}
                     key={index}
                     parrafo={parrafo.innerText}
                     leiSeleccionada={leiSeleccionada}
@@ -19,7 +20,7 @@ export const DogContent = ({ data, leiSeleccionada, cambiosVinculadas, setCambio
     </div>
 }
 
-const Parrafo = ({ parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, posicion }) => {
+const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, posicion }) => {
     const id = leiSeleccionada + "-" + posicion
     const [mostrarBotones, setMostrarBotones] = useState(false)
     const ref = useRef(null)
@@ -31,6 +32,14 @@ const Parrafo = ({ parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVincul
         clase += " text-center font-bold mt-6"
     }
     const claseCambiado = clase + " bg-green-200"
+
+    if (parrafosAModificar && parrafosAModificar.length !== 0) {
+        parrafosAModificar[0].forEach(par => {
+            if (parrafo.match(new RegExp("^" + par + ". ", "gi"))) {
+                clase += " bg-blue-lex-gal"
+            }
+        })
+    }
 
     const gardarCambio = () => {
         let auxiliar = []

@@ -23,11 +23,13 @@ export default function EditDog() {
         return fecha
     }
 
+    const leiPrincipal = location.state.norma.id
     const fechaActual = new Date()
     const ano = String(fechaActual.getFullYear())
     const version = String(fechaActual.getFullYear()) + String(fechaActual.getMonth() + 1).padStart(2, "0") + String(fechaActual.getDate()).padStart(2, "0")
     const [titulo, setTitulo] = useState('')
     const [sumario, setSumario] = useState('')
+    const [publicador, setPublicador] = useState('')
     const [dpub, setDpub] = useState('')
     const [refpub, setRefpub] = useState('')
     const [referencia, setReferencia] = useState('')
@@ -54,6 +56,7 @@ export default function EditDog() {
     const [show, setShow] = useState(false)
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
     const [enabled, setEnabled] = useState(false)
+    const [parrafosAModificar, setParrafosAModificar] = useState([])
 
     useEffect(() => {
         if (documentAdditionalData) {
@@ -68,6 +71,7 @@ export default function EditDog() {
             }
             if (documentAdditionalData.headerItems) {
                 setSumario(documentAdditionalData.headerItems.sumario)
+                setPublicador(documentAdditionalData.headerItems.publicador)
                 setFechaDog(documentAdditionalData.headerItems.fechaDog)
                 setNumDog(documentAdditionalData.headerItems.numDog)
                 setDpub(convertirFecha(documentAdditionalData.headerItems.dpub))
@@ -103,6 +107,27 @@ export default function EditDog() {
         }
     }, [documentAdditionalData, htmlCode, location.state, enabled])
 
+    const updateParrafosAModificar = () => {
+        const regex = new RegExp("Artigo [0-9]+", "gi")
+        let auxiliar = []
+        let resultado = []
+
+        Array.prototype.slice.call(htmlCode.getElementsByClassName('story')[0].children).forEach((parrafo) => {
+            if (
+                parrafo.innerText.includes('queda redactado como segue') ||
+                parrafo.innerText.includes('queda redactado nos seguintes termos') ||
+                parrafo.innerText.includes('queda a redacción da seguinte maneira') ||
+                parrafo.innerText.includes('queda redactado da seguinte maneira')
+            ) {
+                resultado = (parrafo.innerText).match(regex)
+                if (resultado !== null && resultado?.length !== 0) {
+                    resultado.forEach(res => auxiliar.push(res))
+                }
+            }
+        })
+        setParrafosAModificar([[...parrafosAModificar, ...auxiliar]])
+    }
+
     return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20 z-0'>
         <div className='flex pr-10 fixed z-10 mt-5 right-0'>
             <div className='bg-white p-2 shadow-lg'>
@@ -110,7 +135,7 @@ export default function EditDog() {
                     <span className='mr-2 text-lg font-semibold'>Modo de edición de leis vinculadas</span>
                     <Switch
                         checked={enabled}
-                        onChange={setEnabled}
+                        onChange={() => { setEnabled(!enabled); updateParrafosAModificar() }}
                         className={`${enabled ? 'bg-blue-lex-gal' : 'bg-gray-200'
                             } relative inline-flex h-6 w-11 items-center rounded-full`}
                     >
@@ -183,8 +208,14 @@ export default function EditDog() {
                                 </main>
                                 :
                                 <main className='z-0 w-full mt-6 flex screen-min1:flex-col mb-24'>
-                                    <PrincipalLaw data={htmlCode} claseLeftSide={claseLeftSide} />
+                                    <PrincipalLaw
+                                        leiPrincipal={leiPrincipal}
+                                        data={htmlCode}
+                                        claseLeftSide={claseLeftSide}
+                                    />
                                     <LinkedDocuments
+                                        parrafosAModificar={parrafosAModificar}
+                                        leiPrincipal={leiPrincipal}
                                         leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
                                         cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
                                     />
@@ -202,6 +233,8 @@ export default function EditDog() {
                 cambios={cambios}
                 leyes={leisVinculadas}
                 cambiosVinculadas={cambiosVinculadas}
+                sumario={sumario}
+                publicador={publicador}
                 dpub={dpub}
                 refpub={refpub}
                 ano={ano}

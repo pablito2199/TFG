@@ -4,19 +4,23 @@ import { useNavigate } from 'react-router-dom'
 import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 
-export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosVinculadas, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
+export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
     const { put } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async () => {
+        console.log(cambiosVinculadas)
         if (window.confirm('Os seus cambios serán gardados. Desexa continuar?')) {
             try {
                 put({
                     id: idDb,
+                    urlDog: enlace,
                     notes: notas,
                     changes: cambios,
                     laws: leyes,
                     headerItems: {
+                        sumario: sumario,
+                        publicador: publicador,
                         dpub: dpub,
                         refpub: refpub,
                         ano: ano,

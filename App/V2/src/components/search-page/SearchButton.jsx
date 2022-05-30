@@ -16,6 +16,7 @@ export const SearchButton = ({ setTextoBuscado, initialText, setData, modal, tex
             const jsonData = await response.json()
             setData(jsonData)
             setTextoBuscado(texto)
+            setPagina(1)
         }
     }
 

@@ -29,6 +29,7 @@ export const SearchFieldDOG = () => {
             const jsonData = await response.json()
             setData(jsonData)
             setTextoBuscado(texto)
+            setActualPage(1)
         }
     }
 
@@ -55,7 +56,7 @@ export const SearchFieldDOG = () => {
                 <button onClick={() => setTexto('')} className='px-6 py-2.5 focus:outline-none' type="button" id="button-addon2">
                     <span className="font-semibold">Limpar</span>
                 </button>
-                <SearchButton setTextoBuscado={setTextoBuscado} setData={setData} modal={true} texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} />
+                <SearchButton setPagina={setActualPage} setTextoBuscado={setTextoBuscado} setData={setData} modal={true} texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} />
             </div>
         </div>
         {

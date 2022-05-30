@@ -74,9 +74,11 @@ export function useFinalDocument(id) {
                 changes: finalDocument.changes,
                 laws: finalDocument.laws,
                 headerItems: finalDocument.headerItems,
-                linkedChanges: finalDocument.linkedChanges
+                linkedChanges: finalDocument.linkedChanges,
+                urlDog: finalDocument.urlDog
             })
         }
+        console.log(requestOptions)
 
         fetch(`/local/${finalDocument.id}`, requestOptions);
     }
