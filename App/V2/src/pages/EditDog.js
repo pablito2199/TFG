@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
+import listadoMeses from '../data/listadoMeses.json'
 import { useFinalDocument } from '../hooks'
 import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
@@ -70,6 +71,15 @@ export default function EditDog() {
                 setNotas(documentAdditionalData.notes)
             }
             if (documentAdditionalData.headerItems) {
+                let mesesRegex = "("
+                listadoMeses.forEach(mes => mesesRegex += mes.name + "|")
+                mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
+                mesesRegex += ")"
+                const tituloRegex = new RegExp("Orde do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
+                let resultado = (documentAdditionalData.headerItems.sumario).match(tituloRegex)
+                if (resultado !== null && resultado?.length !== 0) {
+                    setTitulo(resultado[0])
+                }
                 setSumario(documentAdditionalData.headerItems.sumario)
                 setPublicador(documentAdditionalData.headerItems.publicador)
                 setFechaDog(documentAdditionalData.headerItems.fechaDog)
@@ -112,7 +122,8 @@ export default function EditDog() {
                 parrafo.innerText.includes('queda redactado como segue') ||
                 parrafo.innerText.includes('queda redactado nos seguintes termos') ||
                 parrafo.innerText.includes('queda a redacción da seguinte maneira') ||
-                parrafo.innerText.includes('queda redactado da seguinte maneira')
+                parrafo.innerText.includes('queda redactado da seguinte maneira') ||
+                parrafo.innerText.includes('queda redactado do seguinte xeito')
             ) {
                 resultado = (parrafo.innerText).match(regex)
                 if (resultado !== null && resultado?.length !== 0) {

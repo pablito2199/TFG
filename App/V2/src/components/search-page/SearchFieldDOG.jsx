@@ -69,7 +69,7 @@ export const SearchFieldDOG = () => {
                             data.response?.listas.datos_informe.length !== 0
                                 ?
                                 <>
-                                    <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse {data?.response.resultSize} resultados para "{textoBuscado}"</p>
+                                    <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse <span className='text-black font-bold'>{data?.response.resultSize}</span> resultados para <span className='text-blue-green font-bold'>"{textoBuscado}"</span></p>
                                     <Pages initialText={texto} setData={setData} query={`?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&`} actualPage={actualPage} setActualPage={setActualPage} elements={data.response?.resultSize} numberElementsPerPage={8} />
                                     <ContentDOG data={data.response?.listas.datos_informe} />
                                     <div className='m-4' />
