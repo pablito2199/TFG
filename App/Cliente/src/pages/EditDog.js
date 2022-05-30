@@ -1,15 +1,21 @@
 import { React, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { useDogDocument, useFinalDocument } from '../hooks'
+import listadoMeses from '../data/listadoMeses.json'
+import { useFinalDocument } from '../hooks'
 import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
+import { LinkedDocuments } from '../components/edit-page/linked-documets/LinkedDocuments'
+import { PrincipalLaw } from '../components/edit-page/principal-law/PrincipalLaw'
+import { XIcon } from '@heroicons/react/solid'
 
 export default function EditDog() {
+    const [modal, setModal] = useState(false)
     const location = useLocation()
+    const parser = new DOMParser()
     let selectedText = window.getSelection()
-    const htmlCode = useDogDocument(`https://www.xunta.gal/${location.state.norma.rutaHtml}`)
+    const htmlCode = parser.parseFromString(location.state.norma.htmlDoc, "text/xml")
     let documentAdditionalData = useFinalDocument(location.state.norma.id).data
 
     function convertirFecha(fecha) {
@@ -19,11 +25,13 @@ export default function EditDog() {
         return fecha
     }
 
+    const leiPrincipal = location.state.norma.id
     const fechaActual = new Date()
     const ano = String(fechaActual.getFullYear())
     const version = String(fechaActual.getFullYear()) + String(fechaActual.getMonth() + 1).padStart(2, "0") + String(fechaActual.getDate()).padStart(2, "0")
     const [titulo, setTitulo] = useState('')
     const [sumario, setSumario] = useState('')
+    const [publicador, setPublicador] = useState('')
     const [dpub, setDpub] = useState('')
     const [refpub, setRefpub] = useState('')
     const [referencia, setReferencia] = useState('')
@@ -43,24 +51,15 @@ export default function EditDog() {
     const [cambios, setCambios] = useState([])
     const [leisVinculadas, setLeisVinculadas] = useState([])
     const [notas, setNotas] = useState([])
+    const [leiSeleccionada, setLeiSeleccionada] = useState(0)
+    const [cambiosVinculadas, setCambiosVinculadas] = useState([])
     const [opacity, setOpacity] = useState('opacity-100')
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
     const [show, setShow] = useState(false)
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
+    const [parrafosAModificar, setParrafosAModificar] = useState([])
 
     useEffect(() => {
-        if (htmlCode) {
-            setTitulo(htmlCode.getElementsByClassName('dog-texto-seccion')[0].innerText)
-        }
-        if (location.state) {
-            setSumario(location.state.norma.sumario)
-            setColectivoSeleccionado(location.state.norma.taxcolectivo)
-            setOrganismoSeleccionado(location.state.norma.taxorganizativa)
-            setRangoSeleccionado(location.state.norma.idTipo)
-            setSeccionSeleccionada(location.state.norma.idSeccion)
-            setFechaDog(location.state.norma.fechaDogFormateada)
-            setNumDog(location.state.norma.numeroDog)
-        }
         if (documentAdditionalData) {
             if (documentAdditionalData.changes) {
                 setCambios(documentAdditionalData.changes)
@@ -72,6 +71,19 @@ export default function EditDog() {
                 setNotas(documentAdditionalData.notes)
             }
             if (documentAdditionalData.headerItems) {
+                let mesesRegex = "("
+                listadoMeses.forEach(mes => mesesRegex += mes.name + "|")
+                mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
+                mesesRegex += ")"
+                const tituloRegex = new RegExp("Orde do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
+                let resultado = (documentAdditionalData.headerItems.sumario).match(tituloRegex)
+                if (resultado !== null && resultado?.length !== 0) {
+                    setTitulo(resultado[0])
+                }
+                setSumario(documentAdditionalData.headerItems.sumario)
+                setPublicador(documentAdditionalData.headerItems.publicador)
+                setFechaDog(documentAdditionalData.headerItems.fechaDog)
+                setNumDog(documentAdditionalData.headerItems.numDog)
                 setDpub(convertirFecha(documentAdditionalData.headerItems.dpub))
                 setRefpub(documentAdditionalData.headerItems.refpub)
                 setReferencia(documentAdditionalData.headerItems.referencia)
@@ -94,10 +106,36 @@ export default function EditDog() {
                     setTematicaSeleccionada(documentAdditionalData.headerItems.tematicaSeleccionada)
                 }
             }
+            if (documentAdditionalData.linkedChanges) {
+                setCambiosVinculadas(documentAdditionalData.linkedChanges)
+            }
         }
     }, [documentAdditionalData, htmlCode, location.state])
 
-    return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20'>
+    const updateParrafosAModificar = () => {
+        const regex = new RegExp("Artigo [0-9]+", "gi")
+        let auxiliar = []
+        let resultado = []
+
+        Array.prototype.slice.call(htmlCode.getElementsByClassName('story')[0].children).forEach((parrafo) => {
+            if (
+                parrafo.innerText.includes('queda redactado como segue') ||
+                parrafo.innerText.includes('queda redactado nos seguintes termos') ||
+                parrafo.innerText.includes('queda a redacción da seguinte maneira') ||
+                parrafo.innerText.includes('queda redactado da seguinte maneira') ||
+                parrafo.innerText.includes('queda redactado do seguinte xeito')
+            ) {
+                resultado = (parrafo.innerText).match(regex)
+                if (resultado !== null && resultado?.length !== 0) {
+                    resultado.forEach(res => auxiliar.push(res))
+                }
+            }
+        })
+        setParrafosAModificar(auxiliar)
+        setModal(true)
+    }
+
+    return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20 z-0'>
         <ParagraphEditor
             mostrarInput={mostrarInput}
             setMostrarInput={setMostrarInput}
@@ -109,7 +147,7 @@ export default function EditDog() {
             setCambios={setCambios}
             setOpacity={setOpacity}
         />
-        <div className={opacity}>
+        <div className={'w-full ' + opacity}>
             {
                 htmlCode
                     ?
@@ -132,32 +170,72 @@ export default function EditDog() {
                             tematicaSeleccionada={tematicaSeleccionada} setTematicaSeleccionada={setTematicaSeleccionada}
                             numDog={numDog}
                         />
-
-                        <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                            <LeftSideDog
-                                data={htmlCode}
-                                cambios={cambios}
-                                setParrafoACambiar={setParrafoACambiar}
-                                setParrafoCambiado={setParrafoCambiado}
-                                setMostrarInput={setMostrarInput}
-                                setOpacity={setOpacity}
-                                setAnchorPoint={setAnchorPoint}
-                                show={show}
-                                setShow={setShow}
-                                claseLeftSide={claseLeftSide}
-                            />
-                            <RightSideDog
-                                data={htmlCode}
-                                cambios={cambios}
-                                setCambios={setCambios}
-                                claseLeftSide={claseLeftSide}
-                                setClaseLeftSide={setClaseLeftSide}
-                                notas={notas}
-                                setNotas={setNotas}
-                                leisVinculadas={leisVinculadas}
-                                setLeisVinculadas={setLeisVinculadas}
-                            />
-                        </main>
+                        {
+                            !modal
+                                ?
+                                <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
+                                    <LeftSideDog
+                                        data={htmlCode}
+                                        cambios={cambios}
+                                        setParrafoACambiar={setParrafoACambiar}
+                                        setParrafoCambiado={setParrafoCambiado}
+                                        setMostrarInput={setMostrarInput}
+                                        setOpacity={setOpacity}
+                                        setAnchorPoint={setAnchorPoint}
+                                        show={show} setShow={setShow}
+                                        claseLeftSide={claseLeftSide}
+                                    />
+                                    <RightSideDog
+                                        updateParrafosAModificar={updateParrafosAModificar}
+                                        data={htmlCode}
+                                        cambios={cambios} setCambios={setCambios}
+                                        claseLeftSide={claseLeftSide} setClaseLeftSide={setClaseLeftSide}
+                                        notas={notas} setNotas={setNotas}
+                                        leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
+                                        setLeiSeleccionada={setLeiSeleccionada}
+                                    />
+                                </main>
+                                :
+                                <main className='z-0 w-full mt-6 flex mb-24'>
+                                    <div className='opacity-40 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
+                                        <LeftSideDog
+                                            data={htmlCode}
+                                            cambios={cambios}
+                                            setParrafoACambiar={setParrafoACambiar}
+                                            setParrafoCambiado={setParrafoCambiado}
+                                            setMostrarInput={setMostrarInput}
+                                            setOpacity={setOpacity}
+                                            setAnchorPoint={setAnchorPoint}
+                                            show={show} setShow={setShow}
+                                            claseLeftSide={claseLeftSide}
+                                        />
+                                        <RightSideDog
+                                            updateParrafosAModificar={updateParrafosAModificar}
+                                            data={htmlCode}
+                                            cambios={cambios} setCambios={setCambios}
+                                            claseLeftSide={claseLeftSide} setClaseLeftSide={setClaseLeftSide}
+                                            notas={notas} setNotas={setNotas}
+                                            leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
+                                            setLeiSeleccionada={setLeiSeleccionada}
+                                        />
+                                    </div>
+                                    <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12 overflow-y-scroll'>
+                                        <XIcon className='fixed self-end h-5 cursor-pointer border border-black' onClick={() => { setModal(false); window.location.reload(false) }} />
+                                        <div className='flex'>
+                                            <PrincipalLaw
+                                                leiPrincipal={leiPrincipal}
+                                                data={htmlCode}
+                                            />
+                                            <LinkedDocuments
+                                                parrafosAModificar={parrafosAModificar}
+                                                leiPrincipal={leiPrincipal}
+                                                leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
+                                                cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
+                                            />
+                                        </div>
+                                    </div>
+                                </main>
+                        }
                     </>
                     :
                     <></>
@@ -165,10 +243,13 @@ export default function EditDog() {
 
             <PrincipalButtons
                 idDb={location.state.norma.id}
-                enlace={'https://www.xunta.gal' + location.state.norma.rutaHtml}
+                enlace={location.state.norma.urlDog}
                 notas={notas}
                 cambios={cambios}
                 leyes={leisVinculadas}
+                cambiosVinculadas={cambiosVinculadas}
+                sumario={sumario}
+                publicador={publicador}
                 dpub={dpub}
                 refpub={refpub}
                 ano={ano}

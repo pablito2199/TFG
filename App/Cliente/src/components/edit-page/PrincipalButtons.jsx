@@ -4,19 +4,23 @@ import { useNavigate } from 'react-router-dom'
 import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 
-export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
+export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
     const { put } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async () => {
+        console.log(cambiosVinculadas)
         if (window.confirm('Os seus cambios serán gardados. Desexa continuar?')) {
             try {
                 put({
                     id: idDb,
+                    urlDog: enlace,
                     notes: notas,
                     changes: cambios,
                     laws: leyes,
                     headerItems: {
+                        sumario: sumario,
+                        publicador: publicador,
                         dpub: dpub,
                         refpub: refpub,
                         ano: ano,
@@ -32,7 +36,8 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, re
                         seccionSeleccionada: seccionSeleccionada,
                         tematicaSeleccionada: tematicaSeleccionada,
                         numDog: numDog
-                    }
+                    },
+                    linkedChanges: cambiosVinculadas
                 })
 
                 navigate('/save', {
@@ -46,7 +51,7 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, dpub, re
         }
     }
 
-    return <div className=' fixed left-0 bottom-0 w-screen border-t-2 bg-white z-1 flex justify-center gap-20 py-4'>
+    return <div className='fixed left-0 bottom-0 w-screen border-t-2 bg-white z-1 flex justify-center gap-20 py-4'>
         <button onClick={submit} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-4 bg-green-500 hover:bg-green-600 w-60 text-white font-semibold cursor-pointer'>
             <ThumbUpOutline className='h-6 text-white' />
             <span>Validar e publicar</span>

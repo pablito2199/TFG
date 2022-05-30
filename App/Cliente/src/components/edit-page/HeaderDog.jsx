@@ -22,13 +22,13 @@ export const HeaderDog = ({ titulo, setTitulo, sumario, setSumario, dpub, setDpu
         {
             !mostrar
                 ?
-                <div className='flex w-80 p-1 bg-blue-lex-gal text-center items-center'>
+                <div className='flex w-80 p-1 py-4 bg-blue-lex-gal text-center items-center'>
                     <span className='text-white ml-4 text-2xl py-3'>Datos de cabeceira</span>
                     <ChevronDoubleDownIcon onClick={() => setMostrar(!mostrar)} className="flex-1 h-8 w-8 text-white cursor-pointer" aria-hidden="true" />
                 </div>
                 :
                 <div>
-                    <div className='flex w-80 p-1 bg-blue-lex-gal text-center items-center'>
+                    <div className='flex w-80 p-1 py-4 bg-blue-lex-gal text-center items-center'>
                         <span className='text-white ml-4 text-2xl py-3'>Datos de cabeceira</span>
                         <ChevronDoubleUpIcon onClick={() => setMostrar(!mostrar)} className="flex-1 h-8 w-8 text-white cursor-pointer" aria-hidden="true" />
                     </div>

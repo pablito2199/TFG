@@ -34,7 +34,7 @@ const Parrafo = ({ parrafo, handleContextMenu, cambios, clase }) => {
         {
             claseAntiguo
                 ?
-                <p className={clase + ' bg-red-200'} onContextMenu={(e) => handleContextMenu(e, parrafo)}>{parrafo}</p>
+                <p className={clase + ' bg-green-200'} onContextMenu={(e) => handleContextMenu(e, parrafo)}>{parrafo}</p>
                 :
                 <p className={clase} onContextMenu={(e) => handleContextMenu(e, parrafo)}>{parrafo}</p>
         }

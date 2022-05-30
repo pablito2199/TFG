@@ -5,9 +5,16 @@ export function useNormas(query = '') {
     const [data, setData] = useState({})
 
     useEffect(() => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+
         const getData = async () => {
-            const url = `/xunta/normas?${query}`
-            const response = await fetch(url)
+            const url = `/local${query}`
+            const response = await fetch(url, requestOptions)
             const jsonData = await response.json()
             setData(jsonData)
         }
@@ -29,7 +36,7 @@ export function useXmlDocument(id) {
         }
 
         const getData = async () => {
-            await fetch(`/documents/${id}`, requestOptions)
+            await fetch(`/local/${id}`, requestOptions)
                 .then(response => response.text())
                 .then(text => setData(JSON.parse(xml2json(text, { compact: true, spaces: 4 })).cdg))
                 .catch(error => console.log(error))
@@ -40,33 +47,7 @@ export function useXmlDocument(id) {
     return data
 }
 
-export function useDogDocument(url) {
-    const [htmlCode, setHtmlCode] = useState('')
-
-    useEffect(() => {
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/xml"
-            }
-        }
-
-        const getUrl = async () => {
-            await fetch(`/xunta/norma?url=${url}`, requestOptions)
-                .then(response => response.text())
-                .then(text => {
-                    const parser = new DOMParser()
-                    setHtmlCode(parser.parseFromString(text, "text/xml"))
-                })
-                .catch(error => console.log(error))
-        }
-        getUrl()
-    }, [url])
-
-    return htmlCode
-}
-
-export function useFinalDocument(id = 1) {
+export function useFinalDocument(id) {
     const [data, setData] = useState({})
 
     useEffect(() => {
@@ -76,7 +57,7 @@ export function useFinalDocument(id = 1) {
         }
 
         const getData = async () => {
-            const response = await fetch(`/documents/savedDocuments/${id}`, requestOptions);
+            const response = await fetch(`/local/${id}/savedData`, requestOptions);
             const jsonData = await response.json()
             setData(jsonData)
         }
@@ -92,15 +73,42 @@ export function useFinalDocument(id = 1) {
                 notes: finalDocument.notes,
                 changes: finalDocument.changes,
                 laws: finalDocument.laws,
-                headerItems: finalDocument.headerItems
+                headerItems: finalDocument.headerItems,
+                linkedChanges: finalDocument.linkedChanges,
+                urlDog: finalDocument.urlDog
             })
         }
+        console.log(requestOptions)
 
-        fetch('/documents/savedDocuments', requestOptions);
+        fetch(`/local/${finalDocument.id}`, requestOptions);
     }
 
     return {
         data,
         put
     }
+}
+
+export function useHtmlDoc(id) {
+    const [data, setData] = useState('')
+
+    useEffect(() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/xml' }
+        }
+
+        const getData = async () => {
+            fetch(`/local/${id}/htmlDoc`, requestOptions)
+                .then(response => response.text())
+                .then(text => {
+                    const parser = new DOMParser()
+                    setData(parser.parseFromString(text, "text/xml"))
+                })
+                .catch(error => console.log(error))
+        }
+        getData()
+    }, [id])
+
+    return data
 }
