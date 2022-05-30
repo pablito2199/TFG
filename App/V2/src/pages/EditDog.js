@@ -1,6 +1,5 @@
 import { React, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Switch } from '@headlessui/react'
 
 import { useFinalDocument } from '../hooks'
 import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
@@ -8,8 +7,10 @@ import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
 import { LinkedDocuments } from '../components/edit-page/linked-documets/LinkedDocuments'
 import { PrincipalLaw } from '../components/edit-page/principal-law/PrincipalLaw'
+import { XIcon } from '@heroicons/react/solid'
 
 export default function EditDog() {
+    const [modal, setModal] = useState(false)
     const location = useLocation()
     const parser = new DOMParser()
     let selectedText = window.getSelection()
@@ -55,7 +56,6 @@ export default function EditDog() {
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
     const [show, setShow] = useState(false)
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
-    const [enabled, setEnabled] = useState(false)
     const [parrafosAModificar, setParrafosAModificar] = useState([])
 
     useEffect(() => {
@@ -100,12 +100,7 @@ export default function EditDog() {
                 setCambiosVinculadas(documentAdditionalData.linkedChanges)
             }
         }
-        if (enabled) {
-            setClaseLeftSide('z-0 w-1/2 ml-2 screen-min1:w-11/12')
-        } else {
-            setClaseLeftSide('z-0 w-7/12 ml-2 screen-min5:w-5/6')
-        }
-    }, [documentAdditionalData, htmlCode, location.state, enabled])
+    }, [documentAdditionalData, htmlCode, location.state])
 
     const updateParrafosAModificar = () => {
         const regex = new RegExp("Artigo [0-9]+", "gi")
@@ -125,28 +120,11 @@ export default function EditDog() {
                 }
             }
         })
-        setParrafosAModificar([[...parrafosAModificar, ...auxiliar]])
+        setParrafosAModificar(auxiliar)
+        setModal(true)
     }
 
     return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20 z-0'>
-        <div className='flex pr-10 fixed z-10 mt-5 right-0'>
-            <div className='bg-white p-2 shadow-lg'>
-                <div className='flex bg-black text-white py-4 px-4 items-center'>
-                    <span className='mr-2 text-lg font-semibold'>Modo de edición de leis vinculadas</span>
-                    <Switch
-                        checked={enabled}
-                        onChange={() => { setEnabled(!enabled); updateParrafosAModificar() }}
-                        className={`${enabled ? 'bg-blue-lex-gal' : 'bg-gray-200'
-                            } relative inline-flex h-6 w-11 items-center rounded-full`}
-                    >
-                        <span
-                            className={`${enabled ? 'translate-x-6' : 'translate-x-1'
-                                } inline-block h-4 w-4 transform rounded-full bg-white transform transition ease-in-out duration-200`}
-                        />
-                    </Switch>
-                </div>
-            </div>
-        </div>
         <ParagraphEditor
             mostrarInput={mostrarInput}
             setMostrarInput={setMostrarInput}
@@ -182,7 +160,7 @@ export default function EditDog() {
                             numDog={numDog}
                         />
                         {
-                            !enabled
+                            !modal
                                 ?
                                 <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                                     <LeftSideDog
@@ -197,28 +175,54 @@ export default function EditDog() {
                                         claseLeftSide={claseLeftSide}
                                     />
                                     <RightSideDog
+                                        updateParrafosAModificar={updateParrafosAModificar}
                                         data={htmlCode}
                                         cambios={cambios} setCambios={setCambios}
                                         claseLeftSide={claseLeftSide} setClaseLeftSide={setClaseLeftSide}
                                         notas={notas} setNotas={setNotas}
                                         leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
-                                        setEnabled={setEnabled}
                                         setLeiSeleccionada={setLeiSeleccionada}
                                     />
                                 </main>
                                 :
-                                <main className='z-0 w-full mt-6 flex screen-min1:flex-col mb-24'>
-                                    <PrincipalLaw
-                                        leiPrincipal={leiPrincipal}
-                                        data={htmlCode}
-                                        claseLeftSide={claseLeftSide}
-                                    />
-                                    <LinkedDocuments
-                                        parrafosAModificar={parrafosAModificar}
-                                        leiPrincipal={leiPrincipal}
-                                        leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
-                                        cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
-                                    />
+                                <main className='z-0 w-full mt-6 flex mb-24'>
+                                    <div className='opacity-40 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
+                                        <LeftSideDog
+                                            data={htmlCode}
+                                            cambios={cambios}
+                                            setParrafoACambiar={setParrafoACambiar}
+                                            setParrafoCambiado={setParrafoCambiado}
+                                            setMostrarInput={setMostrarInput}
+                                            setOpacity={setOpacity}
+                                            setAnchorPoint={setAnchorPoint}
+                                            show={show} setShow={setShow}
+                                            claseLeftSide={claseLeftSide}
+                                        />
+                                        <RightSideDog
+                                            updateParrafosAModificar={updateParrafosAModificar}
+                                            data={htmlCode}
+                                            cambios={cambios} setCambios={setCambios}
+                                            claseLeftSide={claseLeftSide} setClaseLeftSide={setClaseLeftSide}
+                                            notas={notas} setNotas={setNotas}
+                                            leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
+                                            setLeiSeleccionada={setLeiSeleccionada}
+                                        />
+                                    </div>
+                                    <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12 overflow-y-scroll'>
+                                        <XIcon className='fixed self-end h-5 cursor-pointer border border-black' onClick={() => { setModal(false); window.location.reload(false) }} />
+                                        <div className='flex'>
+                                            <PrincipalLaw
+                                                leiPrincipal={leiPrincipal}
+                                                data={htmlCode}
+                                            />
+                                            <LinkedDocuments
+                                                parrafosAModificar={parrafosAModificar}
+                                                leiPrincipal={leiPrincipal}
+                                                leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
+                                                cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
+                                            />
+                                        </div>
+                                    </div>
                                 </main>
                         }
                     </>

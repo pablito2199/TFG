@@ -34,7 +34,7 @@ const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculad
     const claseCambiado = clase + " bg-green-200"
 
     if (parrafosAModificar && parrafosAModificar.length !== 0) {
-        parrafosAModificar[0].forEach(par => {
+        parrafosAModificar.forEach(par => {
             if (parrafo.match(new RegExp("^" + par + ". ", "gi"))) {
                 clase += " bg-blue-lex-gal"
             }

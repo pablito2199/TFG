@@ -8,7 +8,6 @@ import { HeaderDog } from '../components/edit-page/HeaderDog'
 
 export default function EditDog() {
     const location = useLocation()
-    console.log(location)
     let selectedText = window.getSelection()
     const htmlCode = useDogDocument(`https://www.xunta.gal/${location.state.norma.rutaHtml}`)
     let documentAdditionalData = useFinalDocument(location.state.norma.id).data

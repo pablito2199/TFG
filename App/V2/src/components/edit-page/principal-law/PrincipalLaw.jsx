@@ -2,8 +2,8 @@ import { React } from 'react'
 
 import { DogContent } from './DogContent'
 
-export const PrincipalLaw = ({ leiPrincipal, data, claseLeftSide }) => {
-    return <section className={claseLeftSide}>
+export const PrincipalLaw = ({ leiPrincipal, data }) => {
+    return <section className='z-0 w-1/2 ml-2'>
         <nav className='flex text-lg items-center gap-2'>
             {
 
