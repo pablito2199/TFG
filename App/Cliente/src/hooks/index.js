@@ -70,6 +70,7 @@ export function useFinalDocument(id) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 id: finalDocument.id,
+                borrador: finalDocument.borrador,
                 notes: finalDocument.notes,
                 changes: finalDocument.changes,
                 laws: finalDocument.laws,

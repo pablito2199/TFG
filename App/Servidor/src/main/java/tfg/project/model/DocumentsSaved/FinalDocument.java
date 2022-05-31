@@ -13,6 +13,8 @@ public class FinalDocument {
     private String id;
     @Schema(description = "Url ao documento no DOG.", example = "/dog/Publicados/2022/20220525/AnuncioL180-200522-0001_gl.html")
     private String urlDog;
+    @Schema(description = "O documento é borrador ou non.", example = "true")
+    private boolean borrador;
     @Schema(description = "HTML do documento a editar.", example = "<p>Documento</p>")
     private String htmlDoc;
     @Schema(description = "Datos de cabeceira do documento.")
@@ -30,64 +32,81 @@ public class FinalDocument {
         return id;
     }
 
-    public void setId(String id) {
+    public FinalDocument setId(String id) {
         this.id = id;
+        return this;
     }
 
     public String getUrlDog() {
         return urlDog;
     }
 
-    public void setUrlDog(String urlDog) {
+    public FinalDocument setUrlDog(String urlDog) {
         this.urlDog = urlDog;
+        return this;
+    }
+
+    public boolean isBorrador() {
+        return borrador;
+    }
+
+    public FinalDocument setBorrador(boolean borrador) {
+        this.borrador = borrador;
+        return this;
     }
 
     public String getHtmlDoc() {
         return htmlDoc;
     }
 
-    public void setHtmlDoc(String htmlDoc) {
+    public FinalDocument setHtmlDoc(String htmlDoc) {
         this.htmlDoc = htmlDoc;
+        return this;
     }
 
     public HeaderItems getHeaderItems() {
         return headerItems;
     }
 
-    public void setHeaderItems(HeaderItems headerItems) {
+    public FinalDocument setHeaderItems(HeaderItems headerItems) {
         this.headerItems = headerItems;
+        return this;
     }
 
     public List<Note> getNotes() {
         return notes;
     }
 
-    public void setNotes(List<Note> notes) {
+    public FinalDocument setNotes(List<Note> notes) {
         this.notes = notes;
+        return this;
     }
 
     public List<Law> getLaws() {
         return laws;
     }
 
-    public void setLaws(List<Law> laws) {
+    public FinalDocument setLaws(List<Law> laws) {
         this.laws = laws;
+        return this;
     }
 
     public List<Change> getChanges() {
         return changes;
     }
 
-    public void setChanges(List<Change> changes) {
+    public FinalDocument setChanges(List<Change> changes) {
         this.changes = changes;
+        return this;
     }
 
     public List<LinkedChange> getLinkedChanges() {
         return linkedChanges;
     }
 
-    public void setLinkedChanges(List<LinkedChange> linkedChanges) {
+    public FinalDocument setLinkedChanges(List<LinkedChange> linkedChanges) {
         this.linkedChanges = linkedChanges;
+        return this;
     }
 
     @Override
@@ -95,12 +114,12 @@ public class FinalDocument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FinalDocument that = (FinalDocument) o;
-        return Objects.equals(id, that.id) && Objects.equals(urlDog, that.urlDog) && Objects.equals(htmlDoc, that.htmlDoc) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
+        return borrador == that.borrador && Objects.equals(id, that.id) && Objects.equals(urlDog, that.urlDog) && Objects.equals(htmlDoc, that.htmlDoc) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, urlDog, htmlDoc, headerItems, notes, laws, changes, linkedChanges);
+        return Objects.hash(id, urlDog, borrador, htmlDoc, headerItems, notes, laws, changes, linkedChanges);
     }
 
     @Override
@@ -108,6 +127,7 @@ public class FinalDocument {
         return "FinalDocument{" +
                 "id='" + id + '\'' +
                 ", urlDog='" + urlDog + '\'' +
+                ", borrador=" + borrador +
                 ", htmlDoc='" + htmlDoc + '\'' +
                 ", headerItems=" + headerItems +
                 ", notes=" + notes +

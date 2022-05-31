@@ -1,5 +1,5 @@
 import React from "react"
-import { PencilAltOutline } from "@graywolfai/react-heroicons"
+import { AnnotationOutline, PencilAltOutline } from "@graywolfai/react-heroicons"
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import ContentPasteIcon from '@mui/icons-material/ContentPaste'
 
@@ -28,6 +28,10 @@ export const ContextMenu = ({ anchorPoint, show, selectedText, setOpacity, setMo
             <button onClick={() => { setOpacity('opacity-50'); setMostrarInput(true) }} className='focus:outline-none flex py-1 px-5 cursor-pointer hover:bg-gray-800 items-center gap-1'>
                 <PencilAltOutline className="text-white h-5" />
                 <span>Propoñer cambio</span>
+            </button>
+            <button onClick={() => { setOpacity('opacity-50') }} className='focus:outline-none flex py-1 px-5 cursor-pointer hover:bg-gray-800 items-center gap-1'>
+                <AnnotationOutline className="text-white h-5" />
+                <span>Engadir nota ao parágrafo</span>
             </button>
         </div>
     }

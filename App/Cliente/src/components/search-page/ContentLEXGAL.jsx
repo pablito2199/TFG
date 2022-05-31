@@ -1,4 +1,4 @@
-import { EyeIcon, PencilAltIcon } from '@heroicons/react/solid'
+import { CheckIcon, EyeIcon, PencilAltIcon, XIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,23 +9,33 @@ export const ContentLEXGAL = ({ data }) => {
         navigate(`/edit/xunta/${norma.id}`, { state: { norma: norma } })
     }
 
-    return <table className='px-1 flex w-11/12 mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
-        <tbody className='border border-white text-center'>
-            <tr className='flex'>
-                <th className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>DOG nº</th>
-                <th className='w-7/12 p-2 border-2 border-white bg-black text-white screen-min3:w-6/12 screen-min2:w-4/12 screen-min1:break-words'>Título</th>
-                <th className='w-2/12 p-2 border-2 border-white bg-black text-white screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>Departamento</th>
-                <th className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min2:w-2/12 screen-min1:break-words'>Data</th>
-                <th className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>Accións</th>
-            </tr>
+    return <div className='px-1 flex w-11/12 mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
+        <div className='border border-white text-center'>
+            <div className='flex'>
+                <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>DOG nº</div>
+                <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>Validada</div>
+                <div className='w-7/12 p-2 border-2 border-white bg-black text-white screen-min3:w-6/12 screen-min2:w-4/12 screen-min1:break-words'>Título</div>
+                <div className='w-2/12 p-2 border-2 border-white bg-black text-white screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>Departamento</div>
+                <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min2:w-2/12 screen-min1:break-words'>Data</div>
+                <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>Accións</div>
+            </div>
             {
                 data.map((norma, index) => {
-                    return <tr key={index} className='flex font-semibold border-b border-gray-300 items-center'>
-                        <td className='w-1/12 px-2 py-4'>{norma.headerItems.numDog}</td>
-                        <td className='w-7/12 text-left px-2 py-4 screen-min3:w-6/12 screen-min2:w-4/12'>{norma.headerItems.sumario}</td>
-                        <td className='w-2/12 px-2 py-4 text-left screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>{norma.headerItems.publicador}</td>
-                        <td className='w-1/12 px-2 py-4 screen-min2:w-2/12 screen-min1:break-words'>{norma.headerItems.fechaDog}</td>
-                        <td className='w-1/12 screen-min3:w-2/12 screen-min2:w-3/12'>
+                    return <div key={index} className='flex font-semibold border-b border-gray-300 items-center'>
+                        <div className='w-1/12 px-2 py-4'>{norma.headerItems.numDog}</div>
+                        <div className='w-1/12 px-2 py-4 flex justify-center'>
+                            {
+                                norma.borrador
+                                    ?
+                                    <XIcon className='text-red-600 w-10' />
+                                    :
+                                    <CheckIcon className='text-green-600 w-10' />
+                            }
+                        </div>
+                        <div className='w-7/12 text-left px-2 py-4 screen-min3:w-6/12 screen-min2:w-4/12'>{norma.headerItems.sumario}</div>
+                        <div className='w-2/12 px-2 py-4 text-left screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>{norma.headerItems.publicador}</div>
+                        <div className='w-1/12 px-2 py-4 screen-min2:w-2/12 screen-min1:break-words'>{norma.headerItems.fechaDog}</div>
+                        <div className='w-1/12 screen-min3:w-2/12 screen-min2:w-3/12'>
                             <div className='flex gap-2 justify-center items-center py-4 screen-min1:flex-col'>
                                 <a title="Previsualizar" href={norma.urlDog} target="_blank" rel='noreferrer' className='focus:outline-none text-md text-center self-center align-center px-4 py-4 hover:bg-gray-200 border cursor-pointer'>
                                     <EyeIcon className='h-4' />
@@ -34,11 +44,11 @@ export const ContentLEXGAL = ({ data }) => {
                                     <PencilAltIcon className='h-4' />
                                 </button>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                 }
                 )
             }
-        </tbody>
-    </table >
+        </div>
+    </div >
 }
