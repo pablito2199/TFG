@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 
 import { Button } from "../../../Button"
-import { CreateNote } from "./CreateNote"
 import { Note } from "./Note"
 
 export const Notas = ({ notas, setNotas }) => {
@@ -20,8 +19,7 @@ export const Notas = ({ notas, setNotas }) => {
     }
 
     return <div className='border-2 border-black'>
-        <CreateNote notas={notas} setNotas={setNotas} />
-        <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas max-h-leis-vinculadas overflow-y-scroll'>
+        <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'>
             {
                 notas?.map(nota =>
                     <Note nota={nota} anadirNotaSeleccionada={anadirNotaSeleccionada} notas={notas} setNotas={setNotas} key={nota.id} />

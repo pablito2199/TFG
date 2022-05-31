@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 import listadoMeses from '../data/listadoMeses.json'
 import { useFinalDocument } from '../hooks'
-import { LeftSideDog, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
+import { LeftSideDog, NoteEditor, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
 import { HeaderDog } from '../components/edit-page/HeaderDog'
 import { LinkedDocuments } from '../components/edit-page/linked-documets/LinkedDocuments'
@@ -48,6 +48,7 @@ export default function EditDog() {
     const [parrafoACambiar, setParrafoACambiar] = useState('')
     const [parrafoCambiado, setParrafoCambiado] = useState('')
     const [mostrarInput, setMostrarInput] = useState(false)
+    const [mostrarInputNota, setMostrarInputNota] = useState(false)
     const [cambios, setCambios] = useState([])
     const [leisVinculadas, setLeisVinculadas] = useState([])
     const [notas, setNotas] = useState([])
@@ -147,6 +148,13 @@ export default function EditDog() {
             setCambios={setCambios}
             setOpacity={setOpacity}
         />
+        <NoteEditor
+            mostrarInputNota={mostrarInputNota}
+            setMostrarInputNota={setMostrarInputNota}
+            notas={notas}
+            setNotas={setNotas}
+            setOpacity={setOpacity}
+        />
         <div className={'w-full ' + opacity}>
             {
                 htmlCode
@@ -220,7 +228,7 @@ export default function EditDog() {
                                         />
                                     </div>
                                     <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12 overflow-y-scroll'>
-                                        <XIcon className='fixed self-end h-5 cursor-pointer border border-black' onClick={() => { setModal(false); window.location.reload(false) }} />
+                                        <XIcon className='fixed self-end h-5 cursor-pointer border border-black' onClick={() => { setModal(false) }} />
                                         <div className='flex'>
                                             <PrincipalLaw
                                                 leiPrincipal={leiPrincipal}
@@ -274,6 +282,7 @@ export default function EditDog() {
             selectedText={selectedText.toString()}
             setOpacity={setOpacity}
             setMostrarInput={setMostrarInput}
+            setMostrarInputNota={setMostrarInputNota}
         />
     </div>
 }

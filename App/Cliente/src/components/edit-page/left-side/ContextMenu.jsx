@@ -3,7 +3,7 @@ import { AnnotationOutline, PencilAltOutline } from "@graywolfai/react-heroicons
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import ContentPasteIcon from '@mui/icons-material/ContentPaste'
 
-export const ContextMenu = ({ anchorPoint, show, selectedText, setOpacity, setMostrarInput }) => {
+export const ContextMenu = ({ anchorPoint, show, selectedText, setOpacity, setMostrarInput, setMostrarInputNota }) => {
     if (show) {
         return <div className="flex flex-col bg-gray-700 text-white w-80 h-auto m-0 absolute list-none py-2" style={{ top: anchorPoint.y, left: anchorPoint.x }}>
             <button onClick={() => navigator.clipboard.writeText(selectedText)} className='focus:outline-none flex py-1 px-5 cursor-pointer hover:bg-gray-800'>
@@ -29,9 +29,9 @@ export const ContextMenu = ({ anchorPoint, show, selectedText, setOpacity, setMo
                 <PencilAltOutline className="text-white h-5" />
                 <span>Propoñer cambio</span>
             </button>
-            <button onClick={() => { setOpacity('opacity-50') }} className='focus:outline-none flex py-1 px-5 cursor-pointer hover:bg-gray-800 items-center gap-1'>
+            <button onClick={() => { setOpacity('opacity-50'); setMostrarInputNota(true) }} className='focus:outline-none flex py-1 px-5 cursor-pointer hover:bg-gray-800 items-center gap-1'>
                 <AnnotationOutline className="text-white h-5" />
-                <span>Engadir nota ao parágrafo</span>
+                <span>Engadir anotación ao parágrafo</span>
             </button>
         </div>
     }
