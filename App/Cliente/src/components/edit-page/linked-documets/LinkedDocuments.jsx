@@ -49,7 +49,9 @@ export const LinkedDocuments = ({ parrafosAModificar, leiPrincipal, leiSeleccion
                                     <option value={0}>Orde do 16 de abril de 2021</option>
                                 </select>
                                 :
-                                <></>
+                                <select className='w-96 text-center bg-black text-white cursor-pointer p-3' onChange={(e) => setLeiSeleccionada(e.target.value)} defaultValue={leiSeleccionada}>
+                                    <option value={0}></option>
+                                </select>
             }
             <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
                 <Tooltip title="Escolla a lei vinculada que queres modificar no seleccionable. Os cambios propostos serán mostrados cun fondo azul. Os cambios gardados mostraránse cun fondo verde." placement="top" arrow>
