@@ -70,7 +70,7 @@ public class LocalController {
             @RequestParam(name = "page", defaultValue = "0") int page,
             @Parameter(name = "Modo de ordenación da búsqueda.")
             @RequestParam(name = "sort", defaultValue = "") List<String> sort,
-           @Parameter(description = "Texto da norma polo que filtrar.")
+            @Parameter(description = "Texto da norma polo que filtrar.")
             @RequestParam(name = "text", defaultValue = "") String text
     ) {
         List<Sort.Order> criteria = sort.stream().map(string -> {
@@ -149,8 +149,8 @@ public class LocalController {
             @Parameter(description = "Id do documento a buscar", example = "1651743500014")
             @PathVariable("id") String id
     ) {
-Optional<FinalDocument> result = finalDocuments.get(id);
-                if (result.isEmpty()) {
+        Optional<FinalDocument> result = finalDocuments.get(id);
+        if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
         }
 
