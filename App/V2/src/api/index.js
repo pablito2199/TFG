@@ -1,4 +1,5 @@
-import * as jsonpatch from 'fast-json-patch/index.mjs';
+import * as jsonpatch from 'fast-json-patch/index.mjs'
+import { xml2json } from 'xml-js'
 
 let __instance = null
 
@@ -19,7 +20,7 @@ export default class API {
             body: JSON.stringify({ email: email, password: pass })
         };
 
-        const response = await fetch(`http://localhost:8080/login`, requestOptions);
+        const response = await fetch(`http://localhost:8080/login`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             localStorage.setItem('user', email)
@@ -47,7 +48,7 @@ export default class API {
             }
         };
 
-        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions);
+        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             return await response.json()
@@ -67,7 +68,7 @@ export default class API {
             })
         };
 
-        const response = await fetch(`http://localhost:8080/users`, requestOptions);
+        const response = await fetch(`http://localhost:8080/users`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             return await response.json()
@@ -75,7 +76,7 @@ export default class API {
     }
 
     async updateUser(id, user) {
-        var diff = jsonpatch.compare(await this.findUser(id), user.user);
+        var diff = jsonpatch.compare(await this.findUser(id), user.user).catch(error => console.log(error))
 
         const requestOptions = {
             method: 'PATCH',
@@ -86,7 +87,7 @@ export default class API {
             body: JSON.stringify(diff)
         };
 
-        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions);
+        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             return await response.json()
@@ -101,12 +102,107 @@ export default class API {
             }
         };
 
-        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions);
+        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 204) {
             return true
         } else {
             return false
         }
+    }
+
+    async findNormas(query) {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            }
+        }
+
+        const response = await fetch(`/local/${query}`, requestOptions).catch(error => console.log(error))
+
+        if (response.status === 200) {
+            return await response.json()
+        }
+    }
+
+    async findFinalDocument(id) {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            }
+        }
+        const response = await fetch(`/local/${id}/savedData`, requestOptions).catch(error => console.log(error))
+        return await response.json()
+    }
+
+    async updateFinalDocument(finalDocument) {
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            },
+            body: JSON.stringify({
+                id: finalDocument.id,
+                borrador: finalDocument.borrador,
+                notes: finalDocument.notes,
+                changes: finalDocument.changes,
+                laws: finalDocument.laws,
+                headerItems: finalDocument.headerItems,
+                linkedChanges: finalDocument.linkedChanges,
+                urlDog: finalDocument.urlDog
+            })
+        }
+
+        const response = fetch(`/local/${finalDocument.id}`, requestOptions).catch(error => console.log(error))
+
+        if (response.status === 200) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    async findXmlDoc(id) {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            }
+        }
+
+        const response = await fetch(`/local/${id}`, requestOptions)
+            .then(response => response.text())
+            .then(text => {
+                return JSON.parse(xml2json(text, { compact: true, spaces: 4 })).cdg
+            })
+            .catch(error => console.log(error))
+
+        return response
+    }
+
+    async findHtmlDoc(id) {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            }
+        }
+
+        const response = await fetch(`/local/${id}/htmlDoc`, requestOptions)
+            .then(response => response.text())
+            .then(text => {
+                const parser = new DOMParser()
+                return parser.parseFromString(text, "text/xml")
+            })
+            .catch(error => console.log(error))
+
+        return response
     }
 }

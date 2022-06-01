@@ -6,7 +6,6 @@ import {
     Route,
     Navigate
 } from "react-router-dom";
-import ReactFontLoader from 'react-font-loader'
 
 import EditXml from './pages/EditXml'
 import EditDog from './pages/EditDog'
@@ -24,9 +23,6 @@ ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <SecuredApp>
-                <ReactFontLoader url='https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap' />
-                <ReactFontLoader url='https://fonts.googleapis.com/css2?family=Modak&display=swap' />
-                <ReactFontLoader url='https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap' />
                 <div className='flex flex-row'>
                     <SideBar />
                     <Routes>

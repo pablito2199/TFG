@@ -3,7 +3,6 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import { XCircleOutline } from '@graywolfai/react-heroicons'
 
 export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas }) => {
-    console.log(parrafosAModificar)
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {

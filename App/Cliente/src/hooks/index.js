@@ -79,7 +79,6 @@ export function useFinalDocument(id) {
                 urlDog: finalDocument.urlDog
             })
         }
-        console.log(requestOptions)
 
         fetch(`/local/${finalDocument.id}`, requestOptions);
     }

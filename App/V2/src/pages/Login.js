@@ -5,7 +5,7 @@ import { AuthenticationContext } from '../context'
 import { EyeIcon, LockClosedIcon, UserIcon } from '@heroicons/react/solid'
 
 export default function Login() {
-    const { login, isAuthenticated, errors, reset } = useContext(AuthenticationContext)
+    const { login, isAuthenticated } = useContext(AuthenticationContext)
     const [user, setUser] = useState('')
     const [pass, setPass] = useState('')
     const [mostrar, setMostrar] = useState(false)

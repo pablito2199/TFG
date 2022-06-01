@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Navigate, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import API from '../../api'
 
 const AuthenticationContext = React.createContext({
@@ -40,9 +40,9 @@ function SecuredApp({ children }) {
 
 }
 
-function SecuredRoute({ children, ...props }) {
+function SecuredRoute({ children }) {
     const { isAuthenticated } = useContext(AuthenticationContext)
-    return isAuthenticated ? <Route {...props}>{children}</Route> : <Navigate to='/login' />
+    return isAuthenticated ? children : <Navigate to='/login' />
 
 }
 
