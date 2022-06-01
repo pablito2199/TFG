@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Objects;
 
 @Document(collection = "users")
@@ -17,18 +18,20 @@ import java.util.Objects;
 )
 public class User {
     @Id
-    @NotBlank(message = "The email field can not be empty")
+    @NotBlank(message = "O campo de email non pode estar vacío.")
     @Email
-    @Schema(required = true, example = "test@test.com")
+    @Schema(required = true, description = "Email do usuario.", example = "test@test.com")
     private String email;
-    @NotBlank(message = "The name field can not be empty")
-    @Schema(example = "Pepe")
+    @NotBlank(message = "O campo de nome non pode estar vacío.")
+    @Schema(description = "Nome do usuario.", example = "Pepe")
     private String nome;
-    @Schema(example = "Pérez Castro")
+    @Schema(description = "Apelidos do usuario.", example = "Pérez Castro")
     private String apelidos;
-    @NotBlank(message = "The password field can not be empty")
-    @Schema(example = "Abc123.@")
+    @NotBlank(message = "O campo de contraseña non pode estar vacío.")
+    @Schema(description = "Contraseña do usuario.", example = "Abc123.@")
     private String password;
+    @Schema(description = "Rol do usuario.", example = "[\"ROLE_USER\"]")
+    private List<String> roles;
 
     public String getEmail() {
         return email;
@@ -66,17 +69,26 @@ public class User {
         return this;
     }
 
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public User setRoles(List<String> roles) {
+        this.roles = roles;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(email, user.email) && Objects.equals(nome, user.nome) && Objects.equals(apelidos, user.apelidos) && Objects.equals(password, user.password);
+        return Objects.equals(email, user.email) && Objects.equals(nome, user.nome) && Objects.equals(apelidos, user.apelidos) && Objects.equals(password, user.password) && Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, nome, apelidos, password);
+        return Objects.hash(email, nome, apelidos, password, roles);
     }
 
     @Override
@@ -86,6 +98,7 @@ public class User {
                 ", nome='" + nome + '\'' +
                 ", apelidos='" + apelidos + '\'' +
                 ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package tfg.project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,20 +18,16 @@ public class AuthenticationService implements UserDetailsService {
         this.users = users;
     }
 
-    //O método lanzará unha excepción se o usuario non se atopa na base de datos
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Buscamos o usuario correspondente ao id proporcionado na base de datos,
-        // e lanzamos a excepción no caso de que non exista
         User user = users.findById(username).orElseThrow(() -> new UsernameNotFoundException(username));
 
-        // Creamos o usuario de spring empregando o builder
         return org.springframework.security.core.userdetails.User.builder()
-                // Establecemos o nome do usuario
                 .username(user.getEmail())
-                // Establecemos o contrasinal do usuario
                 .password(user.getPassword())
-                // Xeneramos o obxecto do usuario a partir dos datos introducidos no builder
+                .authorities(AuthorityUtils.commaSeparatedStringToAuthorityList(
+                        String.join(",", user.getRoles())
+                ))
                 .build();
     }
 }

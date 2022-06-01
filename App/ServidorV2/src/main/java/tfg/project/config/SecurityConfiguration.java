@@ -26,9 +26,7 @@ import java.security.Key;
 import java.util.*;
 
 @Configuration
-// Activamos a seguridade na nosa aplicación
 @EnableWebSecurity
-// Activamos o procesamento de etiquetas @Preauthorize e @Postauthorize
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final AuthenticationService auth;
@@ -41,14 +39,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // Establecemos o servizo que se empregará para obter os detalles do usuario
-        // e cal é o PasswordEncoder que empregaremos
         auth.userDetailsService(this.auth).passwordEncoder(passwordEncoder());
     }
 
     @Override
     public void configure(WebSecurity web) {
-        // Establecemos a xerarquia de roles
         DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
         handler.setRoleHierarchy(roleHierarchy());
         web.expressionHandler(handler);
@@ -56,33 +51,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // Deshabilitamos a protección contra ataques CSRF
         http.cors().and().csrf().disable()
-                // Indicamos que por defecto permitimos o acceso de calquera a todos os servizos
                 .authorizeRequests().anyRequest().permitAll()
                 .and()
-                // Engadimos os nosos filtros á cadea de filtros das chamadas
                 .addFilter(new AuthenticationFilter(authenticationManager(), tokenSignKey()))
                 .addFilter(new AuthorizationFilter(authenticationManager(), tokenSignKey()))
-                // Especificamos que queremos sesións sen estado (REST é, por definición, sen estado)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // Creamos unha instancia do algoritmo BCrypt para empregar como encoder
-        // de contrasinais
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public RoleHierarchy roleHierarchy() {
         Map<String, List<String>> roles = new HashMap<>();
-        // Definimos a nosa xerarquia de roles nun map
-        // Os valores representan os roles incluidos no rol especificado como clave
         roles.put("ROLE_ADMIN", Collections.singletonList("ROLE_USER"));
 
-        // Creamos a nosa xerarquia de roles a partir do map definido previamente
         RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
         hierarchy.setHierarchy(RoleHierarchyUtils.roleHierarchyFromMap(roles));
 
@@ -91,7 +77,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public Key tokenSignKey() {
-        // Xeramos unha clave de firmado aleatoria para o algoritmo SHA512
         return SecurityConfiguration.key;
     }
 }

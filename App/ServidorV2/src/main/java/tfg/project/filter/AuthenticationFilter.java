@@ -25,7 +25,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager manager;
     private final Key key;
 
-    // Establecemos unha duración para os tokens
     private final static long TOKEN_DURATION = Duration.ofMinutes(60).toMillis();
 
     public AuthenticationFilter(AuthenticationManager manager, Key key) {
@@ -33,14 +32,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         this.key = key;
     }
 
-    // Método que tenta autenticar ao usuario a partir da chamada HTTP
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-            // Obtemos o obxecto JSON do body da request HTTP
             JsonNode credentials = new ObjectMapper().readValue(request.getInputStream(), JsonNode.class);
 
-            // Tentamos autenticarnos coas credenciais proporcionadas
             return manager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             credentials.get("email").textValue(),
@@ -52,32 +48,22 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         }
     }
 
-    // Método que se chama cando a autenticación do metodo anterior é satisfactoria
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
-        // Almacenamos o momento actual
         long now = System.currentTimeMillis();
 
-        // Obtemos a lista de roles asignados ao usuario e concatenamolso nun string separado por comas
         String authorities = authResult.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-        // Creamos o token JWT empregando o builder
         JwtBuilder tokenBuilder = Jwts.builder()
-                // Establecemos como "propietario" do token ao usuario que fixo login
                 .setSubject(((User) authResult.getPrincipal()).getUsername())
-                // Establecemos a data de emisión do token
                 .setIssuedAt(new Date(now))
-                // Establecemos a data máxima de validez do token
                 .setExpiration(new Date(now + TOKEN_DURATION))
-                // Engadimos un atributo máis ao corpo do token cos roles do usuario
                 .claim("roles", authorities)
-                // Asinamos o token coa nosa clave secreta
                 .signWith(key);
 
-        // Engadimos o token á resposta na cabeceira "Authentication"
         response.addHeader("Authentication", String.format("Bearer %s", tokenBuilder.compact()));
     }
 
