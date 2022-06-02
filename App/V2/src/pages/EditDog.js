@@ -59,6 +59,7 @@ export default function EditDog() {
     const [show, setShow] = useState(false)
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
     const [parrafosAModificar, setParrafosAModificar] = useState([])
+    const [cambiosLocales, setCambiosLocales] = useState(false)
 
     useEffect(() => {
         if (documentAdditionalData) {
@@ -107,11 +108,11 @@ export default function EditDog() {
                     setTematicaSeleccionada(documentAdditionalData.headerItems.tematicaSeleccionada)
                 }
             }
-            if (documentAdditionalData.linkedChanges) {
+            if (documentAdditionalData.linkedChanges && !cambiosLocales) {
                 setCambiosVinculadas(documentAdditionalData.linkedChanges)
             }
         }
-    }, [documentAdditionalData, htmlCode, location.state])
+    }, [documentAdditionalData, htmlCode, location.state, cambiosLocales])
 
     const updateParrafosAModificar = () => {
         const regex = new RegExp("Artigo [0-9]+", "gi")
@@ -239,6 +240,7 @@ export default function EditDog() {
                                                 leiPrincipal={leiPrincipal}
                                                 leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
                                                 cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
+                                                cambiosLocales={cambiosLocales} setCambiosLocales={setCambiosLocales}
                                             />
                                         </div>
                                     </div>
