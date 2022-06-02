@@ -75,7 +75,7 @@ function MyDropdown({ user }) {
                         )}
                     </Transition>
                     <Menu.Button className={`text-white border-t`}>
-                        <UserCircleIcon className="text-white cursor-pointer py-2" />
+                        <UserCircleIcon className="text-white cursor-pointer py-2 w-10" />
                         <span>{user.nome}</span>
                     </Menu.Button>
                 </>
