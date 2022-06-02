@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Button } from "../../../Button"
 import { Note } from "./Note"
 
-export const Notas = ({ notas, setNotas, setCambiosLocales }) => {
+export const Notas = ({ content, notas, setNotas, setCambiosLocales }) => {
     const [notasSeleccionadas, setNotasSeleccionadas] = useState([])
 
     const anadirNotaSeleccionada = (event, nota) => {
@@ -23,7 +23,7 @@ export const Notas = ({ notas, setNotas, setCambiosLocales }) => {
         <div className='flex flex-col border-b-2 border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'>
             {
                 notas?.map(nota =>
-                    <Note nota={nota} anadirNotaSeleccionada={anadirNotaSeleccionada} notas={notas} setNotas={setNotas} setCambiosLocales={setCambiosLocales} key={nota.id} />
+                    <Note content={content} nota={nota} anadirNotaSeleccionada={anadirNotaSeleccionada} notas={notas} setNotas={setNotas} setCambiosLocales={setCambiosLocales} key={nota.id} />
                 )
             }
         </div>

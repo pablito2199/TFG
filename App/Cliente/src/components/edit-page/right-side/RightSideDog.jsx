@@ -8,7 +8,7 @@ import { Cambios } from './cambios/Cambios'
 import { Notas } from './notas/Notas'
 import { ZoomInOutline, ZoomOutOutline } from '@graywolfai/react-heroicons'
 
-export const RightSideDog = ({ setCambiosLocales, updateParrafosAModificar, data, cambios, setCambios, claseLeftSide, setClaseLeftSide, notas, setNotas, leisVinculadas, setLeisVinculadas, setLeiSeleccionada }) => {
+export const RightSideDog = ({ content, setCambiosLocales, updateParrafosAModificar, data, cambios, setCambios, claseLeftSide, setClaseLeftSide, notas, setNotas, leisVinculadas, setLeisVinculadas, setLeiSeleccionada }) => {
     const [estado, setEstado] = useState('c')
     const [leisEliminadas, setLeisEliminadas] = useState([])
     const [leisAnadidasManualmente, setLeisAnadidasManualmente] = useState([])
@@ -116,7 +116,7 @@ export const RightSideDog = ({ setCambiosLocales, updateParrafosAModificar, data
                         setCambiosLocales={setCambiosLocales}
                     />
                     :
-                    <Notas notas={notas} setNotas={setNotas} setCambiosLocales={setCambiosLocales} />
+                    <Notas content={content} notas={notas} setNotas={setNotas} setCambiosLocales={setCambiosLocales} />
         }
     </section >
 }

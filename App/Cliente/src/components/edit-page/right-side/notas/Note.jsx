@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Comment } from "./Comment"
 import { CreateComment } from "./CreateComment"
 
-export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas, setCambiosLocales }) => {
+export const Note = ({ content, nota, anadirNotaSeleccionada, notas, setNotas, setCambiosLocales }) => {
     const [mostrar, setMostrar] = useState(false)
 
     function convertirFecha(fecha) {
@@ -31,6 +31,12 @@ export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas, setCambios
                     <div className="flex flex-1 w-full justify-end">
                         <ChevronDoubleUpIcon className="w-6 cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(false)} />
                     </div>
+                    <button
+                        className="flex flex-1 w-full justify-end text-blue-green underline font-semibold"
+                        onClick={() => content.current.children[parseInt(nota.parrafo)].scrollIntoView()}
+                    >
+                        Ir ao parágrafo
+                    </button>
                     <div className="flex items-center">
                         <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
                         <div className="flex flex-col flex-1">
@@ -57,5 +63,5 @@ export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas, setCambios
                     </div>
                 </div>
         }
-    </div>
+    </div >
 }

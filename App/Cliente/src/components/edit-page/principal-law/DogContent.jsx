@@ -1,10 +1,10 @@
 import { React } from 'react'
 
 export const DogContent = ({ data }) => {
-
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
+                let indicador = false
                 let clase = "mt-3"
                 if (parrafo.className === "dog-firma-centrada") {
                     clase += " text-center"
@@ -20,8 +20,12 @@ export const DogContent = ({ data }) => {
                     parrafo.innerText.includes('queda redactado do seguinte xeito')
                 ) {
                     clase += " bg-blue-green text-white py-2"
+                    indicador = true
                 } else {
                     clase += " opacity-40"
+                }
+                if (indicador) {
+                    return <div key={index}><button className={clase + ' text-left px-1'} onClick={() => window.scrollBy(0, document.evaluate("//*[text()[contains(., 'Artigo 15.')]][last()]", document.body).iterateNext().getBoundingClientRect().top)}>{parrafo.innerText}</button></div>
                 }
                 return <div key={index}><p className={clase}>{parrafo.innerText}</p></div>
             })

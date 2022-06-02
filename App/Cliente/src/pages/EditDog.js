@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import listadoMeses from '../data/listadoMeses.json'
@@ -11,6 +11,7 @@ import { PrincipalLaw } from '../components/edit-page/principal-law/PrincipalLaw
 import { XIcon } from '@heroicons/react/solid'
 
 export default function EditDog() {
+    const content = useRef(null)
     const [modal, setModal] = useState(false)
     const location = useLocation()
     const parser = new DOMParser()
@@ -60,6 +61,7 @@ export default function EditDog() {
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
     const [parrafosAModificar, setParrafosAModificar] = useState([])
     const [cambiosLocales, setCambiosLocales] = useState(false)
+    const [posicionParrafo, setPosicionParrafo] = useState(0)
 
     useEffect(() => {
         if (documentAdditionalData) {
@@ -157,6 +159,7 @@ export default function EditDog() {
             setNotas={setNotas}
             setOpacity={setOpacity}
             setCambiosLocales={setCambiosLocales}
+            posicionParrafo={posicionParrafo}
         />
         <div className={'w-full ' + opacity}>
             {
@@ -195,6 +198,9 @@ export default function EditDog() {
                                         setAnchorPoint={setAnchorPoint}
                                         show={show} setShow={setShow}
                                         claseLeftSide={claseLeftSide}
+                                        setPosicionParrafo={setPosicionParrafo}
+                                        content={content}
+                                        notas={notas}
                                     />
                                     <RightSideDog
                                         updateParrafosAModificar={updateParrafosAModificar}
@@ -205,6 +211,7 @@ export default function EditDog() {
                                         leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
                                         setLeiSeleccionada={setLeiSeleccionada}
                                         setCambiosLocales={setCambiosLocales}
+                                        content={content}
                                     />
                                 </main>
                                 :

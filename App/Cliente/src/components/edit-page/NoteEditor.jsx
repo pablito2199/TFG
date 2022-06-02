@@ -4,7 +4,7 @@ import { XCircleIcon } from '@heroicons/react/solid'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import { useUser } from '../../hooks'
 
-export const NoteEditor = ({ mostrarInputNota, setMostrarInputNota, notas, setNotas, setOpacity, setCambiosLocales }) => {
+export const NoteEditor = ({ mostrarInputNota, setMostrarInputNota, notas, setNotas, setOpacity, setCambiosLocales, posicionParrafo }) => {
     const { user } = useUser()
     const [nota, setNota] = useState('')
     const engadirNota = () => {
@@ -14,6 +14,7 @@ export const NoteEditor = ({ mostrarInputNota, setMostrarInputNota, notas, setNo
                 'fecha': new Date().toLocaleDateString(),
                 'usuario': user.nome + " " + user.apelidos,
                 'contenido': nota,
+                'parrafo': posicionParrafo,
                 'comentarios': []
             }
             setNotas([...notas, myObj])
