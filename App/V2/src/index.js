@@ -25,7 +25,6 @@ ReactDOM.render(
         <BrowserRouter>
             <SecuredApp>
                 <div className='flex flex-row'>
-                    <SideBar />
                     <Routes>
                         <Route exact path="/" element={<SecuredRoute><Home /></SecuredRoute>} />
                         <Route exact path="/login" element={<Login />} />
@@ -38,6 +37,7 @@ ReactDOM.render(
                         <Route exact path="/404" element={<SecuredRoute><NotFound /></SecuredRoute>} />
                         <Route path="*" element={<Navigate to='/404' replace />} />
                     </Routes>
+                    <SideBar />
                 </div>
             </SecuredApp>
         </BrowserRouter>
