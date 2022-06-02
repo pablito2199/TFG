@@ -30,6 +30,7 @@ function SecuredApp({ children }) {
     const logout = async () => {
         await client.logout()
         await reset()
+        window.location.reload(false)
     }
 
     const context = { isAuthenticated, login, logout, errors, reset }

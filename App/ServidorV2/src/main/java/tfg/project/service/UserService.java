@@ -31,6 +31,10 @@ public class UserService {
         return Optional.empty();
     }
 
+    public List<User> getAll() {
+        return users.findAll();
+    }
+
     public User insert(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         user = users.insert(user);

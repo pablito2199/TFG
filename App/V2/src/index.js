@@ -18,6 +18,7 @@ import { SideBar } from './components/SideBar'
 import Save from './pages/Save';
 import Login from './pages/Login';
 import { SecuredApp, SecuredRoute } from './context';
+import RegisterUsers from './pages/RegisterUsers';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -26,13 +27,14 @@ ReactDOM.render(
                 <div className='flex flex-row'>
                     <SideBar />
                     <Routes>
-                        <Route exact path="/" element={<Home />} />
+                        <Route exact path="/" element={<SecuredRoute><Home /></SecuredRoute>} />
                         <Route exact path="/login" element={<Login />} />
                         <Route exact path="/save" element={<SecuredRoute><Save /></SecuredRoute>} />
                         <Route exact path="/edit/local/:id" element={<SecuredRoute><EditXml /></SecuredRoute>} />
                         <Route exact path="/edit/xunta/:id" element={<SecuredRoute><EditDog /></SecuredRoute>} />
                         <Route exact path="/home" element={<SecuredRoute><Home /></SecuredRoute>} />
                         <Route exact path="/search" element={<SecuredRoute><Search /></SecuredRoute>} />
+                        <Route exact path="/registerUsers" element={<SecuredRoute><RegisterUsers /></SecuredRoute>} />
                         <Route exact path="/404" element={<SecuredRoute><NotFound /></SecuredRoute>} />
                         <Route path="*" element={<Navigate to='/404' replace />} />
                     </Routes>

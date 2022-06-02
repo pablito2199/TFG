@@ -39,7 +39,7 @@ public class UserController {
     )
     @Operation(
             operationId = "obter",
-            summary = "Obtén os datos dun usuario",
+            summary = "Obtén os datos dun usuario.",
             description = "Obtén os datos dun usuario. Para ver estos detalles é necesario ser " +
                     "o propio usuario que ten iniciada a sesión ou un usuario administrador."
     )
@@ -75,6 +75,46 @@ public class UserController {
         }
 
         return ResponseEntity.ok().body(result.get());
+    }
+
+    @GetMapping(
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @Operation(
+            operationId = "obterTodos",
+            summary = "Obtén todos os usuarios almacenados.",
+            description = "Obtén todos os datos dos usuarios almacenados. Para ver estos detalles é necesario ser " +
+                    "un usuario administrador."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Os usuarios atopados.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = User.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para recuperar os datos.",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Non se atoparon usuarios.",
+                    content = @Content
+            )
+    })
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<User>> get(    ) {
+        List<User> result = users.getAll();
+
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Non se atoparon usuarios.");
+        }
+
+        return ResponseEntity.ok().body(result);
     }
 
     @PostMapping(
@@ -120,6 +160,7 @@ public class UserController {
         if (users.get(user.getEmail()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "O usuario xa existe.");
         }
+        System.out.println(user);
         User result = users.insert(user);
 
         return ResponseEntity.ok().body(result);

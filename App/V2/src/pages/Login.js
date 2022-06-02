@@ -13,6 +13,7 @@ export default function Login() {
     const submit = async (event) => {
         event.preventDefault()
         await login(user, pass)
+        window.location.reload(false)
     }
 
     const mostrarContrasena = () => {

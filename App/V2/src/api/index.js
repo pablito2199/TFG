@@ -1,4 +1,3 @@
-import * as jsonpatch from 'fast-json-patch/index.mjs'
 import { xml2json } from 'xml-js'
 
 let __instance = null
@@ -27,9 +26,8 @@ export default class API {
             localStorage.setItem('token', response.headers.get("Authentication"))
             this.#token = response.headers.get("Authentication")
             return true
-        } else {
-            return false
         }
+        return false
     }
 
     async logout() {
@@ -53,62 +51,31 @@ export default class API {
         if (response.status === 200) {
             return await response.json()
         }
+        return ''
     }
 
     async createUser(user) {
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": this.#token
+            },
             body: JSON.stringify({
                 email: user.email,
                 nome: user.nome,
                 apelidos: user.apelidos,
                 password: user.password,
-                roles: ["ROLE_USER"]
+                roles: user.roles
             })
         };
 
         const response = await fetch(`http://localhost:8080/users`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
-            return await response.json()
-        }
-    }
-
-    async updateUser(id, user) {
-        var diff = jsonpatch.compare(await this.findUser(id), user.user).catch(error => console.log(error))
-
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": this.#token
-            },
-            body: JSON.stringify(diff)
-        };
-
-        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions).catch(error => console.log(error))
-
-        if (response.status === 200) {
-            return await response.json()
-        }
-    }
-
-    async deleteUser(id) {
-        const requestOptions = {
-            method: 'DELETE',
-            headers: {
-                "Authorization": this.#token
-            }
-        };
-
-        const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions).catch(error => console.log(error))
-
-        if (response.status === 204) {
             return true
-        } else {
-            return false
         }
+        return false
     }
 
     async findNormas(query) {
@@ -125,6 +92,7 @@ export default class API {
         if (response.status === 200) {
             return await response.json()
         }
+        return ''
     }
 
     async findFinalDocument(id) {
@@ -136,7 +104,11 @@ export default class API {
             }
         }
         const response = await fetch(`/local/${id}/savedData`, requestOptions).catch(error => console.log(error))
-        return await response.json()
+
+        if (response.status === 200) {
+            return await response.json()
+        }
+        return ''
     }
 
     async updateFinalDocument(finalDocument) {
@@ -162,9 +134,8 @@ export default class API {
 
         if (response.status === 200) {
             return true
-        } else {
-            return false
         }
+        return false
     }
 
     async findXmlDoc(id) {
