@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Button } from "../../../Button"
 import { Change } from "./Change"
 
-export const Cambios = ({ cambios, setCambios, claseLeftSide }) => {
+export const Cambios = ({ cambios, setCambios, claseLeftSide, setCambiosLocales }) => {
     const [cambiosSeleccionados, setCambiosSeleccionados] = useState([])
 
     const anadirCambioSeleccionado = (event, cambio) => {
@@ -16,6 +16,7 @@ export const Cambios = ({ cambios, setCambios, claseLeftSide }) => {
 
     const eliminarCambiosSeleccionados = () => {
         setCambios(cambios.filter(cambio => cambiosSeleccionados.indexOf(cambio.id) < 0))
+        setCambiosLocales(true)
     }
 
     return <div className='border-2 border-black'>
@@ -33,7 +34,7 @@ export const Cambios = ({ cambios, setCambios, claseLeftSide }) => {
         </div>
         <div className='m-2 flex text-center justify-center items-center gap-4'>
             <Button accion={eliminarCambiosSeleccionados} titulo="Descartar selección" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar selección" />
-            <Button accion={() => setCambios([])} titulo="Descartar todos" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar todos" />
+            <Button accion={() => { setCambios([]); setCambiosLocales(true) }} titulo="Descartar todos" color="bg-red-500" colorHover="bg-red-600" anchura="42" texto="Descartar todos" />
         </div>
     </div>
 }

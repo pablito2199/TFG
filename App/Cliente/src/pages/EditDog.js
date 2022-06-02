@@ -59,16 +59,17 @@ export default function EditDog() {
     const [show, setShow] = useState(false)
     const [claseLeftSide, setClaseLeftSide] = useState('z-0 w-7/12 ml-2 screen-min5:w-5/6')
     const [parrafosAModificar, setParrafosAModificar] = useState([])
+    const [cambiosLocales, setCambiosLocales] = useState(false)
 
     useEffect(() => {
         if (documentAdditionalData) {
-            if (documentAdditionalData.changes) {
+            if (documentAdditionalData.changes && !cambiosLocales) {
                 setCambios(documentAdditionalData.changes)
             }
-            if (documentAdditionalData.laws) {
+            if (documentAdditionalData.laws && !cambiosLocales) {
                 setLeisVinculadas(documentAdditionalData.laws)
             }
-            if (documentAdditionalData.notes) {
+            if (documentAdditionalData.notes && !cambiosLocales) {
                 setNotas(documentAdditionalData.notes)
             }
             if (documentAdditionalData.headerItems) {
@@ -107,11 +108,11 @@ export default function EditDog() {
                     setTematicaSeleccionada(documentAdditionalData.headerItems.tematicaSeleccionada)
                 }
             }
-            if (documentAdditionalData.linkedChanges) {
+            if (documentAdditionalData.linkedChanges && !cambiosLocales) {
                 setCambiosVinculadas(documentAdditionalData.linkedChanges)
             }
         }
-    }, [documentAdditionalData, htmlCode, location.state])
+    }, [documentAdditionalData, htmlCode, location.state, cambiosLocales])
 
     const updateParrafosAModificar = () => {
         const regex = new RegExp("Artigo [0-9]+", "gi")
@@ -147,6 +148,7 @@ export default function EditDog() {
             cambios={cambios}
             setCambios={setCambios}
             setOpacity={setOpacity}
+            setCambiosLocales={setCambiosLocales}
         />
         <NoteEditor
             mostrarInputNota={mostrarInputNota}
@@ -154,6 +156,7 @@ export default function EditDog() {
             notas={notas}
             setNotas={setNotas}
             setOpacity={setOpacity}
+            setCambiosLocales={setCambiosLocales}
         />
         <div className={'w-full ' + opacity}>
             {
@@ -201,6 +204,7 @@ export default function EditDog() {
                                         notas={notas} setNotas={setNotas}
                                         leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
                                         setLeiSeleccionada={setLeiSeleccionada}
+                                        setCambiosLocales={setCambiosLocales}
                                     />
                                 </main>
                                 :
@@ -239,6 +243,7 @@ export default function EditDog() {
                                                 leiPrincipal={leiPrincipal}
                                                 leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
                                                 cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
+                                                setCambiosLocales={setCambiosLocales}
                                             />
                                         </div>
                                     </div>

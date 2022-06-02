@@ -19,7 +19,9 @@ export const DogContent = ({ data }) => {
                     parrafo.innerText.includes('queda redactado da seguinte maneira') ||
                     parrafo.innerText.includes('queda redactado do seguinte xeito')
                 ) {
-                    clase += " bg-blue-lex-gal"
+                    clase += " bg-blue-green text-white py-2"
+                } else {
+                    clase += " opacity-40"
                 }
                 return <div key={index}><p className={clase}>{parrafo.innerText}</p></div>
             })

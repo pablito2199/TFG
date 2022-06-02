@@ -2,7 +2,7 @@ import { React, useRef, useState } from 'react'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import { XCircleOutline } from '@graywolfai/react-heroicons'
 
-export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas }) => {
+export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
@@ -11,8 +11,8 @@ export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosV
                     key={index}
                     parrafo={parrafo.innerText}
                     leiSeleccionada={leiSeleccionada}
-                    cambiosVinculadas={cambiosVinculadas}
-                    setCambiosVinculadas={setCambiosVinculadas}
+                    cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
+                    setCambiosLocales={setCambiosLocales}
                     posicion={index}
                 />
             })
@@ -20,7 +20,7 @@ export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosV
     </div>
 }
 
-const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, posicion }) => {
+const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales, posicion }) => {
     const id = leiSeleccionada + "-" + posicion
     const [mostrarBotones, setMostrarBotones] = useState(false)
     const ref = useRef(null)
@@ -32,13 +32,22 @@ const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculad
         clase += " text-center font-bold mt-6"
     }
     const claseCambiado = clase + " bg-green-200"
+    let BreakException = {}
 
     if (parrafosAModificar && parrafosAModificar.length !== 0) {
-        parrafosAModificar.forEach(par => {
-            if (parrafo.match(new RegExp("^" + par + ". ", "gi"))) {
-                clase += " bg-blue-lex-gal"
-            }
-        })
+        try {
+            parrafosAModificar.forEach(par => {
+                if (parrafo.match(new RegExp("^" + par + ". ", "gi"))) {
+                    clase += " bg-blue-green text-white py-2 opacity-100"
+                    throw BreakException
+                } else {
+                    clase += " opacity-40"
+                    return true
+                }
+            })
+        } catch (e) {
+            if (e !== BreakException) throw e;
+        }
     }
 
     const gardarCambio = () => {
@@ -52,6 +61,7 @@ const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculad
             }
             auxiliar.push(cambio)
             setCambiosVinculadas(auxiliar)
+            setCambiosLocales(true)
         }
         setMostrarBotones(false)
     }
@@ -60,6 +70,7 @@ const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculad
         ref.current.innerText = parrafo
         setCambiosVinculadas(cambiosVinculadas.filter(cambio => id.indexOf(cambio.id) < 0))
         setMostrarBotones(false)
+        setCambiosLocales(true)
     }
 
     let parrafoCambiado = ''

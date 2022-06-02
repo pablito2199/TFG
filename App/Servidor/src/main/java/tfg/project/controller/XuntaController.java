@@ -6,6 +6,10 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import tfg.project.model.CriterioOrdenacion;
@@ -15,6 +19,8 @@ import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
 @RestController
 @RequestMapping("xunta")
+@Tag(name = "Xunta API", description = "Operacións realizadas sobre documentos recuperados da Xunta.")
+@SecurityRequirement(name = "JWT")
 public class XuntaController {
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     @Operation(
@@ -39,7 +45,8 @@ public class XuntaController {
                     content = @Content
             )
     })
-    private String getNormas(
+    @PreAuthorize("isAuthenticated()")
+    ResponseEntity<String> getNormas(
             @Parameter(description = "Texto da búsqueda", required = true)
             @RequestParam(name = "texto", defaultValue = "") String texto,
             @Parameter(description = "Incluír a búsqueda só no título")
@@ -66,7 +73,7 @@ public class XuntaController {
             @RequestParam(name = "pagina", defaultValue = "1", required = false) String pagina
     ) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(
+        return ResponseEntity.ok().body(restTemplate.getForObject(
                 "https://www.xunta.gal/diario-oficial-galicia/buscarAnunciosPublico.do?method=listado"
                         + "&texto=" + texto
                         + "&soloTitulo=" + soloTitulo
@@ -82,6 +89,6 @@ public class XuntaController {
                         + "&pagina=" + pagina
                 ,
                 String.class
-        );
+        ));
     }
 }
