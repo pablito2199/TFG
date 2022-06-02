@@ -3,7 +3,7 @@ import { React } from 'react'
 import { XCircleIcon } from '@heroicons/react/solid'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 
-export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado, setParrafoCambiado, parrafoACambiar, setParrafoACambiar, cambios, setCambios, setOpacity }) => {
+export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado, setParrafoCambiado, parrafoACambiar, setParrafoACambiar, cambios, setCambios, setOpacity, setCambiosLocales }) => {
     const nuevoCambio = () => {
         if (parrafoCambiado !== parrafoACambiar) {
             let myObj = {
@@ -17,6 +17,7 @@ export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado
         setParrafoACambiar('')
         setParrafoCambiado('')
         setOpacity('opacity-100')
+        setCambiosLocales(true)
     }
 
     if (mostrarInput) {

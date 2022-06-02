@@ -4,10 +4,11 @@ import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon, XCircleIcon } from "@heroicons/react/solid"
 import { CreateLei } from "./CreateLei"
 
-export const LeisVinculadas = ({ updateParrafosAModificar, leis, setLeis, leisEliminadas, setLeisEliminadas, leisAnadidasManualmente, setLeisAnadidasManualmente, setLeiSeleccionada }) => {
+export const LeisVinculadas = ({ setCambiosLocales, updateParrafosAModificar, leis, setLeis, leisEliminadas, setLeisEliminadas, leisAnadidasManualmente, setLeisAnadidasManualmente, setLeiSeleccionada }) => {
     const eliminarLeiVinculada = (lei) => {
         setLeis(leis.filter(leiAux => lei !== leiAux.id))
         setLeisEliminadas([...leisEliminadas, lei])
+        setCambiosLocales(true)
     }
 
     return <div className='p-4 flex flex-col border-2 border-black'>
@@ -16,6 +17,7 @@ export const LeisVinculadas = ({ updateParrafosAModificar, leis, setLeis, leisEl
             setLeis={setLeis}
             leisAnadidasManualmente={leisAnadidasManualmente}
             setLeisAnadidasManualmente={setLeisAnadidasManualmente}
+            setCambiosLocales={setCambiosLocales}
         />
         {
             leis.length !== 0

@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Comment } from "./Comment"
 import { CreateComment } from "./CreateComment"
 
-export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas }) => {
+export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas, setCambiosLocales }) => {
     const [mostrar, setMostrar] = useState(false)
 
     function convertirFecha(fecha) {
@@ -51,7 +51,7 @@ export const Note = ({ nota, anadirNotaSeleccionada, notas, setNotas }) => {
                                         )
                                     }
                                 </div>
-                                <CreateComment notas={notas} setNotas={setNotas} nota={nota} />
+                                <CreateComment notas={notas} setNotas={setNotas} nota={nota} setCambiosLocales={setCambiosLocales} />
                             </div>
                         </div>
                     </div>

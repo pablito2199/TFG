@@ -2,7 +2,7 @@ import { React, useRef, useState } from 'react'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import { XCircleOutline } from '@graywolfai/react-heroicons'
 
-export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, cambiosLocales, setCambiosLocales }) => {
+export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
@@ -12,7 +12,7 @@ export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosV
                     parrafo={parrafo.innerText}
                     leiSeleccionada={leiSeleccionada}
                     cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
-                    cambiosLocales={cambiosLocales} setCambiosLocales={setCambiosLocales}
+                    setCambiosLocales={setCambiosLocales}
                     posicion={index}
                 />
             })
@@ -20,7 +20,7 @@ export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosV
     </div>
 }
 
-const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, cambiosLocales, setCambiosLocales, posicion }) => {
+const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales, posicion }) => {
     const id = leiSeleccionada + "-" + posicion
     const [mostrarBotones, setMostrarBotones] = useState(false)
     const ref = useRef(null)

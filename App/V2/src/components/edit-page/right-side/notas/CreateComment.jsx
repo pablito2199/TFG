@@ -1,6 +1,8 @@
 import React, { useState } from "react"
+import { useUser } from "../../../../hooks"
 
-export const CreateComment = ({ notas, setNotas, nota }) => {
+export const CreateComment = ({ notas, setNotas, nota, setCambiosLocales }) => {
+    const { user } = useUser()
     const [comentario, setComentario] = useState('')
 
     const submit = () => {
@@ -8,7 +10,7 @@ export const CreateComment = ({ notas, setNotas, nota }) => {
             let myObj = {
                 'contenido': comentario,
                 'fecha': new Date().toLocaleDateString(),
-                'usuario': 'Nome Apelido'
+                'usuario': user.nome + " " + user.apelidos,
             }
             setNotas(notas.map(notaAux => {
                 if (nota.id === notaAux.id) {
@@ -17,6 +19,7 @@ export const CreateComment = ({ notas, setNotas, nota }) => {
                 return notaAux
             }))
             setComentario('')
+            setCambiosLocales(true)
         }
     }
 

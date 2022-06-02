@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { XCircleIcon } from '@heroicons/react/solid'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined'
 
-export const CreateLei = ({ leis, setLeis, leisAnadidasManualmente, setLeisAnadidasManualmente }) => {
+export const CreateLei = ({ leis, setLeis, leisAnadidasManualmente, setLeisAnadidasManualmente, setCambiosLocales }) => {
     const [lei, setLei] = useState('')
     const [mostrar, setMostrar] = useState(false)
 
@@ -17,6 +17,7 @@ export const CreateLei = ({ leis, setLeis, leisAnadidasManualmente, setLeisAnadi
             setLeisAnadidasManualmente([...leisAnadidasManualmente, myObj])
             setLei('')
             setMostrar(false)
+            setCambiosLocales(true)
         }
     }
 

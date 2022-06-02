@@ -63,13 +63,13 @@ export default function EditDog() {
 
     useEffect(() => {
         if (documentAdditionalData) {
-            if (documentAdditionalData.changes) {
+            if (documentAdditionalData.changes && !cambiosLocales) {
                 setCambios(documentAdditionalData.changes)
             }
-            if (documentAdditionalData.laws) {
+            if (documentAdditionalData.laws && !cambiosLocales) {
                 setLeisVinculadas(documentAdditionalData.laws)
             }
-            if (documentAdditionalData.notes) {
+            if (documentAdditionalData.notes && !cambiosLocales) {
                 setNotas(documentAdditionalData.notes)
             }
             if (documentAdditionalData.headerItems) {
@@ -148,6 +148,7 @@ export default function EditDog() {
             cambios={cambios}
             setCambios={setCambios}
             setOpacity={setOpacity}
+            setCambiosLocales={setCambiosLocales}
         />
         <NoteEditor
             mostrarInputNota={mostrarInputNota}
@@ -155,6 +156,7 @@ export default function EditDog() {
             notas={notas}
             setNotas={setNotas}
             setOpacity={setOpacity}
+            setCambiosLocales={setCambiosLocales}
         />
         <div className={'w-full ' + opacity}>
             {
@@ -202,6 +204,7 @@ export default function EditDog() {
                                         notas={notas} setNotas={setNotas}
                                         leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
                                         setLeiSeleccionada={setLeiSeleccionada}
+                                        setCambiosLocales={setCambiosLocales}
                                     />
                                 </main>
                                 :
@@ -240,7 +243,7 @@ export default function EditDog() {
                                                 leiPrincipal={leiPrincipal}
                                                 leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
                                                 cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
-                                                cambiosLocales={cambiosLocales} setCambiosLocales={setCambiosLocales}
+                                                setCambiosLocales={setCambiosLocales}
                                             />
                                         </div>
                                     </div>
