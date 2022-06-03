@@ -3,7 +3,7 @@ import React, { useState } from "react"
 
 import ReactDiffViewer from 'react-diff-viewer'
 
-export const Change = ({ cambio, anadirCambioSeleccionado, claseLeftSide }) => {
+export const Change = ({ content, cambio, anadirCambioSeleccionado, claseLeftSide }) => {
     const [mostrar, setMostrar] = useState(false)
 
     return <div className='p-2 shadow-inner border-b-2'>
@@ -22,6 +22,12 @@ export const Change = ({ cambio, anadirCambioSeleccionado, claseLeftSide }) => {
                     <div className="flex flex-1 w-full justify-end">
                         <ChevronDoubleUpIcon className="w-6 cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(false)} />
                     </div>
+                    <button
+                        className="flex flex-1 w-full justify-end text-blue-green underline font-semibold"
+                        onClick={() => content.current.children[parseInt(cambio.parrafo)].scrollIntoView()}
+                    >
+                        Ir ao parágrafo
+                    </button>
                     <div className='m-4 flex items-center w-11/12 gap-2'>
                         <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none' type="checkbox" onChange={(e) => anadirCambioSeleccionado(e, cambio.id)} />
                         <div className='text-justify flex flex-col gap-2'>

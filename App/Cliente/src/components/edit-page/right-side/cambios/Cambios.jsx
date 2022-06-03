@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Button } from "../../../Button"
 import { Change } from "./Change"
 
-export const Cambios = ({ cambios, setCambios, claseLeftSide, setCambiosLocales }) => {
+export const Cambios = ({ content, cambios, setCambios, claseLeftSide, setCambiosLocales }) => {
     const [cambiosSeleccionados, setCambiosSeleccionados] = useState([])
 
     const anadirCambioSeleccionado = (event, cambio) => {
@@ -24,6 +24,7 @@ export const Cambios = ({ cambios, setCambios, claseLeftSide, setCambiosLocales 
             {
                 cambios?.map(cambio =>
                     <Change
+                        content={content}
                         cambio={cambio}
                         anadirCambioSeleccionado={anadirCambioSeleccionado}
                         claseLeftSide={claseLeftSide}

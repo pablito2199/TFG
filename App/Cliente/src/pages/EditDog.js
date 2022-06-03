@@ -12,6 +12,7 @@ import { XIcon } from '@heroicons/react/solid'
 
 export default function EditDog() {
     const content = useRef(null)
+    const contentVinculada = useRef(null)
     const [modal, setModal] = useState(false)
     const location = useLocation()
     const parser = new DOMParser()
@@ -151,6 +152,7 @@ export default function EditDog() {
             setCambios={setCambios}
             setOpacity={setOpacity}
             setCambiosLocales={setCambiosLocales}
+            posicionParrafo={posicionParrafo}
         />
         <NoteEditor
             mostrarInputNota={mostrarInputNota}
@@ -227,6 +229,9 @@ export default function EditDog() {
                                             setAnchorPoint={setAnchorPoint}
                                             show={show} setShow={setShow}
                                             claseLeftSide={claseLeftSide}
+                                            setPosicionParrafo={setPosicionParrafo}
+                                            content={content}
+                                            notas={notas}
                                         />
                                         <RightSideDog
                                             updateParrafosAModificar={updateParrafosAModificar}
@@ -236,6 +241,7 @@ export default function EditDog() {
                                             notas={notas} setNotas={setNotas}
                                             leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
                                             setLeiSeleccionada={setLeiSeleccionada}
+                                            content={content}
                                         />
                                     </div>
                                     <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12 overflow-y-scroll'>
@@ -244,6 +250,7 @@ export default function EditDog() {
                                             <PrincipalLaw
                                                 leiPrincipal={leiPrincipal}
                                                 data={htmlCode}
+                                                contentVinculada={contentVinculada}
                                             />
                                             <LinkedDocuments
                                                 parrafosAModificar={parrafosAModificar}
@@ -251,6 +258,7 @@ export default function EditDog() {
                                                 leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
                                                 cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
                                                 setCambiosLocales={setCambiosLocales}
+                                                contentVinculada={contentVinculada}
                                             />
                                         </div>
                                     </div>

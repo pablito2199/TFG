@@ -3,11 +3,12 @@ import { React } from 'react'
 import { XCircleIcon } from '@heroicons/react/solid'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 
-export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado, setParrafoCambiado, parrafoACambiar, setParrafoACambiar, cambios, setCambios, setOpacity, setCambiosLocales }) => {
+export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado, setParrafoCambiado, parrafoACambiar, setParrafoACambiar, cambios, setCambios, setOpacity, setCambiosLocales, posicionParrafo }) => {
     const nuevoCambio = () => {
         if (parrafoCambiado !== parrafoACambiar) {
             let myObj = {
                 'id': Date.now(),
+                'parrafo': posicionParrafo,
                 'parrafoAntiguo': parrafoACambiar,
                 'parrafoNuevo': parrafoCambiado
             }

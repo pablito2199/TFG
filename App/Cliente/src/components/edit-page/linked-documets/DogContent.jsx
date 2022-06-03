@@ -2,8 +2,8 @@ import { React, useRef, useState } from 'react'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import { XCircleOutline } from '@graywolfai/react-heroicons'
 
-export const DogContent = ({ parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
-    return <div>
+export const DogContent = ({ contentVinculada, parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
+    return <div ref={contentVinculada}>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
                 return <Parrafo

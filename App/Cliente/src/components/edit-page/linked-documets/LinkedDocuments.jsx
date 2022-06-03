@@ -5,7 +5,7 @@ import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
 import { DogContent } from './DogContent'
 import { useHtmlDoc } from '../../../hooks'
 
-export const LinkedDocuments = ({ parrafosAModificar, leiPrincipal, leiSeleccionada, setLeiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
+export const LinkedDocuments = ({ contentVinculada, parrafosAModificar, leiPrincipal, leiSeleccionada, setLeiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
     let documentos = []
     const documentos1 = [useHtmlDoc(10537856)]
     const documentos2 = [useHtmlDoc(10495028)]
@@ -64,6 +64,7 @@ export const LinkedDocuments = ({ parrafosAModificar, leiPrincipal, leiSeleccion
                 documentos[leiSeleccionada]
                     ?
                     <DogContent
+                        contentVinculada={contentVinculada}
                         parrafosAModificar={parrafosAModificar}
                         data={documentos[leiSeleccionada]}
                         leiSeleccionada={leiSeleccionada}

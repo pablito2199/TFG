@@ -1,6 +1,13 @@
 import { React } from 'react'
 
-export const DogContent = ({ data }) => {
+export const DogContent = ({ contentVinculada, data }) => {
+    const mostrarCambio = () => {
+        if (contentVinculada.current) {
+            //IR AL CAMBIO DIRECTAMENTE
+            contentVinculada.current.scrollIntoView()
+        }
+    }
+
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
@@ -25,7 +32,7 @@ export const DogContent = ({ data }) => {
                     clase += " opacity-40"
                 }
                 if (indicador) {
-                    return <div key={index}><button className={clase + ' text-left px-1'} onClick={() => window.scrollBy(0, document.evaluate("//*[text()[contains(., 'Artigo 15.')]][last()]", document.body).iterateNext().getBoundingClientRect().top)}>{parrafo.innerText}</button></div>
+                    return <div key={index}><button className={clase + ' text-left px-1'} onClick={mostrarCambio}>{parrafo.innerText}</button></div>
                 }
                 return <div key={index}><p className={clase}>{parrafo.innerText}</p></div>
             })

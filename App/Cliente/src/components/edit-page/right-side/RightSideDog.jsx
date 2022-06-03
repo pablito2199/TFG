@@ -100,7 +100,7 @@ export const RightSideDog = ({ content, setCambiosLocales, updateParrafosAModifi
         {
             estado === 'c'
                 ?
-                <Cambios cambios={cambios} setCambios={setCambios} claseLeftSide={claseLeftSide} setCambiosLocales={setCambiosLocales} />
+                <Cambios content={content} cambios={cambios} setCambios={setCambios} claseLeftSide={claseLeftSide} setCambiosLocales={setCambiosLocales} />
                 :
                 estado === 'l'
                     ?

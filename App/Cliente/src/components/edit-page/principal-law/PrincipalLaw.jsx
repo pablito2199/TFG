@@ -2,7 +2,7 @@ import { React } from 'react'
 
 import { DogContent } from './DogContent'
 
-export const PrincipalLaw = ({ leiPrincipal, data }) => {
+export const PrincipalLaw = ({ contentVinculada, leiPrincipal, data }) => {
     return <section className='z-0 w-1/2 ml-2'>
         <nav className='flex text-lg items-center gap-2'>
             {
@@ -27,7 +27,7 @@ export const PrincipalLaw = ({ leiPrincipal, data }) => {
             }
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
-            <DogContent data={data} />
+            <DogContent contentVinculada={contentVinculada} data={data} />
         </div>
     </section>
 }
