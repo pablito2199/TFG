@@ -3,10 +3,13 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import { XCircleOutline } from '@graywolfai/react-heroicons'
 
 export const DogContent = ({ contentVinculada, parrafosAModificar, data, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
+    let num = 0
+
     return <div ref={contentVinculada}>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
                 return <Parrafo
+                    num={num}
                     parrafosAModificar={parrafosAModificar}
                     key={index}
                     parrafo={parrafo.innerText}
@@ -20,7 +23,7 @@ export const DogContent = ({ contentVinculada, parrafosAModificar, data, leiSele
     </div>
 }
 
-const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales, posicion }) => {
+const Parrafo = ({ num, parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales, posicion }) => {
     const id = leiSeleccionada + "-" + posicion
     const [mostrarBotones, setMostrarBotones] = useState(false)
     const ref = useRef(null)
@@ -33,12 +36,15 @@ const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculad
     }
     const claseCambiado = clase + " bg-green-200"
     let BreakException = {}
+    let indicador = false
 
     if (parrafosAModificar && parrafosAModificar.length !== 0) {
         try {
-            parrafosAModificar.forEach(par => {
+            parrafosAModificar.forEach((par, index) => {
                 if (parrafo.match(new RegExp("^" + par + ". ", "gi"))) {
                     clase += " bg-blue-green text-white py-2 opacity-100"
+                    indicador = true
+                    num = index
                     throw BreakException
                 } else {
                     clase += " opacity-40"
@@ -83,15 +89,35 @@ const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculad
 
     return <div>
         {
-            parrafoCambiado !== ''
+            indicador
                 ?
-                <p contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={claseCambiado} onFocus={() => setMostrarBotones(true)}>
-                    {parrafoCambiado}
-                </p>
+                <>
+                    {
+                        parrafoCambiado !== ''
+                            ?
+                            <p id={'cambio-' + num} contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={claseCambiado} onFocus={() => setMostrarBotones(true)}>
+                                {parrafoCambiado}
+                            </p>
+                            :
+                            <p id={'cambio-' + num} contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={clase} onFocus={() => setMostrarBotones(true)}>
+                                {parrafo}
+                            </p>
+                    }
+                </>
                 :
-                <p contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={clase} onFocus={() => setMostrarBotones(true)}>
-                    {parrafo}
-                </p>
+                <>
+                    {
+                        parrafoCambiado !== ''
+                            ?
+                            <p contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={claseCambiado} onFocus={() => setMostrarBotones(true)}>
+                                {parrafoCambiado}
+                            </p>
+                            :
+                            <p contentEditable="true" suppressContentEditableWarning={true} ref={ref} className={clase} onFocus={() => setMostrarBotones(true)}>
+                                {parrafo}
+                            </p>
+                    }
+                </>
         }
         {
             mostrarBotones
@@ -109,5 +135,5 @@ const Parrafo = ({ parrafosAModificar, parrafo, leiSeleccionada, cambiosVinculad
                 :
                 <></>
         }
-    </div>
+    </div >
 }

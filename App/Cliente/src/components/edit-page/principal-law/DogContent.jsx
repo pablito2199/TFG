@@ -1,16 +1,17 @@
 import { React } from 'react'
 
 export const DogContent = ({ contentVinculada, data }) => {
-    const mostrarCambio = () => {
+    let num = 0
+    const mostrarCambio = (posicion) => {
         if (contentVinculada.current) {
-            //IR AL CAMBIO DIRECTAMENTE
-            contentVinculada.current.scrollIntoView()
+            contentVinculada.current.querySelector('#cambio-' + posicion).scrollIntoView()
         }
     }
 
     return <div>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
+                const posicion = num
                 let indicador = false
                 let clase = "mt-3"
                 if (parrafo.className === "dog-firma-centrada") {
@@ -28,11 +29,12 @@ export const DogContent = ({ contentVinculada, data }) => {
                 ) {
                     clase += " bg-blue-green text-white py-2"
                     indicador = true
+                    num += 1
                 } else {
                     clase += " opacity-40"
                 }
                 if (indicador) {
-                    return <div key={index}><button className={clase + ' text-left px-1'} onClick={mostrarCambio}>{parrafo.innerText}</button></div>
+                    return <div key={index}><button className={clase + ' text-left px-1'} onClick={() => mostrarCambio(posicion)}>{parrafo.innerText}</button></div>
                 }
                 return <div key={index}><p className={clase}>{parrafo.innerText}</p></div>
             })
