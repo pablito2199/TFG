@@ -16,7 +16,7 @@ export default function Search() {
     const [modal, setModal] = useState(false)
 
     return <div className='flex flex-col ml-20 items-center w-full screen-min5:ml-10'>
-        <button className="fixed text-white bottom-24 left-2" title="Importar documento do DOG a lex.gal" onClick={() => setModal(true)}>
+        <button className="z-10 fixed text-white bottom-24 left-2" title="Importar documento do DOG a lex.gal" onClick={() => setModal(true)}>
             <SaveIcon className="h-12" />
         </button>
         {

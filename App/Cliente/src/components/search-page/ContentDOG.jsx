@@ -2,10 +2,15 @@ import { EyeIcon, SaveIcon } from '@heroicons/react/solid'
 import React from 'react'
 
 export const ContentDOG = ({ data }) => {
+    const token = localStorage.getItem('token') || null
+
     const anadirDoc = async (norma) => {
         const requestOptions = {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
             body: JSON.stringify({
                 id: norma.id,
                 urlDog: 'https://www.xunta.gal' + norma.rutaHtml,

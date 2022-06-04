@@ -23,7 +23,11 @@ export const PrincipalLaw = ({ contentVinculada, leiPrincipal, data }) => {
                                 ?
                                 <button className='w-96 focus:outline-none p-2 w-32 bg-black text-white border-2 border-black cursor-default'>Orde do 28 de xullo de 2021</button>
                                 :
-                                <button className='w-96 focus:outline-none p-2 w-32 bg-black text-white border-2 border-black cursor-default'>Norma</button>
+                                leiPrincipal === '10550456'
+                                    ?
+                                    <button className='w-96 focus:outline-none p-2 w-32 bg-black text-white border-2 border-black cursor-default'>Orde do 28 de xullo de 2021</button>
+                                    :
+                                    <button className='w-96 focus:outline-none p-2 w-32 bg-black text-white border-2 border-black cursor-default'>Norma</button>
             }
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">

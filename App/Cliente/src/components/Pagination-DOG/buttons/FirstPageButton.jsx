@@ -2,13 +2,22 @@ import React from 'react'
 import { ChevronDoubleLeftIcon } from '@heroicons/react/solid'
 
 export const FirstPageButton = ({ initialText, setData, query, setActualPage }) => {
+    const token = localStorage.getItem('token') || null
     const page = 1
 
     return <button
         title='Primeira páxina'
         onClick={async () => {
+            const requestOptions = {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                }
+            }
+
             const url = `/xunta${query}pagina=${page}`
-            const response = await fetch(url, { state: { initialText: initialText } })
+            const response = await fetch(url, requestOptions, { state: { initialText: initialText } })
             const jsonData = await response.json()
             setData(jsonData)
             setActualPage(1)

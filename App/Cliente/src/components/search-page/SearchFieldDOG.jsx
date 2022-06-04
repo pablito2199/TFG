@@ -7,6 +7,8 @@ import { SearchButton } from "./SearchButton"
 import { SearchFilters } from "./SearchFilters"
 
 export const SearchFieldDOG = () => {
+    const token = localStorage.getItem('token') || null
+
     const [data, setData] = useState('')
     const [texto, setTexto] = useState('')
     const [soloTitulo, setSoloTitulo] = useState(true)
@@ -24,11 +26,20 @@ export const SearchFieldDOG = () => {
 
     const cambiarPagina = async (e) => {
         if (e.key === 'Enter') {
+            const requestOptions = {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                }
+            }
+
             const url = `/xunta?texto=${texto}&soloTitulo=${soloTitulo}&fraseExacta=${fraseExacta}&dogDesde=${dogDesde}&dogHasta=${dogHasta}&criterioOrdenacion=${criterioOrdenacion}&listado_colectivo=${colectivo}&listado_taxorga=${organizacion}&listado_rangos=${rango}&listado_seccion=${seccion}&listado_tematica=${tematica}&pagina=1`
-            const response = await fetch(url)
+            const response = await fetch(url, requestOptions)
             const jsonData = await response.json()
             setData(jsonData)
             setTextoBuscado(texto)
+            console.log(texto)
             setActualPage(1)
         }
     }

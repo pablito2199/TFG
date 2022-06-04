@@ -7,6 +7,7 @@ import { useUser } from '../../hooks'
 export const NoteEditor = ({ mostrarInputNota, setMostrarInputNota, notas, setNotas, setOpacity, setCambiosLocales, posicionParrafo }) => {
     const { user } = useUser()
     const [nota, setNota] = useState('')
+
     const engadirNota = () => {
         if (nota !== '') {
             let myObj = {

@@ -2,12 +2,17 @@ import { React } from 'react'
 
 import { XCircleIcon } from '@heroicons/react/solid'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
+import { useUser } from '../../hooks'
 
 export const ParagraphEditor = ({ mostrarInput, setMostrarInput, parrafoCambiado, setParrafoCambiado, parrafoACambiar, setParrafoACambiar, cambios, setCambios, setOpacity, setCambiosLocales, posicionParrafo }) => {
+    const { user } = useUser()
+
     const nuevoCambio = () => {
         if (parrafoCambiado !== parrafoACambiar) {
             let myObj = {
                 'id': Date.now(),
+                'fecha': new Date().toLocaleDateString(),
+                'usuario': user.nome + " " + user.apelidos,
                 'parrafo': posicionParrafo,
                 'parrafoAntiguo': parrafoACambiar,
                 'parrafoNuevo': parrafoCambiado

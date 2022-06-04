@@ -11,6 +11,7 @@ export const LinkedDocuments = ({ contentVinculada, parrafosAModificar, leiPrinc
     const documentos2 = [useHtmlDoc(10495028)]
     const documentos3 = [useHtmlDoc(10516813)]
     const documentos4 = [useHtmlDoc(10504934)]
+    const documentos5 = [useHtmlDoc(10504934)]
 
     if (leiPrincipal === '10549190') {
         documentos = documentos1
@@ -20,6 +21,8 @@ export const LinkedDocuments = ({ contentVinculada, parrafosAModificar, leiPrinc
         documentos = documentos3
     } else if (leiPrincipal === '10518541') {
         documentos = documentos4
+    } else if (leiPrincipal === '10550456') {
+        documentos = documentos5
     }
 
     return <section className='z-0 flex-1 mx-10 screen-min1:mt-8 screen-min1:ml-2 screen-min1:w-11/12'>
@@ -49,9 +52,15 @@ export const LinkedDocuments = ({ contentVinculada, parrafosAModificar, leiPrinc
                                     <option value={0}>Orde do 16 de abril de 2021</option>
                                 </select>
                                 :
-                                <select className='w-96 text-center bg-black text-white cursor-pointer p-3' onChange={(e) => setLeiSeleccionada(e.target.value)} defaultValue={leiSeleccionada}>
-                                    <option value={0}></option>
-                                </select>
+                                leiPrincipal === '10550456'
+                                    ?
+                                    <select className='w-96 text-center bg-black text-white cursor-pointer p-3' onChange={(e) => setLeiSeleccionada(e.target.value)} defaultValue={leiSeleccionada}>
+                                        <option value={0}>Orde do 16 de abril de 2021</option>
+                                    </select>
+                                    :
+                                    <select className='w-96 text-center bg-black text-white cursor-pointer p-3' onChange={(e) => setLeiSeleccionada(e.target.value)} defaultValue={leiSeleccionada}>
+                                        <option value={0}></option>
+                                    </select>
             }
             <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
                 <Tooltip title="Escolla a lei vinculada que queres modificar no seleccionable. Os cambios propostos serán mostrados cun fondo azul. Os cambios gardados mostraránse cun fondo verde." placement="top" arrow>

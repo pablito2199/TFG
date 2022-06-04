@@ -2,13 +2,22 @@ import React from 'react'
 import { PagesNotSeen } from './PagesNotSeen'
 
 export const PagesButtons = ({ initialText, setData, modal, query, actualPage, setActualPage, numberElements, numberElementsPerPage }) => {
+    const token = localStorage.getItem('token') || null
     let paginas = []
     let numeroBotones = Math.ceil(numberElements / numberElementsPerPage)
     const numeroMaximoPaginas = Math.ceil(numberElements / numberElementsPerPage)
 
     const cambiarPagina = async (i) => {
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        }
+
         const url = `/xunta${query}pagina=${i}`
-        const response = await fetch(url, { state: { initialText: initialText } })
+        const response = await fetch(url, requestOptions, { state: { initialText: initialText } })
         const jsonData = await response.json()
         setData(jsonData)
         setActualPage(i)

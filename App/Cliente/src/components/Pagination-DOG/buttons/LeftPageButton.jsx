@@ -2,14 +2,23 @@ import React from 'react'
 import { ChevronLeftIcon } from '@heroicons/react/solid'
 
 export const LeftPageButton = ({ initialText, setData, query, actualPage, setActualPage }) => {
+    const token = localStorage.getItem('token') || null
     return <button
         title='Páxina anterior'
         onClick={async () => {
             if (actualPage > 1) {
+                const requestOptions = {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": token
+                    }
+                }
+
                 setActualPage(parseInt(actualPage) - 1)
                 let page = actualPage - 1
                 const url = `/xunta${query}pagina=${page}`
-                const response = await fetch(url, { state: { initialText: initialText } })
+                const response = await fetch(url, requestOptions, { state: { initialText: initialText } })
                 const jsonData = await response.json()
                 setData(jsonData)
             }

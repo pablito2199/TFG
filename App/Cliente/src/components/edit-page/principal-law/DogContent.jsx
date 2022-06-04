@@ -25,13 +25,14 @@ export const DogContent = ({ contentVinculada, data }) => {
                     parrafo.innerText.includes('queda redactado nos seguintes termos') ||
                     parrafo.innerText.includes('queda a redacción da seguinte maneira') ||
                     parrafo.innerText.includes('queda redactado da seguinte maneira') ||
-                    parrafo.innerText.includes('queda redactado do seguinte xeito')
+                    parrafo.innerText.includes('queda redactado do seguinte xeito') ||
+                    parrafo.innerText.includes('coa seguinte redacci')
                 ) {
                     clase += " bg-blue-green text-white py-2"
                     indicador = true
                     num += 1
                 } else {
-                    clase += " opacity-40"
+                    clase += " "
                 }
                 if (indicador) {
                     return <div key={index}><button className={clase + ' text-left px-1'} onClick={() => mostrarCambio(posicion)}>{parrafo.innerText}</button></div>

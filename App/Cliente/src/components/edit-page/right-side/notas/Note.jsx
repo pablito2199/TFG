@@ -20,11 +20,11 @@ export const Note = ({ content, nota, anadirNotaSeleccionada, notas, setNotas, s
                 ?
                 <div className="flex mr-2 h-6 w-full">
                     <input className='cursor-pointer rounded-xl text-green-600 focus:outline-none self-center mr-2' type="checkbox" onChange={(e) => anadirNotaSeleccionada(e, nota.id)} />
-                    <div className="flex cursor-default flex-1">
-                        <span className="flex w-1/3 font-semibold">{nota.usuario}</span>
-                        <p className="flex flex-1 text-ellipsis overflow-hidden">{nota.contenido}</p>
+                    <span className="flex font-semibold w-full">{nota.usuario}</span>
+                    <div className="flex flex-1 justify-end gap-6">
+                        <span className="flex italic font-semibold text-gray-600 font-semibold">({convertirFecha(nota.fecha)})</span>
+                        <ChevronDoubleDownIcon className="cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(true)} />
                     </div>
-                    <ChevronDoubleDownIcon className="cursor-pointer hover:bg-gray-300" onClick={() => setMostrar(true)} />
                 </div>
                 :
                 <div className='flex flex-col w-full'>

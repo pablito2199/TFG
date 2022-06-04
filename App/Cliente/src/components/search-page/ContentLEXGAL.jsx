@@ -1,4 +1,5 @@
-import { CheckIcon, EyeIcon, PencilAltIcon, XIcon } from '@heroicons/react/solid'
+import { CheckIcon, EyeIcon, PencilAltIcon } from '@heroicons/react/solid'
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,7 +14,7 @@ export const ContentLEXGAL = ({ data }) => {
         <div className='border border-white text-center'>
             <div className='flex'>
                 <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>DOG nº</div>
-                <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>Validada</div>
+                <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>Estado</div>
                 <div className='w-7/12 p-2 border-2 border-white bg-black text-white screen-min3:w-6/12 screen-min2:w-4/12 screen-min1:break-words'>Título</div>
                 <div className='w-2/12 p-2 border-2 border-white bg-black text-white screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>Departamento</div>
                 <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min2:w-2/12 screen-min1:break-words'>Data</div>
@@ -27,9 +28,15 @@ export const ContentLEXGAL = ({ data }) => {
                             {
                                 norma.borrador
                                     ?
-                                    <XIcon className='text-red-600 w-10' />
+                                    <div className='flex flex-col w-full items-center'>
+                                        <DriveFileRenameOutlineOutlinedIcon className='text-gray-500' fontSize='large' />
+                                        <span>Borrador</span>
+                                    </div>
                                     :
-                                    <CheckIcon className='text-green-600 w-10' />
+                                    <div className='flex flex-col w-full items-center'>
+                                        <CheckIcon className='text-green-600 w-10' />
+                                        <span>Validada</span>
+                                    </div>
                             }
                         </div>
                         <div className='w-7/12 text-left px-2 py-4 screen-min3:w-6/12 screen-min2:w-4/12'>{norma.headerItems.sumario}</div>
@@ -46,8 +53,7 @@ export const ContentLEXGAL = ({ data }) => {
                             </div>
                         </div>
                     </div>
-                }
-                )
+                })
             }
         </div>
     </div >

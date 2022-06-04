@@ -128,7 +128,8 @@ export default function EditDog() {
                 parrafo.innerText.includes('queda redactado nos seguintes termos') ||
                 parrafo.innerText.includes('queda a redacción da seguinte maneira') ||
                 parrafo.innerText.includes('queda redactado da seguinte maneira') ||
-                parrafo.innerText.includes('queda redactado do seguinte xeito')
+                parrafo.innerText.includes('queda redactado do seguinte xeito') ||
+                parrafo.innerText.includes('coa seguinte redacci')
             ) {
                 resultado = (parrafo.innerText).match(regex)
                 if (resultado !== null && resultado?.length !== 0) {

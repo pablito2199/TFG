@@ -47,7 +47,7 @@ const Parrafo = ({ num, parrafosAModificar, parrafo, leiSeleccionada, cambiosVin
                     num = index
                     throw BreakException
                 } else {
-                    clase += " opacity-40"
+                    clase += " "
                     return true
                 }
             })
