@@ -50,7 +50,6 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
-                // Parseamos o corpo do token
                 .parseClaimsJws(token.replace("Bearer", "").trim())
                 .getBody();
 

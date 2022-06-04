@@ -93,7 +93,8 @@ export default class API {
         return ''
     }
 
-    async findFinalDocument(id) {
+    async findFinalDocument(sumario) {
+        console.log(sumario)
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -101,39 +102,12 @@ export default class API {
                 'Authorization': this.#token
             }
         }
-        const response = await fetch(`/local/${id}`, requestOptions).catch(error => console.log(error))
+        const response = await fetch(`/local/${sumario}`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             return await response.json()
         }
         return ''
-    }
-
-    async updateFinalDocument(finalDocument) {
-        const requestOptions = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': this.#token
-            },
-            body: JSON.stringify({
-                id: finalDocument.headerItems.sumario,
-                borrador: finalDocument.borrador,
-                notes: finalDocument.notes,
-                changes: finalDocument.changes,
-                laws: finalDocument.laws,
-                headerItems: finalDocument.headerItems,
-                linkedChanges: finalDocument.linkedChanges,
-                urlDog: finalDocument.urlDog
-            })
-        }
-
-        const response = fetch(`/local/${finalDocument.id}`, requestOptions).catch(error => console.log(error))
-
-        if (response.status === 200) {
-            return true
-        }
-        return false
     }
 
     async findHtmlDoc(sumario) {
@@ -154,5 +128,70 @@ export default class API {
             .catch(error => console.log(error))
 
         return response
+    }
+
+    async updateFinalDocument(finalDocument) {
+        const requestOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            },
+            body: JSON.stringify({
+                id: finalDocument.id,
+                sumario: finalDocument.sumario,
+                borrador: finalDocument.borrador,
+                notes: finalDocument.notes,
+                changes: finalDocument.changes,
+                laws: finalDocument.laws,
+                headerItems: finalDocument.headerItems,
+                linkedChanges: finalDocument.linkedChanges,
+                urlDog: finalDocument.urlDog
+            })
+        }
+
+        const response = fetch(`/local/${finalDocument.id}`, requestOptions).catch(error => console.log(error))
+
+        if (response.status === 200) {
+            return true
+        }
+        return false
+    }
+
+    async updateEstadoVinculada(leiModificada) {
+        const requestOptions = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            },
+            body: JSON.stringify({
+                sumario: leiModificada.sumario,
+                borrador: leiModificada.borrador
+            })
+        }
+
+        const response = fetch(`/local/${leiModificada.sumario}`, requestOptions).catch(error => console.log(error))
+
+        if (response.status === 200) {
+            return true
+        }
+        return false
+    }
+
+    async deleteFinalDocument(id) {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            }
+        }
+        const response = await fetch(`/local/${id}`, requestOptions).catch(error => console.log(error))
+
+        if (response.status === 204) {
+            return true
+        }
+        return false
     }
 }

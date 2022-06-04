@@ -39,6 +39,11 @@ public class XuntaController {
                     )
             ),
             @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
+            ),
+            @ApiResponse(
                     responseCode = "404",
                     description = "Non se atoparon normas.",
                     content = @Content

@@ -50,4 +50,8 @@ public class FinalDocumentService {
     public FinalDocument save(FinalDocument finalDocument) {
         return finalDocuments.save(finalDocument);
     }
+
+    public void delete(String id) {
+        finalDocuments.deleteById(id);
+    }
 }

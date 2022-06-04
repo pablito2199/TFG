@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const SearchButton = ({ setTextoBuscado, initialText, setData, modal, texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion, colectivo, organizacion, rango, seccion, tematica, setPagina }) => {
+export const SearchButton = ({ setMostrar, setTextoBuscado, initialText, setData, modal, texto, soloTitulo, fraseExacta, dogDesde, dogHasta, criterioOrdenacion, colectivo, organizacion, rango, seccion, tematica, setPagina }) => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token') || null
 
@@ -26,6 +26,7 @@ export const SearchButton = ({ setTextoBuscado, initialText, setData, modal, tex
             setData(jsonData)
             setTextoBuscado(texto)
             setPagina(1)
+            setMostrar(false)
         }
     }
 

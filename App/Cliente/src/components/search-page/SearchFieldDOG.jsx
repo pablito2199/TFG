@@ -9,6 +9,7 @@ import { SearchFilters } from "./SearchFilters"
 export const SearchFieldDOG = () => {
     const token = localStorage.getItem('token') || null
 
+    const [mostrar, setMostrar] = useState(false)
     const [data, setData] = useState('')
     const [texto, setTexto] = useState('')
     const [soloTitulo, setSoloTitulo] = useState(true)
@@ -39,8 +40,8 @@ export const SearchFieldDOG = () => {
             const jsonData = await response.json()
             setData(jsonData)
             setTextoBuscado(texto)
-            console.log(texto)
             setActualPage(1)
+            setMostrar(false)
         }
     }
 
@@ -52,6 +53,7 @@ export const SearchFieldDOG = () => {
             <span className="font-serif ml-1 text-lg font-semibold italic">Insira o texto da búsqueda...</span>
             <input value={texto} onKeyDown={cambiarPagina} type="search" onChange={(event) => { setTexto(event.target.value) }} className=' mt-1 w-full font-normal text-gray-700 border border-solid border-gray-300 transition ease-in-out py-2 px-2 focus:outline-none focus:border-gray-500' placeholder="Búsqueda de normas..." aria-label="Search" aria-describedby="button-addon2" />
             <SearchFilters
+                mostrar={mostrar} setMostrar={setMostrar}
                 soloTitulo={soloTitulo} setSoloTitulo={setSoloTitulo}
                 fraseExacta={fraseExacta} setFraseExacta={setFraseExacta}
                 dogDesde={dogDesde} setDogDesde={setDogDesde}
@@ -67,7 +69,23 @@ export const SearchFieldDOG = () => {
                 <button onClick={() => setTexto('')} className='px-6 py-2.5 focus:outline-none' type="button" id="button-addon2">
                     <span className="font-semibold">Limpar</span>
                 </button>
-                <SearchButton setPagina={setActualPage} setTextoBuscado={setTextoBuscado} setData={setData} modal={true} texto={texto} soloTitulo={soloTitulo} fraseExacta={fraseExacta} dogDesde={dogDesde} dogHasta={dogHasta} criterioOrdenacion={criterioOrdenacion} colectivo={colectivo} organizacion={organizacion} rango={rango} seccion={seccion} tematica={tematica} />
+                <SearchButton
+                    setMostrar={setMostrar}
+                    setPagina={setActualPage}
+                    setTextoBuscado={setTextoBuscado}
+                    setData={setData}
+                    modal={true}
+                    texto={texto}
+                    soloTitulo={soloTitulo}
+                    fraseExacta={fraseExacta}
+                    dogDesde={dogDesde}
+                    dogHasta={dogHasta}
+                    criterioOrdenacion={criterioOrdenacion}
+                    colectivo={colectivo} organizacion={organizacion}
+                    rango={rango}
+                    seccion={seccion}
+                    tematica={tematica}
+                />
             </div>
         </div>
         {

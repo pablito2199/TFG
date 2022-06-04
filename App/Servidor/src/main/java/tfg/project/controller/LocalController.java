@@ -43,7 +43,7 @@ public class LocalController {
     @Operation(
             operationId = "getNormasLexGal",
             summary = "Obter as normas importadas a lex.gal.",
-            description = "Obter todas as normas importadas a lex.gal desde o DOG filtrando por texto."
+            description = "Obter todas as normas importadas a lex.gal desde o DOG filtrando por texto. Esta acción pode ser realizada por calquer usuario autenticado."
     )
     @ApiResponses({
             @ApiResponse(
@@ -53,6 +53,11 @@ public class LocalController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = String.class)
                     )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "404",
@@ -70,10 +75,8 @@ public class LocalController {
             @RequestParam(name = "text", defaultValue = "") String text
     ) {
         List<Sort.Order> criteria = sort.stream().map(string -> {
-                    //ordenamos la lista acendentemente
                     if (string.startsWith("+")) {
                         return Sort.Order.asc(string.substring(1));
-                        //ordenamos la lista descendentemente
                     } else if (string.startsWith("-")) {
                         return Sort.Order.desc(string.substring(1));
                     } else return null;
@@ -94,7 +97,8 @@ public class LocalController {
     @Operation(
             operationId = "getDocumentData",
             summary = "Obter os datos dun documento.",
-            description = "Obter os datos dun documento a partir do seu id."
+            description = "Obter os datos dun documento a partir do seu id. Esta acción " +
+                    "pode ser realizada por calquer usuario autenticado."
     )
     @ApiResponses({
             @ApiResponse(
@@ -104,6 +108,11 @@ public class LocalController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = String.class)
                     )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "404",
@@ -129,7 +138,8 @@ public class LocalController {
     @Operation(
             operationId = "getHtmlDoc",
             summary = "Obter o código HTML dun documento.",
-            description = "Obter o código HTML dun documento a partir do seu sumario."
+            description = "Obter o código HTML dun documento a partir do seu sumario. Esta " +
+                    "acción pode ser realizada por calquer usuario autenticado."
     )
     @ApiResponses({
             @ApiResponse(
@@ -139,6 +149,11 @@ public class LocalController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = String.class)
                     )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
             ),
             @ApiResponse(
                     responseCode = "404",
@@ -160,11 +175,50 @@ public class LocalController {
         return ResponseEntity.ok().body(result.get().getHtmlDoc());
     }
 
+    @PatchMapping(path = "{sumario}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @Operation(
+            operationId = "patchDocumentData",
+            summary = "Modificar os datos dun documento.",
+            description = "Modificar os datos dun documento. Esta acción pode ser realizada " +
+                    "por calquer usuario autenticado."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "O documento foi modificado correctamente.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = FinalDocument.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
+            )
+    })
+    @PreAuthorize("isAuthenticated()")
+    ResponseEntity<FinalDocument> patch(
+            @Parameter(description = "Datos adicionais do documento que se está a editar")
+            @RequestBody FinalDocument finalDocument
+    ) {
+        Optional<FinalDocument> auxiliar = finalDocuments.get(finalDocument.getSumario());
+
+        if (auxiliar.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
+        }
+
+        auxiliar.get().setBorrador(finalDocument.isBorrador());
+
+        return ResponseEntity.ok().body(finalDocuments.save(auxiliar.get()));
+    }
+
     @PutMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "putDocumentData",
             summary = "Gardar os datos dun documento.",
-            description = "Gardar os datos dun documento (id, notas e cambios)."
+            description = "Gardar os datos dun documento. Esta acción pode ser realizada " +
+                    "por calquer usuario autenticado."
     )
     @ApiResponses({
             @ApiResponse(
@@ -174,6 +228,11 @@ public class LocalController {
                             mediaType = "application/json",
                             schema = @Schema(implementation = FinalDocument.class)
                     )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
             )
     })
     @PreAuthorize("isAuthenticated()")
@@ -185,5 +244,41 @@ public class LocalController {
         finalDocument.setHtmlDoc(restTemplate.getForObject(finalDocument.getUrlDog(), String.class));
 
         return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
+    }
+
+    @DeleteMapping(
+            path = "{id}"
+    )
+    @Operation(
+            operationId = "deleteDocumentData",
+            summary = "Elimina un documento.",
+            description = "Elimina un documento da base de datos. Esta acción pode ser realizada " +
+                    "por calquer usuario autenticado."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "204",
+                    description = "O documento foi eliminado.",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Documento non atopado.",
+                    content = @Content
+            )
+    })
+    @PreAuthorize("isAuthenticated()")
+    ResponseEntity<FinalDocument> delete(
+            @Parameter(name = "id", required = true)
+            @PathVariable("id") String id
+    ) {
+        finalDocuments.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

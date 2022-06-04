@@ -7,7 +7,7 @@ export const DogContent = ({ contentVinculada, parrafosAModificar, data, leiSele
 
     return <div ref={contentVinculada}>
         {
-            Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
+            data.getElementsByClassName('story')[0] && Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
                 return <Parrafo
                     num={num}
                     parrafosAModificar={parrafosAModificar}

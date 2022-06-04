@@ -32,8 +32,8 @@ export const ContentDOG = ({ data }) => {
         alert('O documento foi importado a lex.gal correctamente.')
     }
 
-    return <table className='px-1 flex mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
-        <tbody className='border border-white text-center'>
+    return <div className='px-1 flex w-11/12 mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>
+        <div className='border border-white text-center'>
             <div className='flex'>
                 <div className='w-1/12 p-2 border-2 border-white bg-black text-white screen-min1:break-words'>DOG nº</div>
                 <div className='w-7/12 p-2 border-2 border-white bg-black text-white screen-min3:w-6/12 screen-min2:w-4/12 screen-min1:break-words'>Título</div>
@@ -61,6 +61,6 @@ export const ContentDOG = ({ data }) => {
                     </div>
                 )
             }
-        </tbody>
-    </table >
+        </div>
+    </div >
 }

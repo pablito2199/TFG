@@ -1,12 +1,12 @@
 import { React } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { EyeOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
+import { EyeOutline, LogoutOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 import { BookmarkIcon } from '@heroicons/react/solid'
 
-export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
-    const { put } = useFinalDocument()
+export const PrincipalButtons = ({ leiModificada, idDb, enlace, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
+    const { put, patch, deleteNorma } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async (borrador) => {
@@ -14,13 +14,13 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosV
             try {
                 put({
                     id: idDb,
+                    sumario: sumario,
                     urlDog: enlace,
                     borrador: borrador,
                     notes: notas,
                     changes: cambios,
                     laws: leyes,
                     headerItems: {
-                        sumario: sumario,
                         publicador: publicador,
                         dpub: dpub,
                         refpub: refpub,
@@ -41,9 +41,29 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosV
                     linkedChanges: cambiosVinculadas
                 })
 
+                if (leiModificada) {
+                    patch({ sumario: leiModificada, borrador: borrador })
+                }
+
                 navigate('/save', {
                     state: {
-                        mensajeAviso: true,
+                        mensajeAviso: 'Os seus cambios foron gardados correctamente.',
+                    }
+                })
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }
+
+    const deleteLei = async () => {
+        if (window.confirm('A lei será eliminada definitivamente de lex.gal. Desexa continuar?')) {
+            try {
+                deleteNorma(idDb)
+
+                navigate('/save', {
+                    state: {
+                        mensajeAviso: 'A lei foi eliminada correctamente.',
                     }
                 })
             } catch (err) {
@@ -57,17 +77,21 @@ export const PrincipalButtons = ({ idDb, enlace, notas, cambios, leyes, cambiosV
             <ThumbUpOutline className='h-6 text-white' />
             <span>Validar e publicar</span>
         </button>
+        <button onClick={() => submit(true)} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-blue-green hover:bg-blue-700 w-60 text-white font-semibold cursor-pointer'>
+            <BookmarkIcon className='h-6 text-white' />
+            <span>Gardar como borrador</span>
+        </button>
         <a href={enlace} target="_blank" rel='noreferrer' className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-gray-500 hover:bg-gray-600 w-60 text-white font-semibold cursor-pointer'>
             <EyeOutline className='h-6 text-white' />
             <span>Previsualizar</span>
         </a>
-        <button onClick={() => { if (window.confirm('Os seus cambios serán descartados. Desexa continuar?')) navigate('/') }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>
-            <XCircleOutline className='h-6 text-white' />
-            <span>Rexeitar</span>
+        <button onClick={() => { if (window.confirm('Os seus cambios serán descartados. Desexa continuar?')) navigate('/') }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-yellow-500 hover:bg-yellow-600 w-60 text-white font-semibold cursor-pointer'>
+            <LogoutOutline className='h-6 text-white' />
+            <span>Descartar cambios</span>
         </button>
-        <button onClick={() => submit(true)} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-blue-green hover:bg-blue-700 w-60 text-white font-semibold cursor-pointer'>
-            <BookmarkIcon className='h-6 text-white' />
-            <span>Gardar como borrador</span>
+        <button onClick={deleteLei} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>
+            <XCircleOutline className='h-6 text-white' />
+            <span>Eliminar de lex.gal</span>
         </button>
     </div>
 }

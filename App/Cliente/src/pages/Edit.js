@@ -119,6 +119,7 @@ export default function Edit() {
         }
 
         let resultado = []
+        let resultado2 = []
         let mesesRegex = "("
         listadoMeses.forEach(mes => mesesRegex += mes.name + "|")
         mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
@@ -128,9 +129,13 @@ export default function Edit() {
         rangosRegex = rangosRegex.substring(0, rangosRegex.length - 1)
         rangosRegex += ")"
         const regex = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4} pola que se modifica a ", "gi")
+        const regex2 = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4} pola que se modifica parcialmente a ", "gi")
         resultado = (sumario).match(regex)
+        resultado2 = (sumario).match(regex2)
         if (resultado) {
             setLeiModificada(sumario.replace(resultado[0], '').replace('Orde', 'ORDE'))
+        } else if (resultado2) {
+            setLeiModificada(sumario.replace(resultado2[0], '').replace('Orde', 'ORDE'))
         }
     }, [documentAdditionalData, htmlCode, location.state, cambiosLocales, sumario])
 
@@ -214,6 +219,7 @@ export default function Edit() {
                                         setPosicionParrafo={setPosicionParrafo}
                                         content={content}
                                         notas={notas}
+                                        titulo={titulo}
                                     />
                                     <RightSide
                                         updateParrafosAModificar={updateParrafosAModificar}
@@ -306,6 +312,7 @@ export default function Edit() {
                 seccionSeleccionada={seccionSeleccionada}
                 tematicaSeleccionada={tematicaSeleccionada}
                 numDog={numDog}
+                leiModificada={leiModificada}
             />
         </div>
 

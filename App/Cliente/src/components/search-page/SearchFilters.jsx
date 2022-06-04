@@ -1,5 +1,5 @@
 import { ChevronDoubleDownIcon, ChevronDoubleUpIcon } from '@heroicons/react/solid'
-import { React, useState } from 'react'
+import { React } from 'react'
 import { Select } from '../Select'
 
 import organismos from "../../data/listadoOrganismos.json"
@@ -8,9 +8,7 @@ import rangos from "../../data/listadoRangos.json"
 import secciones from "../../data/listadoSecciones.json"
 import tematicas from "../../data/listadoTematicas.json"
 
-export const SearchFilters = ({ soloTitulo, setSoloTitulo, fraseExacta, setFraseExacta, dogDesde, setDogDesde, dogHasta, setDogHasta, criterioOrdenacion, setCriterioOrdenacion, organizacion, setOrganizacion, rango, setRango, colectivo, setColectivo, seccion, setSeccion, tematica, setTematica }) => {
-    const [mostrar, setMostrar] = useState(false)
-
+export const SearchFilters = ({ mostrar, setMostrar, soloTitulo, setSoloTitulo, fraseExacta, setFraseExacta, dogDesde, setDogDesde, dogHasta, setDogHasta, criterioOrdenacion, setCriterioOrdenacion, organizacion, setOrganizacion, rango, setRango, colectivo, setColectivo, seccion, setSeccion, tematica, setTematica }) => {
     return <>
         {
             !mostrar
