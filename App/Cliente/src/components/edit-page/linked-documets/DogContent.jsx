@@ -11,12 +11,12 @@ export const DogContent = ({ contentVinculada, parrafosAModificar, data, leiSele
                 return <Parrafo
                     num={num}
                     parrafosAModificar={parrafosAModificar}
-                    key={index}
                     parrafo={parrafo.innerText}
                     leiSeleccionada={leiSeleccionada}
                     cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
                     setCambiosLocales={setCambiosLocales}
                     posicion={index}
+                    key={index}
                 />
             })
         }
@@ -52,7 +52,8 @@ const Parrafo = ({ num, parrafosAModificar, parrafo, leiSeleccionada, cambiosVin
                 }
             })
         } catch (e) {
-            if (e !== BreakException) throw e;
+            if (e !== BreakException)
+                throw e
         }
     }
 

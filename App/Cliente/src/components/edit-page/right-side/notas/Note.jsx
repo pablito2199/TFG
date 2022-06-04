@@ -57,7 +57,11 @@ export const Note = ({ content, nota, anadirNotaSeleccionada, notas, setNotas, s
                                         )
                                     }
                                 </div>
-                                <CreateComment notas={notas} setNotas={setNotas} nota={nota} setCambiosLocales={setCambiosLocales} />
+                                <CreateComment
+                                    notas={notas} setNotas={setNotas}
+                                    nota={nota}
+                                    setCambiosLocales={setCambiosLocales}
+                                />
                             </div>
                         </div>
                     </div>

@@ -5,20 +5,19 @@ import {
     Routes,
     Route,
     Navigate
-} from "react-router-dom";
+} from "react-router-dom"
 
-import EditXml from './pages/EditXml'
-import EditDog from './pages/EditDog'
 import Search from './pages/Search'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
 import './styles.css'
 import { SideBar } from './components/SideBar'
-import Save from './pages/Save';
-import Login from './pages/Login';
-import { SecuredApp, SecuredRoute } from './context';
-import RegisterUsers from './pages/RegisterUsers';
+import Save from './pages/Save'
+import Login from './pages/Login'
+import { SecuredApp, SecuredRoute } from './context'
+import RegisterUsers from './pages/RegisterUsers'
+import Edit from './pages/Edit'
 
 ReactDOM.render(
     <React.StrictMode>
@@ -29,8 +28,7 @@ ReactDOM.render(
                         <Route exact path="/" element={<SecuredRoute><Home /></SecuredRoute>} />
                         <Route exact path="/login" element={<Login />} />
                         <Route exact path="/save" element={<SecuredRoute><Save /></SecuredRoute>} />
-                        <Route exact path="/edit/local/:id" element={<SecuredRoute><EditXml /></SecuredRoute>} />
-                        <Route exact path="/edit/xunta/:id" element={<SecuredRoute><EditDog /></SecuredRoute>} />
+                        <Route exact path="/edit/:id" element={<SecuredRoute><Edit /></SecuredRoute>} />
                         <Route exact path="/home" element={<SecuredRoute><Home /></SecuredRoute>} />
                         <Route exact path="/search" element={<SecuredRoute><Search /></SecuredRoute>} />
                         <Route exact path="/registerUsers" element={<SecuredRoute><RegisterUsers /></SecuredRoute>} />
@@ -43,4 +41,4 @@ ReactDOM.render(
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
-);
+)

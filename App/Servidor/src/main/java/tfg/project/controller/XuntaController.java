@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import tfg.project.model.CriterioOrdenacion;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
 @RestController
 @RequestMapping("xunta")
@@ -73,6 +72,7 @@ public class XuntaController {
             @RequestParam(name = "pagina", defaultValue = "1", required = false) String pagina
     ) {
         RestTemplate restTemplate = new RestTemplate();
+
         return ResponseEntity.ok().body(restTemplate.getForObject(
                 "https://www.xunta.gal/diario-oficial-galicia/buscarAnunciosPublico.do?method=listado"
                         + "&texto=" + texto

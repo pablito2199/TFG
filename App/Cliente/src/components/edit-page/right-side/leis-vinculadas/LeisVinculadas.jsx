@@ -13,10 +13,8 @@ export const LeisVinculadas = ({ setCambiosLocales, updateParrafosAModificar, le
 
     return <div className='p-4 flex flex-col border-2 border-black'>
         <CreateLei
-            leis={leis}
-            setLeis={setLeis}
-            leisAnadidasManualmente={leisAnadidasManualmente}
-            setLeisAnadidasManualmente={setLeisAnadidasManualmente}
+            leis={leis} setLeis={setLeis}
+            leisAnadidasManualmente={leisAnadidasManualmente} setLeisAnadidasManualmente={setLeisAnadidasManualmente}
             setCambiosLocales={setCambiosLocales}
         />
         {

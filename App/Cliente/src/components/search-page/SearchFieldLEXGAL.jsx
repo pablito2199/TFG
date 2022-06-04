@@ -11,7 +11,7 @@ export const SearchFieldLEXGAL = () => {
         if (location.state) {
             setTexto(location.state.initialText)
         }
-    }, [location]);
+    }, [location])
 
     const cambiarPagina = (e) => {
         if (e.key === 'Enter') {

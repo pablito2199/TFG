@@ -47,9 +47,20 @@ export const Change = ({ content, cambio, anadirCambioSeleccionado, claseLeftSid
                             {
                                 claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'
                                     ?
-                                    <ReactDiffViewer oldValue={cambio.parrafoAntiguo} newValue={cambio.parrafoNuevo} hideLineNumbers={true} compareMethod="diffWords" />
+                                    <ReactDiffViewer
+                                        oldValue={cambio.parrafoAntiguo}
+                                        newValue={cambio.parrafoNuevo}
+                                        hideLineNumbers={true}
+                                        compareMethod="diffWords"
+                                    />
                                     :
-                                    <ReactDiffViewer oldValue={cambio.parrafoAntiguo} newValue={cambio.parrafoNuevo} splitView={false} hideLineNumbers={true} compareMethod="diffWords" />
+                                    <ReactDiffViewer
+                                        oldValue={cambio.parrafoAntiguo}
+                                        newValue={cambio.parrafoNuevo}
+                                        splitView={false}
+                                        hideLineNumbers={true}
+                                        compareMethod="diffWords"
+                                    />
                             }
                         </div>
                     </div>

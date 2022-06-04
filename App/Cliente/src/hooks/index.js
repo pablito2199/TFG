@@ -37,20 +37,6 @@ export function useNormas(query = '') {
     return data
 }
 
-export function useXmlDocument(id) {
-    const [data, setData] = useState({})
-
-    useEffect(() => {
-        API.instance()
-            .findHtmlDoc(id)
-            .then(doc => {
-                setData(doc)
-            })
-    }, [id])
-
-    return data
-}
-
 export function useFinalDocument(id) {
     const [data, setData] = useState({})
 

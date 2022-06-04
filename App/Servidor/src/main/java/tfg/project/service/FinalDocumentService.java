@@ -47,10 +47,6 @@ public class FinalDocumentService {
                     () -> mongo.count(Query.query(criteria), FinalDocument.class)));
     }
 
-    public List<FinalDocument> getAll(String text) {
-        return finalDocuments.findAll();
-    }
-
     public FinalDocument save(FinalDocument finalDocument) {
         return finalDocuments.save(finalDocument);
     }

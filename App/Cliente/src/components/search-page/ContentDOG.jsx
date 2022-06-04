@@ -28,7 +28,7 @@ export const ContentDOG = ({ data }) => {
             })
         }
 
-        fetch(`/local/${norma.id}`, requestOptions);
+        fetch(`/local/${norma.id}`, requestOptions)
         alert('O documento foi importado a lex.gal correctamente.')
     }
 

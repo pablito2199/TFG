@@ -31,9 +31,9 @@ export const PagesButtons = ({ initialText, setData, modal, query, actualPage, s
             // Las 5 primeras páginas
             for (let i = 1; i <= numeroBotones; i++) {
                 if (i === parseInt(actualPage)) {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>)
                 } else {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>)
                 }
             }
             paginas.push(<PagesNotSeen key="more" />)
@@ -42,9 +42,9 @@ export const PagesButtons = ({ initialText, setData, modal, query, actualPage, s
             paginas.push(<PagesNotSeen key="more" />)
             for (let i = numeroMaximoPaginas - 5; i <= numeroMaximoPaginas; i++) {
                 if (i === parseInt(actualPage)) {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>)
                 } else {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>)
                 }
             }
         } else {
@@ -52,9 +52,9 @@ export const PagesButtons = ({ initialText, setData, modal, query, actualPage, s
             paginas.push(<PagesNotSeen key="more-izq" />)
             for (let i = parseInt(actualPage) - 2; i < numeroBotones + parseInt(actualPage) - 2; i++) {
                 if (i === parseInt(actualPage)) {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>)
                 } else {
-                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
+                    paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>)
                 }
             }
             paginas.push(<PagesNotSeen key="more-der" />)
@@ -63,9 +63,9 @@ export const PagesButtons = ({ initialText, setData, modal, query, actualPage, s
         // 5 páginas o menos
         for (let i = 1; i <= numeroMaximoPaginas; i++) {
             if (i === parseInt(actualPage)) {
-                paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>);
+                paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-black border-black text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium'>{i}</button>)
             } else {
-                paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>);
+                paginas.push(<button title={`Páxina ${i}`} key={i} className='focus:outline-none bg-white border-black text-gray-500 hover:bg-blue-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium cursor-pointer' onClick={() => { cambiarPagina(i) }}>{i}</button>)
             }
         }
     }

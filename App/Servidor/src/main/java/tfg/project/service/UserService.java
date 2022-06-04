@@ -24,10 +24,12 @@ public class UserService {
 
     public Optional<User> get(String email) {
         Optional<User> user = users.findById(email);
+
         if (user.isPresent()) {
             user.get().setPassword(null);
             return user;
         }
+
         return Optional.empty();
     }
 
@@ -39,6 +41,7 @@ public class UserService {
         user.setPassword(encoder.encode(user.getPassword()));
         user = users.insert(user);
         user.setPassword(null);
+
         return user;
     }
 
@@ -46,6 +49,7 @@ public class UserService {
         if (users.findById(id).isPresent()) {
             User user = users.findById(id).get();
             user = patchMethod.patch(user, updates);
+
             for (Map<String, Object> update : updates) {
                 if (update.containsValue("replace") && update.containsValue("/password")) {
                     user.setPassword(encoder.encode(user.getPassword()));
@@ -53,6 +57,7 @@ public class UserService {
             }
             user = users.save(user);
             user.setPassword(null);
+
             return user;
         }
         return null;

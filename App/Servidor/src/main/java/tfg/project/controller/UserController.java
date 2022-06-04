@@ -107,7 +107,7 @@ public class UserController {
             )
     })
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<List<User>> get(    ) {
+    public ResponseEntity<List<User>> get() {
         List<User> result = users.getAll();
 
         if (result.isEmpty()) {
@@ -160,7 +160,7 @@ public class UserController {
         if (users.get(user.getEmail()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "O usuario xa existe.");
         }
-        System.out.println(user);
+
         User result = users.insert(user);
 
         return ResponseEntity.ok().body(result);
@@ -212,7 +212,7 @@ public class UserController {
         if (users.get(email).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario non atopado.");
         }
-        System.out.println(updates);
+
         try {
             User result = users.patch(email, updates);
 
@@ -256,6 +256,7 @@ public class UserController {
         if (users.get(email).isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario non atopado.");
         }
+
         users.delete(email);
 
         return ResponseEntity.noContent().build();

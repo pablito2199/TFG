@@ -1,5 +1,5 @@
 import { CheckIcon, EyeIcon, PencilAltIcon } from '@heroicons/react/solid'
-import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ export const ContentLEXGAL = ({ data }) => {
     const navigate = useNavigate()
 
     const cambiarPagina = (norma) => {
-        navigate(`/edit/xunta/${norma.id}`, { state: { norma: norma } })
+        navigate(`/edit/${norma.id}`, { state: { norma: norma } })
     }
 
     return <div className='px-1 flex w-11/12 mt-4 flex flex-col text-left font-medium screen-min3:w-10/12 screen-min1:w-9/12'>

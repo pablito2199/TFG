@@ -9,7 +9,7 @@ export const LastPageButton = ({ initialText, setActualPage, numberElements, num
     return <button
         title='Última páxina'
         onClick={async () => {
-            navigate(`/search?text=${initialText}&page=${page}`, { state: { initialText: initialText, page: page } });
+            navigate(`/search?text=${initialText}&page=${page}`, { state: { initialText: initialText, page: page } })
             if (page > 0)
                 setActualPage(page)
         }}

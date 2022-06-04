@@ -3,14 +3,14 @@ import { useLocation } from 'react-router-dom'
 
 import listadoMeses from '../data/listadoMeses.json'
 import { useFinalDocument } from '../hooks'
-import { LeftSideDog, NoteEditor, ParagraphEditor, PrincipalButtons, RightSideDog } from '../components/edit-page'
+import { LeftSide, NoteEditor, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
-import { HeaderDog } from '../components/edit-page/HeaderDog'
+import { Header } from '../components/edit-page/Header'
 import { LinkedDocuments } from '../components/edit-page/linked-documets/LinkedDocuments'
 import { PrincipalLaw } from '../components/edit-page/principal-law/PrincipalLaw'
 import { XIcon } from '@heroicons/react/solid'
 
-export default function EditDog() {
+export default function Edit() {
     const content = useRef(null)
     const contentVinculada = useRef(null)
     const [modal, setModal] = useState(false)
@@ -143,23 +143,17 @@ export default function EditDog() {
 
     return <div className='flex flex-col ml-20 items-center w-full screen-min3:ml-20 z-0'>
         <ParagraphEditor
-            mostrarInput={mostrarInput}
-            setMostrarInput={setMostrarInput}
-            parrafoCambiado={parrafoCambiado}
-            setParrafoCambiado={setParrafoCambiado}
-            parrafoACambiar={parrafoACambiar}
-            setParrafoACambiar={setParrafoACambiar}
-            cambios={cambios}
-            setCambios={setCambios}
+            mostrarInput={mostrarInput} setMostrarInput={setMostrarInput}
+            parrafoCambiado={parrafoCambiado} setParrafoCambiado={setParrafoCambiado}
+            parrafoACambiar={parrafoACambiar} setParrafoACambiar={setParrafoACambiar}
+            cambios={cambios} setCambios={setCambios}
             setOpacity={setOpacity}
             setCambiosLocales={setCambiosLocales}
             posicionParrafo={posicionParrafo}
         />
         <NoteEditor
-            mostrarInputNota={mostrarInputNota}
-            setMostrarInputNota={setMostrarInputNota}
-            notas={notas}
-            setNotas={setNotas}
+            mostrarInputNota={mostrarInputNota} setMostrarInputNota={setMostrarInputNota}
+            notas={notas} setNotas={setNotas}
             setOpacity={setOpacity}
             setCambiosLocales={setCambiosLocales}
             posicionParrafo={posicionParrafo}
@@ -169,7 +163,7 @@ export default function EditDog() {
                 htmlCode
                     ?
                     <>
-                        <HeaderDog
+                        <Header
                             titulo={titulo} setTitulo={setTitulo}
                             sumario={sumario} setSumario={setSumario}
                             dpub={dpub} setDpub={setDpub}
@@ -191,7 +185,7 @@ export default function EditDog() {
                             !modal
                                 ?
                                 <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                                    <LeftSideDog
+                                    <LeftSide
                                         data={htmlCode}
                                         cambios={cambios}
                                         setParrafoACambiar={setParrafoACambiar}
@@ -205,7 +199,7 @@ export default function EditDog() {
                                         content={content}
                                         notas={notas}
                                     />
-                                    <RightSideDog
+                                    <RightSide
                                         updateParrafosAModificar={updateParrafosAModificar}
                                         data={htmlCode}
                                         cambios={cambios} setCambios={setCambios}
@@ -220,7 +214,7 @@ export default function EditDog() {
                                 :
                                 <main className='z-0 w-full mt-6 flex mb-24'>
                                     <div className='opacity-40 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
-                                        <LeftSideDog
+                                        <LeftSide
                                             data={htmlCode}
                                             cambios={cambios}
                                             setParrafoACambiar={setParrafoACambiar}
@@ -234,7 +228,7 @@ export default function EditDog() {
                                             content={content}
                                             notas={notas}
                                         />
-                                        <RightSideDog
+                                        <RightSide
                                             updateParrafosAModificar={updateParrafosAModificar}
                                             data={htmlCode}
                                             cambios={cambios} setCambios={setCambios}

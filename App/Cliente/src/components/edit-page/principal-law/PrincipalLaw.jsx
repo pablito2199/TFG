@@ -31,7 +31,10 @@ export const PrincipalLaw = ({ contentVinculada, leiPrincipal, data }) => {
             }
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
-            <DogContent contentVinculada={contentVinculada} data={data} />
+            <DogContent
+                contentVinculada={contentVinculada}
+                data={data}
+            />
         </div>
     </section>
 }

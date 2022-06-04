@@ -1,9 +1,6 @@
 package tfg.project.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static tfg.project.utilities.AuxMethods.convertXMLToObject;
-
-import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -22,7 +19,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
-import tfg.project.model.Documento;
 import tfg.project.model.DocumentsSaved.FinalDocument;
 import tfg.project.service.FinalDocumentService;
 
@@ -94,35 +90,6 @@ public class LocalController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping(path = "{id}", produces = APPLICATION_XML_VALUE)
-    @Operation(
-            operationId = "getDocument",
-            summary = "Obter un documento almacenado localmente.",
-            description = "Obter un documento a partir do seu nome de ficheiro."
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "O documento en formato XML atopado.",
-                    content = @Content(
-                            mediaType = "application/xml",
-                            schema = @Schema(implementation = String.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Documento non atopado.",
-                    content = @Content
-            )
-    })
-    @PreAuthorize("isAuthenticated()")
-    ResponseEntity<Documento> get(
-            @Parameter(description = "Id do documento a buscar")
-            @PathVariable("id") String id
-    ) {
-        return ResponseEntity.ok().body(convertXMLToObject(id));
-    }
-
     @GetMapping(path = "{id}/savedData", produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "getDocumentData",
@@ -150,6 +117,7 @@ public class LocalController {
             @PathVariable("id") String id
     ) {
         Optional<FinalDocument> result = finalDocuments.get(id);
+
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
         }
@@ -184,10 +152,12 @@ public class LocalController {
             @PathVariable("id") String id
     ) {
         Optional<FinalDocument> result = finalDocuments.get(id);
+
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
         }
-        return ResponseEntity.ok().body(finalDocuments.get(id).get().getHtmlDoc());
+
+        return ResponseEntity.ok().body(result.get().getHtmlDoc());
     }
 
     @PutMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
@@ -213,6 +183,7 @@ public class LocalController {
     ) {
         RestTemplate restTemplate = new RestTemplate();
         finalDocument.setHtmlDoc(restTemplate.getForObject(finalDocument.getUrlDog(), String.class));
+
         return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
     }
 }

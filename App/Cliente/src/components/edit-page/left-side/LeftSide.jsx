@@ -2,17 +2,16 @@ import { React, useCallback, useEffect } from 'react'
 
 import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
-import { Anexo } from './Anexo'
-import { EstLei } from './EstLei'
-import { Intro } from './Intro'
+import { DogContent } from './DogContent'
 
-export const LeftSideXml = ({ data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide }) => {
-    const handleContextMenu = (event, text) => {
+export const LeftSide = ({ notas, content, data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide, setPosicionParrafo }) => {
+    const handleContextMenu = (event, text, posicion) => {
         event.preventDefault()
         setAnchorPoint({ x: event.pageX, y: event.pageY })
         setShow(true)
         setParrafoACambiar(text)
         setParrafoCambiado(text)
+        setPosicionParrafo(posicion)
     }
 
     const handleClick = useCallback(() => (show ? setShow(false) : null), [show, setShow])
@@ -27,16 +26,20 @@ export const LeftSideXml = ({ data, cambios, setParrafoACambiar, setParrafoCambi
     return <section className={claseLeftSide}>
         <nav className='flex text-lg items-center gap-2'>
             <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black cursor-default'>Norma</button>
-            <div className='flex flex-1 justify-end items-center gap-2 mr-2 w-full'>
-                <Tooltip title="Para propoñer un cambio faga click dereito sobre calquer parágrafo e pinche en 'Propoñer cambio'." placement="top" arrow>
+            <div className='flex flex-1 justify-end items-center mr-2 w-full'>
+                <Tooltip title="Para propoñer un cambio ou unha anotación faga click dereito sobre calquer parágrafo e pinche en 'Propoñer cambio'/'Engadir anotación ao parágrafo'." placement="top" arrow>
                     <QuestionMarkCircleIcon className='h-8 text-orange' />
                 </Tooltip>
             </div>
         </nav>
         <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-texto-principal max-h-texto-principal overflow-y-scroll">
-            <Intro data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
-            <EstLei data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
-            <Anexo data={data} cambios={cambios} handleContextMenu={handleContextMenu} />
+            <DogContent
+                notas={notas}
+                content={content}
+                data={data}
+                cambios={cambios}
+                handleContextMenu={handleContextMenu}
+            />
         </div>
     </section >
 }

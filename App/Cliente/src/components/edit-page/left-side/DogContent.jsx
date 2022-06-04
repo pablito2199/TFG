@@ -12,7 +12,14 @@ export const DogContent = ({ data, cambios, handleContextMenu, content, notas })
                     clase += " text-center font-bold mt-6"
                 }
                 notas.forEach(nota => { if (parseInt(nota.parrafo) === index) clase += " bg-yellow-500" })
-                return <Parrafo cambios={cambios} parrafo={parrafo.innerText} handleContextMenu={handleContextMenu} clase={clase} posicion={index} key={index} />
+                return <Parrafo
+                    cambios={cambios}
+                    parrafo={parrafo.innerText}
+                    handleContextMenu={handleContextMenu}
+                    clase={clase}
+                    posicion={index}
+                    key={index}
+                />
             }
             )
         }
@@ -29,7 +36,7 @@ const Parrafo = ({ parrafo, handleContextMenu, cambios, clase, posicion }) => {
         } else {
             setClaseAntiguo(false)
         }
-    }, [cambios, parrafo]);
+    }, [cambios, parrafo])
 
     return <div>
         {

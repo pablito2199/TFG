@@ -1,5 +1,3 @@
-import { xml2json } from 'xml-js'
-
 let __instance = null
 
 export default class API {
@@ -17,7 +15,7 @@ export default class API {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email, password: pass })
-        };
+        }
 
         const response = await fetch(`http://localhost:8080/login`, requestOptions).catch(error => console.log(error))
 
@@ -44,7 +42,7 @@ export default class API {
                 "Content-Type": "application/json",
                 "Authorization": this.#token
             }
-        };
+        }
 
         const response = await fetch(`http://localhost:8080/users/${id}`, requestOptions).catch(error => console.log(error))
 
@@ -68,7 +66,7 @@ export default class API {
                 password: user.password,
                 roles: user.roles
             })
-        };
+        }
 
         const response = await fetch(`http://localhost:8080/users`, requestOptions).catch(error => console.log(error))
 
@@ -136,25 +134,6 @@ export default class API {
             return true
         }
         return false
-    }
-
-    async findXmlDoc(id) {
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': this.#token
-            }
-        }
-
-        const response = await fetch(`/local/${id}`, requestOptions)
-            .then(response => response.text())
-            .then(text => {
-                return JSON.parse(xml2json(text, { compact: true, spaces: 4 })).cdg
-            })
-            .catch(error => console.log(error))
-
-        return response
     }
 
     async findHtmlDoc(id) {
