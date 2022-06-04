@@ -2,6 +2,8 @@ import { React, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import listadoMeses from '../data/listadoMeses.json'
+import listadoRangos from '../data/listadoRangos.json'
+
 import { useFinalDocument } from '../hooks'
 import { LeftSide, NoteEditor, ParagraphEditor, PrincipalButtons, RightSide } from '../components/edit-page'
 import { ContextMenu } from '../components/edit-page'
@@ -18,7 +20,7 @@ export default function Edit() {
     const parser = new DOMParser()
     let selectedText = window.getSelection()
     const htmlCode = parser.parseFromString(location.state.norma.htmlDoc, "text/xml")
-    let documentAdditionalData = useFinalDocument(location.state.norma.id).data
+    let documentAdditionalData = useFinalDocument(location.state.norma.sumario).data
 
     function convertirFecha(fecha) {
         if (fecha) {
@@ -27,7 +29,6 @@ export default function Edit() {
         return fecha
     }
 
-    const leiPrincipal = location.state.norma.id
     const fechaActual = new Date()
     const ano = String(fechaActual.getFullYear())
     const version = String(fechaActual.getFullYear()) + String(fechaActual.getMonth() + 1).padStart(2, "0") + String(fechaActual.getDate()).padStart(2, "0")
@@ -54,7 +55,7 @@ export default function Edit() {
     const [cambios, setCambios] = useState([])
     const [leisVinculadas, setLeisVinculadas] = useState([])
     const [notas, setNotas] = useState([])
-    const [leiSeleccionada, setLeiSeleccionada] = useState(0)
+    const [leiSeleccionada, setLeiSeleccionada] = useState('')
     const [cambiosVinculadas, setCambiosVinculadas] = useState([])
     const [opacity, setOpacity] = useState('opacity-100')
     const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 })
@@ -63,6 +64,7 @@ export default function Edit() {
     const [parrafosAModificar, setParrafosAModificar] = useState([])
     const [cambiosLocales, setCambiosLocales] = useState(false)
     const [posicionParrafo, setPosicionParrafo] = useState(0)
+    const [leiModificada, setLeiModificada] = useState('')
 
     useEffect(() => {
         if (documentAdditionalData) {
@@ -81,11 +83,11 @@ export default function Edit() {
                 mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
                 mesesRegex += ")"
                 const tituloRegex = new RegExp("Orde do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
-                let resultado = (documentAdditionalData.headerItems.sumario).match(tituloRegex)
+                let resultado = (documentAdditionalData.sumario).match(tituloRegex)
                 if (resultado !== null && resultado?.length !== 0) {
                     setTitulo(resultado[0])
                 }
-                setSumario(documentAdditionalData.headerItems.sumario)
+                setSumario(documentAdditionalData.sumario)
                 setPublicador(documentAdditionalData.headerItems.publicador)
                 setFechaDog(documentAdditionalData.headerItems.fechaDog)
                 setNumDog(documentAdditionalData.headerItems.numDog)
@@ -115,7 +117,22 @@ export default function Edit() {
                 setCambiosVinculadas(documentAdditionalData.linkedChanges)
             }
         }
-    }, [documentAdditionalData, htmlCode, location.state, cambiosLocales])
+
+        let resultado = []
+        let mesesRegex = "("
+        listadoMeses.forEach(mes => mesesRegex += mes.name + "|")
+        mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
+        mesesRegex += ")"
+        let rangosRegex = "("
+        listadoRangos.forEach(rango => rangosRegex += rango.descripcion + "|")
+        rangosRegex = rangosRegex.substring(0, rangosRegex.length - 1)
+        rangosRegex += ")"
+        const regex = new RegExp(rangosRegex + " do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4} pola que se modifica a ", "gi")
+        resultado = (sumario).match(regex)
+        if (resultado) {
+            setLeiModificada(sumario.replace(resultado[0], '').replace('Orde', 'ORDE'))
+        }
+    }, [documentAdditionalData, htmlCode, location.state, cambiosLocales, sumario])
 
     const updateParrafosAModificar = () => {
         const regex = new RegExp("Artigo [0-9]+", "gi")
@@ -128,8 +145,7 @@ export default function Edit() {
                 parrafo.innerText.includes('queda redactado nos seguintes termos') ||
                 parrafo.innerText.includes('queda a redacción da seguinte maneira') ||
                 parrafo.innerText.includes('queda redactado da seguinte maneira') ||
-                parrafo.innerText.includes('queda redactado do seguinte xeito') ||
-                parrafo.innerText.includes('coa seguinte redacci')
+                parrafo.innerText.includes('queda redactado do seguinte xeito')
             ) {
                 resultado = (parrafo.innerText).match(regex)
                 if (resultado !== null && resultado?.length !== 0) {
@@ -209,6 +225,7 @@ export default function Edit() {
                                         setLeiSeleccionada={setLeiSeleccionada}
                                         setCambiosLocales={setCambiosLocales}
                                         content={content}
+                                        leiModificada={leiModificada}
                                     />
                                 </main>
                                 :
@@ -237,19 +254,20 @@ export default function Edit() {
                                             leisVinculadas={leisVinculadas} setLeisVinculadas={setLeisVinculadas}
                                             setLeiSeleccionada={setLeiSeleccionada}
                                             content={content}
+                                            leiModificada={leiModificada}
                                         />
                                     </div>
                                     <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12 overflow-y-scroll'>
                                         <XIcon className='fixed self-end h-5 cursor-pointer border border-black' onClick={() => { setModal(false) }} />
                                         <div className='flex'>
                                             <PrincipalLaw
-                                                leiPrincipal={leiPrincipal}
+                                                nome={titulo}
                                                 data={htmlCode}
                                                 contentVinculada={contentVinculada}
                                             />
                                             <LinkedDocuments
+                                                sumario={leiModificada}
                                                 parrafosAModificar={parrafosAModificar}
-                                                leiPrincipal={leiPrincipal}
                                                 leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
                                                 cambiosVinculadas={cambiosVinculadas} setCambiosVinculadas={setCambiosVinculadas}
                                                 setCambiosLocales={setCambiosLocales}

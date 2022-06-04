@@ -3,7 +3,7 @@ import { React } from 'react'
 export const DogContent = ({ contentVinculada, data }) => {
     let num = 0
     const mostrarCambio = (posicion) => {
-        if (contentVinculada.current) {
+        if (contentVinculada.current && contentVinculada.current.querySelector('#cambio-' + posicion)) {
             contentVinculada.current.querySelector('#cambio-' + posicion).scrollIntoView()
         }
     }
@@ -25,8 +25,7 @@ export const DogContent = ({ contentVinculada, data }) => {
                     parrafo.innerText.includes('queda redactado nos seguintes termos') ||
                     parrafo.innerText.includes('queda a redacción da seguinte maneira') ||
                     parrafo.innerText.includes('queda redactado da seguinte maneira') ||
-                    parrafo.innerText.includes('queda redactado do seguinte xeito') ||
-                    parrafo.innerText.includes('coa seguinte redacci')
+                    parrafo.innerText.includes('queda redactado do seguinte xeito')
                 ) {
                     clase += " bg-blue-green text-white py-2"
                     indicador = true

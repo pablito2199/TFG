@@ -4,7 +4,7 @@ import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon, XCircleIcon } from "@heroicons/react/solid"
 import { CreateLei } from "./CreateLei"
 
-export const LeisVinculadas = ({ setCambiosLocales, updateParrafosAModificar, leis, setLeis, leisEliminadas, setLeisEliminadas, leisAnadidasManualmente, setLeisAnadidasManualmente, setLeiSeleccionada }) => {
+export const LeisVinculadas = ({ leiModificada, setCambiosLocales, updateParrafosAModificar, leis, setLeis, leisEliminadas, setLeisEliminadas, leisAnadidasManualmente, setLeisAnadidasManualmente, setLeiSeleccionada }) => {
     const eliminarLeiVinculada = (lei) => {
         setLeis(leis.filter(leiAux => lei !== leiAux.id))
         setLeisEliminadas([...leisEliminadas, lei])
@@ -31,7 +31,13 @@ export const LeisVinculadas = ({ setCambiosLocales, updateParrafosAModificar, le
                             leis?.map((lei, index) =>
                                 <div className='m-4 flex flex-col border-b border-gray-lex-gal w-12/13' key={lei.id}>
                                     <div className='flex flex-row items-center'>
-                                        <button className='font-semibold' onClick={() => { updateParrafosAModificar(); setLeiSeleccionada(index) }}>{lei.name}</button>
+                                        {
+                                            leiModificada.includes(lei.name.replace('Orde', 'ORDE'))
+                                                ?
+                                                <button className='font-semibold' onClick={() => { updateParrafosAModificar(); setLeiSeleccionada(lei.name) }}>{lei.name}</button>
+                                                :
+                                                <span className='font-semibold'>{lei.name}</span>
+                                        }
                                         <div className="flex flex-auto justify-end">
                                             <button title="Eliminar lei vinculada" onClick={() => eliminarLeiVinculada(lei.id)} className='focus:outline-none flex py-2 items-center text-red-500 text-right text-sm cursor-pointer gap-1'>
                                                 <XCircleIcon className='h-4 text-red-500' />

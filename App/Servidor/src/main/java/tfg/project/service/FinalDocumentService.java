@@ -27,15 +27,15 @@ public class FinalDocumentService {
         this.mongo = mongo;
     }
 
-    public Optional<FinalDocument> get(String id) {
-        return finalDocuments.findById(id);
+    public Optional<FinalDocument> get(String sumario) {
+        return finalDocuments.getBySumario(sumario);
     }
 
     public Optional<Page<FinalDocument>> getAll(int page, int size, Sort sort, String text) {
         Pageable request = PageRequest.of(page, size, sort);
         Criteria criteria = Criteria.where("_id").exists(true);
         if (text != null) {
-            criteria.and("headerItems.sumario").regex(text, "i");
+            criteria.and("sumario").regex(text, "i");
         }
         Query query = Query.query(criteria).with(request);
         List<FinalDocument> result = mongo.find(query, FinalDocument.class);

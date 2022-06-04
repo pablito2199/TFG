@@ -90,7 +90,7 @@ public class LocalController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping(path = "{id}/savedData", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "{sumario}", produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "getDocumentData",
             summary = "Obter os datos dun documento.",
@@ -112,11 +112,11 @@ public class LocalController {
             )
     })
     @PreAuthorize("isAuthenticated()")
-    ResponseEntity<Optional<FinalDocument>> getSavedDocument(
+    ResponseEntity<Optional<FinalDocument>> get(
             @Parameter(description = "Id do documento a buscar", example = "1651743500014")
-            @PathVariable("id") String id
+            @PathVariable("sumario") String sumario
     ) {
-        Optional<FinalDocument> result = finalDocuments.get(id);
+        Optional<FinalDocument> result = finalDocuments.get(sumario);
 
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
@@ -125,11 +125,11 @@ public class LocalController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping(path = "{id}/htmlDoc", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "{sumario}/htmlDoc", produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "getHtmlDoc",
             summary = "Obter o código HTML dun documento.",
-            description = "Obter o código HTML dun documento a partir do seu id."
+            description = "Obter o código HTML dun documento a partir do seu sumario."
     )
     @ApiResponses({
             @ApiResponse(
@@ -149,9 +149,9 @@ public class LocalController {
     @PreAuthorize("isAuthenticated()")
     ResponseEntity<String> getHtmlDoc(
             @Parameter(description = "Id do documento a buscar", example = "1651743500014")
-            @PathVariable("id") String id
+            @PathVariable("sumario") String sumario
     ) {
-        Optional<FinalDocument> result = finalDocuments.get(id);
+        Optional<FinalDocument> result = finalDocuments.get(sumario);
 
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");

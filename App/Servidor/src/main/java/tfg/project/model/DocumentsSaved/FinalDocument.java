@@ -11,6 +11,8 @@ import java.util.Objects;
 public class FinalDocument {
     @Schema(description = "Id do documento.", example = "1651743500014")
     private String id;
+    @Schema(description = "Sumario da norma.", example = "Sumario.")
+    private String sumario;
     @Schema(description = "Url ao documento no DOG.", example = "/dog/Publicados/2022/20220525/AnuncioL180-200522-0001_gl.html")
     private String urlDog;
     @Schema(description = "O documento é borrador ou non.", example = "true")
@@ -34,6 +36,15 @@ public class FinalDocument {
 
     public FinalDocument setId(String id) {
         this.id = id;
+        return this;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public FinalDocument setSumario(String sumario) {
+        this.sumario = sumario;
         return this;
     }
 
@@ -114,18 +125,19 @@ public class FinalDocument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FinalDocument that = (FinalDocument) o;
-        return borrador == that.borrador && Objects.equals(id, that.id) && Objects.equals(urlDog, that.urlDog) && Objects.equals(htmlDoc, that.htmlDoc) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
+        return borrador == that.borrador && Objects.equals(id, that.id) && Objects.equals(sumario, that.sumario) && Objects.equals(urlDog, that.urlDog) && Objects.equals(htmlDoc, that.htmlDoc) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, urlDog, borrador, htmlDoc, headerItems, notes, laws, changes, linkedChanges);
+        return Objects.hash(id, sumario, urlDog, borrador, htmlDoc, headerItems, notes, laws, changes, linkedChanges);
     }
 
     @Override
     public String toString() {
         return "FinalDocument{" +
                 "id='" + id + '\'' +
+                ", sumario='" + sumario + '\'' +
                 ", urlDog='" + urlDog + '\'' +
                 ", borrador=" + borrador +
                 ", htmlDoc='" + htmlDoc + '\'' +

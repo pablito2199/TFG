@@ -60,16 +60,16 @@ export function useFinalDocument(id) {
     }
 }
 
-export function useHtmlDoc(id) {
+export function useHtmlDoc(sumario) {
     const [data, setData] = useState('')
 
     useEffect(() => {
         API.instance()
-            .findHtmlDoc(id)
+            .findHtmlDoc(sumario)
             .then(doc => {
                 setData(doc)
             })
-    }, [id])
+    }, [sumario])
 
     return data
 }

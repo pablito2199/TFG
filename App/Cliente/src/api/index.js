@@ -101,7 +101,7 @@ export default class API {
                 'Authorization': this.#token
             }
         }
-        const response = await fetch(`/local/${id}/savedData`, requestOptions).catch(error => console.log(error))
+        const response = await fetch(`/local/${id}`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             return await response.json()
@@ -117,7 +117,7 @@ export default class API {
                 'Authorization': this.#token
             },
             body: JSON.stringify({
-                id: finalDocument.id,
+                id: finalDocument.headerItems.sumario,
                 borrador: finalDocument.borrador,
                 notes: finalDocument.notes,
                 changes: finalDocument.changes,
@@ -136,7 +136,7 @@ export default class API {
         return false
     }
 
-    async findHtmlDoc(id) {
+    async findHtmlDoc(sumario) {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -145,7 +145,7 @@ export default class API {
             }
         }
 
-        const response = await fetch(`/local/${id}/htmlDoc`, requestOptions)
+        const response = await fetch(`/local/${sumario}/htmlDoc`, requestOptions)
             .then(response => response.text())
             .then(text => {
                 const parser = new DOMParser()

@@ -13,10 +13,10 @@ export const ContentDOG = ({ data }) => {
             },
             body: JSON.stringify({
                 id: norma.id,
+                sumario: norma.sumario,
                 urlDog: 'https://www.xunta.gal' + norma.rutaHtml,
                 borrador: true,
                 headerItems: {
-                    sumario: norma.sumario,
                     publicador: norma.publicador,
                     colectivoSeleccionado: norma.taxcolectivo,
                     organismoSeleccionado: norma.taxorganizativa,

@@ -39,7 +39,7 @@ export const ContentLEXGAL = ({ data }) => {
                                     </div>
                             }
                         </div>
-                        <div className='w-7/12 text-left px-2 py-4 screen-min3:w-6/12 screen-min2:w-4/12'>{norma.headerItems.sumario}</div>
+                        <div className='w-7/12 text-left px-2 py-4 screen-min3:w-6/12 screen-min2:w-4/12'>{norma.sumario}</div>
                         <div className='w-2/12 px-2 py-4 text-left screen-min3:w-2/12 screen-min2:w-3/12 screen-min1:break-words'>{norma.headerItems.publicador}</div>
                         <div className='w-1/12 px-2 py-4 screen-min2:w-2/12 screen-min1:break-words'>{norma.headerItems.fechaDog}</div>
                         <div className='w-1/12 screen-min3:w-2/12 screen-min2:w-3/12'>

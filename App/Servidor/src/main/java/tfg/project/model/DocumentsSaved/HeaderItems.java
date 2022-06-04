@@ -8,8 +8,6 @@ import java.util.Objects;
 public class HeaderItems {
     @Schema(description = "Título da norma.", example = "Título")
     private String titulo;
-    @Schema(description = "Sumario da norma.", example = "Sumario")
-    private String sumario;
     @Schema(description = "Publicador da norma.", example = "Concello de Lugo")
     private String publicador;
     @Schema(description = "Data de publicación.", example = "04-04-2020")
@@ -49,14 +47,6 @@ public class HeaderItems {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getSumario() {
-        return sumario;
-    }
-
-    public void setSumario(String sumario) {
-        this.sumario = sumario;
     }
 
     public String getPublicador() {
@@ -192,19 +182,18 @@ public class HeaderItems {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HeaderItems that = (HeaderItems) o;
-        return Objects.equals(titulo, that.titulo) && Objects.equals(sumario, that.sumario) && Objects.equals(publicador, that.publicador) && Objects.equals(dpub, that.dpub) && Objects.equals(refpub, that.refpub) && Objects.equals(ano, that.ano) && Objects.equals(version, that.version) && Objects.equals(referencia, that.referencia) && Objects.equals(fechaDog, that.fechaDog) && Objects.equals(dvl_desde, that.dvl_desde) && Objects.equals(estadoSeleccionado, that.estadoSeleccionado) && Objects.equals(nomfic, that.nomfic) && Objects.equals(colectivoSeleccionado, that.colectivoSeleccionado) && Objects.equals(organismoSeleccionado, that.organismoSeleccionado) && Objects.equals(rangoSeleccionado, that.rangoSeleccionado) && Objects.equals(seccionSeleccionada, that.seccionSeleccionada) && Objects.equals(tematicaSeleccionada, that.tematicaSeleccionada) && Objects.equals(numDog, that.numDog);
+        return Objects.equals(titulo, that.titulo) && Objects.equals(publicador, that.publicador) && Objects.equals(dpub, that.dpub) && Objects.equals(refpub, that.refpub) && Objects.equals(ano, that.ano) && Objects.equals(version, that.version) && Objects.equals(referencia, that.referencia) && Objects.equals(fechaDog, that.fechaDog) && Objects.equals(dvl_desde, that.dvl_desde) && Objects.equals(estadoSeleccionado, that.estadoSeleccionado) && Objects.equals(nomfic, that.nomfic) && Objects.equals(colectivoSeleccionado, that.colectivoSeleccionado) && Objects.equals(organismoSeleccionado, that.organismoSeleccionado) && Objects.equals(rangoSeleccionado, that.rangoSeleccionado) && Objects.equals(seccionSeleccionada, that.seccionSeleccionada) && Objects.equals(tematicaSeleccionada, that.tematicaSeleccionada) && Objects.equals(numDog, that.numDog);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(titulo, sumario, publicador, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog);
+        return Objects.hash(titulo, publicador, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog);
     }
 
     @Override
     public String toString() {
         return "HeaderItems{" +
                 "titulo='" + titulo + '\'' +
-                ", sumario='" + sumario + '\'' +
                 ", publicador='" + publicador + '\'' +
                 ", dpub='" + dpub + '\'' +
                 ", refpub='" + refpub + '\'' +
