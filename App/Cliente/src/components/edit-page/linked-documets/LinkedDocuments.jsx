@@ -1,15 +1,22 @@
-import { React } from 'react'
+import { React, useEffect } from 'react'
 
 import { Tooltip } from '@mui/material'
 import { QuestionMarkCircleIcon } from '@heroicons/react/solid'
 import { DogContent } from './DogContent'
-import { useHtmlDoc } from '../../../hooks'
+import { useFinalDocument, useHtmlDoc } from '../../../hooks'
 
 import listadoMeses from '../../../data/listadoMeses.json'
 
-export const LinkedDocuments = ({ sumario, contentVinculada, parrafosAModificar, leiSeleccionada, setLeiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
+export const LinkedDocuments = ({ setLeiModificadaData, sumario, contentVinculada, parrafosAModificar, leiSeleccionada, setLeiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
     let titulo = ''
-    const { data: documento } = useHtmlDoc(sumario)
+    const documento = useHtmlDoc(sumario)
+    const { data } = useFinalDocument(sumario, 1)
+
+    useEffect(() => {
+        if (data) {
+            setLeiModificadaData(data)
+        }
+    }, [data, setLeiModificadaData])
 
     let mesesRegex = "("
     listadoMeses.forEach(mes => mesesRegex += mes.name + "|")

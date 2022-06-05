@@ -5,14 +5,11 @@ import { LogoutOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react
 import { useFinalDocument } from '../../hooks'
 import { BookmarkIcon } from '@heroicons/react/solid'
 
-export const PrincipalButtons = ({ leiModificada, idDb, htmlDoc, newHtmlDoc, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
+export const PrincipalButtons = ({ leiModificada, leiModificadaData, idDb, htmlDoc, newHtmlDoc, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
     const { put, patch, deleteNorma } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async (borrador) => {
-
-        console.log(leiModificada)
-
         if (window.confirm('Os seus cambios serán gardados. Desexa continuar?')) {
             let documento = ''
             if (cambios && cambios.length !== 0) {
@@ -57,6 +54,24 @@ export const PrincipalButtons = ({ leiModificada, idDb, htmlDoc, newHtmlDoc, not
 
                 if (leiModificada) {
                     patch({ sumario: leiModificada, borrador: borrador })
+                }
+
+                if (leiModificadaData) {
+                    leiModificadaData.borrador = borrador
+                    if (!leiModificadaData.newHtmlDoc) {
+                        leiModificadaData.newHtmlDoc = leiModificadaData.htmlDoc
+                    }
+                    if (cambiosVinculadas && cambiosVinculadas.length !== 0) {
+                        cambiosVinculadas.forEach(cambio => {
+                            documento = new DOMParser().parseFromString(leiModificadaData.newHtmlDoc, "text/xml")
+                            documento.getElementsByClassName('story')[0].children[cambio.posicion].innerText = cambio.parrafoCambiado
+                        })
+                        leiModificadaData.newHtmlDoc = new XMLSerializer().serializeToString(documento)
+                    } else {
+                        leiModificadaData.newHtmlDoc = ""
+                    }
+
+                    put(leiModificadaData)
                 }
 
                 navigate('/save', {

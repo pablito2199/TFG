@@ -8,7 +8,12 @@ export default function Preview() {
     const ref = useRef(null)
     const { pathname } = useLocation()
     const { data } = useFinalDocument(pathname.split('/')[2], 2)
-    const htmlCode = new DOMParser().parseFromString(data.newHtmlDoc, "text/xml")
+    let htmlCode = ''
+    if (data.newHtmlDoc) {
+        htmlCode = new DOMParser().parseFromString(data.newHtmlDoc, "text/xml")
+    } else {
+        htmlCode = new DOMParser().parseFromString(data.htmlDoc, "text/xml")
+    }
 
     return <div className='flex flex-col ml-32 mr-16 items-center w-full z-0 text-justify font-bitter'>
         {

@@ -64,6 +64,7 @@ const Parrafo = ({ num, parrafosAModificar, parrafo, leiSeleccionada, cambiosVin
         if (parrafo !== ref.current.innerText) {
             let cambio = {
                 "id": id,
+                "posicion": posicion,
                 "parrafoCambiado": ref.current.innerText
             }
             auxiliar.push(cambio)

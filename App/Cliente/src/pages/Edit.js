@@ -65,6 +65,7 @@ export default function Edit() {
     const [cambiosLocales, setCambiosLocales] = useState(false)
     const [posicionParrafo, setPosicionParrafo] = useState(0)
     const [leiModificada, setLeiModificada] = useState('')
+    const [leiModificadaData, setLeiModificadaData] = useState('')
 
     useEffect(() => {
         if (data) {
@@ -281,6 +282,7 @@ export default function Edit() {
                                                 contentVinculada={contentVinculada}
                                             />
                                             <LinkedDocuments
+                                                setLeiModificadaData={setLeiModificadaData}
                                                 sumario={leiModificada}
                                                 parrafosAModificar={parrafosAModificar}
                                                 leiSeleccionada={leiSeleccionada} setLeiSeleccionada={setLeiSeleccionada}
@@ -301,6 +303,7 @@ export default function Edit() {
                 idDb={state.norma.id}
                 htmlDoc={data.htmlDoc}
                 newHtmlDoc={new DOMParser().parseFromString(data.newHtmlDoc, "text/xml")}
+                leiModificadaData={leiModificadaData}
                 notas={notas}
                 cambios={cambios}
                 leyes={leisVinculadas}

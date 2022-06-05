@@ -137,8 +137,7 @@ export default class API {
         const response = await fetch(`/local/${sumario}/htmlDoc`, requestOptions)
             .then(response => response.text())
             .then(text => {
-                const parser = new DOMParser()
-                return parser.parseFromString(text, "text/xml")
+                return new DOMParser().parseFromString(text, "text/xml")
             })
             .catch(error => console.log(error))
 
