@@ -37,18 +37,28 @@ export function useNormas(query = '') {
     return data
 }
 
-export function useFinalDocument(sumario) {
+export function useFinalDocument(id, metodo) {
     const [data, setData] = useState({})
 
     useEffect(() => {
-        if (sumario) {
+        if (metodo === 1) {
             API.instance()
-                .findFinalDocument(sumario)
+                .findFinalDocument(id)
+                .then(finalDocument => {
+                    setData(finalDocument)
+                })
+        } else if (metodo === 2) {
+            API.instance()
+                .findFinalDocumentById(id)
                 .then(finalDocument => {
                     setData(finalDocument)
                 })
         }
-    }, [sumario])
+    }, [id, metodo])
+
+    const post = finalDocument => API.instance()
+        .insertFinalDocument(finalDocument)
+        .then(updated => { return updated })
 
     const patch = leiModificada => API.instance()
         .updateEstadoVinculada(leiModificada)
@@ -64,9 +74,10 @@ export function useFinalDocument(sumario) {
 
     return {
         data,
-        deleteNorma,
+        post,
         patch,
-        put
+        put,
+        deleteNorma
     }
 }
 

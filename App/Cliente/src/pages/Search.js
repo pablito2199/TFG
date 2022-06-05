@@ -10,9 +10,9 @@ import { ContentLEXGAL } from '../components/search-page/ContentLEXGAL'
 import { SaveIcon, XIcon } from '@heroicons/react/solid'
 
 export default function Search() {
-    const location = useLocation()
-    let data = useNormas('?text=' + location.state.initialText + '&page=' + (location.state.page - 1))
-    const [actualPage, setActualPage] = useState(location.state.page)
+    const { state } = useLocation()
+    let data = useNormas('?text=' + state.initialText + '&page=' + (state.page - 1))
+    const [actualPage, setActualPage] = useState(state.page)
     const [modal, setModal] = useState(false)
 
     return <div className='flex flex-col ml-20 items-center w-full screen-min5:ml-10'>
@@ -30,15 +30,15 @@ export default function Search() {
                                 data?.content
                                     ?
                                     <>
-                                        <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse <span className='text-black font-bold'>{data.totalElements}</span> resultados para <span className='text-blue-green font-bold'>"{location.state.initialText}"</span></p>
-                                        <Pages initialText={location.state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
+                                        <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse <span className='text-black font-bold'>{data.totalElements}</span> resultados para <span className='text-blue-green font-bold'>"{state.initialText}"</span></p>
+                                        <Pages initialText={state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
                                         <ContentLEXGAL data={data.content} />
                                         <div className='m-4' />
-                                        <Pages initialText={location.state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
+                                        <Pages initialText={state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
                                         <div className='m-4' />
                                     </>
                                     :
-                                    <p className='py-4 text-red-600 font-semibold italic'>Non se atoparon resultados para "{location.state.initialText}". Por favor, inténteo de novo.</p>
+                                    <p className='py-4 text-red-600 font-semibold italic'>Non se atoparon resultados para "{state.initialText}". Por favor, inténteo de novo.</p>
                             }
                         </>
                     </div>
@@ -54,15 +54,15 @@ export default function Search() {
                         data?.content
                             ?
                             <>
-                                <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse <span className='text-black font-bold'>{data.totalElements}</span> resultados para <span className='text-blue-green font-bold'>"{location.state.initialText}"</span></p>
-                                <Pages initialText={location.state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
+                                <p className='self-end mt-8 mr-28 text-gray-600 text-lg font-semibold italic'>Atopáronse <span className='text-black font-bold'>{data.totalElements}</span> resultados para <span className='text-blue-green font-bold'>"{state.initialText}"</span></p>
+                                <Pages initialText={state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
                                 <ContentLEXGAL data={data.content} />
                                 <div className='m-4' />
-                                <Pages initialText={location.state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
+                                <Pages initialText={state.initialText} actualPage={actualPage} setActualPage={setActualPage} elements={data.totalElements} numberElementsPerPage={8} />
                                 <div className='m-4' />
                             </>
                             :
-                            <p className='py-4 text-red-600 font-semibold italic'>Non se atoparon resultados para "{location.state.initialText}". Por favor, inténteo de novo.</p>
+                            <p className='py-4 text-red-600 font-semibold italic'>Non se atoparon resultados para "{state.initialText}". Por favor, inténteo de novo.</p>
                     }
                 </>
         }

@@ -7,9 +7,10 @@ export const DogContent = ({ data, cambios, handleContextMenu, content, notas })
                 let clase = "mt-3"
                 if (parrafo.className === "dog-firma-centrada") {
                     clase += " text-center"
-                }
-                if (parrafo.className === "dog-anexo-encabezado") {
+                } else if (parrafo.className === "dog-anexo-encabezado") {
                     clase += " text-center font-bold mt-6"
+                } else {
+                    clase += " indent-sm"
                 }
                 notas.forEach(nota => { if (parseInt(nota.parrafo) === index) clase += " bg-yellow-500" })
                 return <Parrafo

@@ -97,7 +97,7 @@ public class LocalController {
     @Operation(
             operationId = "getDocumentData",
             summary = "Obter os datos dun documento.",
-            description = "Obter os datos dun documento a partir do seu id. Esta acción " +
+            description = "Obter os datos dun documento a partir do seu sumario. Esta acción " +
                     "pode ser realizada por calquer usuario autenticado."
     )
     @ApiResponses({
@@ -122,10 +122,51 @@ public class LocalController {
     })
     @PreAuthorize("isAuthenticated()")
     ResponseEntity<Optional<FinalDocument>> get(
-            @Parameter(description = "Id do documento a buscar", example = "1651743500014")
+            @Parameter(description = "Sumario do documento a buscar", example = "Sumario.")
             @PathVariable("sumario") String sumario
     ) {
         Optional<FinalDocument> result = finalDocuments.get(sumario);
+
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
+        }
+
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping(path = "id/{id}", produces = APPLICATION_JSON_VALUE)
+    @Operation(
+            operationId = "getDocumentData",
+            summary = "Obter os datos dun documento.",
+            description = "Obter os datos dun documento a partir do seu id. Esta acción " +
+                    "pode ser realizada por calquer usuario autenticado."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "O documento foi atopado.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = String.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Documento non atopado.",
+                    content = @Content
+            )
+    })
+    @PreAuthorize("isAuthenticated()")
+    ResponseEntity<Optional<FinalDocument>> getById(
+            @Parameter(description = "Id do documento a buscar", example = "10504934")
+            @PathVariable("id") String id
+    ) {
+        Optional<FinalDocument> result = finalDocuments.getById(id);
 
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Documento non atopado.");
@@ -175,6 +216,40 @@ public class LocalController {
         return ResponseEntity.ok().body(result.get().getHtmlDoc());
     }
 
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @Operation(
+            operationId = "postDocumentData",
+            summary = "Gardar os datos dun documento.",
+            description = "Gardar os datos dun documento. Esta acción pode ser realizada " +
+                    "por calquer usuario autenticado."
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "O documento foi gardado correctamente.",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = FinalDocument.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "O usuario non ten os permisos suficientes para realizar a operación.",
+                    content = @Content
+            )
+    })
+    @PreAuthorize("isAuthenticated()")
+    ResponseEntity<FinalDocument> post(
+            @Parameter(description = "Datos adicionais do documento que se está a editar")
+            @RequestBody FinalDocument finalDocument
+    ) {
+        RestTemplate restTemplate = new RestTemplate();
+        finalDocument.setHtmlDoc(restTemplate.getForObject(finalDocument.getUrlDog(), String.class));
+        finalDocument.setUrlDog(null);
+
+        return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
+    }
+
     @PatchMapping(path = "{sumario}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "patchDocumentData",
@@ -216,8 +291,8 @@ public class LocalController {
     @PutMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "putDocumentData",
-            summary = "Gardar os datos dun documento.",
-            description = "Gardar os datos dun documento. Esta acción pode ser realizada " +
+            summary = "Modificar os datos dun documento.",
+            description = "Modificar os datos dun documento. Esta acción pode ser realizada " +
                     "por calquer usuario autenticado."
     )
     @ApiResponses({
@@ -240,9 +315,6 @@ public class LocalController {
             @Parameter(description = "Datos adicionais do documento que se está a editar")
             @RequestBody FinalDocument finalDocument
     ) {
-        RestTemplate restTemplate = new RestTemplate();
-        finalDocument.setHtmlDoc(restTemplate.getForObject(finalDocument.getUrlDog(), String.class));
-
         return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
     }
 

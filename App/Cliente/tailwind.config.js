@@ -1,5 +1,5 @@
 module.exports = {
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [require('@tailwindcss/forms'), require('tailwindcss-text-indent')()],
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     theme: {
         extend: {
@@ -26,6 +26,18 @@ module.exports = {
                 'textarea': '7.8rem',
                 'texto-principal': '60rem'
             },
+            textIndent: (theme, { negative }) => ({
+                ...{
+                    sm: '1rem',
+                    md: '2rem',
+                    lg: '3rem',
+                },
+                ...negative({
+                    sm: '1rem',
+                    md: '2rem',
+                    lg: '3rem',
+                }),
+            }),
             screens: {
                 'screen-min1': { 'max': '970px' },
                 'screen-min2': { 'max': '1055px' },
@@ -34,5 +46,8 @@ module.exports = {
                 'screen-min5': { 'max': '1220px' }
             }
         }
-    }
+    },
+    variants: {
+        textIndent: ['responsive'],
+    },
 }

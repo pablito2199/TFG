@@ -16,11 +16,10 @@ export default function Edit() {
     const content = useRef(null)
     const contentVinculada = useRef(null)
     const [modal, setModal] = useState(false)
-    const location = useLocation()
-    const parser = new DOMParser()
+    const { state } = useLocation()
     let selectedText = window.getSelection()
-    const htmlCode = parser.parseFromString(location.state.norma.htmlDoc, "text/xml")
-    let documentAdditionalData = useFinalDocument(location.state.norma.sumario).data
+    const htmlCode = new DOMParser().parseFromString(state.norma.htmlDoc, "text/xml")
+    const { data } = useFinalDocument(state.norma.sumario, 1)
 
     function convertirFecha(fecha) {
         if (fecha) {
@@ -67,54 +66,54 @@ export default function Edit() {
     const [leiModificada, setLeiModificada] = useState('')
 
     useEffect(() => {
-        if (documentAdditionalData) {
-            if (documentAdditionalData.changes && !cambiosLocales) {
-                setCambios(documentAdditionalData.changes)
+        if (data) {
+            if (data.changes && !cambiosLocales) {
+                setCambios(data.changes)
             }
-            if (documentAdditionalData.laws && !cambiosLocales) {
-                setLeisVinculadas(documentAdditionalData.laws)
+            if (data.laws && !cambiosLocales) {
+                setLeisVinculadas(data.laws)
             }
-            if (documentAdditionalData.notes && !cambiosLocales) {
-                setNotas(documentAdditionalData.notes)
+            if (data.notes && !cambiosLocales) {
+                setNotas(data.notes)
             }
-            if (documentAdditionalData.headerItems) {
+            if (data.headerItems) {
                 let mesesRegex = "("
                 listadoMeses.forEach(mes => mesesRegex += mes.name + "|")
                 mesesRegex = mesesRegex.substring(0, mesesRegex.length - 1)
                 mesesRegex += ")"
                 const tituloRegex = new RegExp("Orde do [0-9]{1,2} de " + mesesRegex + " de [0-9]{4}", "gi")
-                let resultado = (documentAdditionalData.sumario).match(tituloRegex)
+                let resultado = (data.sumario).match(tituloRegex)
                 if (resultado !== null && resultado?.length !== 0) {
                     setTitulo(resultado[0])
                 }
-                setSumario(documentAdditionalData.sumario)
-                setPublicador(documentAdditionalData.headerItems.publicador)
-                setFechaDog(documentAdditionalData.headerItems.fechaDog)
-                setNumDog(documentAdditionalData.headerItems.numDog)
-                setDpub(convertirFecha(documentAdditionalData.headerItems.dpub))
-                setRefpub(documentAdditionalData.headerItems.refpub)
-                setReferencia(documentAdditionalData.headerItems.referencia)
-                setDvl_desde(convertirFecha(documentAdditionalData.headerItems.dvl_desde))
-                setEstadoSeleccionado(documentAdditionalData.headerItems.estadoSeleccionado)
-                setNomFic(documentAdditionalData.headerItems.nomfic)
-                if (documentAdditionalData.headerItems.colectivoSeleccionado) {
-                    setColectivoSeleccionado(documentAdditionalData.headerItems.colectivoSeleccionado)
+                setSumario(data.sumario)
+                setPublicador(data.headerItems.publicador)
+                setFechaDog(data.headerItems.fechaDog)
+                setNumDog(data.headerItems.numDog)
+                setDpub(convertirFecha(data.headerItems.dpub))
+                setRefpub(data.headerItems.refpub)
+                setReferencia(data.headerItems.referencia)
+                setDvl_desde(convertirFecha(data.headerItems.dvl_desde))
+                setEstadoSeleccionado(data.headerItems.estadoSeleccionado)
+                setNomFic(data.headerItems.nomfic)
+                if (data.headerItems.colectivoSeleccionado) {
+                    setColectivoSeleccionado(data.headerItems.colectivoSeleccionado)
                 }
-                if (documentAdditionalData.headerItems.organismoSeleccionado) {
-                    setOrganismoSeleccionado(documentAdditionalData.headerItems.organismoSeleccionado)
+                if (data.headerItems.organismoSeleccionado) {
+                    setOrganismoSeleccionado(data.headerItems.organismoSeleccionado)
                 }
-                if (documentAdditionalData.headerItems.rangoSeleccionado) {
-                    setRangoSeleccionado(documentAdditionalData.headerItems.rangoSeleccionado)
+                if (data.headerItems.rangoSeleccionado) {
+                    setRangoSeleccionado(data.headerItems.rangoSeleccionado)
                 }
-                if (documentAdditionalData.headerItems.seccionSeleccionada) {
-                    setSeccionSeleccionada(documentAdditionalData.headerItems.seccionSeleccionada)
+                if (data.headerItems.seccionSeleccionada) {
+                    setSeccionSeleccionada(data.headerItems.seccionSeleccionada)
                 }
-                if (documentAdditionalData.headerItems.tematicaSeleccionada) {
-                    setTematicaSeleccionada(documentAdditionalData.headerItems.tematicaSeleccionada)
+                if (data.headerItems.tematicaSeleccionada) {
+                    setTematicaSeleccionada(data.headerItems.tematicaSeleccionada)
                 }
             }
-            if (documentAdditionalData.linkedChanges && !cambiosLocales) {
-                setCambiosVinculadas(documentAdditionalData.linkedChanges)
+            if (data.linkedChanges && !cambiosLocales) {
+                setCambiosVinculadas(data.linkedChanges)
             }
         }
 
@@ -137,7 +136,7 @@ export default function Edit() {
         } else if (resultado2) {
             setLeiModificada(sumario.replace(resultado2[0], '').replace('Orde', 'ORDE'))
         }
-    }, [documentAdditionalData, htmlCode, location.state, cambiosLocales, sumario])
+    }, [data, htmlCode, state, cambiosLocales, sumario])
 
     const updateParrafosAModificar = () => {
         const regex = new RegExp("Artigo [0-9]+", "gi")
@@ -207,6 +206,7 @@ export default function Edit() {
                                 ?
                                 <main className='z-0 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                                     <LeftSide
+                                        id={state.norma.id}
                                         data={htmlCode}
                                         cambios={cambios}
                                         setParrafoACambiar={setParrafoACambiar}
@@ -238,6 +238,7 @@ export default function Edit() {
                                 <main className='z-0 w-full mt-6 flex mb-24'>
                                     <div className='opacity-40 w-full mt-6 flex screen-min5:flex-col screen-min3:w-11/12 screen-min1:9/12 mb-24'>
                                         <LeftSide
+                                            id={state.norma.id}
                                             data={htmlCode}
                                             cambios={cambios}
                                             setParrafoACambiar={setParrafoACambiar}
@@ -289,8 +290,8 @@ export default function Edit() {
             }
 
             <PrincipalButtons
-                idDb={location.state.norma.id}
-                enlace={location.state.norma.urlDog}
+                idDb={state.norma.id}
+                htmlDoc={state.norma.htmlDoc}
                 notas={notas}
                 cambios={cambios}
                 leyes={leisVinculadas}

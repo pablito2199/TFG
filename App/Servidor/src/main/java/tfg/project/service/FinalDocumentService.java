@@ -31,6 +31,10 @@ public class FinalDocumentService {
         return finalDocuments.getBySumario(sumario);
     }
 
+    public Optional<FinalDocument> getById(String id) {
+        return finalDocuments.findById(id);
+    }
+
     public Optional<Page<FinalDocument>> getAll(int page, int size, Sort sort, String text) {
         Pageable request = PageRequest.of(page, size, sort);
         Criteria criteria = Criteria.where("_id").exists(true);

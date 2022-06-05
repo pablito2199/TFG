@@ -5,13 +5,13 @@ import { SearchButton } from "./SearchButton"
 export const SearchFieldLEXGAL = () => {
     const [texto, setTexto] = useState('')
     const navigate = useNavigate()
-    const location = useLocation()
+    const { state } = useLocation()
 
     useEffect(() => {
-        if (location.state) {
-            setTexto(location.state.initialText)
+        if (state) {
+            setTexto(state.initialText)
         }
-    }, [location])
+    }, [state])
 
     const cambiarPagina = (e) => {
         if (e.key === 'Enter') {

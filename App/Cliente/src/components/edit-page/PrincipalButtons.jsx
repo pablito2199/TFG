@@ -1,11 +1,11 @@
 import { React } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { EyeOutline, LogoutOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
+import { LogoutOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react-heroicons'
 import { useFinalDocument } from '../../hooks'
 import { BookmarkIcon } from '@heroicons/react/solid'
 
-export const PrincipalButtons = ({ leiModificada, idDb, enlace, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
+export const PrincipalButtons = ({ leiModificada, idDb, htmlDoc, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
     const { put, patch, deleteNorma } = useFinalDocument()
     const navigate = useNavigate()
 
@@ -15,7 +15,7 @@ export const PrincipalButtons = ({ leiModificada, idDb, enlace, notas, cambios, 
                 put({
                     id: idDb,
                     sumario: sumario,
-                    urlDog: enlace,
+                    htmlDoc: htmlDoc,
                     borrador: borrador,
                     notes: notas,
                     changes: cambios,
@@ -81,13 +81,9 @@ export const PrincipalButtons = ({ leiModificada, idDb, enlace, notas, cambios, 
             <BookmarkIcon className='h-6 text-white' />
             <span>Gardar como borrador</span>
         </button>
-        <a href={enlace} target="_blank" rel='noreferrer' className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-gray-500 hover:bg-gray-600 w-60 text-white font-semibold cursor-pointer'>
-            <EyeOutline className='h-6 text-white' />
-            <span>Previsualizar</span>
-        </a>
-        <button onClick={() => { if (window.confirm('Os seus cambios serán descartados. Desexa continuar?')) navigate('/') }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-yellow-500 hover:bg-yellow-600 w-60 text-white font-semibold cursor-pointer'>
+        <button onClick={() => { if (window.confirm('Os seus cambios non serán gardados. Desexa saír?')) navigate('/') }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-gray-500 hover:bg-gray-600 w-60 text-white font-semibold cursor-pointer'>
             <LogoutOutline className='h-6 text-white' />
-            <span>Descartar cambios</span>
+            <span>Saír sen gardar</span>
         </button>
         <button onClick={deleteLei} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>
             <XCircleOutline className='h-6 text-white' />

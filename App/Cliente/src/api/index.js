@@ -94,7 +94,6 @@ export default class API {
     }
 
     async findFinalDocument(sumario) {
-        console.log(sumario)
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -103,6 +102,22 @@ export default class API {
             }
         }
         const response = await fetch(`/local/${sumario}`, requestOptions).catch(error => console.log(error))
+
+        if (response.status === 200) {
+            return await response.json()
+        }
+        return ''
+    }
+
+    async findFinalDocumentById(id) {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.#token
+            }
+        }
+        const response = await fetch(`/local/id/${id}`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             return await response.json()
@@ -130,6 +145,30 @@ export default class API {
         return response
     }
 
+    async insertFinalDocument(finalDocument) {
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": this.#token
+            },
+            body: JSON.stringify({
+                id: finalDocument.id,
+                sumario: finalDocument.sumario,
+                urlDog: finalDocument.urlDog,
+                borrador: true,
+                headerItems: finalDocument.headerItems
+            })
+        }
+
+        const response = fetch(`/local`, requestOptions).catch(error => console.log(error))
+
+        if (response.status === 200) {
+            return true
+        }
+        return false
+    }
+
     async updateFinalDocument(finalDocument) {
         const requestOptions = {
             method: 'PUT',
@@ -146,7 +185,7 @@ export default class API {
                 laws: finalDocument.laws,
                 headerItems: finalDocument.headerItems,
                 linkedChanges: finalDocument.linkedChanges,
-                urlDog: finalDocument.urlDog
+                htmlDoc: finalDocument.htmlDoc
             })
         }
 
