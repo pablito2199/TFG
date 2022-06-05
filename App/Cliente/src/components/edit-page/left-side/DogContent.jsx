@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react'
 
-export const DogContent = ({ data, cambios, handleContextMenu, content, notas }) => {
+export const DogContent = ({ data, newData, cambios, handleContextMenu, content, notas }) => {
     return <div ref={content}>
         {
             Array.prototype.slice.call(data.getElementsByClassName('story')[0].children).map((parrafo, index) => {
@@ -13,9 +13,16 @@ export const DogContent = ({ data, cambios, handleContextMenu, content, notas })
                     clase += " indent-sm"
                 }
                 notas.forEach(nota => { if (parseInt(nota.parrafo) === index) clase += " bg-yellow-500" })
+
+                let parrafoNuevo = ''
+                if (newData) {
+                    parrafoNuevo = newData.getElementsByClassName('story')[0].children[index]
+                }
+
                 return <Parrafo
                     cambios={cambios}
                     parrafo={parrafo.innerText}
+                    parrafoNuevo={parrafoNuevo.innerText}
                     handleContextMenu={handleContextMenu}
                     clase={clase}
                     posicion={index}
@@ -27,7 +34,7 @@ export const DogContent = ({ data, cambios, handleContextMenu, content, notas })
     </div>
 }
 
-const Parrafo = ({ parrafo, handleContextMenu, cambios, clase, posicion }) => {
+const Parrafo = ({ parrafo, parrafoNuevo, handleContextMenu, cambios, clase, posicion }) => {
     const [claseAntiguo, setClaseAntiguo] = useState(false)
     useEffect(() => {
         let show = false
@@ -41,11 +48,15 @@ const Parrafo = ({ parrafo, handleContextMenu, cambios, clase, posicion }) => {
 
     return <div>
         {
-            claseAntiguo
+            claseAntiguo && parrafo !== parrafoNuevo
                 ?
-                <p className={clase + ' bg-green-200'} onContextMenu={(e) => handleContextMenu(e, parrafo, posicion)}>{parrafo}</p>
+                <p className={clase + ' bg-green-200'} onContextMenu={(e) => handleContextMenu(e, parrafo, posicion)}>{parrafoNuevo}</p>
                 :
-                <p className={clase} onContextMenu={(e) => handleContextMenu(e, parrafo, posicion)}>{parrafo}</p>
+                claseAntiguo && parrafo === parrafoNuevo
+                    ?
+                    <p className={clase + ' bg-green-200'} onContextMenu={(e) => handleContextMenu(e, parrafo, posicion)}>{parrafo}</p>
+                    :
+                    <p className={clase} onContextMenu={(e) => handleContextMenu(e, parrafo, posicion)}>{parrafo}</p>
         }
     </div>
 }

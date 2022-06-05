@@ -6,7 +6,7 @@ import { DogContent } from './DogContent'
 import { Link } from 'react-router-dom'
 import { EyeOutline } from '@graywolfai/react-heroicons'
 
-export const LeftSide = ({ id, titulo, notas, content, data, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide, setPosicionParrafo }) => {
+export const LeftSide = ({ id, titulo, notas, content, data, newData, cambios, setParrafoACambiar, setParrafoCambiado, setAnchorPoint, show, setShow, claseLeftSide, setPosicionParrafo }) => {
     const handleContextMenu = (event, text, posicion) => {
         event.preventDefault()
         setAnchorPoint({ x: event.pageX, y: event.pageY })
@@ -45,6 +45,7 @@ export const LeftSide = ({ id, titulo, notas, content, data, cambios, setParrafo
                 notas={notas}
                 content={content}
                 data={data}
+                newData={newData}
                 cambios={cambios}
                 handleContextMenu={handleContextMenu}
             />

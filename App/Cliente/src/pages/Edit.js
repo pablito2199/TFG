@@ -18,7 +18,8 @@ export default function Edit() {
     const [modal, setModal] = useState(false)
     const { state } = useLocation()
     let selectedText = window.getSelection()
-    const htmlCode = new DOMParser().parseFromString(state.norma.htmlDoc, "text/xml")
+    const [htmlCode, setHtmlCode] = useState('')
+    const [newHtmlCode, setNewHtmlCode] = useState('')
     const { data } = useFinalDocument(state.norma.sumario, 1)
 
     function convertirFecha(fecha) {
@@ -67,6 +68,12 @@ export default function Edit() {
 
     useEffect(() => {
         if (data) {
+            if (data.newHtmlDoc) {
+                setNewHtmlCode(new DOMParser().parseFromString(data.newHtmlDoc, "text/xml"))
+            }
+            if (data.htmlDoc) {
+                setHtmlCode(new DOMParser().parseFromString(data.htmlDoc, "text/xml"))
+            }
             if (data.changes && !cambiosLocales) {
                 setCambios(data.changes)
             }
@@ -136,7 +143,7 @@ export default function Edit() {
         } else if (resultado2) {
             setLeiModificada(sumario.replace(resultado2[0], '').replace('Orde', 'ORDE'))
         }
-    }, [data, htmlCode, state, cambiosLocales, sumario])
+    }, [data, state, cambiosLocales, sumario])
 
     const updateParrafosAModificar = () => {
         const regex = new RegExp("Artigo [0-9]+", "gi")
@@ -208,6 +215,7 @@ export default function Edit() {
                                     <LeftSide
                                         id={state.norma.id}
                                         data={htmlCode}
+                                        newData={newHtmlCode}
                                         cambios={cambios}
                                         setParrafoACambiar={setParrafoACambiar}
                                         setParrafoCambiado={setParrafoCambiado}
@@ -291,7 +299,8 @@ export default function Edit() {
 
             <PrincipalButtons
                 idDb={state.norma.id}
-                htmlDoc={state.norma.htmlDoc}
+                htmlDoc={data.htmlDoc}
+                newHtmlDoc={new DOMParser().parseFromString(data.newHtmlDoc, "text/xml")}
                 notas={notas}
                 cambios={cambios}
                 leyes={leisVinculadas}

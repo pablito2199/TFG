@@ -9,7 +9,7 @@ import listadoMeses from '../../../data/listadoMeses.json'
 
 export const LinkedDocuments = ({ sumario, contentVinculada, parrafosAModificar, leiSeleccionada, setLeiSeleccionada, cambiosVinculadas, setCambiosVinculadas, setCambiosLocales }) => {
     let titulo = ''
-    const documento = useHtmlDoc(sumario)
+    const { data: documento } = useHtmlDoc(sumario)
 
     let mesesRegex = "("
     listadoMeses.forEach(mes => mesesRegex += mes.name + "|")

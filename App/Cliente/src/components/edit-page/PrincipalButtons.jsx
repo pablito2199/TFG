@@ -5,17 +5,31 @@ import { LogoutOutline, ThumbUpOutline, XCircleOutline } from '@graywolfai/react
 import { useFinalDocument } from '../../hooks'
 import { BookmarkIcon } from '@heroicons/react/solid'
 
-export const PrincipalButtons = ({ leiModificada, idDb, htmlDoc, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
+export const PrincipalButtons = ({ leiModificada, idDb, htmlDoc, newHtmlDoc, notas, cambios, leyes, cambiosVinculadas, publicador, sumario, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog }) => {
     const { put, patch, deleteNorma } = useFinalDocument()
     const navigate = useNavigate()
 
     const submit = async (borrador) => {
+
+        console.log(leiModificada)
+
         if (window.confirm('Os seus cambios serán gardados. Desexa continuar?')) {
+            let documento = ''
+            if (cambios && cambios.length !== 0) {
+                cambios.forEach(cambio => {
+                    newHtmlDoc.getElementsByClassName('story')[0].children[cambio.parrafo].innerText = cambio.parrafoNuevo
+                })
+                documento = new XMLSerializer().serializeToString(newHtmlDoc)
+            } else {
+                documento = htmlDoc
+            }
+
             try {
                 put({
                     id: idDb,
                     sumario: sumario,
                     htmlDoc: htmlDoc,
+                    newHtmlDoc: documento,
                     borrador: borrador,
                     notes: notas,
                     changes: cambios,

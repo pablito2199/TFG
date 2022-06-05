@@ -185,7 +185,8 @@ export default class API {
                 laws: finalDocument.laws,
                 headerItems: finalDocument.headerItems,
                 linkedChanges: finalDocument.linkedChanges,
-                htmlDoc: finalDocument.htmlDoc
+                htmlDoc: finalDocument.htmlDoc,
+                newHtmlDoc: finalDocument.newHtmlDoc
             })
         }
 

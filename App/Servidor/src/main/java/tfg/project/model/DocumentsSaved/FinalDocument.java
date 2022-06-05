@@ -19,6 +19,8 @@ public class FinalDocument {
     private boolean borrador;
     @Schema(description = "HTML do documento a editar.", example = "<p>Documento</p>")
     private String htmlDoc;
+    @Schema(description = "HTML do documento a editar cos cambios propostos.", example = "<p>Documento</p>")
+    private String newHtmlDoc;
     @Schema(description = "Datos de cabeceira do documento.")
     private HeaderItems headerItems;
     @Schema(description = "Lista de notas escritas no documento.")
@@ -75,6 +77,15 @@ public class FinalDocument {
         return this;
     }
 
+    public String getNewHtmlDoc() {
+        return newHtmlDoc;
+    }
+
+    public FinalDocument setNewHtmlDoc(String newHtmlDoc) {
+        this.newHtmlDoc = newHtmlDoc;
+        return this;
+    }
+
     public HeaderItems getHeaderItems() {
         return headerItems;
     }
@@ -125,12 +136,12 @@ public class FinalDocument {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FinalDocument that = (FinalDocument) o;
-        return borrador == that.borrador && Objects.equals(id, that.id) && Objects.equals(sumario, that.sumario) && Objects.equals(urlDog, that.urlDog) && Objects.equals(htmlDoc, that.htmlDoc) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
+        return borrador == that.borrador && Objects.equals(id, that.id) && Objects.equals(sumario, that.sumario) && Objects.equals(urlDog, that.urlDog) && Objects.equals(htmlDoc, that.htmlDoc) && Objects.equals(newHtmlDoc, that.newHtmlDoc) && Objects.equals(headerItems, that.headerItems) && Objects.equals(notes, that.notes) && Objects.equals(laws, that.laws) && Objects.equals(changes, that.changes) && Objects.equals(linkedChanges, that.linkedChanges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, sumario, urlDog, borrador, htmlDoc, headerItems, notes, laws, changes, linkedChanges);
+        return Objects.hash(id, sumario, urlDog, borrador, htmlDoc, newHtmlDoc, headerItems, notes, laws, changes, linkedChanges);
     }
 
     @Override
@@ -141,6 +152,7 @@ public class FinalDocument {
                 ", urlDog='" + urlDog + '\'' +
                 ", borrador=" + borrador +
                 ", htmlDoc='" + htmlDoc + '\'' +
+                ", newHtmlDoc='" + newHtmlDoc + '\'' +
                 ", headerItems=" + headerItems +
                 ", notes=" + notes +
                 ", laws=" + laws +
