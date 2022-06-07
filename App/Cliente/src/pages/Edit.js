@@ -228,7 +228,7 @@ export default function Edit() {
                                         setPosicionParrafo={setPosicionParrafo}
                                         content={content}
                                         notas={notas}
-                                        titulo={titulo}
+                                        titulo={sumario}
                                     />
                                     <RightSide
                                         updateParrafosAModificar={updateParrafosAModificar}
@@ -260,6 +260,7 @@ export default function Edit() {
                                             setPosicionParrafo={setPosicionParrafo}
                                             content={content}
                                             notas={notas}
+                                            titulo={sumario}
                                         />
                                         <RightSide
                                             updateParrafosAModificar={updateParrafosAModificar}
@@ -275,7 +276,7 @@ export default function Edit() {
                                     </div>
                                     <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12'>
                                         <XIcon className='fixed self-end h-5 cursor-pointer border border-black' onClick={() => { setModal(false) }} />
-                                        <div className='flex'>
+                                        <div className='flex h-full'>
                                             <PrincipalLaw
                                                 nome={titulo}
                                                 data={htmlCode}

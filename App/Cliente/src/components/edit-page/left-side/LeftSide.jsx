@@ -28,7 +28,7 @@ export const LeftSide = ({ id, titulo, notas, content, data, newData, cambios, s
     return <section className={claseLeftSide}>
         <nav className='flex text-lg items-center gap-2'>
             <div className='flex items-end'>
-                <button className='focus:outline-none py-2 px-4 bg-black text-white border-2 border-black cursor-default'>{titulo}</button>
+                <button className='focus:outline-none py-2 px-4 bg-black text-white border-2 border-black cursor-text'>{titulo.substr(0, 50)} ...</button>
                 <Link to={'/preview/' + id} title="Previsualizar" target="_blank" rel='noreferrer' className='focus:outline-none flex text-md items-center gap-1 px-4 py-2 hover:underline w-60 font-semibold cursor-pointer'>
                     <EyeOutline className='h-6' />
                     <span>Previsualizar</span>

@@ -110,13 +110,13 @@ export const PrincipalButtons = ({ leiModificada, leiModificadaData, idDb, htmlD
             <BookmarkIcon className='h-6 text-white' />
             <span>Gardar como borrador</span>
         </button>
-        <button onClick={() => { if (window.confirm('Os seus cambios non serán gardados. Desexa saír?')) navigate('/') }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-gray-500 hover:bg-gray-600 w-60 text-white font-semibold cursor-pointer'>
-            <LogoutOutline className='h-6 text-white' />
-            <span>Saír sen gardar</span>
-        </button>
         <button onClick={deleteLei} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-red-500 hover:bg-red-600 w-60 text-white font-semibold cursor-pointer'>
             <XCircleOutline className='h-6 text-white' />
             <span>Eliminar de lex.gal</span>
+        </button>
+        <button onClick={() => { if (window.confirm('Os seus cambios non serán gardados. Desexa saír?')) navigate('/') }} className='focus:outline-none flex text-md items-center justify-center gap-2 self-center align-center px-4 py-2 bg-gray-500 hover:bg-gray-600 w-60 text-white font-semibold cursor-pointer'>
+            <LogoutOutline className='h-6 text-white' />
+            <span>Saír sen gardar</span>
         </button>
     </div>
 }

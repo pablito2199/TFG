@@ -26,11 +26,11 @@ export default function Preview() {
                     </div>
                     <div className='flex flex-col gap-4'>
                         {
-                            listadoSecciones.map(seccion => {
+                            listadoSecciones.map((seccion, index) => {
                                 if (seccion.id === parseInt(data.headerItems.seccionSeleccionada)) {
-                                    return <p className='text-blue-green font-semibold text-xl'>{seccion.descripcion}</p>
+                                    return <p className='text-blue-green font-semibold text-xl' key={index}>{seccion.descripcion}</p>
                                 }
-                                return <></>
+                                return <p className='hidden' key={index}></p>
                             })
                         }
                         <p className='text-gray-600 font-semibold text-xl'>{data.headerItems.publicador}</p>
@@ -48,7 +48,26 @@ export default function Preview() {
                                     clase = "indent-sm"
                                 }
 
-                                return <p className={clase} key={index}>{parrafo.innerText}</p>
+                                let nota = ''
+                                if (data.notes) {
+                                    data.notes.forEach(note => {
+                                        if (parseInt(note.parrafo) === index) {
+                                            nota = note
+                                        }
+                                    });
+                                }
+
+                                return <div className='flex flex-col' key={index}>
+                                    {
+                                        nota
+                                        &&
+                                        <p className='bg-yellow-500 p-2'>
+                                            <span className='font-semibold'>Anotación: </span>
+                                            {nota.contenido}
+                                        </p>
+                                    }
+                                    <p className={clase}>{parrafo.innerText}</p>
+                                </div>
                             })
                         }
                     </div>

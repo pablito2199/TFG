@@ -39,7 +39,7 @@ export const LinkedDocuments = ({ setLeiModificadaData, sumario, contentVinculad
                 </Tooltip>
             </div>
         </nav>
-        <div className="text-justify p-4 w-full resize-none border-2 border-black min-h-pantalla-lei max-h-pantalla-lei overflow-y-scroll">
+        <div className="text-justify p-4 w-full resize-none border-2 border-black h-5/6 overflow-y-scroll">
             {
                 documento
                     ?
