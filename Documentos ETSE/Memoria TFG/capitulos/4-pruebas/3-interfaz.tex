@@ -1,0 +1,60 @@
+\section{Validación de la interfaz de usuario}
+
+A la hora de realizar una interfaz con el usuario, se ha de tener suma precaución, ya que es un aspecto clave en toda aplicación. Una aplicación siempre ha de resultar sencilla de utilizar por el usuario, mantener la usabilidad de esta, mantener un código de colores estable, etc.
+\\
+
+Para evaluar que la interfaz de la aplicación cumple estos requisitos, se han barajado distintas opciones. Un cuestionario SUS \cite{sus} no encajaba correctamente a la hora de evaluar esta aplicación, ya que la aplicación está destinada únicamente a profesionales en textos jurídicos, descartando esta posibilidad. 
+\\
+
+Es por ello que se ha utilizado como método de evaluación de la usabilidad de la aplicación los {\bf principios heurísticos de Nielsen} \cite{nielsen}. Este es el gurú de la usabilidad, la cual ha definido como {\it ``la facilidad de usar una interfaz web''}. Son un total de diez principios de usabilidad, los cuales se han utilizado para comprobar en qué grado los cumple el sistema.
+
+\begin{enumerate}
+    \item {\bf Visibilidad del estado del sistema:} El sistema debe mantener siempre informado al usuario acerca de lo que está ocurriendo.
+    
+    Se considera que la aplicación cumple con este principio, puesto que en toda pantalla se muestra al usuario la operación que está realizando o va a realizar. Además, se muestran mensajes cuando un usuario realiza una operación como puede ser la edición de un documento, indicando que esta se realizó correctamente.
+    
+    
+    \item {\bf Relación entre el sistema y el mundo real:} El sitio web utiliza el lenguaje del usuario con expresiones y palabras que le resulten familiares. Además la información debe aparecer en un orden lógico y natural.
+    
+    La iconografía se considera adecuada en aquellos botones donde se ha utilizado, el código de colores se adecúa correctamente con las operaciones (verde para aceptar, rojo para eliminar, naranja/amarillo para pedir ayuda, ...). Además, el lenguaje empleado es el propio de los textos jurídicos. Estos aspectos permiten que se cumpla el segundo principio heurístico en la aplicación.
+    
+    
+    \item {\bf Control y libertad del usuario:} En caso de seleccionar una función por error, el usuario tiene una salida fácil a la página anterior u otra página.
+    
+    En toda página que el usuario entre sin querer se muestra información para volver, o bien para cerrar la pestaña y volver al estado anterior con iconografía. Además, en este aspecto los códigos de colores empleades se consideran ilustrativos para volver atrás en todo momento.
+    
+    
+    \item {\bf Consistencia y estándares:} Se establecen convenciones lógicas, pues el usuario no tiene por qué saber que diferentes palabras, situaciones o acciones significan lo mismo.
+    
+    En la aplicación todo título de las ventanas resume su funcionalidad, las abreviaturas empleadas son consistentes en el sistema, al igual que ocurre con la disposición de los elementos en la página y los colores empleados para las acciones son siempre los mismos.
+    
+    
+    \item {\bf Prevención de errores:} Ayudar al usuario a que no caiga en un error.
+    
+    Se previene en gran medida que el usuario no caiga en un error, ya sea indicando que busque con texto adecuado a la hora de búsqueda de leyes, mostrando mensajes de apoyo, o posibles ejemplos de texto a introducir en los campos de texto.
+    
+    \item {\bf Reconocimiento antes que recuerdo:} Se deben hacer visibles las acciones y opciones antes de que el usuario deba recordar información entre distintas secciones o partes de la aplicación.
+    
+    
+    La paleta de colores empleada se mantiene en el rango de 7 $\pm$ 2 colores, al igual que existen 7 $\pm$ 2 elementos en toda pantalla. La información de la ley principal se mantiene en todo momento a la hora de editar una ley vinculada a esta. El texto introducido en el campo de búsqueda de leyes se mantiene en toda búsqueda, al igual que se indica al usuario en todo momento la página en la que se encuentra.
+    
+    
+    \item {\bf Flexibilidad y eficiencia de uso:} El sistema incluye atajos para que el usuario experto pueda realizar las operaciones de forma más rápida, sin que esto cause un problema a un usuario menos experienciado.
+    
+    La aplicación contiene algún atajo como el de buscar leyes al presionar la tecla ENTER, campos de entrada con valores explicativos o comandos como CTRL+C y CTRL+V a la hora de copiar y pegar el contenido en la edición de una ley.
+    
+    
+    \item {\bf Estética y diseño minimalista:} Las páginas no contienen información innecesaria, siendo toda esta relevante en todo momento.
+    
+    La cantidad de elementos en pantalla no resulta excesiva a la vista del usuario, y toda información presente, sobre todo a la hora de buscar una ley, resulta ilustrativa para el usuario a la hora de saber si es la ley que deseará editar o importar.
+    
+    
+    \item {\bf Ayudar a los usuarios a reconocer, diagnosticar y recuperarse de errores:} Los mensajes de error ayudan a los usuarios a saber qué está ocurriendo en el sistema y cómo recuperarse.
+    
+    Si bien se pueden producir pocos errores en la aplicación, estos son mostrados al usuario. Ejemplos para este principio son el caso de que se trate de buscar una ley en el DOG sin introducir texto, o de que no se encuentre ninguna ley a la hora de la búsqueda. En todo caso se muestra el mensaje de error correspondiente al usuario para que entienda que está ocurriendo.
+    
+    
+    \item {\bf Ayuda y documentación:} Siempre que sea posible se ha de poder utilizar la aplicación sin la necesidad de documentación adicional. No obstante, nunca está de más añadir posible ayuda y/o documentación en caso de ser esta necesaria.
+    
+    En este caso la aplicación contiene una serie de {\it tooltips}, que se puede traducir como ``información sobre herramientas'' \cite{infoherramientas}, los cuales indican al usuario como realizar diferentes acciones en la página. Además, si esta información no fuese suficiente, siempre estará disponible el \hyperref[enlacemanualusuario]{Apéndice B. Manuales de usuario} para guiar al usuario en la aplicación.
+\end{enumerate}
