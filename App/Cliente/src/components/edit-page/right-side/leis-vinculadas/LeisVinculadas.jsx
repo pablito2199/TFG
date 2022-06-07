@@ -28,7 +28,7 @@ export const LeisVinculadas = ({ leiModificada, setCambiosLocales, updateParrafo
                     </div>
                     <div className='border border-black min-h-leis-vinculadas-top max-h-leis-vinculadas-top overflow-y-scroll'>
                         {
-                            leis?.map((lei, index) =>
+                            leis?.map((lei) =>
                                 <div className='m-4 flex flex-col border-b border-gray-lex-gal w-12/13' key={lei.id}>
                                     <div className='flex flex-row items-center'>
                                         {

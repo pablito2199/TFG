@@ -273,7 +273,7 @@ export default function Edit() {
                                             leiModificada={leiModificada}
                                         />
                                     </div>
-                                    <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12 overflow-y-scroll'>
+                                    <div className='flex flex-col h-5/6 bg-white p-8 shadow-lg border-4 fixed top-16 left-28 w-11/12'>
                                         <XIcon className='fixed self-end h-5 cursor-pointer border border-black' onClick={() => { setModal(false) }} />
                                         <div className='flex'>
                                             <PrincipalLaw

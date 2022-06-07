@@ -18,13 +18,15 @@ module.exports = {
             maxHeight: {
                 'leis-vinculadas': '40rem',
                 'leis-vinculadas-top': '42.7rem',
-                'texto-principal': '60rem'
+                'texto-principal': '60rem',
+                'pantalla-lei': '42rem'
             },
             minHeight: {
                 'leis-vinculadas': '40rem',
                 'leis-vinculadas-top': '44rem',
                 'textarea': '7.8rem',
-                'texto-principal': '60rem'
+                'texto-principal': '60rem',
+                'pantalla-lei': '4rem'
             },
             textIndent: (theme, { negative }) => ({
                 ...{
