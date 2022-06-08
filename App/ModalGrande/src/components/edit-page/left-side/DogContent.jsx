@@ -29,9 +29,20 @@ export const DogContent = ({ data, cambios, handleContextMenu, content, notas })
 }
 
 const Parrafo = ({ parrafo, handleContextMenu, cambios, clase, posicion }) => {
-    const [newP, setNewP] = useState(false)
+    const [newP, setNewP] = useState('')
     useEffect(() => {
-        cambios.forEach(cambio => cambio.parrafoAntiguo === parrafo ? setNewP(cambio.parrafoNuevo) : null)
+        let show = false
+
+        cambios.forEach(cambio => {
+            if (cambio.parrafoAntiguo === parrafo) {
+                setNewP(cambio.parrafoNuevo)
+                show = true
+            }
+        })
+
+        if (!show) {
+            setNewP('')
+        }
     }, [cambios, parrafo])
 
     return <div>
