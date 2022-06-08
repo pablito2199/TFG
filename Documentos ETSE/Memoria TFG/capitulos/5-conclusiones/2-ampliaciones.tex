@@ -1,0 +1,30 @@
+\section{Posibles ampliaciones}
+
+Si bien el proyecto ha quedado completo para una versión inicial de la aplicación, esta puede extenderse con nuevas funcionalidades, o funcionalidades existentes pero con versiones mejoradas de las mismas.
+\\
+
+Un ejemplo de esto son la búsqueda de modificaciones sobre una ley vinculada. Estas son localizadas mediante expresiones regulares. Si bien se han encontrado expresiones regulares para localizar dichas modificaciones, debería realizarse una búsqueda exhaustiva de todas las expresiones posibles para localizar modificaciones de una ley sobre otra.
+\\
+
+Otra posible ampliación relacionada con este aspecto, sería la automatización del proceso de aplicar el cambio sobre la ley vinculada. Actualmente la solución propuesta en este proyecto es que se localice el cambio, y se pueda ir a este con un simple click, donde el usuario procederá a aplicar el cambio. No obstante, en una futura versión podría aplicarse que el cambio se genere automáticamente a partir del contenido de la ley principal, sin que el usuario tenga que realizar ninguna iteracción.
+\\
+
+En añadidura, se podría ampliar el concepto de añadir anotaciones a la pestaña de leyes vinculadas. De esta forma, desde la ley principal donde se modifica una vinculada, podrían añadirse anotaciones también sobre esta última.
+\\
+
+Con respecto a la página de búsquedas, actualmente se pueden filtrar las leyes únicamente por el texto contenido en el sumario, así como navegar entre todas las páginas encontradas. Esto sería ampliable mediante nuevos filtros de búsqueda, pero una gran ampliación podría ser buscar también palabras en todo el contenido de cada una de las leyes, y no tan solo en el sumario.
+\\
+
+Como ampliación de cara a la previsualización de leyes, podría ser una buena idea implementar un control de versiones sobre la ley. De esta forma, cada vez que un cambio fuese validado y publicado, se podría acceder a una nueva versión de la ley. Asimismo, se podría acceder a una versión anterior de la ley, si deseásemos ver en qué momento fue aplicado un cambio.
+\\
+
+En cuanto al tratamiento de documentos, actualmente solo se permite trabajar con documentos en lenguajes de etiquetas. En un futuro podría implementarse una versión donde trabajar con otro tipo de extensiones, como puede ser el caso de un archivo en formato JSON.
+\\
+
+Como resulta obvio en cualquier tipo de aplicación, se deberían realizar estudios de usabilidad a medida que se van realizando nuevas versiones de una aplicación. Es por ello que si bien en esta aplicación se realizan muchas mejoras con respecto a la versión actual de edición de documentos de lex.gal, se puede decir con certeza que hay ciertos aspectos donde la usabilidad se puede mejorar, ya que una aplicación nunca llega a ser perfecta para todos los públicos, pero sí serlo para la gran mayoría de ellos.
+\\
+
+Finalizando ya con posibles ampliaciones, podría tratar de implementarse también que la edición colaborativa fuese en tiempo real. Si bien la complejidad de la aplicación escalaría enormemente, siendo necesaria la implementación de web-sockets \cite{websocket}, daría un gran margen de mejora a la aplicación al poder ser empleada por varios usuarios simultáneamente.
+\\
+
+Por último, teniendo ya acceso a la base de datos de la aplicación de lex.gal publicada por la Xunta, podría sincronizarse el acceso a documentos oficiales y a usuarios existentes. De este modo, se obtendría control sobre todos los documentos existentes, y el control de cambios entre usuarios sería completamente real.

@@ -159,7 +159,7 @@ export default class API {
 
         const response = fetch(`/local`, requestOptions).catch(error => console.log(error))
 
-        if (response.status === 200) {
+        if (response.status === 201) {
             return true
         }
         return false
