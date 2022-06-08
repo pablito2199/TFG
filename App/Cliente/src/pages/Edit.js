@@ -19,7 +19,6 @@ export default function Edit() {
     const { state } = useLocation()
     let selectedText = window.getSelection()
     const [htmlCode, setHtmlCode] = useState('')
-    const [newHtmlCode, setNewHtmlCode] = useState('')
     const { data } = useFinalDocument(state.norma.sumario, 1)
 
     function convertirFecha(fecha) {
@@ -69,9 +68,6 @@ export default function Edit() {
 
     useEffect(() => {
         if (data) {
-            if (data.newHtmlDoc) {
-                setNewHtmlCode(new DOMParser().parseFromString(data.newHtmlDoc, "text/xml"))
-            }
             if (data.htmlDoc) {
                 setHtmlCode(new DOMParser().parseFromString(data.htmlDoc, "text/xml"))
             }
@@ -216,7 +212,6 @@ export default function Edit() {
                                     <LeftSide
                                         id={state.norma.id}
                                         data={htmlCode}
-                                        newData={newHtmlCode}
                                         cambios={cambios}
                                         setParrafoACambiar={setParrafoACambiar}
                                         setParrafoCambiado={setParrafoCambiado}
