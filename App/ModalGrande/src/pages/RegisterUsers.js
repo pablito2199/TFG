@@ -17,24 +17,19 @@ export default function RegisterUsers() {
     const [mostrar, setMostrar] = useState(false)
 
     const checkFields = () => {
-        if (userInfo === "" || !/^[a-zA-Z0-9\-\.]+@[a-zA-Z0-9\-]+\.[a-zA-Z\.]{2,255}$/.test(userInfo)) {
-            console.log('hola1')
+        if (userInfo === "" || !/^[a-zA-Z0-9\-.]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,255}$/.test(userInfo)) {
             setError("Email con formato inválido.")
             return false
         }
         if (nome === "" || !/^[a-zA-Zá-úÁ-Ú ]*$/.test(nome)) {
-            console.log('hola2')
             setError("Nome con formato inválido.")
             return false
         }
         if (apelidos === "" || !/^[a-zA-Zá-úÁ-Ú ]*$/.test(apelidos)) {
-            console.log('hola3')
             setError("Apelidos con formato inválido.")
             return false
         }
-        console.log(pass.length)
         if (pass === "" || pass.length < 8) {
-            console.log('hola4')
             setError("La contraseña debe tener al menos 8 caracteres.")
             return false;
         }
@@ -67,7 +62,7 @@ export default function RegisterUsers() {
                 roles: ["ROLE_USER"]
             })
         }
-        if (response === 200) {
+        if (response === 201) {
             setValido('Usuario rexistrado correctamente.')
             setError('')
             setUserInfo('')

@@ -15,10 +15,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tfg.project.model.User;
 import tfg.project.service.UserService;
 
 import javax.validation.Valid;
+import java.net.URI;
 import java.util.*;
 
 @RestController
@@ -129,7 +131,7 @@ public class UserController {
     )
     @ApiResponses({
             @ApiResponse(
-                    responseCode = "200",
+                    responseCode = "201",
                     description = "O usuario foi insertado.",
                     content = @Content(
                             mediaType = "application/json",
@@ -163,7 +165,8 @@ public class UserController {
 
         User result = users.insert(user);
 
-        return ResponseEntity.ok().body(result);
+        return ResponseEntity.created(URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() + "/users/" + result.getEmail()))
+                .body(result);
     }
 
     @PatchMapping(

@@ -19,9 +19,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tfg.project.model.DocumentsSaved.FinalDocument;
 import tfg.project.service.FinalDocumentService;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -225,7 +227,7 @@ public class LocalController {
     )
     @ApiResponses({
             @ApiResponse(
-                    responseCode = "200",
+                    responseCode = "201",
                     description = "O documento foi gardado correctamente.",
                     content = @Content(
                             mediaType = "application/json",
@@ -247,7 +249,10 @@ public class LocalController {
         finalDocument.setHtmlDoc(restTemplate.getForObject(finalDocument.getUrlDog(), String.class));
         finalDocument.setUrlDog(null);
 
-        return ResponseEntity.ok().body(finalDocuments.save(finalDocument));
+        FinalDocument result = finalDocuments.save(finalDocument);
+
+        return ResponseEntity.created(URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() + "/local/" + finalDocument.getId()))
+                .body(result);
     }
 
     @PatchMapping(path = "{sumario}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
