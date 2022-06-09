@@ -1,0 +1,21 @@
+\subsection{Arquitectura global}
+
+\begin{figure}[H]
+\centerline{\includegraphics[width=9cm]{figuras/diseño/arquitecturaglobal.PNG}}
+\caption{Arquitectura global del sistema.}
+\label{enlaceArquitecturaGlobal}
+\end{figure}
+
+En la arquitectura global del sistema se pueden diferenciar tres componentes: el cliente, el servidor, y los almacenes de datos.
+\\
+
+El cliente está conformado por todos aquellos navegadores web que realizan llamadas a la API del servidor mediante su propia interfaz. Todo esto se ha realizado gracias a Node.js \cite{nodejs}, el entorno de ejecución de JavaScript del proyecto.
+\\
+
+Desde el cliente se realizan solicitudes HTTP hacia el servidor, que expone todos sus servicios en una API, la cual está documentada con Swagger \cite{swagger}. Con ello, el cliente intercambia información con el servidor según la llamada realizada: GET para obtener información, POST para crear objetos, PUT y PATCH para modificar información, y DELETE para eliminar objetos.
+\\
+
+La información que el servidor obtiene ha de recuperarla y almacenarla en algún sitio. En el caso de la API del DOG, solo recibe información de esta, obteniendo las leyes almacenadas en el servidor del DOG. Con respecto a la base de datos de MongoDB \cite{mongodb}, de esta puede obtener información, almacenar datos, modificar y eliminar.
+\\
+
+Con esta arquitectura se demuestra el cumplimiento de dos requisitos no funcionales descritos: el {\bf NFR-08: Uso de tecnolías web y servicios RESTful} (uso de Node.js) y el {\bf NFR-09: Base de datos NoSQL} (uso de MongoDB).
