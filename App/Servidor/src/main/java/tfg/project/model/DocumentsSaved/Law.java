@@ -14,16 +14,18 @@ public class Law {
         return id;
     }
 
-    public void setId(String id) {
+    public Law setId(String id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Law setName(String name) {
         this.name = name;
+        return this;
     }
 
     @Override
@@ -31,12 +33,12 @@ public class Law {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Law law = (Law) o;
-        return Objects.equals(id, law.id) && Objects.equals(name, law.name);
+        return Objects.equals(getId(), law.getId()) && Objects.equals(getName(), law.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(getId(), getName());
     }
 
     @Override

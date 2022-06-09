@@ -45,136 +45,153 @@ public class HeaderItems {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
+    public HeaderItems setTitulo(String titulo) {
         this.titulo = titulo;
+        return this;
     }
 
     public String getPublicador() {
         return publicador;
     }
 
-    public void setPublicador(String publicador) {
+    public HeaderItems setPublicador(String publicador) {
         this.publicador = publicador;
+        return this;
     }
 
     public String getDpub() {
         return dpub;
     }
 
-    public void setDpub(String dpub) {
+    public HeaderItems setDpub(String dpub) {
         this.dpub = dpub;
+        return this;
     }
 
     public String getRefpub() {
         return refpub;
     }
 
-    public void setRefpub(String refpub) {
+    public HeaderItems setRefpub(String refpub) {
         this.refpub = refpub;
+        return this;
     }
 
     public String getAno() {
         return ano;
     }
 
-    public void setAno(String ano) {
+    public HeaderItems setAno(String ano) {
         this.ano = ano;
+        return this;
     }
 
     public String getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    public HeaderItems setVersion(String version) {
         this.version = version;
+        return this;
     }
 
     public String getReferencia() {
         return referencia;
     }
 
-    public void setReferencia(String referencia) {
+    public HeaderItems setReferencia(String referencia) {
         this.referencia = referencia;
+        return this;
     }
 
     public String getFechaDog() {
         return fechaDog;
     }
 
-    public void setFechaDog(String fechaDog) {
+    public HeaderItems setFechaDog(String fechaDog) {
         this.fechaDog = fechaDog;
+        return this;
     }
 
     public String getDvl_desde() {
         return dvl_desde;
     }
 
-    public void setDvl_desde(String dvl_desde) {
+    public HeaderItems setDvl_desde(String dvl_desde) {
         this.dvl_desde = dvl_desde;
+        return this;
     }
 
     public String getEstadoSeleccionado() {
         return estadoSeleccionado;
     }
 
-    public void setEstadoSeleccionado(String estadoSeleccionado) {
+    public HeaderItems setEstadoSeleccionado(String estadoSeleccionado) {
         this.estadoSeleccionado = estadoSeleccionado;
+        return this;
     }
 
     public String getNomfic() {
         return nomfic;
     }
 
-    public void setNomfic(String nomfic) {
+    public HeaderItems setNomfic(String nomfic) {
         this.nomfic = nomfic;
+        return this;
     }
 
     public String getColectivoSeleccionado() {
         return colectivoSeleccionado;
     }
 
-    public void setColectivoSeleccionado(String colectivoSeleccionado) {
+    public HeaderItems setColectivoSeleccionado(String colectivoSeleccionado) {
         this.colectivoSeleccionado = colectivoSeleccionado;
+        return this;
     }
 
     public String getOrganismoSeleccionado() {
         return organismoSeleccionado;
     }
 
-    public void setOrganismoSeleccionado(String organismoSeleccionado) {
+    public HeaderItems setOrganismoSeleccionado(String organismoSeleccionado) {
         this.organismoSeleccionado = organismoSeleccionado;
+        return this;
     }
 
     public String getRangoSeleccionado() {
         return rangoSeleccionado;
     }
 
-    public void setRangoSeleccionado(String rangoSeleccionado) {
+    public HeaderItems setRangoSeleccionado(String rangoSeleccionado) {
         this.rangoSeleccionado = rangoSeleccionado;
+        return this;
     }
 
     public String getSeccionSeleccionada() {
         return seccionSeleccionada;
     }
 
-    public void setSeccionSeleccionada(String seccionSeleccionada) {
+    public HeaderItems setSeccionSeleccionada(String seccionSeleccionada) {
         this.seccionSeleccionada = seccionSeleccionada;
+        return this;
     }
 
     public String getTematicaSeleccionada() {
         return tematicaSeleccionada;
     }
 
-    public void setTematicaSeleccionada(String tematicaSeleccionada) {
+    public HeaderItems setTematicaSeleccionada(String tematicaSeleccionada) {
         this.tematicaSeleccionada = tematicaSeleccionada;
+        return this;
     }
 
     public String getNumDog() {
         return numDog;
     }
 
-    public void setNumDog(String numDog) {
+    public HeaderItems setNumDog(String numDog) {
         this.numDog = numDog;
+        return this;
     }
 
     @Override
@@ -182,12 +199,12 @@ public class HeaderItems {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HeaderItems that = (HeaderItems) o;
-        return Objects.equals(titulo, that.titulo) && Objects.equals(publicador, that.publicador) && Objects.equals(dpub, that.dpub) && Objects.equals(refpub, that.refpub) && Objects.equals(ano, that.ano) && Objects.equals(version, that.version) && Objects.equals(referencia, that.referencia) && Objects.equals(fechaDog, that.fechaDog) && Objects.equals(dvl_desde, that.dvl_desde) && Objects.equals(estadoSeleccionado, that.estadoSeleccionado) && Objects.equals(nomfic, that.nomfic) && Objects.equals(colectivoSeleccionado, that.colectivoSeleccionado) && Objects.equals(organismoSeleccionado, that.organismoSeleccionado) && Objects.equals(rangoSeleccionado, that.rangoSeleccionado) && Objects.equals(seccionSeleccionada, that.seccionSeleccionada) && Objects.equals(tematicaSeleccionada, that.tematicaSeleccionada) && Objects.equals(numDog, that.numDog);
+        return Objects.equals(getTitulo(), that.getTitulo()) && Objects.equals(getPublicador(), that.getPublicador()) && Objects.equals(getDpub(), that.getDpub()) && Objects.equals(getRefpub(), that.getRefpub()) && Objects.equals(getAno(), that.getAno()) && Objects.equals(getVersion(), that.getVersion()) && Objects.equals(getReferencia(), that.getReferencia()) && Objects.equals(getFechaDog(), that.getFechaDog()) && Objects.equals(getDvl_desde(), that.getDvl_desde()) && Objects.equals(getEstadoSeleccionado(), that.getEstadoSeleccionado()) && Objects.equals(getNomfic(), that.getNomfic()) && Objects.equals(getColectivoSeleccionado(), that.getColectivoSeleccionado()) && Objects.equals(getOrganismoSeleccionado(), that.getOrganismoSeleccionado()) && Objects.equals(getRangoSeleccionado(), that.getRangoSeleccionado()) && Objects.equals(getSeccionSeleccionada(), that.getSeccionSeleccionada()) && Objects.equals(getTematicaSeleccionada(), that.getTematicaSeleccionada()) && Objects.equals(getNumDog(), that.getNumDog());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(titulo, publicador, dpub, refpub, ano, version, referencia, fechaDog, dvl_desde, estadoSeleccionado, nomfic, colectivoSeleccionado, organismoSeleccionado, rangoSeleccionado, seccionSeleccionada, tematicaSeleccionada, numDog);
+        return Objects.hash(getTitulo(), getPublicador(), getDpub(), getRefpub(), getAno(), getVersion(), getReferencia(), getFechaDog(), getDvl_desde(), getEstadoSeleccionado(), getNomfic(), getColectivoSeleccionado(), getOrganismoSeleccionado(), getRangoSeleccionado(), getSeccionSeleccionada(), getTematicaSeleccionada(), getNumDog());
     }
 
     @Override

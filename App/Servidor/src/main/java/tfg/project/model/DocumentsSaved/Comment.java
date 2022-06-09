@@ -17,24 +17,27 @@ public class Comment {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public Comment setFecha(String fecha) {
         this.fecha = fecha;
+        return this;
     }
 
     public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public Comment setUsuario(String usuario) {
         this.usuario = usuario;
+        return this;
     }
 
     public String getContenido() {
         return contenido;
     }
 
-    public void setContenido(String contenido) {
+    public Comment setContenido(String contenido) {
         this.contenido = contenido;
+        return this;
     }
 
     @Override
@@ -42,12 +45,12 @@ public class Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(fecha, comment.fecha) && Objects.equals(usuario, comment.usuario) && Objects.equals(contenido, comment.contenido);
+        return Objects.equals(getFecha(), comment.getFecha()) && Objects.equals(getUsuario(), comment.getUsuario()) && Objects.equals(getContenido(), comment.getContenido());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fecha, usuario, contenido);
+        return Objects.hash(getFecha(), getUsuario(), getContenido());
     }
 
     @Override
