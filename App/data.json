@@ -1,0 +1,11 @@
+[
+  {
+    "_id": "usuario@usuario.com",
+    "nome": "Usuario",
+    "password": "$2a$10$MjcnWn7XfDqaARh5.PpId.xAOuBF327Vae9Am3sn8V4uVmhkmDiym",
+    "roles": [
+      "ROLE_ADMIN"
+    ],
+    "_class": "tfg.project.model.User"
+  }
+]

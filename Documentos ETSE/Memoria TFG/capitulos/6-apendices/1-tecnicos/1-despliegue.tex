@@ -12,7 +12,7 @@ Una vez hemos instalado estos tres programas, procedemos al despliegue. Para pod
 
 - En caso de contar con un JDK instalado en nuestro ordenador:
 \begin{enumerate}
-\item Acceder al directorio {\it Servidor/build/libs} en la carpeta del proyecto.
+\item Acceder al directorio {\it Servidor} en la carpeta del proyecto.
 \item Ejecutar el archivo {\it TFG-Servidor.jar}.
 \end{enumerate}
 
@@ -33,15 +33,7 @@ En cuanto al despliegue de la parte del {\bf cliente}:
 \item Se abrirá una pestaña en su navegador predeterminado. Este proceso puede demorarse unos minutos. En caso de no abrirse automáticamente, puede acceder manualmente accediendo al puerto 3000, {\it \url{http://localhost:3000/}}.
 \end{enumerate}
 
-Por último, cabe indicar que por motivos de seguridad se ha de instalar un usuario a mano en la base de datos. Esto se debe a que en la aplicación solo se permite registrar usuarios cuando existe un administrador. Se deja a continuación una plantilla del documento a insertar en la tabla {\it users} de MongoDB:
+Por último, cabe indicar que por motivos de seguridad se ha de instalar un usuario a mano en la base de datos. Esto se debe a que en la aplicación solo se permite registrar usuarios cuando existe un administrador. Es por ello que se debe acceder a MongoDB, crear una nueva base de datos denominada ``tfg'', y la colección sea ``users''. Importamos el archivo {\it data.json}, que contiene el usuario inicial.
+\\
 
-\begin{verbatim}
-{
-	"email": "usuario@usuario.com",
-	"nome": "Usuario",
-	"password": "",
-	"roles": ["ROLE_ADMIN"]
-}
-\end{verbatim}
-
-Para iniciar sesión por primera vez, habrá que acceder con el email descrito anteriormente, sin introducir contraseña.
+Cuando sea el caso de iniciar sesión por primera vez, habrá que acceder con el email {\it usuario@usuario.com} y la contraseña {\it Abc123..}.
