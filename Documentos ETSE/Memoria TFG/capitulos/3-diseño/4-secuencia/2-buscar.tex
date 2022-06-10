@@ -13,8 +13,8 @@ Se representa la operación de búsqueda de leyes en la base de datos de lex.gal
     \item Este método invoca al hook useNormas() del archivo contenido en hooks().
     \item Se invoca al método findNormas() de la carpeta api.
     \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función getAll() de LocalController, pues se hace un GET.
-    \item Se invoca al servicio getAll() de UserService.
-    \item Se invoca la operación find del template MongoTemplate, pues se busca según un texto, páginas y también tamaño de búsqueda.
+    \item Se invoca al servicio getAll() de FinalDocumentService.
+    \item Se invoca la operación find() del template MongoTemplate, pues se busca según un texto, páginas y también tamaño de búsqueda.
     \item Se invoca la operación de recuperar en la base de datos de MongoDB.
     \item Se recuperan las leyes encontradas en la base de datos.
     \item Se procede a devolver la respuesta al usuario desde este paso, realizando el proceso inverso. El usuario recibirá las leyes encontradas de forma paginada, según el texto de sumario que había escrito.
