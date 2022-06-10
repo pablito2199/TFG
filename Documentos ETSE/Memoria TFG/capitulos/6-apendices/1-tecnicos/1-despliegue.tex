@@ -32,3 +32,16 @@ En cuanto al despliegue de la parte del {\bf cliente}:
 \item Ejecutar el comando {\it npm start}.
 \item Se abrirá una pestaña en su navegador predeterminado. Este proceso puede demorarse unos minutos. En caso de no abrirse automáticamente, puede acceder manualmente accediendo al puerto 3000, {\it \url{http://localhost:3000/}}.
 \end{enumerate}
+
+Por último, cabe indicar que por motivos de seguridad se ha de instalar un usuario a mano en la base de datos. Esto se debe a que en la aplicación solo se permite registrar usuarios cuando existe un administrador. Se deja a continuación una plantilla del documento a insertar en la tabla {\it users} de MongoDB:
+
+\begin{verbatim}
+{
+	"email": "usuario@usuario.com",
+	"nome": "Usuario",
+	"password": "",
+	"roles": ["ROLE_ADMIN"]
+}
+\end{verbatim}
+
+Para iniciar sesión por primera vez, habrá que acceder con el email descrito anteriormente, sin introducir contraseña.

@@ -27,7 +27,6 @@ public class User {
     private String nome;
     @Schema(description = "Apelidos do usuario.", example = "Pérez Castro")
     private String apelidos;
-    @NotBlank(message = "O campo de contraseña non pode estar vacío.")
     @Schema(description = "Contraseña do usuario.", example = "Abc123.@")
     private String password;
     @Schema(description = "Rol do usuario.", example = "[\"ROLE_USER\"]")
