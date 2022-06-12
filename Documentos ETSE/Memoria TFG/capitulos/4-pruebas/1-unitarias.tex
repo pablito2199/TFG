@@ -1,9 +1,9 @@
 \section{Pruebas unitarias}
 
-Las pruebas unitarias \cite{pruebaunitaria} tienen como objetivo comprobar que las funcionalidades de la aplicación cumplen los objetivos esperados a la hora de introducir parámetros válidos e inválidos en la aplicación. Es por ello que estas pruebas han de ser siempre lo más completas posible, y que abarquen un gran número de casos de entrada. 
+Las pruebas unitarias \cite{pruebaunitaria} tienen como objetivo comprobar que las funcionalidades de la aplicación cumplen los objetivos esperados a la hora de introducir parámetros válidos e inválidos en la aplicación. Es por ello que estas pruebas han de ser siempre lo más completas posible, y deben abarcar un gran número de casos de entrada.
 \\
 
-Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlacePUX]{D.5. Plantilla de pruebas unitarias}, los cuales se muestran a continuación.
+Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlacePUX]{D.5. Plantilla de pruebas unitarias}. Cabe mencionar también que en las dependencias se incluyen los requisitos funcionales especificados en el \hyperref[APRequisitosFuncionales]{Apéndice C.1. Requisitos funcionales}. Los distintos casos se muestran a continuación.
 
 \begin{table}[H]
 \begin{center}
@@ -15,7 +15,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & La sesión se inicia correctamente. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 01.}
+\caption{Prueba unitaria 01. Inicio de sesión con parámetros correctos.}
 \label{enlacePU1}
 \end{center}
 \end{table}
@@ -30,7 +30,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & Se muestra un mensaje de error al usuario y no se inicia la sesión. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 02.}
+\caption{Prueba unitaria 02. Inicio de sesión con parámetros incorrectos.}
 \label{enlacePU2}
 \end{center}
 \end{table}
@@ -45,7 +45,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & Se cierra la sesión del usuario en la aplicación. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 03.}
+\caption{Prueba unitaria 03. Cierre de sesión.}
 \label{enlacePU3}
 \end{center}
 \end{table}
@@ -60,7 +60,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & Se registra al usuario en la aplicación. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 04.}
+\caption{Prueba unitaria 04. Registro de usuario con parámetros válidos.}
 \label{enlacePU4}
 \end{center}
 \end{table}
@@ -75,7 +75,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & Se muestra un mensaje de error al usuario administrador indicando cuál es el campo inválido. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 05.}
+\caption{Prueba unitaria 05. Registro de usuario con parámetros inválidos.}
 \label{enlacePU5}
 \end{center}
 \end{table}
@@ -90,7 +90,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & Se muestran al usuario las leyes encontradas en el DOG. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 06.}
+\caption{Prueba unitaria 06. Búsqueda de leyes en el DOG con filtros válidos.}
 \label{enlacePU6}
 \end{center}
 \end{table}
@@ -102,10 +102,10 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-04. \\ \hline
 \centering {\bf Descripción} &  El usuario busca cualquier ley en el DOG sin introducir nada en el campo de texto de búsqueda. \\ \hline
-\centering {\bf Criterio de aceptación} & Se muestran al usuario un mensaje indicando que es necesario introducir un texto para buscar. \\ \hline
+\centering {\bf Criterio de aceptación} & Se muestra al usuario un mensaje indicando que es necesario introducir un texto para buscar. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 06.}
+\caption{Prueba unitaria 07. Búsqueda de leyes en el DOG sin introducir texto.}
 \label{enlacePU7}
 \end{center}
 \end{table}
@@ -120,7 +120,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & Se muestra al usuario la ley en la página del DOG. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 08.}
+\caption{Prueba unitaria 08. Previsualizar una ley en el DOG.}
 \label{enlacePU8}
 \end{center}
 \end{table}
@@ -135,7 +135,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & La ley se almacena en lex.gal y se muestra al usuario un mensaje de que se ha almacenado correctamente. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 09.}
+\caption{Prueba unitaria 09. Importar ley del DOG en lex.gal.}
 \label{enlacePU9}
 \end{center}
 \end{table}
@@ -150,7 +150,7 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \centering {\bf Criterio de aceptación} & Se muestran al usuario las leyes encontradas. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 10.}
+\caption{Prueba unitaria 10. El usuario busca una ley en lex.gal.}
 \label{enlacePU10}
 \end{center}
 \end{table}
@@ -158,14 +158,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-11} & El usuario busca una ley en lex.gal  \\ \hline\hline
+\centering {\bf PU-11} & Previsualizar una ley en lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-07. \\ \hline
-\centering {\bf Descripción} &  El usuario busca cualquier ley en lex.gal, ya sea con texto de búsqueda o sin él. \\ \hline
-\centering {\bf Criterio de aceptación} & Se muestran al usuario las leyes encontradas. \\ \hline
+\centering {\bf Dependencias} & FRQ-08. \\ \hline
+\centering {\bf Descripción} &  El usuario intenta previsualizar una ley en lex.gal pinchando en el icono del ojo de las acciones de una ley de lex.gal. \\ \hline
+\centering {\bf Criterio de aceptación} & Se muestra al usuario la ley correspondiente en una pestaña nueva. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 11.}
+\caption{Prueba unitaria 11. Previsualizar una ley en lex.gal.}
 \label{enlacePU11}
 \end{center}
 \end{table}
@@ -173,14 +173,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-12} & Previsualizar una ley en lex.gal  \\ \hline\hline
+\centering {\bf PU-12} & Cargar los datos de una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-08. \\ \hline
-\centering {\bf Descripción} &  El usuario intenta previsualizar una ley en lex.gal pinchando en el icono del ojo de las acciones de una ley de lex.gal. \\ \hline
-\centering {\bf Criterio de aceptación} & Se muestra al usuario la ley correspondiente en una pestaña nueva. \\ \hline
+\centering {\bf Dependencias} & FRQ-09. \\ \hline
+\centering {\bf Descripción} &  Al pinchar el botón de editar, se cargan los datos de la ley a editar en la página de edición. \\ \hline
+\centering {\bf Criterio de aceptación} & Se muestra al usuario la ley correspondiente con sus datos en la página de edición. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 12.}
+\caption{Prueba unitaria 12. Cargar los datos de una ley de lex.gal.}
 \label{enlacePU12}
 \end{center}
 \end{table}
@@ -188,14 +188,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-13} & Cargar los datos de una ley de lex.gal  \\ \hline\hline
+\centering {\bf PU-13} & Proponer un cambio en la ley principal de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-09. \\ \hline
-\centering {\bf Descripción} &  Al pinchar el botón de editar, se cargan los datos de la ley a editar en la página de edición. \\ \hline
-\centering {\bf Criterio de aceptación} & Se muestra al usuario la ley correspondiente con sus datos en la página de edición. \\ \hline
+\centering {\bf Dependencias} & FRQ-10. \\ \hline
+\centering {\bf Descripción} &  El usuario propone un cambio sobre cualquier párrafo de la ley principal. \\ \hline
+\centering {\bf Criterio de aceptación} & El cambio propuesto se añade a la lista de cambios, y se cambia el color de fondo del párrafo donde se introduce el cambio. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 13.}
+\caption{Prueba unitaria 13. Proponer un cambio en la ley principal de lex.gal.}
 \label{enlacePU13}
 \end{center}
 \end{table}
@@ -203,14 +203,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-14} & Proponer un cambio en la ley principal  \\ \hline\hline
+\centering {\bf PU-14} & Descartar una selección de cambios de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-10. \\ \hline
-\centering {\bf Descripción} &  El usuario propone un cambio sobre cualquier párrafo de la ley principal. \\ \hline
-\centering {\bf Criterio de aceptación} & El cambio propuesto se añade a la lista de cambios, y se cambia el color de fondo del párrafo donde se introduce el cambio. \\ \hline
+\centering {\bf Descripción} &  El usuario descarta una selección de cambios en la lista de cambios propuestos. \\ \hline
+\centering {\bf Criterio de aceptación} & Se descarta la selección de cambios en la lista de cambios propuestos. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 14.}
+\caption{Prueba unitaria 14. Descartar una selección de cambios de lex.gal.}
 \label{enlacePU14}
 \end{center}
 \end{table}
@@ -218,14 +218,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-15} & Descartar una selección de cambios de lex.gal  \\ \hline\hline
+\centering {\bf PU-15} & Descartar todos los cambios propuestos a una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-10. \\ \hline
-\centering {\bf Descripción} &  El usuario descarta una selección de cambios en la lista de cambios propuestos. \\ \hline
-\centering {\bf Criterio de aceptación} & Se descarta la selección de cambios en la lista de cambios propuestos. \\ \hline
+\centering {\bf Descripción} &  El usuario descarta todos los cambios en la lista de cambios propuestos. \\ \hline
+\centering {\bf Criterio de aceptación} & Se descartan todos los cambios en la lista de cambios propuestos. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 15.}
+\caption{Prueba unitaria 15. Descartar todos los cambios propuestos a una ley de lex.gal.}
 \label{enlacePU15}
 \end{center}
 \end{table}
@@ -233,14 +233,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-16} & Descartar todos los cambios propuestos a una ley  \\ \hline\hline
+\centering {\bf PU-16} & Añadir una anotación sobre un párrafo de la ley principal de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-10. \\ \hline
-\centering {\bf Descripción} &  El usuario descarta todos los cambios en la lista de cambios propuestos. \\ \hline
-\centering {\bf Criterio de aceptación} & Se descartan todos los cambios en la lista de cambios propuestos. \\ \hline
+\centering {\bf Dependencias} & FRQ-11. \\ \hline
+\centering {\bf Descripción} &  El usuario añade una anotación sobre cualquier párrafo de la ley principal. \\ \hline
+\centering {\bf Criterio de aceptación} & La anotación se añade a la lista de notas, y se cambia el color de fondo del párrafo donde se introduce el cambio. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 16.}
+\caption{Prueba unitaria 16. Añadir una anotación sobre un párrafo de la ley principal de lex.gal.}
 \label{enlacePU16}
 \end{center}
 \end{table}
@@ -248,14 +248,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-17} & Añadir una anotación sobre un párrafo de la ley principal  \\ \hline\hline
+\centering {\bf PU-17} & Descartar una selección de anotaciones de una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-11. \\ \hline
-\centering {\bf Descripción} &  El usuario añade una anotación sobre cualquier párrafo de la ley principal. \\ \hline
-\centering {\bf Criterio de aceptación} & La anotación se añade a la lista de notas, y se cambia el color de fondo del párrafo donde se introduce el cambio. \\ \hline
+\centering {\bf Descripción} &  El usuario descarta una selección de anotaciones en la lista de notas. \\ \hline
+\centering {\bf Criterio de aceptación} & Se descarta la selección de anotaciones en la lista de notas. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 17.}
+\caption{Prueba unitaria 17. Descartar una selección de anotaciones de una ley de lex.gal.}
 \label{enlacePU17}
 \end{center}
 \end{table}
@@ -263,14 +263,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-18} & Descartar una selección de anotaciones de una ley  \\ \hline\hline
+\centering {\bf PU-18} & Descartar todas las anotaciones de una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-11. \\ \hline
-\centering {\bf Descripción} &  El usuario descarta una selección de anotaciones en la lista de notas. \\ \hline
-\centering {\bf Criterio de aceptación} & Se descarta la selección de anotaciones en la lista de notas. \\ \hline
+\centering {\bf Descripción} &  El usuario descarta todas las anotaciones en la lista de notas. \\ \hline
+\centering {\bf Criterio de aceptación} & Se descartan todas las anotaciones en la lista de notas. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 18.}
+\caption{Prueba unitaria 18. Descartar todas las anotaciones de una ley de lex.gal.}
 \label{enlacePU18}
 \end{center}
 \end{table}
@@ -278,14 +278,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-19} & Descartar todas las anotaciones de una ley  \\ \hline\hline
+\centering {\bf PU-19} & Añadir un comentario sobre cualquier anotación  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-11. \\ \hline
-\centering {\bf Descripción} &  El usuario descarta todas las anotaciones en la lista de notas. \\ \hline
-\centering {\bf Criterio de aceptación} & Se descartan todas las anotaciones en la lista de notas. \\ \hline
+\centering {\bf Descripción} &  El usuario añade un comentario sobre una anotación. \\ \hline
+\centering {\bf Criterio de aceptación} & El comentario es añadido a la anotación. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 19.}
+\caption{Prueba unitaria 19. Añadir un comentario sobre cualquier anotación.}
 \label{enlacePU19}
 \end{center}
 \end{table}
@@ -293,14 +293,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-20} & Añadir un comentario sobre cualquier anotación  \\ \hline\hline
+\centering {\bf PU-20} & Cargar las leyes vinculadas a una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-11. \\ \hline
-\centering {\bf Descripción} &  El usuario añade un comentario sobre una anotación. \\ \hline
-\centering {\bf Criterio de aceptación} & El comentario es añadido a la anotación. \\ \hline
+\centering {\bf Dependencias} & FRQ-12. \\ \hline
+\centering {\bf Descripción} &  El usuario pincha en el apartado ``Leis vinc.'' en la pantalla de edición. \\ \hline
+\centering {\bf Criterio de aceptación} & Se muestra la lista de leyes vinculadas a la ley. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 20.}
+\caption{Prueba unitaria 20. Cargar las leyes vinculadas a una ley de lex.gal.}
 \label{enlacePU20}
 \end{center}
 \end{table}
@@ -308,14 +308,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-21} & Cargar las leyes vinculadas a una ley  \\ \hline\hline
+\centering {\bf PU-21} & Añadir una ley vinculada a la lista de leyes vinculadas a una ley  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-12. \\ \hline
-\centering {\bf Descripción} &  El usuario pincha en el apartado ``Leis vinc.'' en la pantalla de edición. \\ \hline
-\centering {\bf Criterio de aceptación} & Se muestra la lista de leyes vinculadas a la ley. \\ \hline
+\centering {\bf Dependencias} & FRQ-13. \\ \hline
+\centering {\bf Descripción} &  El usuario añade una ley vinculada a la lista de leyes vinculadas de una ley principal. \\ \hline
+\centering {\bf Criterio de aceptación} & Se añade la ley vinculada a la lista de leyes vinculadas. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 21.}
+\caption{Prueba unitaria 21. Añadir una ley vinculada a la lista de leyes vinculadas a una ley.}
 \label{enlacePU21}
 \end{center}
 \end{table}
@@ -323,14 +323,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-22} & Añadir una ley vinculada a la lista de leyes vinculadas a una ley  \\ \hline\hline
+\centering {\bf PU-22} & Ir al párrafo donde se modifica una sección de la ley vinculada  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-13. \\ \hline
-\centering {\bf Descripción} &  El usuario añade una ley vinculada a la lista de leyes vinculadas de una ley principal. \\ \hline
-\centering {\bf Criterio de aceptación} & Se añade la ley vinculada a la lista de leyes vinculadas. \\ \hline
+\centering {\bf Dependencias} & FRQ-14. \\ \hline
+\centering {\bf Descripción} &  El usuario pincha en la ley principal en un párrafo con fondo de color azul. \\ \hline
+\centering {\bf Criterio de aceptación} & Se redirige al usuario a la parte de la ley vinculada donde se ha de realizar el cambio. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 22.}
+\caption{Prueba unitaria 22. Ir al párrafo donde se modifica una sección de la ley vinculada.}
 \label{enlacePU22}
 \end{center}
 \end{table}
@@ -338,14 +338,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-23} & Ir al párrafo donde se modifica una sección de la ley vinculada  \\ \hline\hline
+\centering {\bf PU-23} & Proponer un cambio sobre la ley vinculada  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-14. \\ \hline
-\centering {\bf Descripción} &  El usuario pincha en la ley principal en un párrafo con fondo de color azul. \\ \hline
-\centering {\bf Criterio de aceptación} & Se redirige al usuario a la parte de la ley vinculada donde se ha de realizar el cambio. \\ \hline
+\centering {\bf Descripción} &  El usuario propone un cambio a una ley vinculada. \\ \hline
+\centering {\bf Criterio de aceptación} & Se guarda el cambio en la ley vinculada y se muestra con un fondo de color verde. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 23.}
+\caption{Prueba unitaria 23. Proponer un cambio sobre la ley vinculada.}
 \label{enlacePU23}
 \end{center}
 \end{table}
@@ -353,14 +353,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-24} & Proponer un cambio sobre la ley vinculada  \\ \hline\hline
+\centering {\bf PU-24} & Descartar un cambio sobre la ley vinculada  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-14. \\ \hline
-\centering {\bf Descripción} &  El usuario propone un cambio a una ley vinculada. \\ \hline
-\centering {\bf Criterio de aceptación} & Se guarda el cambio en la ley vinculada y se muestra con un fondo de color verde. \\ \hline
+\centering {\bf Descripción} &  El usuario descarta un cambio sobre una ley vinculada. \\ \hline
+\centering {\bf Criterio de aceptación} & Se descarta el cambio en la ley vinculada y se quita el color de fondo. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 24.}
+\caption{Prueba unitaria 24. Descartar un cambio sobre la ley vinculada.}
 \label{enlacePU24}
 \end{center}
 \end{table}
@@ -368,14 +368,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-25} & Descartar un cambio sobre la ley vinculada  \\ \hline\hline
+\centering {\bf PU-25} & Eliminar una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-14. \\ \hline
-\centering {\bf Descripción} &  El usuario descarta un cambio sobre una ley vinculada. \\ \hline
-\centering {\bf Criterio de aceptación} & Se descarta el cambio en la ley vinculada y se quita el fondo de color verde. \\ \hline
+\centering {\bf Dependencias} & FRQ-15. \\ \hline
+\centering {\bf Descripción} &  El usuario pincha en ``Eliminar de lex.gal''. \\ \hline
+\centering {\bf Criterio de aceptación} & Se elimina la ley de lex.gal. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 25.}
+\caption{Prueba unitaria 25. Eliminar una ley de lex.gal.}
 \label{enlacePU25}
 \end{center}
 \end{table}
@@ -383,14 +383,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-26} & Eliminar una ley de lex.gal  \\ \hline\hline
+\centering {\bf PU-26} & Validar y publicar una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-15. \\ \hline
-\centering {\bf Descripción} &  El usuario pincha en ``Eliminar de lex.gal''. \\ \hline
-\centering {\bf Criterio de aceptación} & Se elimina la ley de lex.gal. \\ \hline
+\centering {\bf Dependencias} & FRQ-10, FRQ-11, FRQ-12, FRQ-13, FRQ-14. \\ \hline
+\centering {\bf Descripción} &  El usuario pincha en ``Validar e publicar''. \\ \hline
+\centering {\bf Criterio de aceptación} & Se almacena la ley con todos los cambios, anotaciones, cambios sobre leyes vinculadas, leyes vinculadas a la ley y datos de cabecera editados en lex.gal. El estado de la ley y sus leyes vinculadas pasa a ser de Validada. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 26.}
+\caption{Prueba unitaria 26. Validar y publicar una ley de lex.gal.}
 \label{enlacePU26}
 \end{center}
 \end{table}
@@ -398,29 +398,14 @@ Para especificar cada caso de prueba unitaria se ha empleado la \hyperref[enlace
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-27} & Validar y publicar una ley lex.gal  \\ \hline\hline
-\centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Dependencias} & FRQ-10, FRQ-11, FRQ-12, FRQ-13, FRQ-14. \\ \hline
-\centering {\bf Descripción} &  El usuario pincha en ``Validar e publicar''. \\ \hline
-\centering {\bf Criterio de aceptación} & Se almacena la ley con todos los cambios, anotaciones, cambios sobre leyes vinculadas, leyes vinculadas a la ley y datos de cabecera editados en lex.gal. El estado de la ley y sus leyes vinculadas pasa a ser de Validada. \\ \hline
-\centering {\bf Estado} & Superada \\ \hline
-\end{tabular}
-\caption{Prueba unitaria 27.}
-\label{enlacePU27}
-\end{center}
-\end{table}
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PU-28} & Guardar como borrador una ley de lex.gal  \\ \hline\hline
+\centering {\bf PU-27} & Guardar como borrador una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Dependencias} & FRQ-10, FRQ-11, FRQ-12, FRQ-13, FRQ-14. \\ \hline
 \centering {\bf Descripción} &  El usuario pincha en ``Gardar como borrador''. \\ \hline
 \centering {\bf Criterio de aceptación} & Se almacena la ley con todos los cambios, anotaciones, cambios sobre leyes vinculadas, leyes vinculadas a la ley y datos de cabecera editados en lex.gal. El estado de la ley y sus leyes vinculadas pasa a ser de Borrador. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba unitaria 28.}
-\label{enlacePU28}
+\caption{Prueba unitaria 27. Guardar como borrador una ley de lex.gal.}
+\label{enlacePU27}
 \end{center}
 \end{table}

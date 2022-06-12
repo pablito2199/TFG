@@ -8,10 +8,12 @@ En cuanto a este diagrama, se representa la operación de registro de un usuario
 \label{enlaceDRegistro}
 \end{figure}
 
+En la \hyperref[enlaceDRegistro]{Figura 3.8} se ilustra el diagrama de secuencia de la operación de registro de un usuario. Se puede resumir en los siguientes pasos:
+
 \begin{enumerate}
     \item El usuario pincha en el botón de registro de usuarios.
-    \item Este método invoca el método createUser() del archivo contenido en hooks().
-    \item Se invoca al método createUser() de la carpeta api.
+    \item Este método invoca el método createUser() del archivo contenido en  {\bf hooks}.
+    \item Se invoca al método createUser() de la carpeta {\bf api}.
     \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función insert() de UserController, pues se hace un POST.
     \item Se invoca al servicio insert() de UserService.
     \item Se invoca la operación insert() del repositorio UserRepository, para insertar una ley.

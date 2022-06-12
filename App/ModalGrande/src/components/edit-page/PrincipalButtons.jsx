@@ -12,6 +12,11 @@ export const PrincipalButtons = ({ leiModificada, leiModificadaData, idDb, htmlD
     const submit = async (borrador) => {
         if (window.confirm('Os seus cambios serán gardados. Desexa continuar?')) {
             let documento = ''
+            if (!newHtmlDoc) {
+                newHtmlDoc = new DOMParser().parseFromString(htmlDoc, "text/xml")
+            } else {
+                newHtmlDoc = new DOMParser().parseFromString(newHtmlDoc, "text/xml")
+            }
             if (cambios && cambios.length !== 0) {
                 cambios.forEach(cambio => {
                     newHtmlDoc.getElementsByClassName('story')[0].children[cambio.parrafo].innerText = cambio.parrafoNuevo
@@ -62,8 +67,8 @@ export const PrincipalButtons = ({ leiModificada, leiModificadaData, idDb, htmlD
                         leiModificadaData.newHtmlDoc = leiModificadaData.htmlDoc
                     }
                     if (cambiosVinculadas && cambiosVinculadas.length !== 0) {
+                        documento = new DOMParser().parseFromString(leiModificadaData.newHtmlDoc, "text/xml")
                         cambiosVinculadas.forEach(cambio => {
-                            documento = new DOMParser().parseFromString(leiModificadaData.newHtmlDoc, "text/xml")
                             documento.getElementsByClassName('story')[0].children[cambio.posicion].innerText = cambio.parrafoCambiado
                         })
                         leiModificadaData.newHtmlDoc = new XMLSerializer().serializeToString(documento)

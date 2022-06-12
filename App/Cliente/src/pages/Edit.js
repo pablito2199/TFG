@@ -298,7 +298,7 @@ export default function Edit() {
             <PrincipalButtons
                 idDb={state.norma.id}
                 htmlDoc={data.htmlDoc}
-                newHtmlDoc={new DOMParser().parseFromString(data.newHtmlDoc, "text/xml")}
+                newHtmlDoc={data.newHtmlDoc}
                 leiModificadaData={leiModificadaData}
                 notas={notas}
                 cambios={cambios}

@@ -8,13 +8,15 @@ Se representa la operación de búsqueda de leyes en la base de datos de lex.gal
 \label{enlaceDBuscar}
 \end{figure}
 
+En la \hyperref[enlaceDRegistro]{Figura 3.9} se ilustra el diagrama de secuencia de la operación de buscar una ley en lex.gal. Se puede resumir en los siguientes pasos:
+
 \begin{enumerate}
-    \item El usuario pincha en el buscar leyes en la página de búsqueda, con el texto de sumario si este ha escrito algo, o sin él.
+    \item El usuario pincha en buscar leyes en la página de búsqueda, con el texto de sumario si este ha escrito algo, o sin él.
     \item Este método invoca al hook useNormas() del archivo contenido en hooks().
-    \item Se invoca al método findNormas() de la carpeta api.
+    \item Se invoca al método findNormas() de la carpeta {\bf api}.
     \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función getAll() de LocalController, pues se hace un GET.
     \item Se invoca al servicio getAll() de FinalDocumentService.
-    \item Se invoca la operación find() del template MongoTemplate, pues se busca según un texto, páginas y también tamaño de búsqueda.
+    \item Se invoca la operación find() del Template MongoTemplate, pues se busca según un texto, páginas y también tamaño de búsqueda.
     \item Se invoca la operación de recuperar en la base de datos de MongoDB.
     \item Se recuperan las leyes encontradas en la base de datos.
     \item Se procede a devolver la respuesta al usuario desde este paso, realizando el proceso inverso. El usuario recibirá las leyes encontradas de forma paginada, según el texto de sumario que había escrito.

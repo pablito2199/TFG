@@ -30,7 +30,7 @@ export default function RegisterUsers() {
             return false
         }
         if (pass === "" || pass.length < 8) {
-            setError("La contraseña debe tener al menos 8 caracteres.")
+            setError("O contrasinal debe conter un mínimo de 8 caracteres.")
             return false;
         }
 
@@ -110,7 +110,7 @@ export default function RegisterUsers() {
                             </div>
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <span className='self-start ml-1 text-lg font-semibold'>Contraseña</span>
+                            <span className='self-start ml-1 text-lg font-semibold'>Contrasinal</span>
                             <div className='bg-white flex items-center gap-2'>
                                 <LockClosedIcon className='ml-2 h-6 text-gray-700' />
                                 {

@@ -14,7 +14,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Al iniciar sesión se recibe una respuesta HTTP con un código de estado 200, indicando que el inicio de sesión ha sido correcto. Entonces, se redirige a la página principal. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 01.}
+\caption{Prueba de integración 01. Redirigir con el inicio de sesión.}
 \label{enlacePI1}
 \end{center}
 \end{table}
@@ -28,7 +28,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Al pinchar en el botón el usuario es redirigido a la pantalla principal de la aplicación. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 02.}
+\caption{Prueba de integración 02. Volver a la página principal.}
 \label{enlacePI2}
 \end{center}
 \end{table}
@@ -38,11 +38,11 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
 \centering {\bf PI-03} & Registro de usuario  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
-\centering {\bf Descripción} & Cuando un usuario trate de registrar un usuario, debe recibir un mensaje indicativo de que la operación se realizó correctamente. \\ \hline
+\centering {\bf Descripción} & Cuando un usuario administrador trate de registrar un usuario, debe recibir un mensaje indicativo de que la operación se realizó correctamente. \\ \hline
 \centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 201, significará que se ha registrado, y, en ese caso, se muestra un mensaje en la pantalla indicando que esto ha sido así. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 03.}
+\caption{Prueba de integración 03. Registro de usuario.}
 \label{enlacePI3}
 \end{center}
 \end{table}
@@ -56,7 +56,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, significará que se han obtenido los resultados de búsqueda correctamente, y, en ese caso, se muestran en la pestaña. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 04.}
+\caption{Prueba de integración 04. Búsqueda de una ley en el DOG.}
 \label{enlacePI4}
 \end{center}
 \end{table}
@@ -70,7 +70,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 201, significará que se ha almacenado la ley en la base de datos, y, en ese caso, se muestra un mensaje al usuario indicando que la operación se realizó correctamente. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 05.}
+\caption{Prueba de integración 05. Importar una ley del DOG a lex.gal.}
 \label{enlacePI5}
 \end{center}
 \end{table}
@@ -78,13 +78,13 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|} \hline
-\centering {\bf PI-06} & Búsqueda de una ley en el DOG  \\ \hline\hline
+\centering {\bf PI-06} & Búsqueda de una ley en lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Descripción} & Cuando un usuario busca leyes en lex.gal, estas se le muestran en la pantalla según los filtros de búsqueda. \\ \hline
 \centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200 o un código de HTTP 404, significará que se han obtenido los resultados de búsqueda correctamente, o bien que no se han encontrado resultados. En dicha situación, se muestran las leyes encontradas, o un mensaje de aviso de que no se encontraron leyes. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 06.}
+\caption{Prueba de integración 06. Búsqueda de una ley en lex.gal.}
 \label{enlacePI6}
 \end{center}
 \end{table}
@@ -98,7 +98,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, significará que se han obtenido los datos de la ley, y, en ese caso, se muestra en la nueva pestaña una previsualización de la correspondiente ley. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 07.}
+\caption{Prueba de integración 07. Previsualizar una ley de lex.gal.}
 \label{enlacePI7}
 \end{center}
 \end{table}
@@ -112,7 +112,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, significará que se han obtenido los datos de la ley, y, en ese caso, se muestran en la pantalla todos los datos de la correspondiente ley. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 08.}
+\caption{Prueba de integración 08. Comenzar a editar una ley de lex.gal.}
 \label{enlacePI8}
 \end{center}
 \end{table}
@@ -126,7 +126,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, al abrir la pestaña de modificar ley vinculada se recibe el contenido de la ley vinculada, con los cambios realizados sobre esta. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 09.}
+\caption{Prueba de integración 09. Comenzar a editar una ley vinculada a otra ley de lex.gal.}
 \label{enlacePI9}
 \end{center}
 \end{table}
@@ -137,10 +137,10 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf PI-10} & Validar y publicar una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Descripción} & Cuando un usuario trate de validar y publicar una ley, deberá recibir un mensaje indicándole que todo ha ido correctamente, y ser redirigido a la página principal. \\ \hline
-\centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, esto indicará que tanto la ley principal como la vinculada han sido validadas y publicadas. Se le muestra un mensaje indicando como tal, y el usuario es redirigido a la página principal. \\ \hline
+\centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, esto indicará que tanto la ley principal como la vinculada han sido validadas y publicadas. Se le muestra un mensaje indicando que las leyes fueron validadas, y el usuario es redirigido a la página principal. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 10.}
+\caption{Prueba de integración 10. Validar y publicar una ley de lex.gal.}
 \label{enlacePI10}
 \end{center}
 \end{table}
@@ -151,10 +151,10 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf PI-11} & Guardar como borrador una ley de lex.gal  \\ \hline\hline
 \centering {\bf Versión} & 1.0 (08/06/2022) \\ \hline
 \centering {\bf Descripción} & Cuando un usuario trate de guardar como borrador una ley, deberá recibir un mensaje indicándole que todo ha ido correctamente, y ser redirigido a la página principal. \\ \hline
-\centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, esto indicará que tanto la ley principal como la vinculada han sido guardadas como borrador. Se le muestra un mensaje indicando como tal, y el usuario es redirigido a la página principal. \\ \hline
+\centering {\bf Criterio de aceptación} & Si se recibe un código HTTP 200, esto indicará que tanto la ley principal como la vinculada han sido guardadas como borrador. Se le muestra un mensaje que las leyes fueron guardadas como borrador, y el usuario es redirigido a la página principal. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 11.}
+\caption{Prueba de integración 11. Guardar como borrador una ley de lex.gal.}
 \label{enlacePI11}
 \end{center}
 \end{table}
@@ -168,7 +168,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Si se recibe un código de HTTP 204, esto indicará que la ley se ha borrado correctamente de la base de datos de lex.gal. Se redirige al usuario a la página principal, mostrando un mensaje de que la ley fue borrada correctamente. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 12.}
+\caption{Prueba de integración 12. Eliminar una ley de lex.gal.}
 \label{enlacePI12}
 \end{center}
 \end{table}
@@ -182,7 +182,7 @@ Para especificar cada caso de prueba de integración se ha empleado la \hyperref
 \centering {\bf Criterio de aceptación} & Si se pincha en el botón de ``Saír sen gardar'' en la pantalla de edición de leyes, el usuario será cuestionado acerca de si de verdad desea salir de la pantalla sin guardar. El usuario es redirigido a la página principal. \\ \hline
 \centering {\bf Estado} & Superada \\ \hline
 \end{tabular}
-\caption{Prueba de integración 13.}
+\caption{Prueba de integración 13. Salir de la pantalla de edición sin guardar cambios.}
 \label{enlacePI13}
 \end{center}
 \end{table}

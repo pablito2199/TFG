@@ -14,7 +14,7 @@ export default function Login() {
     const submit = async (event) => {
         event.preventDefault()
         await login(user, pass)
-        setError('Usuario o contraseña incorrectos.')
+        setError('Usuario ou contrasinal incorrectos.')
     }
 
     const mostrarContrasena = () => {
@@ -36,7 +36,7 @@ export default function Login() {
                         </div>
                     </div>
                     <div className='flex flex-col gap-1'>
-                        <span className='self-start ml-1 text-lg font-semibold'>Contraseña</span>
+                        <span className='self-start ml-1 text-lg font-semibold'>Contrasinal</span>
                         <div className='bg-white flex items-center gap-2'>
                             <LockClosedIcon className='ml-2 h-6 text-gray-700' />
                             {
