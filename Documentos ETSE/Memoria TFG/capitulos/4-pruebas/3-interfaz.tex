@@ -3,10 +3,114 @@
 A la hora de realizar una interfaz con el usuario, se ha de tener suma precaución, ya que es un aspecto clave en toda aplicación. Una aplicación siempre ha de resultar sencilla de utilizar por el usuario, mantener la usabilidad de esta, mantener un código de colores estable, etc.
 \\
 
-Para evaluar que la interfaz de la aplicación cumple estos requisitos, se han barajado distintas opciones. Un cuestionario SUS \cite{sus} no encajaba correctamente a la hora de evaluar esta aplicación, ya que la aplicación está destinada únicamente a profesionales en textos jurídicos, descartando esta posibilidad. 
+Para evaluar que la interfaz de la aplicación cumple estos requisitos, se han barajado distintas opciones. Por una parte, se ha realizado un cuestionario SUS \cite{sus}, donde se ha preguntado a expertos en textos jurídicos acerca de la usabilidad de la aplicación. Por otro lado, también se han utilizado los principios heurísticos de Nielsen \cite{nielsen} para evaluar la usabilidad de forma autónoma. 
+
+
+\subsection{Cuestionario SUS}
+
+Un cuestionario SUS (System Usability Scale) se trata de un método para evaluar la usabilidad de cualquier sistema. Gracias a este método se permite medir la eficacia, eficiencia y satisfacción de un usuario al usar la aplicación.
 \\
 
-Es por ello que se han utilizado como método de evaluación de la usabilidad de la aplicación los {\bf principios heurísticos de Nielsen} \cite{nielsen}. Este es una de las personas con más conocimiento acerca de la usabilidad, la cual ha definido como {\it ``la facilidad de usar una interfaz web''}. Son un total de diez principios de usabilidad, los cuales se han utilizado para comprobar en qué grado los cumple el sistema.
+Este cuestionario cuenta con un total de 10 preguntas y una escala del 1-5, siendo 1 {\it Totalmente en desacuerdo} y 5 {\it Totalmente de acuerdo}. Las cuestiones han de ser respondidas obligatoriamente, y son las siguientes:
+
+\begin{enumerate}
+    \item Me gustaría usar este sistema frecuentemente.
+    \item Encontré el sistema innecesariamente complejo.
+    \item Pensé que el sistema era fácil de usar.
+    \item Creo que necesitaría el apoyo de un técnico para poder utilizar este sistema.
+    \item Encontré que las diversas funciones de este sistema estaban bien integradas.
+    \item Pensé que había demasiada inconsistencia en este sistema.
+    \item Me imagino que la mayoría de la gente aprendería a utilizar este sistema muy rápidamente.
+    \item El sistema no informa en ningún momento de errores.
+    \item  El sistema informa de forma clara y concisa del estado de las operaciones que se realizan en él.
+    \item Necesitaba aprender muchas cosas antes de empezar con este sistema.
+\end{enumerate}
+
+Si se presta atención a las cuestiones, se puede ver que las impares tienen en cuenta aspectos positivos de la aplicación, mientras que las cuestiones impares tratan debilidades que esta puede poseer. Teniendo en cuenta esto, se puede proceder a calcular los resultados, donde se han tenido en cuenta las siguientes dos reglas:
+
+\begin{itemize}
+    \item Se suman las respuestas de los enunciados impares y después se resta 5.
+    \item Se suman las respuestas de los enunciados pares y después se resta 25.
+    \item Se suman los dos resultados y se multiplica por 2,5.
+\end{itemize}
+
+Teniendo en cuenta las reglas indicadas anteriormente, se han obtenido los siguientes resultados:
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{1-12}
+ &
+  \rotatebox{270}{\bf Pregunta 1} &
+  \rotatebox{270}{\bf Pregunta 2} &
+  \rotatebox{270}{\bf Pregunta 3} &
+  \rotatebox{270}{\bf Pregunta 4} &
+  \rotatebox{270}{\bf Pregunta 5} &
+  \rotatebox{270}{\bf Pregunta 6} &
+  \rotatebox{270}{\bf Pregunta 7} &
+  \rotatebox{270}{\bf Pregunta 8} &
+  \rotatebox{270}{\bf Pregunta 9} &
+  \rotatebox{270}{\bf Pregunta 10} &
+  {\bf Valoración (sobre 100)} \\ \hline
+\multicolumn{1}{|c|}{\bf Experto 1} &
+  4 &
+  2 &
+  4 &
+  2 &
+  5 &
+  1 &
+  4 &
+  1 &
+  4 &
+  3 &
+  80 \\ \hline
+\multicolumn{1}{|c|}{\bf Experto 2} &
+  4 &
+  2 &
+  5 &
+  3 &
+  4 &
+  2 &
+  5 &
+  2 &
+  4 &
+  3 &
+  75 \\ \hline
+\multicolumn{1}{|c|}{\bf Experto 3} &
+  5 &
+  2 &
+  4 &
+  1 &
+  4 &
+  2 &
+  4 &
+  2 &
+  4 &
+  2 &
+  80 \\ \hline
+\multicolumn{1}{|c|}{\bf Experto 4} &
+  4 &
+  2 &
+  5 &
+  1 &
+  4 &
+  1 &
+  4 &
+  1 &
+  4 &
+  2 &
+  85 \\ \hline
+\end{tabular}
+\caption{Resultados del cuestionario SUS.}
+\label{enlaceTablaSUS}
+\end{center}
+\end{table}
+
+La escala de usabilidad va de 0-100, siendo 68 un estado aceptable de usabilidad. Si realizamos una media de los resultados obtenidos, la puntuación final será de {\bf 80/100}, cumpliendo con un nivel aceptable de usabilidad para el usuario.
+
+\subsection{Principios heurísticos de Nielsen}
+
+Se han utilizado como método de evaluación de la usabilidad de la aplicación los {\bf principios heurísticos de Nielsen}. Son un total de diez principios que se utilizan para evaluar la usabilidad de una interfaz web, y, en este caso, se han utilizado para evaluar en qué grado es usable la aplicación.
 
 \begin{enumerate}
     \item {\bf Visibilidad del estado del sistema:} El sistema debe mantener siempre informado al usuario acerca de lo que está ocurriendo.
