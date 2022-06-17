@@ -98,7 +98,7 @@ export default class API {
                 'Authorization': this.#token
             }
         }
-        const response = await fetch(`/local/${sumario}`, requestOptions).catch(error => console.log(error))
+        const response = await fetch(`/local/sumario?sumario=${sumario}`, requestOptions).catch(error => console.log(error))
 
         if (response.status === 200) {
             return await response.json()

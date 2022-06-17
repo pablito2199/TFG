@@ -95,7 +95,7 @@ public class LocalController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping(path = "{sumario}", produces = APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/sumario", produces = APPLICATION_JSON_VALUE)
     @Operation(
             operationId = "getDocumentData",
             summary = "Obter os datos dun documento.",
@@ -125,7 +125,7 @@ public class LocalController {
     @PreAuthorize("isAuthenticated()")
     ResponseEntity<Optional<FinalDocument>> get(
             @Parameter(description = "Sumario do documento a buscar", example = "Sumario.")
-            @PathVariable("sumario") String sumario
+            @RequestParam("sumario") String sumario
     ) {
         Optional<FinalDocument> result = finalDocuments.get(sumario);
 

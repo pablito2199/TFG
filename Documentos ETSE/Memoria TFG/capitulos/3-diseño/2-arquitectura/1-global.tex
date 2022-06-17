@@ -18,10 +18,7 @@ Desde el cliente se realizan solicitudes HTTP hacia la API RESTful, que expone t
 La API, como se ha mencionado anteriormente, expone los servicios del servidor. En el servidor es donde se aplica la lógica de negocio \cite{logicanegocio} de la aplicación, es decir, donde se crea, almacena y modifica la información.
 \\
 
-En cuanto a la información que se utiliza en la aplicación, esta puede ser obtenido de dos fuentes diferentes. Por un lado, se obtiene información del DOG a través de su API REST, la cual se corresponde con las leyes que todavía no están almacenadas en la base de datos de la aplicación. El otro método para obtener información es directamente de la base de datos de MongoDB \cite{mongodb}, donde se encuentran las leyes consolidadas.
-\\
-
-En cuanto a la base de datos empleada (MongoDB), cabe mencionar que esta es una base de datos NoSQL \cite{nosql}. Este tipo de bases de datos se caracterizan por estar orientadas hacia documentos, y almacenan y recuperan los datos en formatos que no son tablas.
+En cuanto a la información que se utiliza en la aplicación, esta puede ser obtenido de dos fuentes diferentes. Por un lado, se obtiene información del DOG a través de su API REST, la cual se corresponde con las leyes que todavía no están almacenadas en la base de datos de la aplicación. El otro método para obtener información es directamente de la base de datos de MongoDB, donde se encuentran las leyes consolidadas.
 \\
 
 Con esta arquitectura se ha logrado el cumplimiento de dos requisitos no funcionales descritos: el {\bf NFR-08: Uso de tecnologías web y servicios RESTful} y el {\bf NFR-09: Base de datos NoSQL}.

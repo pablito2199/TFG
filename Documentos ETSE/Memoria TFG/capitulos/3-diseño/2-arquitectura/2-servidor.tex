@@ -46,9 +46,9 @@ En resumen, las funcionalidades de los controladores, servicios y repositorios s
     \item {\bf XuntaController}: se encarga de gestionar las llamadas a la API de la Xunta.
 \end{itemize}
 
-\subsubsection{Documentación de la API del servidor}
+\subsubsection{Listado de servicios}
 
-La documentación de la API del servidor se ha realizado con Swagger \cite{swagger}, siendo posible consultarse en mayor detalle accediendo a la URI ``/swagger-ui/index.html''. Por ejemplo, en el caso de desplegar el servidor localmente, el enlace sería {\it \url{http://localhost:8080/swagger-ui/index.html}}. No obstante, se realiza aquí un pequeño resumen de las principales operaciones ofrecidas.
+Como se ha mencionado anteriormente, el servidor sigue una arquitectura basada en servicios REST, los cuales permiten el acceso a recursos mediante los verbos HTTP. La información completa de dichos servicios se puede consultar en la documentación de la API del servidor en la URI {\it /swagger-ui/index.html}. Por ejemplo, en el caso de desplegar el servidor localmente, el enlace sería {\it \url{http://localhost:8080/swagger-ui/index.html}}.
 
 \begin{figure}[H]
 \centerline{\includegraphics[width=15cm]{figuras/diseño/APIServidor.PNG}}
@@ -56,9 +56,17 @@ La documentación de la API del servidor se ha realizado con Swagger \cite{swagg
 \label{enlaceAPIServidor}
 \end{figure}
 
+Los servicios listados en la \hyperref[enlaceAPIServidor]{Figura 3.3} se pueden resumir en lo descrito a continuación:
+
 \begin{itemize}
-    \item Para las operaciones del DOG se realiza un GET para obtener las normas buscadas. Es necesario estar autenticado. La URI de acceso es {\it /xunta}.
-    \item Para los aspectos de autenticación no es necesario estar autenticado. La única operación existente es un POST para realizar el login. Se obtiene un token JWT \cite{jwt} para mayor seguridad (NFR-10). La URI de acceso es {\it /login}.
-    \item Las operaciones relacionadas con leyes son: GET para obtener todos los datos, solo el sumario, el documento HTML de la ley y el id de la ley. POST se utiliza a la hora de almacenar nuevas leyes. PUT para modificar una ley completa. PATCH para modificar parcialmente atributos de una ley. DELETE para eliminar documentos. La URI de acceso general es {\it /local}.
-    \item En cuanto a los usuarios, solo se permite realizar GET para obtener los datos de un usuario, y POST para crear nuevos usuarios. La URI de acceso general es {\it /users}.
+    \item {\bf Xunta API}: existe una única operación GET, la cual se encarga de devolver el listado de leyes encontradas en el DOG. Para poder utilizar este servicio, es necesario estar autenticado. La URI de acceso es {\it /xunta}.
+    \item {\bf Authentication API}: una única operación también, en este caso un POST. Se encarga de gestionar el inicio de sesión por parte de un usuario, devolviendo un token JWT \cite{jwt} para mayor seguridad ({\bf NFR-10}). Es la única operación donde no es necesario estar autenticado y la URI de acceso es {\it /login}.
+    \item {\bf Local API}: se encuentran aquí los servicios más importantes de la aplicación, y por ello tenemos muchos más que en el resto de controladores. Solamente es necesario estar autenticado para poder operar con estos servicios, y se explican a continuación:
+        \begin{itemize}
+            \item Cuatro servicios GET. El primero de ellos, al cual se accede mediante la URI {\it /local} devuelve todas las leyes encontradas. Hay otros dos ({\it /local/{sumario}} y {\it /local/{id}}) que permiten buscar una ley concreta a partir de su sumario e id respectivamente. Por último, {\it /local/{sumario}/htmlDoc}, que devuelve el documento HTML de una ley.
+            \item Un POST para crear objetos de leyes. El contenido del documento de una ley se almacena en formato HTML, cumpliendo con el requisito {\bf NFR-05}. Se accede mediante la URI {\it /local}.
+            \item Las operaciones PUT en la URI {\it /local/{id}} y PATCH {\it /local/{sumario}} para modificar los datos de documentos. La operación PUT se utiliza cuando es necesario modificar un documento en su totalidad, mientras que PATCH solo cambia los atributos que es necesario.
+            \item El servicio DELETE en la URI {\it /local/{id}}, que se encarga de eliminar una ley de la base de datos.
+        \end{itemize}
+    \item {\bf User API}: dos operaciones para gestionar usuarios. La primera de ellas es un GET a la URI {\it /users/{id}} para obtener los datos de un usuario, y solo es necesario estar autenticado para obtener dichos datos. La segunda, es un POST a la URI {\it /users}. Esta operación inserta un usuario con la contraseña encriptada ({\bf NFR-02}), así como solo puede ser realizada por usuarios que poseen el rol de administrador ({\bf NFR-03}).
 \end{itemize}
