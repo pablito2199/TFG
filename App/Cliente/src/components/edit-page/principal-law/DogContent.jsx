@@ -4,7 +4,7 @@ export const DogContent = ({ contentVinculada, data }) => {
     let num = 0
     const mostrarCambio = (posicion) => {
         if (contentVinculada.current && contentVinculada.current.querySelector('#cambio-' + posicion)) {
-            contentVinculada.current.querySelector('#cambio-' + posicion).scrollIntoView()
+            contentVinculada.current.querySelector('#cambio-' + posicion).scrollIntoView({ behavior: "smooth" })
         }
     }
 

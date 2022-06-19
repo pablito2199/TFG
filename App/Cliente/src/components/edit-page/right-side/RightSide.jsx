@@ -51,9 +51,9 @@ export const RightSide = ({ leiModificada, content, setCambiosLocales, updatePar
             estado === 'c'
                 ?
                 <nav className='flex text-lg text-center'>
-                    <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Cambios</button>
-                    <button className='focus:outline-none p-2 w-32 border-t-2 border-b border-black hover:underline cursor-pointer' onClick={() => { setEstado('l'); updateLeisVinculadas() }}>Leis vinc.</button>
-                    <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer' onClick={() => setEstado('n')}>Notas</button>
+                    <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer transition-all'>Cambios</button>
+                    <button className='focus:outline-none p-2 w-32 border-t-2 border-b border-black hover:underline cursor-pointer transition-all' onClick={() => { setEstado('l'); updateLeisVinculadas() }}>Leis vinc.</button>
+                    <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer transition-all' onClick={() => setEstado('n')}>Notas</button>
                     <div className='flex flex-1 self-end justify-end h-5'>
                         {
                             claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'
@@ -68,9 +68,9 @@ export const RightSide = ({ leiModificada, content, setCambiosLocales, updatePar
                 estado === 'l'
                     ?
                     <nav className='flex text-lg text-center'>
-                        <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer' onClick={() => { setEstado('c') }}>Cambios</button>
-                        <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Leis vinc.</button>
-                        <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer' onClick={() => { setEstado('n') }}>Notas</button>
+                        <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer transition-all' onClick={() => { setEstado('c') }}>Cambios</button>
+                        <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer transition-all'>Leis vinc.</button>
+                        <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer transition-all' onClick={() => { setEstado('n') }}>Notas</button>
                         <div className='flex flex-1 self-end justify-end h-5'>
                             {
                                 claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'
@@ -83,9 +83,9 @@ export const RightSide = ({ leiModificada, content, setCambiosLocales, updatePar
                     </nav>
                     :
                     <nav className='flex text-lg text-center'>
-                        <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer' onClick={() => setEstado('c')}>Cambios</button>
-                        <button className='focus:outline-none p-2 w-32 border-t-2 border-b border-black hover:underline cursor-pointer' onClick={() => { setEstado('l'); updateLeisVinculadas() }}>Leis vinc.</button>
-                        <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer'>Notas</button>
+                        <button className='focus:outline-none p-2 w-32 border-2 border-b border-black hover:underline cursor-pointer transition-all' onClick={() => setEstado('c')}>Cambios</button>
+                        <button className='focus:outline-none p-2 w-32 border-t-2 border-b border-black hover:underline cursor-pointer transition-all' onClick={() => { setEstado('l'); updateLeisVinculadas() }}>Leis vinc.</button>
+                        <button className='focus:outline-none p-2 w-32 bg-black text-white border-2 border-black hover:underline cursor-pointer transition-all'>Notas</button>
                         <div className='flex flex-1 self-end justify-end h-5'>
                             {
                                 claseLeftSide === 'z-0 w-2/12 ml-2 screen-min5:w-5/6'

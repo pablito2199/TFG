@@ -33,7 +33,7 @@ export const Change = ({ content, cambio, anadirCambioSeleccionado, claseLeftSid
                     </div>
                     <button
                         className="flex flex-1 w-full justify-end text-blue-green underline font-semibold"
-                        onClick={() => content.current.children[parseInt(cambio.parrafo)].scrollIntoView()}
+                        onClick={() => content.current.children[parseInt(cambio.parrafo)].scrollIntoView({ behavior: "smooth" })}
                     >
                         Ir ao parágrafo
                     </button>

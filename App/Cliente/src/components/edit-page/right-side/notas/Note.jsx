@@ -33,7 +33,7 @@ export const Note = ({ content, nota, anadirNotaSeleccionada, notas, setNotas, s
                     </div>
                     <button
                         className="flex flex-1 w-full justify-end text-blue-green underline font-semibold"
-                        onClick={() => content.current.children[parseInt(nota.parrafo)].scrollIntoView()}
+                        onClick={() => content.current.children[parseInt(nota.parrafo)].scrollIntoView({ behavior: "smooth" })}
                     >
                         Ir ao parágrafo
                     </button>
