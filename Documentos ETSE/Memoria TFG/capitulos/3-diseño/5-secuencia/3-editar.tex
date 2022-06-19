@@ -1,31 +1,20 @@
-\subsection{Editar una ley de lex.gal}
+\subsection{Validar y publicar una ley de lex.gal}
 
-La principal funcionalidad de esta aplicación es la de editar una ley de lex.gal. En esta, un usuario estará visualizando una ley de lex.gal, y procederá a editar sus datos, así como los de las leyes vinculadas. Una vez se ha realizado la edición, el usuario ha de guardar sus cambios, y estos han de ser almacenados en la base de datos.
-
-
-
-En la \hyperref[enlaceDRegistro]{Figura 3.10} se ilustra el diagrama de secuencia de la operación de edición de una ley de lex.gal. Se puede resumir en los siguientes pasos:
+La principal funcionalidad de esta aplicación es la de editar una ley de lex.gal. En esta, un usuario estará visualizando una ley de lex.gal, y procederá a editar sus datos, así como los de las leyes vinculadas. En la \hyperref[enlaceDValidarLEXGAL]{Figura D.10} se ilustra el diagrama de secuencia de la operación de validar y publicar una ley de lex.gal, que se puede resumir en los siguientes pasos:
 
 \begin{enumerate}
-    \item El usuario entra en la página de edición de una ley, llamando al método que invoca al hook.
-    \item Este método invoca al hook useFinalDocument() del archivo contenido en hooks().
-    \item Se invoca al método findFinalDocument() de la carpeta {\bf api}.
-    \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función get() de LocalController, pues se hace un GET.
-    \item Se invoca al servicio get() de FinalDocumentService.
-    \item Se invoca la operación getBySumario() del repositorio FinalDocumentRepository, pues se busca según el sumario.
-    \item Se invoca la operación de recuperar en la base de datos de MongoDB.
-    \item Se recupera la ley encontrada en la base de datos.
-    \item Se procede a devolver la respuesta al usuario desde este paso, realizando el proceso inverso. El usuario recibirá las ley correspondiente. Se realiza este proceso {\bf hasta la operación 15}.
-    \item El usuario propone cambios que se almacenan en el Store de React.
-    \item El usuario añade anotaciones que se almacenan en el Store de React.
-    \item El usuario propone cambios en leyes vinculadas que se almacenan en el Store de React.
-    \item El usuario guarda los cambios. En función de si valida y publica, o guarda como borrador, tendrá un estado u otro.
-    \item Este método invoca al método put() del hook useFinalDocument().
-    \item Se invoca al método updateFinalDocument() de la carpeta  {\bf api}.
-    \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función put() de LocalController, pues se hace un PUT.
-    \item Se invoca al servicio save() de FinalDocumentService.
-    \item Se invoca la operación save() del repositorio FinalDocumentRepository, para poder modificar una ley.
+    \item El usuario puede proponer o no cambios en la página {\bf Edit}.
+    \item El usuario puede añadir o no anotaciones en la página {\bf Edit}.
+    \item El usuario proponer cambios o no en leyes vinculadas en la página {\bf Edit}.
+    \item El usuario guarda los cambios. Se utiliza el estado de {\bf VALIDADA} para la ley principal y, en caso de modificar alguna, a sus leyes vinculadas.
+    \item Este método invoca al método {\it put()} del hook {\it useFinalDocument()}.
+    \item Se invoca al método {\it updateFinalDocument()} de la carpeta  {\bf api}.
+    \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función {\it put()} de {\bf LocalController}, pues se hace un PUT.
+    \item Se invoca al servicio {\it save()} de {\bf FinalDocumentService}.
+    \item Se invoca la operación {\it save()} del repositorio {\bf FinalDocumentRepository}, para poder modificar una ley.
     \item Se invoca la operación de modificación en la base de datos de MongoDB.
     \item Se modifica la ley correspondiente en la base de datos.
-    \item Se procede a devolver la respuesta al usuario desde este paso, realizando el proceso inverso. El usuario recibirá un mensaje de que la operación fue satisfactoria.
+    \item Se procede a devolver la respuesta al cliente desde este paso, realizando el proceso inverso.
+    \item En caso de que todo fue correctamente en los pasos anteriores, y que la ley principal modifica alguna ley vinculada, se procede a editar esta correspondientemente. Se repiten todos los pasos descritos desde el punto 5 al punto 12.
+    \item Por último, se indica al usuario que se validó y publicó la ley principal, así como las leyes vinculadas si corresponde.
 \end{enumerate}
