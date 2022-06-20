@@ -9,7 +9,7 @@ La principal funcionalidad de esta aplicación es la de editar una ley de lex.ga
     \item El usuario guarda los cambios. Se utiliza el estado de {\bf VALIDADA} para la ley principal y, en caso de modificar alguna, a sus leyes vinculadas.
     \item Este método invoca al método {\it put()} del hook {\it useFinalDocument()}.
     \item Se invoca al método {\it updateFinalDocument()} de la carpeta  {\bf api}.
-    \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función {\it put()} de {\bf LocalController}, pues se hace un PUT.
+    \item Se hace un llamamiento mediante una solicitud HTTP al servidor. En concreto, la función {\it put()} de {\bf LocalController}, pues se hace un PUT. Se comprueba en los filtros que el usuario está autenticado.
     \item Se invoca al servicio {\it save()} de {\bf FinalDocumentService}.
     \item Se invoca la operación {\it save()} del repositorio {\bf FinalDocumentRepository}, para poder modificar una ley.
     \item Se invoca la operación de modificación en la base de datos de MongoDB.

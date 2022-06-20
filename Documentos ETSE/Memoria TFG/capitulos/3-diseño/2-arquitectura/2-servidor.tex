@@ -1,49 +1,26 @@
 \subsection{Arquitectura  del servidor}
 
-El servidor se ha implementado con Spring Boot \cite{spring}, un framework que permite la creación de aplicaciones en Java de una forma más sencilla. Esta simplifica el proceso de gestión de las dependencias, permitiendo que nos centremos lo máximo posible en el desarrollo de la aplicación.
-
 \begin{figure}[H]
 \centerline{\includegraphics[width=15cm]{figuras/diseño/FicherosServidor.png}}
 \caption{Arquitectura del servidor.}
 \label{enlaceArquitecturaServidor}
 \end{figure}
 
-El servidor está dividido en un conjunto de directorios, cada uno con una función diferente. 
+La arquitectura del servidor se muestra en la \hyperref[enlaceArquitecturaServidor]{Figura 3.2}, y en ella se pueden ver a simple vista los diferentes componentes que la forman.
 \\
 
-Todas las dependencias del servidor son definidas en el archivo {\bf build.gradle}. Dichas dependencias son tratadas por Gradle \cite{gradle}, un gestor de dependencias en aplicaciones de Java.
+El usuario realiza desde el cliente las llamadas a la API mediante solicitudes HTTP (ya sean GET, POST, ...), de las que posteriormente obtendrá una respuesta. Una vez llegan las solicitudes al servidor, se hacen pasar por los filtros ({\it filter}). Encontramos por un lado el archivo {\bf AuthenticationFilter}, que se encarga de gestionar el inicio de sesión, y, por otra parte, {\bf AuthorizationFilter}, que comprueba los permisos del usuario, así como si el token de la sesión es válido.
 \\
 
-En el subdirectorio {\bf main}, encontraremos una carpeta denominada {\bf resources}. En el fichero contenido en ella, se define el nombre de la base de datos que ha de utilizar la aplicación.
+Una vez pasan los filtros, la información se redirige hacia los controladores ({\it controller}). Estos controladores redirigen las llamadas a los servicios necesarios ({\it service}), que es donde se implementa la lógica de negocio en la aplicación. Por último, los servidores invocan a los métodos de los repositorios ({\it repository}), que son los que se encargan del acceso y almacenamiento en la base de datos.
 \\
 
-Si accedemos al directorio {\bf java/tfg/project}, encontramos el contenido principal del servidor. El archivo {\bf Application} es el encargado de desplegar el servidor, pues contiene la función main del programa.
-\\
-
-En el directorio {\bf Config}, se localizan archivos de configuración del propio servidor, tales como aspectos de seguridad, documentación, privacidad, etc. 
-\\
-
-Otro directorio es el {\bf Filter}, donde se tratan distintos aspectos de seguridad con respecto a los usuarios que utilizan la aplicación, como puede ser el inicio de sesión, gestión de contraseñas o comprobación de roles.
-\\
-
-En la carpeta {\bf Model} encontramos los distintos objetos que conforman la base de la aplicación. Podemos destacar entre ellos el objeto {\bf FinalDocument}, que está formado por todos los atributos de la ley, y {\bf User}, que es el objeto utilizado para gestionar los usuarios. Todos estos objetos son empleados por las clases definidas en las carpetas {\bf Controller, Service y Repository}.
-\\
-
-En la carpeta {\bf Controller}, encontramos todos los archivos encargados de redirigir las llamadas a los servicios necesarios en la carpeta Service. Estos se encargan de localizar cualquier llamada al servidor (GET, POST, ...), y entregarla a los servicios.
-\\
-
-Con respecto al directorio {\bf Service}, este contiene los archivos donde se localizan los servicios web. Aquí se implementa la lógica de negocio de la aplicación, y no se conserva estado. Es llamada por los controladores, y solicita información a los repositorios donde se almacena toda la información.
-\\
-
-Como último directorio, se encuentra {\bf Repository}, donde se almacenan los ficheros que se encargan del acceso y almacenamiento de datos. Estos gestionan la conexión con la base de datos para poder obtener/almacenar información en ella.
-\\
-
-En resumen, las funcionalidades de los controladores, servicios y repositorios son las siguientes:
+Teniendo en cuenta los componentes que se han diseñado en esta aplicación, las funcionalidades de los distintos controladores, servicios y repositorios se pueden resumir en:
 \begin{itemize}
-    \item {\bf LocalController, FinalDocumentService y FinalDocumentRepository}: se encargan de gestionar las operaciones relacionadas con las leyes.
-    \item {\bf UserController, UserService y UserRepository}: se encargan de gestionar las operaciones relacionadas con los usuarios.
-    \item {\bf AuthController, AuthenticationService y UserRepository}: se encargan de gestionar las operaciones relacionadas con aspectos de seguridad respecto a los usuarios, como el inicio de sesión.
-    \item {\bf XuntaController}: se encarga de gestionar las llamadas a la API de la Xunta.
+    \item {\bf LocalController, FinalDocumentService y FinalDocumentRepository}: se encargan de gestionar las operaciones relacionadas con las leyes almacenadas en la base de datos de la aplicación. Desde LocalController se llama a los servicios necesarios de FinalDocumentService, el cual finalmente llama a FinalDocumentRepository para que maneje los datos de las leyes en la base de datos.
+    \item {\bf UserController, UserService y UserRepository}: se encargan de gestionar las operaciones relacionadas con los usuarios, los cuales se almacenan en la base de datos de la aplicación. Desde UserController se llama a los servicios necesarios de UserService, el cual finalmente llama a UserRepository para que maneje los datos de los usuarios en la base de datos.
+    \item {\bf AuthController, AuthenticationService y UserRepository}: se encargan de gestionar las operaciones relacionadas con aspectos de seguridad respecto a los usuarios, como el inicio de sesión. Acceden también a los usuarios almacenados en la base de datos local. Desde AuthController se llama a los servicios necesarios de AuthenticationService, el cual finalmente llama a UserRepository para que maneje los datos de las leyes en la base de datos. En este caso es necesario utilizar el filtro de AuthenticationFilter, pues se encarga del inicio de sesión.
+    \item {\bf XuntaController}: se encarga de gestionar las llamadas a la API del DOG. De aquí el controlador XuntaController obtiene las diferentes leyes encontradas en el DOG.
 \end{itemize}
 
 \subsubsection{Listado de servicios}
