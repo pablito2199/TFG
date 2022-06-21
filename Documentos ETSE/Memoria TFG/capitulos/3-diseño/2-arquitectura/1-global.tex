@@ -15,7 +15,7 @@ El cliente está conformado por todos aquellos navegadores web que realizan llam
 Desde el cliente se realizan solicitudes HTTP hacia la API RESTful, que expone todos los servicios implementados en el servidor. Gracias al uso de la arquitecutra REST, se permite el acceso a los recursos mediante URIs, las cuales pueden ser accedidas mediante los verbos HTTP (GET para obtener información, POST para crear objetos, PATCH y PUT para modificar información, y DELETE para eliminar objetos). Al cliente se le devuelve desde la API una respuesta HTTP con todas sus cabeceras. Y, además, en el caso de las operaciones GET, POST, PATCH y PUT, se devuelve el objeto correspondiente a la operación, ya se haya obtenido, creado o modificado.
 \\
 
-La API, como se ha mencionado anteriormente, expone los servicios del servidor. En el servidor es donde se aplica la lógica de negocio \cite{logicanegocio} de la aplicación, es decir, donde se crea, almacena y modifica la información.
+La API, como se ha mencionado anteriormente, expone los servicios del servidor. En el servidor es donde se implementa la lógica de negocio \cite{logicanegocio} de la aplicación, es decir, donde se crea, almacena y modifica la información.
 \\
 
 En cuanto a la información que se utiliza en la aplicación, esta puede ser obtenida de dos fuentes diferentes. Por un lado, se obtiene información del DOG a través de su API REST, la cual se corresponde con las leyes que todavía no están almacenadas en la base de datos de la aplicación. El otro método para obtener información es directamente de la base de datos de MongoDB, donde se encuentran las leyes consolidadas.
