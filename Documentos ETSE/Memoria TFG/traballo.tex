@@ -9,7 +9,7 @@
 % Como se incluyen figuras eps hay que compilar con: latex traballo , dvipdf traballo
 %
 
-\documentclass[12pt,oneside,a4paper]{book}
+\documentclass[12pt,twoside,a4paper]{book}
 % pódense engadir todos os packages necesarios
 \usepackage[utf8]{inputenc}
 % \usepackage[latin1]{inputenc}
@@ -30,20 +30,18 @@
 
 \begin{document}
 \include{capitulos/titulo}
-\chapter*{} \thispagestyle{empty} \addtocounter{page}{-1}
+\cleardoublepage
 \include{capitulos/0-optativas/1-certificacion} % paxina de certificación (optativa)
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/0-optativas/2-agradecementos} % paxina de agradecementos (optativa) 
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/0-optativas/3-resumo} % páxina de resumo (optativa) 
+\cleardoublepage
 
-\chapter*{} \thispagestyle{empty}
 \pagestyle{plain}
 \tableofcontents
-\chapter*{} \thispagestyle{empty}
 \listoffigures
 \listoftables
-\chapter*{} \thispagestyle{empty}
 
 % Agora incluimos os capítulos. Cambiamos a numeración e as cabeceiras
 \cleardoublepage
@@ -51,26 +49,30 @@
 \setcounter{page}{1}
 \pagestyle{headings}
 \include{capitulos/1-introducion/0-index}
+\cleardoublepage
 \include{capitulos/2-requisitos/0-index}
+\cleardoublepage
 \include{capitulos/3-diseño/0-index/0-index}
+\cleardoublepage
 \include{capitulos/4-pruebas/0-index}
+\cleardoublepage
 \include{capitulos/5-conclusiones/0-index}
+\cleardoublepage
 
 % Aquí empezan os apéndices
 \appendix
-\chapter*{} \thispagestyle{empty}
 \include{capitulos/6-apendices/1-tecnicos/0-index}
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/6-apendices/2-usuarios/0-index}
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/6-apendices/3-requisitos/0-index}
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/6-apendices/4-secuencia/0-index}
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/6-apendices/5-plantillas/0-index}
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/6-apendices/6-licencia/0-index}
-\chapter*{} \thispagestyle{empty}
+\cleardoublepage
 \include{capitulos/6-apendices/7-bibiliografia/0-index}
-
+\cleardoublepage
 \end{document}
