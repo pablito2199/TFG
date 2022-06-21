@@ -1,29 +1,21 @@
 \subsection{Arquitectura del cliente}
 
-En el caso del cliente, se ha trabajado con varios frameworks: React.js \cite{react}, uno de los frameworks más populares de JavaScript para realizar clientes de aplicaciones web, y Tailwind \cite{tailwind} como framework de CSS \cite{css}, utilizado para estilizar las páginas web.
-
 \begin{figure}[H]
-\centerline{\includegraphics[width=10cm]{figuras/diseño/FicherosCliente.png}}
+\centerline{\includegraphics[width=15cm]{figuras/diseño/FicherosCliente.png}}
 \caption{Arquitectura del cliente.}
 \label{enlaceArquitecturaCliente}
 \end{figure}
 
-En cuanto a la arquitectura en sí, encontramos el archivo {\bf package.json} mencionado anteriormente, así como el archivo {\bf tailwind.config.js}. Este último se encarga de definir nuevas propiedades de Tailwind a la hora de aplicar el CSS sobre la página.
+En la \hyperref[enlaceArquitecturaCliente]{Figura 3.4} se ilustra una pequeña representación de la arquitectura del cliente, con las diferentes partes que lo componen.
 \\
 
-En la carpeta {\bf src} encontramos el archivo {\bf index.js}, donde se definen todas las rutas según el enlace de la url al que se accede. Este aplica además a todas las rutas el CSS de {\bf styles.css}, donde se importan todas las propiedades de Tailwind.
+En el cliente existen un total de ocho páginas: {\bf Edit}, {\bf NotFound}, {\bf Home}, {\bf Search}, {\bf Preview}, {\bf Save}, {\bf RegisterUsers} y {\bf Login}. Todas estas son divididas en componentes, los cuales se almacenan en la carpeta {\bf components} (no se ilustran en esta imagen de la arquitectura porque son más de 50). Estos componentes son estructuras de código más pequeñas, que, en conjunto, llegan a formar las páginas mencionadas anteriormente.
 \\
 
-En la parte derecha se encuentran todas las carpetas contenidas en {\bf src}. En el directorio {\bf pages} se localizan todos los archivos que contienen el código de la página al que {\bf index.js} redirige según el enlace. Estas hacen llamamientos a la carpeta {\bf components}, que son pequeñas estructuras de la página que pueden ser reutilizadas en otras páginas.
+Los componentes de las páginas, así como las propias páginas, hacen uso de los archivos de {\it data}, es decir, los mostrados en el cuadro amarillo. Estos son archivos que permiten automatizar el listado de selección de campos de cabecera, como puede ser el organismo de una ley, la sección a la que pertenece, el colectivo que lo publica, etc.
 \\
 
-En cuanto a la carpeta {\bf images} no hay que comentar nada más que contiene las imágenes empleadas en la aplicación.
+En cuanto a las páginas, estas hacen uso del archivo {\bf hooks} para poder llegar a establecer conexión con los datos del servidor. Las páginas hacen un llamamiento a {\it hooks}, que a su vez realiza un llamamiento al archivo {\bf api}, el cual establece una interfaz con todas las solicitudes HTTP realizadas al servidor. Este archivo realiza las solicitudes al servidor en primera instancia, y recibe la respuesta correspondiente del servidor, la cual se envía de vuelta hasta la página correspondiente, siguiendo el camino inverso.
 \\
 
-Por su parte, la carpeta {\bf data} contiene archivos en formato JSON, con listados de secciones, temáticas, organizaciones, colectivos y rangos del DOG y lex.gal.
-\\
-
-La carpeta {\bf content} se ha creado con el objetivo de crear una interfaz para la seguridad en cuanto al acceso de la aplicación por parte de usuarios, definiendo métodos para añadir seguridad a las rutas.
-\\
-
-Por último, encontramos las carpetas {\bf hooks} y {\bf api}. Estas dos carpetas se encargan de automatizar los llamamientos al servidor desde cualquier página. La carpeta {\bf hooks} contiene un archivo que actúa como interfaz de la API con el cliente, mientras que en la carpeta {\bf api} se realizan todas las llamadas HTTP a la API del servidor, descrita en la \hyperref[enlaceAPIServidor]{Figura 3.3. API del servidor}.
+Existe un caso especial con respecto al párrafo anterior. Cuando se realiza la operación de inicio de sesión, esta se realiza en la página de Login. En este caso, se hace un llamamiento al archivo {\bf auth} del {\it context}. Este archivo se encarga de gestionar el almacenamiento local en la parte del cliente. Aquí se almacena, por ejemplo, el token JWT que fue enviado desde el servidor al realizar el inicio de sesión. De esta forma, en todo momento el usuario dispone del token necesario para realizar las operaciones que desee al estar autenticado.
