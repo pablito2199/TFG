@@ -2,15 +2,27 @@
 
 \subsubsection{Composite}
 
-En esta aplicación se ha utilizado el patrón Composite \cite{composite}, que se trata de un patrón estructural. Este permite la composición de objetos complejos a partir de otros más pequeños. 
+\begin{figure}[H]
+\centerline{\includegraphics[width=7cm]{figuras/diseño/composite.png}}
+\caption{Patrón de diseño Composite.}
+\label{enlaceComposite}
+\end{figure}
+
+En esta aplicación se ha utilizado el patrón Composite \cite{composite}, el cual se refleja en la \hyperref[enlaceComposite]{Figura 3.6}, que se trata de un patrón estructural. Este permite la composición de objetos complejos a partir de otros más pequeños. 
 \\
 
-Este es el caso, por ejemplo, de la creación del objeto FinalDocument, que está compuesto de objetos más pequeños como pueden ser Change, Note, etc.
+El ejemplo de este patrón de diseño es muy sencillo. Todas las páginas están formadas por distintos componentes: una cabecera, barra lateral, el propio cuerpo de la página, etc. En su conjunto, todos los componentes forman la página.
 
 
 \subsubsection{Front Controller}
 
-Otro patrón estructural utilizado es el Front Controller \cite{frontcontroller}. Este patrón es muy utilizado comunmente en las aplicaciones web, en las que una clase se encarga de recibir las entradas, llamando a los métodos necesarios para generar las salidas.
+\begin{figure}[H]
+\centerline{\includegraphics[width=7cm]{figuras/diseño/frontcontroller_pattern_uml_diagram.jpg}}
+\caption{Patrón de diseño Front Controller.}
+\label{enlaceFrontController}
+\end{figure}
+
+Otro patrón estructural utilizado es el Front Controller \cite{frontcontroller}, ilustrado en la \hyperref[enlaceFrontController]{Figura 3.7}. Este patrón es muy utilizado comunmente en las aplicaciones web, en las que una clase se encarga de recibir las entradas, llamando a los métodos necesarios para generar las salidas.
 \\
 
 En el caso de esta aplicación, la detección de este patrón es sencilla de ver. Se utilizan hasta cuatro controladores que llaman a sus respectivos servicios, donde se implementa la lógica de negocio. Estos controladores reciben las solicitudes HTTP desde el cliente, centralizando las llamadas, y solicitan las salidas a los diferentes servicios. Los controladores son: {\bf LocalController, XuntaController, AuthController} y {\bf UserController}.

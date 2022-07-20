@@ -12,7 +12,13 @@ Otra de las ventajas que permite es que se pueden utilizar lenguajes de programa
 
 \subsubsection{Arquitectura SPA}
 
-La arquitectura SPA ({\it Single Page Application}) \cite{spa} es conocida por realizar la navegación desde el lado del cliente, mientras que el navegador no se recarga durante su uso. 
+\begin{figure}[H]
+\centerline{\includegraphics[width=7cm]{figuras/diseño/arquitecturaspa.png}}
+\caption{Patrón de arquitectura SPA.}
+\label{enlaceSPA}
+\end{figure}
+
+La arquitectura SPA ({\it Single Page Application}) \cite{spa}, reflejada en la \hyperref[enlaceSPA]{Figura 3.5}, es conocida por realizar la navegación desde el lado del cliente, mientras que el navegador no se recarga durante su uso. 
 \\
 
-Una de las principales ventajas que tiene con respecto a cualquier tipo de aplicación tradicional es que permite realizar cualquier aplicación de escritorio vía web, siendo el tiempo de respuesta mucho más rápido. Además, se reduce la carga del servidor al realizar todas las operaciones sobre el cliente. Al generarse la aplicación en el navegador web, solo es necesario ir llamando a la API cuando se necesita hacer uso del servidor.
+Una de las principales ventajas que tiene con respecto a las aplicaciones tradicionales es que permite realizar cualquier aplicación de escritorio vía web, siendo el tiempo de respuesta mucho más rápido. Esto es así porque no tiene que ir a buscar continuamente la información al servidor. Además, se reduce la carga del servidor al realizar todas las operaciones sobre el cliente. Al generarse la aplicación en el navegador web, solo es necesario ir llamando a la API cuando se necesita hacer uso del servidor.
