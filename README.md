@@ -28,4 +28,4 @@ En cuanto al despliegue de la parte del **cliente**:
 
 Por último, cabe indicar que por motivos de seguridad se ha de introducir un usuario a mano en la base de datos. Esto se debe a que en la aplicación solo se permite registrar usuarios cuando existe un administrador. Es por ello que se debe acceder a MongoDB, crear una nueva base de datos denominada "tfg", y la colección ha de ser "users". Importaremos el archivo _data.json_ (situado en el directorio raíz del proyecto), que contiene el usuario inicial.
 
-Cuando sea el caso de iniciar sesión por primera vez, habrá que acceder con el email _usuario@usuario.com_ y la contraseña _Abc123.._.
+Cuando sea el caso de iniciar sesión por primera vez, habrá que acceder con el email _usuario@usuario.com_ (y la contraseña _Abc123.._).
